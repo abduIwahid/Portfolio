@@ -658,8 +658,37 @@
     .nav-links a { font-size:1.2rem; }
     .hamburger { display:flex; z-index:100; }
     .nav-cta { display:none; }
-    #hero { grid-template-columns:1fr; padding:6rem 1.5rem 4rem; gap:3rem; }
-    .hero-right { display:none; }
+    #hero {
+      grid-template-columns:1fr;
+      padding:6rem 1.5rem 4rem;
+      gap:2.5rem;
+      justify-items:center;
+    }
+    .hero-left { width:100%; }
+    /* Show hero-right on mobile, scaled down */
+    .hero-right {
+      display:flex;
+      width:100%;
+      max-width:360px;
+      gap:1.2rem;
+    }
+    .avatar-wrapper {
+      width:160px;
+      height:160px;
+      flex-shrink:0;
+    }
+    .avatar-placeholder { font-size:3rem; }
+    /* On mobile: avatar left, stats stacked right */
+    .stats-row {
+      display:flex;
+      flex-direction:column;
+      gap:0.6rem;
+      flex:1;
+      justify-content:center;
+    }
+    .stat-card { padding:0.7rem 0.8rem; text-align:left; }
+    .stat-val { font-size:1.2rem; }
+    .stat-label { font-size:0.65rem; }
     section { padding:5rem 1.5rem; }
     .about-grid { grid-template-columns:1fr; }
     .edu-grid { grid-template-columns:1fr; }
@@ -668,13 +697,14 @@
     .gh-langs { grid-template-columns:repeat(2,1fr); }
     footer { padding:1.5rem; flex-direction:column; align-items:flex-start; }
     .form-row { grid-template-columns:1fr; }
-    .stats-row { grid-template-columns:repeat(3,1fr); }
   }
   @media(max-width:500px) {
     .hero-name { font-size:2.5rem; }
     .skills-grid { grid-template-columns:1fr; }
     .projects-grid { grid-template-columns:1fr; }
-    .stats-row { grid-template-columns:1fr; }
+    .hero-right { max-width:100%; }
+    .avatar-wrapper { width:130px; height:130px; }
+    .avatar-placeholder { font-size:2.5rem; }
   }
 
   /* Loading animation */

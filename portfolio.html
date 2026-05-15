@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Abdul Wahid — AI/ML Developer & BS Artificial Intelligence student at COMSATS University. Specializing in Python, Machine Learning, and Software Engineering.">
+<meta name="keywords" content="Abdul Wahid, AI Developer, Machine Learning, Python, Java, Portfolio, COMSATS, Artificial Intelligence">
+<meta property="og:title" content="Abdul Wahid | AI/ML Developer Portfolio">
+<meta property="og:description" content="BS Artificial Intelligence student passionate about AI, ML, and Software Engineering.">
+<meta property="og:type" content="website">
+<title>Abdul Wahid | AI/ML Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060608;
+    --bg2: #0d0d14;
+    --bg3: #12121c;
+    --accent: #e8e8ff;
+    --accent2: #7b7bff;
+    --accent3: #4fc3f7;
+    --text: #e8e8f0;
+    --text2: #9090aa;
+    --border: rgba(120,120,200,0.15);
+    --border2: rgba(120,120,200,0.3);
+    --glass: rgba(13,13,20,0.7);
+    --card-bg: rgba(18,18,28,0.8);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events:none; z-index:0; opacity:0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    display: flex; align-items:center; justify-content:space-between;
+    padding: 1.2rem 2.5rem;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    background: rgba(6,6,8,0.8);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent2); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a {
+    font-size: 0.85rem;
+    color: var(--text2);
+    text-decoration:none;
+    letter-spacing:0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    color: var(--accent);
+    text-decoration:none;
+    transition: all 0.2s;
+    letter-spacing:0.05em;
+  }
+  .nav-cta:hover { background: var(--accent2); border-color: var(--accent2); color: #fff; }
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+  .hamburger span { display:block; width:22px; height:1.5px; background:var(--text); transition:all 0.3s; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 6rem 5rem 4rem;
+    position: relative;
+    gap: 4rem;
+  }
+  .hero-grid-bg {
+    position:absolute; inset:0; z-index:0;
+    background-image:
+      linear-gradient(rgba(123,123,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(123,123,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+  .hero-glow {
+    position:absolute;
+    width:600px; height:600px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(123,123,255,0.12) 0%, transparent 70%);
+    top:-10%; right:-5%;
+    pointer-events:none;
+    animation: floatGlow 8s ease-in-out infinite alternate;
+  }
+  .hero-glow2 {
+    position:absolute;
+    width:400px; height:400px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(79,195,247,0.08) 0%, transparent 70%);
+    bottom:5%; left:10%;
+    pointer-events:none;
+    animation: floatGlow 10s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes floatGlow { from{transform:scale(1) translate(0,0)} to{transform:scale(1.1) translate(20px,-20px)} }
+
+  .hero-left { position:relative; z-index:1; }
+  .hero-tag {
+    display:inline-flex; align-items:center; gap:0.5rem;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    padding:0.35rem 0.9rem;
+    border: 1px solid var(--border2);
+    border-radius:2px;
+    color: var(--accent3);
+    letter-spacing:0.1em;
+    margin-bottom:1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-tag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent3); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+  .hero-name {
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size: clamp(3rem,6vw,5.5rem);
+    font-weight:800;
+    line-height:1.05;
+    letter-spacing:-0.03em;
+    color: var(--accent);
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero-name .highlight {
+    background: linear-gradient(135deg, var(--accent2), var(--accent3));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+
+  .hero-title-wrap {
+    font-family:'JetBrains Mono',monospace;
+    font-size:1rem;
+    color: var(--text2);
+    margin:1rem 0 1.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  #typed { color: var(--accent2); }
+  .cursor-blink {
+    display:inline-block; width:2px; height:1em;
+    background:var(--accent2); margin-left:2px;
+    animation: blink 1s step-end infinite; vertical-align:text-bottom;
+  }
+  @keyframes blink { 50%{opacity:0} }
+
+  .hero-bio {
+    font-size:1rem;
+    color: var(--text2);
+    max-width:480px;
+    line-height:1.8;
+    margin-bottom:2.5rem;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .hero-btns {
+    display:flex; gap:1rem; flex-wrap:wrap;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .btn-primary {
+    display:inline-flex; align-items:center; gap:0.5rem;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.8rem;
+    padding:0.8rem 1.8rem;
+    background: linear-gradient(135deg, var(--accent2), #5555cc);
+    color:#fff;
+    border:none; border-radius:4px;
+    text-decoration:none; cursor:pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing:0.05em;
+  }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(123,123,255,0.4); }
+  .btn-outline {
+    display:inline-flex; align-items:center; gap:0.5rem;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.8rem;
+    padding:0.8rem 1.8rem;
+    border: 1px solid var(--border2);
+    color: var(--text);
+    border-radius:4px;
+    text-decoration:none; cursor:pointer;
+    transition: all 0.2s;
+    letter-spacing:0.05em;
+  }
+  .btn-outline:hover { border-color:var(--accent2); color:var(--accent2); background:rgba(123,123,255,0.05); }
+
+  .hero-socials {
+    display:flex; gap:1.2rem; margin-top:2.5rem;
+    animation: fadeUp 0.6s 0.5s ease both;
+  }
+  .social-link {
+    display:flex; align-items:center; justify-content:center;
+    width:38px; height:38px;
+    border:1px solid var(--border);
+    border-radius:4px;
+    color:var(--text2);
+    text-decoration:none;
+    transition:all 0.2s;
+  }
+  .social-link:hover { border-color:var(--accent2); color:var(--accent2); transform:translateY(-2px); }
+  .social-link svg { width:18px; height:18px; fill:currentColor; }
+
+  /* Hero Right - Avatar/Stats Card */
+  .hero-right {
+    position:relative; z-index:1;
+    display:flex; flex-direction:column; align-items:center; gap:1.5rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .avatar-wrapper {
+    position:relative;
+    width:260px; height:260px;
+  }
+  .avatar-ring {
+    position:absolute; inset:-8px;
+    border-radius:50%;
+    border: 1px solid transparent;
+    background: linear-gradient(135deg, var(--accent2), var(--accent3), transparent) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    animation: spin 8s linear infinite;
+  }
+  @keyframes spin { to{transform:rotate(360deg)} }
+  .avatar-ring2 {
+    position:absolute; inset:-16px;
+    border-radius:50%;
+    border: 1px dashed rgba(123,123,255,0.2);
+    animation: spin 14s linear infinite reverse;
+  }
+  .avatar-placeholder {
+    width:100%; height:100%;
+    border-radius:50%;
+    background: linear-gradient(135deg, var(--bg3) 0%, #1a1a2e 100%);
+    border: 2px solid var(--border2);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:5rem;
+    font-weight:800;
+    color: var(--accent2);
+    overflow:hidden;
+    position:relative;
+  }
+  .avatar-placeholder::after {
+    content:'';
+    position:absolute; inset:0;
+    background: radial-gradient(circle at 30% 30%, rgba(123,123,255,0.15), transparent 60%);
+  }
+
+  .stats-row {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:0.8rem; width:100%;
+  }
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius:8px;
+    padding:1rem;
+    text-align:center;
+    backdrop-filter:blur(12px);
+  }
+  .stat-val {
+    font-family:'JetBrains Mono',monospace;
+    font-size:1.5rem;
+    font-weight:700;
+    color:var(--accent2);
+    display:block;
+  }
+  .stat-label { font-size:0.72rem; color:var(--text2); letter-spacing:0.05em; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── SECTIONS ── */
+  section { position:relative; padding: 6rem 5rem; }
+  .section-label {
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    color:var(--accent3);
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    margin-bottom:0.8rem;
+    display:flex; align-items:center; gap:0.8rem;
+  }
+  .section-label::after { content:''; flex:1; height:1px; background:var(--border); max-width:60px; }
+  .section-title {
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:clamp(2rem,4vw,3rem);
+    font-weight:800;
+    color:var(--accent);
+    line-height:1.1;
+    margin-bottom:1rem;
+    letter-spacing:-0.03em;
+  }
+  .section-sub { color:var(--text2); font-size:1rem; max-width:550px; margin-bottom:3.5rem; line-height:1.8; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--bg2); }
+  .about-grid {
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:4rem; align-items:start;
+  }
+  .about-text p { color:var(--text2); line-height:1.9; margin-bottom:1.2rem; font-size:1rem; }
+  .about-text strong { color:var(--accent); }
+  .fact-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:1rem;
+  }
+  .fact-card {
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:1.2rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .fact-card:hover { border-color:var(--border2); transform:translateY(-3px); }
+  .fact-icon { font-size:1.5rem; margin-bottom:0.6rem; }
+  .fact-title { font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text2); letter-spacing:0.05em; margin-bottom:0.3rem; }
+  .fact-value { font-size:0.95rem; color:var(--accent); font-weight:500; }
+
+  /* ── SKILLS ── */
+  #skills { }
+  .skills-categories { display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:2.5rem; }
+  .skill-cat-btn {
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    padding:0.4rem 1rem;
+    border:1px solid var(--border);
+    border-radius:2px;
+    color:var(--text2);
+    background:transparent;
+    cursor:pointer;
+    letter-spacing:0.05em;
+    transition:all 0.2s;
+  }
+  .skill-cat-btn.active, .skill-cat-btn:hover { border-color:var(--accent2); color:var(--accent2); background:rgba(123,123,255,0.06); }
+  .skills-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:1rem;
+  }
+  .skill-item {
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:1.2rem 1.5rem;
+    transition:border-color 0.2s;
+  }
+  .skill-item:hover { border-color:var(--border2); }
+  .skill-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:0.7rem; }
+  .skill-name { font-size:0.9rem; color:var(--accent); font-weight:500; }
+  .skill-pct { font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--accent2); }
+  .skill-bar-bg { height:3px; background:var(--border); border-radius:2px; overflow:hidden; }
+  .skill-bar-fill {
+    height:100%; border-radius:2px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent3));
+    width:0%; transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+  }
+  .skill-tag { font-size:0.72rem; color:var(--text2); margin-top:0.4rem; }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--bg2); }
+  .projects-filter { display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+  .filter-btn {
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    padding:0.4rem 1rem;
+    border:1px solid var(--border);
+    border-radius:2px;
+    color:var(--text2);
+    background:transparent;
+    cursor:pointer;
+    letter-spacing:0.05em;
+    transition:all 0.2s;
+  }
+  .filter-btn.active, .filter-btn:hover { border-color:var(--accent2); color:var(--accent2); background:rgba(123,123,255,0.06); }
+
+  .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1.2rem; }
+  .project-card {
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:1.8rem;
+    display:flex; flex-direction:column;
+    transition:all 0.3s;
+    position:relative; overflow:hidden;
+  }
+  .project-card::before {
+    content:'';
+    position:absolute; top:0; left:0; right:0;
+    height:2px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent3));
+    transform:scaleX(0); transform-origin:left;
+    transition: transform 0.3s;
+  }
+  .project-card:hover::before { transform:scaleX(1); }
+  .project-card:hover { transform:translateY(-4px); border-color:var(--border2); }
+  .project-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1rem; }
+  .project-title { font-family:'Plus Jakarta Sans',sans-serif; font-size:1.1rem; font-weight:700; color:var(--accent); }
+  .project-status {
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.6rem;
+    padding:0.25rem 0.6rem;
+    border-radius:2px;
+    letter-spacing:0.08em;
+    flex-shrink:0;
+  }
+  .status-active { background:rgba(79,195,247,0.1); color:var(--accent3); border:1px solid rgba(79,195,247,0.2); }
+  .status-learning { background:rgba(123,123,255,0.1); color:var(--accent2); border:1px solid rgba(123,123,255,0.2); }
+  .project-desc { color:var(--text2); font-size:0.9rem; line-height:1.7; flex:1; margin-bottom:1.2rem; }
+  .project-tags { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.2rem; }
+  .project-tag {
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.65rem;
+    padding:0.25rem 0.6rem;
+    background:rgba(123,123,255,0.07);
+    border:1px solid var(--border);
+    border-radius:2px;
+    color:var(--text2);
+    letter-spacing:0.05em;
+  }
+  .project-links { display:flex; gap:0.8rem; }
+  .proj-link {
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    color:var(--text2);
+    text-decoration:none;
+    display:flex; align-items:center; gap:0.3rem;
+    transition: color 0.2s;
+  }
+  .proj-link:hover { color:var(--accent2); }
+
+  /* ── EXPERIENCE & EDUCATION ── */
+  #experience { }
+  .timeline { position:relative; padding-left:2.5rem; }
+  .timeline::before {
+    content:'';
+    position:absolute; left:0; top:8px; bottom:0;
+    width:1px;
+    background: linear-gradient(to bottom, var(--accent2), transparent);
+  }
+  .timeline-item { position:relative; margin-bottom:3rem; }
+  .timeline-dot {
+    position:absolute; left:-2.5rem;
+    width:12px; height:12px;
+    border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--accent2);
+    margin-top:6px;
+    transform:translateX(-50%);
+  }
+  .timeline-dot.active { background:var(--accent2); box-shadow: 0 0 0 4px rgba(123,123,255,0.15); }
+  .timeline-period {
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    color:var(--accent3);
+    letter-spacing:0.05em;
+    margin-bottom:0.5rem;
+  }
+  .timeline-title { font-family:'Plus Jakarta Sans',sans-serif; font-size:1.2rem; font-weight:700; color:var(--accent); margin-bottom:0.2rem; }
+  .timeline-org { font-size:0.9rem; color:var(--accent2); margin-bottom:0.8rem; }
+  .timeline-desc { color:var(--text2); font-size:0.9rem; line-height:1.7; }
+  .timeline-desc li { margin-bottom:0.4rem; }
+  .timeline-tags { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.8rem; }
+  .timeline-tag {
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.62rem;
+    padding:0.2rem 0.5rem;
+    background:rgba(123,123,255,0.07);
+    border:1px solid var(--border);
+    border-radius:2px;
+    color:var(--text2);
+  }
+
+  /* ── EDUCATION ── */
+  #education { background:var(--bg2); }
+  .edu-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+  .edu-card {
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:2rem;
+    transition:all 0.3s;
+  }
+  .edu-card:hover { border-color:var(--border2); transform:translateY(-3px); }
+  .edu-degree { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--accent3); letter-spacing:0.1em; margin-bottom:0.5rem; }
+  .edu-name { font-family:'Plus Jakarta Sans',sans-serif; font-size:1.3rem; font-weight:700; color:var(--accent); margin-bottom:0.3rem; }
+  .edu-uni { color:var(--accent2); font-size:0.9rem; margin-bottom:0.3rem; }
+  .edu-period { font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--text2); margin-bottom:1rem; }
+  .edu-gpa {
+    display:inline-flex; align-items:center; gap:0.4rem;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.8rem;
+    padding:0.4rem 0.9rem;
+    background:rgba(79,195,247,0.08);
+    border:1px solid rgba(79,195,247,0.2);
+    border-radius:2px;
+    color:var(--accent3);
+    margin-bottom:1rem;
+  }
+  .edu-courses { color:var(--text2); font-size:0.85rem; line-height:1.7; }
+  .edu-courses strong { color:var(--accent); display:block; margin-bottom:0.3rem; font-size:0.8rem; letter-spacing:0.05em; }
+
+  /* ── GITHUB STATS ── */
+  #github-stats { }
+  .github-header { display:flex; align-items:center; gap:1rem; margin-bottom:2rem; }
+  .github-profile { display:flex; align-items:center; gap:1rem; margin-bottom:2.5rem; }
+  .gh-avatar {
+    width:60px; height:60px; border-radius:50%;
+    background: linear-gradient(135deg, var(--accent2), var(--accent3));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Plus Jakarta Sans',sans-serif; font-size:1.4rem; font-weight:800; color:#fff;
+    flex-shrink:0;
+  }
+  .gh-info { }
+  .gh-name { font-family:'Plus Jakarta Sans',sans-serif; font-size:1.1rem; font-weight:700; color:var(--accent); }
+  .gh-user { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--accent2); }
+  .gh-stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2rem; }
+  .gh-stat {
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:1.2rem;
+    text-align:center;
+  }
+  .gh-stat-val { font-family:'JetBrains Mono',monospace; font-size:1.6rem; font-weight:700; color:var(--accent2); }
+  .gh-stat-label { font-size:0.72rem; color:var(--text2); margin-top:0.3rem; }
+  .gh-langs { display:grid; grid-template-columns:repeat(3,1fr); gap:0.8rem; }
+  .lang-pill {
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:0.8rem 1rem;
+    display:flex; align-items:center; gap:0.7rem;
+  }
+  .lang-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .lang-name { font-size:0.85rem; color:var(--accent); }
+  .lang-pct { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--text2); margin-left:auto; }
+
+  /* ── CONTACT ── */
+  #contact { background:var(--bg2); }
+  .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; }
+  .contact-info { }
+  .contact-intro { color:var(--text2); font-size:1rem; line-height:1.8; margin-bottom:2rem; }
+  .contact-item {
+    display:flex; align-items:center; gap:1rem;
+    padding:1rem 0;
+    border-bottom:1px solid var(--border);
+  }
+  .contact-item:last-of-type { border-bottom:none; }
+  .contact-icon {
+    width:40px; height:40px;
+    border:1px solid var(--border);
+    border-radius:6px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--accent2);
+    flex-shrink:0;
+  }
+  .contact-icon svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.5; }
+  .contact-label { font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--text2); letter-spacing:0.05em; }
+  .contact-value { font-size:0.9rem; color:var(--accent); }
+  .contact-form { }
+  .form-group { margin-bottom:1.2rem; }
+  .form-label { font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--text2); letter-spacing:0.08em; display:block; margin-bottom:0.5rem; }
+  .form-input, .form-textarea {
+    width:100%;
+    padding:0.8rem 1rem;
+    background:var(--bg3);
+    border:1px solid var(--border);
+    border-radius:6px;
+    color:var(--text);
+    font-family:'Manrope',sans-serif;
+    font-size:0.9rem;
+    transition:border-color 0.2s;
+    outline:none;
+    resize:vertical;
+  }
+  .form-input:focus, .form-textarea:focus { border-color:var(--accent2); }
+  .form-textarea { min-height:120px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .btn-submit {
+    width:100%;
+    padding:0.9rem;
+    background: linear-gradient(135deg, var(--accent2), #5555cc);
+    color:#fff;
+    border:none; border-radius:6px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.8rem;
+    letter-spacing:0.05em;
+    cursor:pointer;
+    transition:transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-submit:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(123,123,255,0.35); }
+  .form-success { display:none; text-align:center; padding:2rem; color:var(--accent3); font-family:'JetBrains Mono',monospace; font-size:0.9rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background:var(--bg);
+    border-top:1px solid var(--border);
+    padding:2rem 5rem;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:1rem;
+  }
+  .footer-copy { font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--text2); }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-links a { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--text2); text-decoration:none; transition:color 0.2s; }
+  .footer-links a:hover { color:var(--accent2); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity:0; transform:translateY(30px); transition:all 0.7s cubic-bezier(0.4,0,0.2,1); }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .reveal-delay-1 { transition-delay:0.1s; }
+  .reveal-delay-2 { transition-delay:0.2s; }
+  .reveal-delay-3 { transition-delay:0.3s; }
+
+  /* ── MOBILE MENU ── */
+  @media(max-width:900px) {
+    nav { padding:1rem 1.5rem; }
+    .nav-links {
+      display:none; position:fixed; top:0; left:0; right:0; bottom:0;
+      background:rgba(6,6,8,0.97);
+      flex-direction:column; align-items:center; justify-content:center;
+      gap:2rem; z-index:99;
+    }
+    .nav-links.open { display:flex; }
+    .nav-links a { font-size:1.2rem; }
+    .hamburger { display:flex; z-index:100; }
+    .nav-cta { display:none; }
+    #hero { grid-template-columns:1fr; padding:6rem 1.5rem 4rem; gap:3rem; }
+    .hero-right { display:none; }
+    section { padding:5rem 1.5rem; }
+    .about-grid { grid-template-columns:1fr; }
+    .edu-grid { grid-template-columns:1fr; }
+    .contact-grid { grid-template-columns:1fr; }
+    .gh-stats-grid { grid-template-columns:repeat(2,1fr); }
+    .gh-langs { grid-template-columns:repeat(2,1fr); }
+    footer { padding:1.5rem; flex-direction:column; align-items:flex-start; }
+    .form-row { grid-template-columns:1fr; }
+    .stats-row { grid-template-columns:repeat(3,1fr); }
+  }
+  @media(max-width:500px) {
+    .hero-name { font-size:2.5rem; }
+    .skills-grid { grid-template-columns:1fr; }
+    .projects-grid { grid-template-columns:1fr; }
+    .stats-row { grid-template-columns:1fr; }
+  }
+
+  /* Loading animation */
+  #loader {
+    position:fixed; inset:0; z-index:9999;
+    background:var(--bg);
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:1.5rem;
+    transition: opacity 0.5s;
+  }
+  #loader.out { opacity:0; pointer-events:none; }
+  .loader-text { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--text2); letter-spacing:0.2em; }
+  .loader-bar-bg { width:200px; height:1px; background:var(--border); }
+  .loader-bar-fill { height:100%; background: linear-gradient(90deg, var(--accent2), var(--accent3)); width:0%; transition:width 1.5s ease; }
+  .loader-logo { font-family:'Plus Jakarta Sans',sans-serif; font-size:2.5rem; font-weight:800; color:var(--accent2); }
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">AW</div>
+  <div class="loader-bar-bg"><div class="loader-bar-fill" id="loaderBar"></div></div>
+  <div class="loader-text">INITIALIZING...</div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Abdul<span>Wahid</span><span style="color:var(--text2)">.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+    <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
+    <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
+    <li><a href="#education" onclick="closeMenu()">Education</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+  </ul>
+  <a href="mailto:wahidkingyt10@gmail.com" class="nav-cta">Get in Touch</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-left">
+    <div class="hero-tag">Available for Opportunities</div>
+    <h1 class="hero-name">Abdul<br><span class="highlight">Wahid.</span></h1>
+    <div class="hero-title-wrap">
+      &gt; <span id="typed"></span><span class="cursor-blink"></span>
+    </div>
+    <p class="hero-bio">
+      BS Artificial Intelligence student at COMSATS University with a strong foundation in Python, Machine Learning, and Data Structures. Passionate about leveraging AI to solve real-world problems.
+    </p>
+    <div class="hero-btns">
+      <a href="mailto:wahidkingyt10@gmail.com" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        Contact Me
+      </a>
+      <a href="#projects" class="btn-outline">
+        View Projects →
+      </a>
+    </div>
+    <div class="hero-socials">
+      <!-- GitHub -->
+      <a href="https://github.com/abduIwahid" target="_blank" class="social-link" title="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com/in/abdu1wahid" target="_blank" class="social-link" title="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <!-- Email -->
+      <a href="mailto:wahidkingyt10@gmail.com" class="social-link" title="Email">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+      <!-- WhatsApp -->
+      <a href="https://wa.me/923078141252" target="_blank" class="social-link" title="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="avatar-wrapper">
+      <div class="avatar-ring"></div>
+      <div class="avatar-ring2"></div>
+      <div class="avatar-placeholder">AW</div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="stat-val">3.39</span>
+        <span class="stat-label">CGPA / 4.0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">2+</span>
+        <span class="stat-label">YEARS CS</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">5+</span>
+        <span class="stat-label">SKILLS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01. About</div>
+  <h2 class="section-title reveal">Who I Am</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm <strong>Abdul Wahid</strong>, a Computer Science student specializing in <strong>Artificial Intelligence</strong> at COMSATS University Islamabad, Attock Campus. Currently in my second year with a CGPA of <strong>3.39/4.00</strong>, I'm deeply passionate about building intelligent systems that solve real-world challenges.</p>
+      <p>My primary focus is <strong>Machine Learning</strong> and <strong>Python development</strong>, where I've been implementing algorithms from scratch — from linear regression to multi-layer perceptrons. Alongside AI, I actively study <strong>Data Structures & Algorithms in Java</strong> to strengthen my problem-solving foundations.</p>
+      <p>I use modern AI tools like <strong>GitHub Copilot</strong> and <strong>Claude Code</strong> to supercharge my development workflow, and I believe the future belongs to developers who can harness both traditional engineering and AI capabilities.</p>
+      <p>Beyond code, I'm driven by curiosity, discipline, and a goal to contribute to technology that matters — whether that's in AI research, software engineering, or building developer tools.</p>
+      <div style="margin-top:1.5rem">
+        <a href="mailto:wahidkingyt10@gmail.com" class="btn-primary" style="display:inline-flex">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          Hire Me
+        </a>
+      </div>
+    </div>
+    <div class="fact-grid reveal reveal-delay-1">
+      <div class="fact-card">
+        <div class="fact-icon">🎓</div>
+        <div class="fact-title">DEGREE</div>
+        <div class="fact-value">BS Artificial Intelligence</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">📍</div>
+        <div class="fact-title">LOCATION</div>
+        <div class="fact-value">Attock, Punjab, PK</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">⚡</div>
+        <div class="fact-title">FOCUS</div>
+        <div class="fact-value">AI / ML Development</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🗣️</div>
+        <div class="fact-title">LANGUAGES</div>
+        <div class="fact-value">English · Urdu · Punjabi</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🤖</div>
+        <div class="fact-title">AI TOOLS</div>
+        <div class="fact-value">Copilot · Claude Code</div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">📊</div>
+        <div class="fact-title">CGPA</div>
+        <div class="fact-value">3.39 / 4.00</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">02. Skills</div>
+  <h2 class="section-title reveal">Technical Arsenal</h2>
+  <p class="section-sub reveal">Technologies and tools I work with to bring ideas to life.</p>
+
+  <div class="skills-categories reveal">
+    <button class="skill-cat-btn active" onclick="filterSkills('all',this)">All</button>
+    <button class="skill-cat-btn" onclick="filterSkills('lang',this)">Languages</button>
+    <button class="skill-cat-btn" onclick="filterSkills('ai',this)">AI / ML</button>
+    <button class="skill-cat-btn" onclick="filterSkills('db',this)">Database</button>
+    <button class="skill-cat-btn" onclick="filterSkills('tools',this)">Tools</button>
+  </div>
+
+  <div class="skills-grid" id="skillsGrid">
+    <div class="skill-item reveal" data-cat="lang">
+      <div class="skill-header">
+        <span class="skill-name">Python</span>
+        <span class="skill-pct">85%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85"></div></div>
+      <div class="skill-tag">Primary language · ML libraries · Scripting</div>
+    </div>
+    <div class="skill-item reveal" data-cat="lang">
+      <div class="skill-header">
+        <span class="skill-name">Java</span>
+        <span class="skill-pct">80%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80"></div></div>
+      <div class="skill-tag">DSA · OOP · Problem Solving</div>
+    </div>
+    <div class="skill-item reveal" data-cat="lang">
+      <div class="skill-header">
+        <span class="skill-name">C++</span>
+        <span class="skill-pct">70%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="70"></div></div>
+      <div class="skill-tag">Systems programming · OOP</div>
+    </div>
+    <div class="skill-item reveal" data-cat="lang">
+      <div class="skill-header">
+        <span class="skill-name">HTML / CSS</span>
+        <span class="skill-pct">75%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="75"></div></div>
+      <div class="skill-tag">Web fundamentals · Responsive layouts</div>
+    </div>
+    <div class="skill-item reveal" data-cat="ai">
+      <div class="skill-header">
+        <span class="skill-name">Machine Learning</span>
+        <span class="skill-pct">78%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="78"></div></div>
+      <div class="skill-tag">Supervised · Unsupervised · Reinforcement</div>
+    </div>
+    <div class="skill-item reveal" data-cat="ai">
+      <div class="skill-header">
+        <span class="skill-name">Deep Learning / MLP</span>
+        <span class="skill-pct">65%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="65"></div></div>
+      <div class="skill-tag">Neural networks · Backpropagation</div>
+    </div>
+    <div class="skill-item reveal" data-cat="ai">
+      <div class="skill-header">
+        <span class="skill-name">ML Algorithms</span>
+        <span class="skill-pct">80%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80"></div></div>
+      <div class="skill-tag">LR · Decision Tree · KNN · K-Means · MLP</div>
+    </div>
+    <div class="skill-item reveal" data-cat="db">
+      <div class="skill-header">
+        <span class="skill-name">MySQL</span>
+        <span class="skill-pct">70%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="70"></div></div>
+      <div class="skill-tag">Relational DB · Queries · Schema design</div>
+    </div>
+    <div class="skill-item reveal" data-cat="tools">
+      <div class="skill-header">
+        <span class="skill-name">Git & GitHub</span>
+        <span class="skill-pct">80%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80"></div></div>
+      <div class="skill-tag">Version control · Collaboration</div>
+    </div>
+    <div class="skill-item reveal" data-cat="tools">
+      <div class="skill-header">
+        <span class="skill-name">GitHub Copilot</span>
+        <span class="skill-pct">85%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85"></div></div>
+      <div class="skill-tag">AI-assisted development · Code generation</div>
+    </div>
+    <div class="skill-item reveal" data-cat="tools">
+      <div class="skill-header">
+        <span class="skill-name">Claude Code</span>
+        <span class="skill-pct">80%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80"></div></div>
+      <div class="skill-tag">Agentic coding · AI workflow automation</div>
+    </div>
+    <div class="skill-item reveal" data-cat="ai">
+      <div class="skill-header">
+        <span class="skill-name">Data Structures & Algorithms</span>
+        <span class="skill-pct">82%</span>
+      </div>
+      <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="82"></div></div>
+      <div class="skill-tag">Arrays · Graphs · Trees · BIG-O Notation</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">03. Projects</div>
+  <h2 class="section-title reveal">What I've Built</h2>
+  <p class="section-sub reveal">A showcase of my hands-on projects in AI, ML, and software development.</p>
+
+  <div class="projects-filter reveal">
+    <button class="filter-btn active" onclick="filterProjects('all',this)">All</button>
+    <button class="filter-btn" onclick="filterProjects('ml',this)">Machine Learning</button>
+    <button class="filter-btn" onclick="filterProjects('dsa',this)">DSA</button>
+    <button class="filter-btn" onclick="filterProjects('web',this)">Web</button>
+  </div>
+
+  <div class="projects-grid">
+    <div class="project-card reveal" data-proj="ml">
+      <div class="project-header">
+        <div class="project-title">ML Algorithms Toolkit</div>
+        <span class="project-status status-active">ACTIVE</span>
+      </div>
+      <p class="project-desc">A hands-on Python implementation of core ML algorithms from scratch — Linear Regression, Decision Trees, K-Nearest Neighbors, K-Means Clustering, and Multi-Layer Perceptrons — with performance benchmarking and visualization.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">NumPy</span>
+        <span class="project-tag">Matplotlib</span>
+        <span class="project-tag">Scikit-learn</span>
+        <span class="project-tag">Machine Learning</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/abduIwahid" target="_blank" class="proj-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-1" data-proj="dsa">
+      <div class="project-header">
+        <div class="project-title">DSA in Java</div>
+        <span class="project-status status-active">ACTIVE</span>
+      </div>
+      <p class="project-desc">A comprehensive repository of Data Structures and Algorithms implemented in Java. Covers arrays, linked lists, stacks, queues, heaps, graphs, and sorting algorithms with Big-O complexity analysis for each implementation.</p>
+      <div class="project-tags">
+        <span class="project-tag">Java</span>
+        <span class="project-tag">DSA</span>
+        <span class="project-tag">OOP</span>
+        <span class="project-tag">Algorithms</span>
+        <span class="project-tag">BIG-O</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/abduIwahid" target="_blank" class="proj-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2" data-proj="ml">
+      <div class="project-header">
+        <div class="project-title">Model Evaluation Suite</div>
+        <span class="project-status status-learning">LEARNING</span>
+      </div>
+      <p class="project-desc">A Python project focused on ML model evaluation — implementing accuracy, precision, recall, F1-score, confusion matrices, ROC curves, and cross-validation to rigorously assess model performance.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Scikit-learn</span>
+        <span class="project-tag">Pandas</span>
+        <span class="project-tag">Evaluation Metrics</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/abduIwahid" target="_blank" class="proj-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card reveal" data-proj="web">
+      <div class="project-header">
+        <div class="project-title">Developer Portfolio Website</div>
+        <span class="project-status status-active">LIVE</span>
+      </div>
+      <p class="project-desc">This very portfolio — a fully responsive, dark-themed developer portfolio site with smooth scroll animations, skill visualizations, GitHub integration, and a contact form. Built with clean HTML, CSS, and vanilla JavaScript.</p>
+      <div class="project-tags">
+        <span class="project-tag">HTML</span>
+        <span class="project-tag">CSS</span>
+        <span class="project-tag">JavaScript</span>
+        <span class="project-tag">Responsive</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/abduIwahid" target="_blank" class="proj-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          Source Code
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:2.5rem;">
+    <a href="https://github.com/abduIwahid" target="_blank" class="btn-outline">View All Repositories →</a>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">04. Experience</div>
+  <h2 class="section-title reveal">What I've Done</h2>
+  <p class="section-sub reveal">My hands-on learning journey and self-directed projects.</p>
+
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot active"></div>
+      <div class="timeline-period">MAY 2025 – PRESENT</div>
+      <div class="timeline-title">AI & Machine Learning (Python)</div>
+      <div class="timeline-org">Self-Directed Learning · Attock, Punjab, Pakistan</div>
+      <ul class="timeline-desc">
+        <li>Studying Machine Learning fundamentals — supervised, unsupervised & reinforcement learning from the ground up.</li>
+        <li>Implementing basic and advanced algorithms: Linear Regression, Decision Trees, KNN, K-Means Clustering, and MLP (Deep Learning) in Python.</li>
+        <li>Building intuition for model evaluation and performance metrics (accuracy, F1-score, ROC-AUC).</li>
+        <li>Applying AI tools (GitHub Copilot, Claude Code) to accelerate development workflows.</li>
+      </ul>
+      <div class="timeline-tags">
+        <span class="timeline-tag">Python</span>
+        <span class="timeline-tag">Machine Learning</span>
+        <span class="timeline-tag">Deep Learning</span>
+        <span class="timeline-tag">NumPy</span>
+        <span class="timeline-tag">Scikit-learn</span>
+        <span class="timeline-tag">GitHub Copilot</span>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot active"></div>
+      <div class="timeline-period">OCT 2025 – PRESENT</div>
+      <div class="timeline-title">Data Structures & Algorithms (Java)</div>
+      <div class="timeline-org">Self-Directed Learning · Attock, Punjab, Pakistan</div>
+      <ul class="timeline-desc">
+        <li>Implemented fundamental data structures: arrays, linked lists, stacks, queues, heaps, and graphs from scratch in Java.</li>
+        <li>Solved 50+ algorithmic problems to develop strong logical thinking, pattern recognition, and optimization skills.</li>
+        <li>Applied BIG-O notation to analyze time and space complexity, selecting optimal solutions for different constraints.</li>
+        <li>Practiced OOP principles: inheritance, polymorphism, encapsulation, and abstraction in real implementations.</li>
+      </ul>
+      <div class="timeline-tags">
+        <span class="timeline-tag">Java</span>
+        <span class="timeline-tag">DSA</span>
+        <span class="timeline-tag">OOP</span>
+        <span class="timeline-tag">BIG-O</span>
+        <span class="timeline-tag">Problem Solving</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">05. Education</div>
+  <h2 class="section-title reveal">Academic Journey</h2>
+  <p class="section-sub reveal">Building a strong foundation for a career in AI and Software Engineering.</p>
+
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-degree">BS DEGREE · CURRENT</div>
+      <div class="edu-name">Artificial Intelligence</div>
+      <div class="edu-uni">COMSATS University Islamabad – Attock Campus</div>
+      <div class="edu-period">Jan 2024 – 2028 · Attock, Punjab, Pakistan</div>
+      <div class="edu-gpa">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        CGPA: 3.39 / 4.00
+      </div>
+      <div class="edu-courses">
+        <strong>COURSEWORK</strong>
+        Data Structures & Algorithms · Object-Oriented Programming · Artificial Intelligence · Machine Learning · Database Systems · Discrete Mathematics · Linear Algebra · Calculus
+      </div>
+    </div>
+
+    <div class="edu-card reveal reveal-delay-1">
+      <div class="edu-degree">ICS · COMPLETED</div>
+      <div class="edu-name">Intermediate in Computer Science</div>
+      <div class="edu-uni">FAZAIA Degree College, ARF</div>
+      <div class="edu-period">2022 – 2024 · Kamra, Punjab, Pakistan</div>
+      <div class="edu-courses" style="margin-top:1.3rem;">
+        <strong>HIGHLIGHTS</strong>
+        Completed ICS with a foundation in Computer Science, Mathematics, and Physics. Developed early programming skills and an analytical mindset that transitioned into university-level AI studies.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GITHUB STATS -->
+<section id="github-stats">
+  <div class="section-label">06. GitHub</div>
+  <h2 class="section-title reveal">GitHub Activity</h2>
+  <p class="section-sub reveal">A snapshot of my open-source presence and coding activity.</p>
+
+  <div class="github-profile reveal">
+    <div class="gh-avatar">AW</div>
+    <div class="gh-info">
+      <div class="gh-name">Abdul Wahid</div>
+      <div class="gh-user" style="margin-top:0.2rem;">
+        <a href="https://github.com/abduIwahid" target="_blank" style="color:var(--accent2);text-decoration:none;">@abduIwahid</a>
+        &nbsp;·&nbsp; AI/ML Developer · COMSATS University
+      </div>
+    </div>
+  </div>
+
+  <div class="gh-stats-grid reveal">
+    <div class="gh-stat">
+      <div class="gh-stat-val" id="repoCount">—</div>
+      <div class="gh-stat-label">Repositories</div>
+    </div>
+    <div class="gh-stat">
+      <div class="gh-stat-val">2+</div>
+      <div class="gh-stat-label">Learning Tracks</div>
+    </div>
+    <div class="gh-stat">
+      <div class="gh-stat-val">3.39</div>
+      <div class="gh-stat-label">University CGPA</div>
+    </div>
+    <div class="gh-stat">
+      <div class="gh-stat-val">5+</div>
+      <div class="gh-stat-label">Core Skills</div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-bottom:1.2rem;">Primary Languages</div>
+  <div class="gh-langs reveal">
+    <div class="lang-pill">
+      <span class="lang-dot" style="background:#3572A5;"></span>
+      <span class="lang-name">Python</span>
+      <span class="lang-pct">45%</span>
+    </div>
+    <div class="lang-pill">
+      <span class="lang-dot" style="background:#b07219;"></span>
+      <span class="lang-name">Java</span>
+      <span class="lang-pct">30%</span>
+    </div>
+    <div class="lang-pill">
+      <span class="lang-dot" style="background:#f34b7d;"></span>
+      <span class="lang-name">C++</span>
+      <span class="lang-pct">15%</span>
+    </div>
+    <div class="lang-pill">
+      <span class="lang-dot" style="background:#e34c26;"></span>
+      <span class="lang-name">HTML</span>
+      <span class="lang-pct">10%</span>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem; text-align:center;">
+    <a href="https://github.com/abduIwahid" target="_blank" class="btn-outline">View GitHub Profile →</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">07. Contact</div>
+  <h2 class="section-title reveal">Get In Touch</h2>
+  <p class="section-sub reveal">Have an opportunity, project idea, or just want to connect? I'd love to hear from you.</p>
+
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <p class="contact-intro">I'm currently open to internship opportunities, collaborative projects, and AI/ML roles. Whether you're a recruiter, fellow developer, or someone with an interesting problem to solve — let's talk.</p>
+
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">EMAIL</div>
+          <a href="mailto:wahidkingyt10@gmail.com" class="contact-value" style="text-decoration:none;">wahidkingyt10@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.17 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012.08 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">PHONE / WHATSAPP</div>
+          <a href="https://wa.me/923078141252" class="contact-value" style="text-decoration:none;">+92 307-8141252</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">LOCATION</div>
+          <div class="contact-value">Attock, Punjab, Pakistan</div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">LINKEDIN</div>
+          <a href="https://linkedin.com/in/abdu1wahid" target="_blank" class="contact-value" style="text-decoration:none;">linkedin.com/in/abdu1wahid</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal reveal-delay-1">
+      <div id="formWrap">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">YOUR NAME</label>
+            <input type="text" class="form-input" id="cname" placeholder="John Doe">
+          </div>
+          <div class="form-group">
+            <label class="form-label">EMAIL ADDRESS</label>
+            <input type="email" class="form-input" id="cemail" placeholder="john@example.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">SUBJECT</label>
+          <input type="text" class="form-input" id="csubject" placeholder="Internship Opportunity / Collaboration">
+        </div>
+        <div class="form-group">
+          <label class="form-label">MESSAGE</label>
+          <textarea class="form-textarea" id="cmessage" placeholder="Tell me about your project or opportunity..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="sendMessage()">Send Message →</button>
+      </div>
+      <div class="form-success" id="formSuccess">
+        ✓ Message sent! I'll get back to you soon.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2025 Abdul Wahid. Built with passion & AI.</div>
+  <div class="footer-links">
+    <a href="https://github.com/abduIwahid" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/abdu1wahid" target="_blank">LinkedIn</a>
+    <a href="mailto:wahidkingyt10@gmail.com">Email</a>
+    <a href="https://wa.me/923078141252" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+// ── LOADER ──
+window.addEventListener('load', () => {
+  const bar = document.getElementById('loaderBar');
+  const loader = document.getElementById('loader');
+  bar.style.width = '100%';
+  setTimeout(() => {
+    loader.classList.add('out');
+    setTimeout(() => loader.remove(), 500);
+  }, 1600);
+});
+
+// ── TYPING EFFECT ──
+const phrases = [
+  'AI/ML Developer',
+  'Python Enthusiast',
+  'BSc AI Student',
+  'Problem Solver',
+  'Future Engineer'
+];
+let pi = 0, ci = 0, deleting = false;
+const typedEl = document.getElementById('typed');
+function typeLoop() {
+  const phrase = phrases[pi];
+  if (!deleting) {
+    typedEl.textContent = phrase.slice(0, ci + 1);
+    ci++;
+    if (ci === phrase.length) { deleting = true; setTimeout(typeLoop, 1800); return; }
+  } else {
+    typedEl.textContent = phrase.slice(0, ci - 1);
+    ci--;
+    if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+  }
+  setTimeout(typeLoop, deleting ? 60 : 100);
+}
+setTimeout(typeLoop, 2000);
+
+// ── SCROLL REVEAL ──
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+revealEls.forEach(el => obs.observe(el));
+
+// ── SKILL BARS ANIMATE ──
+const barObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const fill = e.target.querySelector('.skill-bar-fill');
+      if (fill) fill.style.width = fill.dataset.width + '%';
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.skill-item').forEach(el => barObs.observe(el));
+
+// ── NAV MOBILE ──
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+// ── SKILL FILTER ──
+function filterSkills(cat, btn) {
+  document.querySelectorAll('.skill-cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.skill-item').forEach(el => {
+    el.style.display = (cat === 'all' || el.dataset.cat === cat) ? '' : 'none';
+  });
+}
+
+// ── PROJECT FILTER ──
+function filterProjects(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(el => {
+    el.style.display = (cat === 'all' || el.dataset.proj === cat) ? '' : 'none';
+  });
+}
+
+// ── CONTACT FORM ──
+function sendMessage() {
+  const name = document.getElementById('cname').value.trim();
+  const email = document.getElementById('cemail').value.trim();
+  const subject = document.getElementById('csubject').value.trim();
+  const msg = document.getElementById('cmessage').value.trim();
+  if (!name || !email || !msg) { alert('Please fill in all required fields.'); return; }
+  const mailtoUrl = `mailto:wahidkingyt10@gmail.com?subject=${encodeURIComponent(subject || 'Portfolio Contact: ' + name)}&body=${encodeURIComponent('From: ' + name + '\nEmail: ' + email + '\n\n' + msg)}`;
+  window.location.href = mailtoUrl;
+  document.getElementById('formWrap').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+
+// ── NAV SCROLL EFFECT ──
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.style.background = window.scrollY > 80 ? 'rgba(6,6,8,0.97)' : 'rgba(6,6,8,0.8)';
+});
+
+// ── GITHUB REPO COUNT (attempt public API) ──
+fetch('https://api.github.com/users/abduIwahid')
+  .then(r => r.json())
+  .then(d => {
+    if (d.public_repos !== undefined) {
+      document.getElementById('repoCount').textContent = d.public_repos;
+    }
+  }).catch(() => {
+    document.getElementById('repoCount').textContent = '—';
+  });
+</script>
+</body>
+</html>

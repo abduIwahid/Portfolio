@@ -118,7 +118,7 @@ Got a project idea, collaboration, or just want to say hi?
 
 | Channel | Link |
 |---|---|
-| 📧 Email | [wahidkingyt10@gmail.com](mailto:wahidkingyt10@gmail.com) |
+| 📧 Email | [inbox.abdulwahid@gmail.com](mailto:inbox.abdulwahid@gmail.com) |
 | 💼 LinkedIn | [linkedin.com/in/abdu1wahid](https://linkedin.com/in/abdu1wahid) |
 | 💬 WhatsApp | [+92 307 8141252](https://wa.me/923078141252) |
 | 📸 Instagram | [@abdu1vvahid](https://instagram.com/abdu1vvahid) |

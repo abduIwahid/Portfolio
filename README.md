@@ -63,6 +63,12 @@ CV:         Google Drive (hosted PDF)
 
 ## 🚀 Projects Showcased
 
+### 🩺 [MediSight](https://github.com/abduIwahid/Ezitech-Internship)
+> An intelligent healthcare platform that integrates machine learning models to analyze medical data and provide clinical insights. Features Next.js and FastAPI.
+
+### 🏡 [Predictly](https://github.com/abduIwahid/Predictly)
+> An AI-powered web application that predicts property valuations for the Pakistani housing market using a trained machine learning model.
+
 ### 🧠 [Smart Doctor Connect](https://github.com/abduIwahid/Smart-Doctor-Connect)
 > AI-powered healthcare assistant built during the **Mind-to-Machine (MTM) 2026 Hackathon** at COMSATS Wah Campus. Leverages AI/ML for patient-doctor connectivity and smart diagnosis assistance.
 

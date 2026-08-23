@@ -4442,22 +4442,26 @@
         }
       }, true);
 
-      // Laptop Touchpad 2-Finger Horizontal Scroll/Swipe
-      let wheelCooldown = false;
+      // Laptop Touchpad 2-Finger Horizontal Scroll/Swipe (Strict 1-slide per gesture)
+      let touchPadActive = false;
+      let touchPadTimeout = null;
+
       wrapper.addEventListener('wheel', (e) => {
         if (Math.abs(e.deltaX) > 20) {
           e.preventDefault();
-          if (!wheelCooldown) {
-            wheelCooldown = true;
+          if (!touchPadActive) {
+            touchPadActive = true;
             if (e.deltaX > 0) {
               nextSlide();
             } else {
               prevSlide();
             }
-            setTimeout(() => {
-              wheelCooldown = false;
-            }, 450);
           }
+
+          clearTimeout(touchPadTimeout);
+          touchPadTimeout = setTimeout(() => {
+            touchPadActive = false;
+          }, 600);
         }
       }, { passive: false });
     }

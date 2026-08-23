@@ -743,6 +743,15 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     }
 
+    @media (hover: hover) and (pointer: fine) {
+      .projects-slider-wrapper {
+        cursor: grab;
+      }
+      .projects-slider-wrapper.is-dragging {
+        cursor: grabbing;
+      }
+    }
+
     .projects-slider-track {
       display: flex;
       flex-direction: row;
@@ -4389,16 +4398,14 @@
         isMoved = false;
       });
 
-      // Mouse Drag Events for PC users
-      wrapper.style.cursor = 'grab';
-
+      // Mouse Drag Events for PC & Laptop users (using CSS media query for cursor)
       wrapper.addEventListener('mousedown', (e) => {
         if (e.button !== 0) return;
         isDragging = true;
         isMoved = false;
         startX = e.clientX;
         currentX = e.clientX;
-        wrapper.style.cursor = 'grabbing';
+        wrapper.classList.add('is-dragging');
       });
 
       window.addEventListener('mousemove', (e) => {
@@ -4413,7 +4420,7 @@
       window.addEventListener('mouseup', () => {
         if (!isDragging) return;
         isDragging = false;
-        wrapper.style.cursor = 'grab';
+        wrapper.classList.remove('is-dragging');
 
         if (isMoved) {
           const diffX = currentX - startX;
@@ -4453,13 +4460,7 @@
 
     function startProjectsAutoplay() {
       stopProjectsAutoplay();
-      if (activeFilteredSlides.length > 1) {
-        projectAutoplayInterval = setInterval(() => {
-          if (!isProjectsHovered) {
-            nextSlide();
-          }
-        }, 4000);
-      }
+      // Auto-slide completely disabled per user request
     }
 
     function stopProjectsAutoplay() {

@@ -1745,60 +1745,23 @@
     /* ── RESPONSIVENESS FOR CAROUSEL ── */
     @media (max-width: 991px) {
       .slide-layout {
-        grid-template-columns: 1fr 1fr;
-        min-height: 380px;
+        grid-template-columns: 1fr;
+        min-height: auto;
       }
 
       .project-info-panel {
-        border-right: 1px solid var(--border);
-        border-bottom: none;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 2.2rem;
+      }
+
+      .project-browser-panel {
         padding: 1.5rem;
       }
 
-      .project-browser-panel {
-        padding: 1rem;
-      }
-
       .mock-browser {
-        height: 100%;
-        min-height: 280px;
+        min-height: 350px;
       }
-    }
-
-    @media (max-width: 600px) {
-      .slide-layout {
-        grid-template-columns: 1fr 1.1fr;
-        min-height: 320px;
-      }
-
-      .project-info-panel {
-        padding: 1rem 0.75rem;
-      }
-
-      .project-slide-title {
-        font-size: 1.1rem;
-        margin-bottom: 0.4rem;
-      }
-
-      .project-slide-desc {
-        font-size: 0.75rem;
-        line-height: 1.35;
-        margin-bottom: 0.8rem;
-      }
-
-      .project-tag {
-        font-size: 0.62rem;
-        padding: 0.15rem 0.35rem;
-      }
-
-      .project-browser-panel {
-        padding: 0.4rem;
-      }
-
-      .mock-browser {
-        min-height: 220px;
-      }
-    }
 
       .prev-btn,
       .cert-prev-btn {

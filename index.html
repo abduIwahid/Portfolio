@@ -5106,12 +5106,12 @@
       });
     });
 
-    // ── PARTICLES BACKGROUND ──
+    // ── INTERACTIVE SMOKE & LIGHT BACKGROUND EFFECT (PC & Mobile Touch) ──
     const canvas = document.getElementById('particles-canvas');
     const ctx = canvas.getContext('2d');
 
-    let particles = [];
-    const particleCount = 50;
+    let smokeParticles = [];
+    const maxSmokeParticles = 75;
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -5121,67 +5121,87 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.size = Math.random() * 2;
+    class SmokeParticle {
+      constructor(x, y) {
+        this.x = x + (Math.random() - 0.5) * 12;
+        this.y = y + (Math.random() - 0.5) * 12;
+        this.size = Math.random() * 25 + 15; // Puff size
+        this.maxSize = this.size + Math.random() * 35 + 20;
+        this.vx = (Math.random() - 0.5) * 0.8;
+        this.vy = (Math.random() - 0.5) * 0.8 - 0.3; // Slight upward drift
+        this.alpha = Math.random() * 0.3 + 0.25; // Glow intensity
+        this.decay = Math.random() * 0.005 + 0.004;
       }
 
       update() {
         this.x += this.vx;
         this.y += this.vy;
-
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        if (this.size < this.maxSize) {
+          this.size += 0.4;
+        }
+        this.alpha -= this.decay;
       }
 
       draw() {
+        if (this.alpha <= 0) return;
+        ctx.save();
         ctx.beginPath();
+        const gradient = ctx.createRadialGradient(
+          this.x, this.y, 0,
+          this.x, this.y, this.size
+        );
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${this.alpha})`);
+        gradient.addColorStop(0.4, `rgba(220, 225, 255, ${this.alpha * 0.5})`);
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        
+        ctx.fillStyle = gradient;
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
         ctx.fill();
+        ctx.restore();
       }
     }
 
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
+    function addSmoke(x, y, count = 2) {
+      for (let i = 0; i < count; i++) {
+        if (smokeParticles.length < maxSmokeParticles) {
+          smokeParticles.push(new SmokeParticle(x, y));
+        }
+      }
     }
 
-    function animateParticles() {
+    // Pointer events for desktop and mobile touch interaction
+    window.addEventListener('mousemove', (e) => {
+      addSmoke(e.clientX, e.clientY, 1);
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) {
+        addSmoke(e.touches[0].clientX, e.touches[0].clientY, 2);
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches[0]) {
+        addSmoke(e.touches[0].clientX, e.touches[0].clientY, 3);
+      }
+    }, { passive: true });
+
+    function animateSmoke() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      particles.forEach(p => {
+      for (let i = smokeParticles.length - 1; i >= 0; i--) {
+        const p = smokeParticles[i];
         p.update();
         p.draw();
-      });
-
-      // Draw lines between close particles
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < 100) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - dist / 100)})`;
-            ctx.stroke();
-          }
+        if (p.alpha <= 0) {
+          smokeParticles.splice(i, 1);
         }
       }
 
-      requestAnimationFrame(animateParticles);
+      requestAnimationFrame(animateSmoke);
     }
 
-    // Disable on mobile for performance
-    if (window.innerWidth > 768) {
-      animateParticles();
-    }
+    animateSmoke();
 
     // 3D Card JS
 

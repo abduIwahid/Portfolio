@@ -2769,31 +2769,69 @@
       pointer-events: none;
     }
 
-    .loader-text {
+    .loading-aw {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .loading-aw svg {
+      width: 140px;
+      height: 90px;
+      overflow: visible;
+    }
+
+    .loading-aw path {
+      fill: none;
+      stroke-width: 4.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .loading-aw path.bg-path {
+      stroke: rgba(255, 255, 255, 0.1);
+    }
+
+    .loading-aw path.draw-path {
+      stroke: #ffffff;
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      animation: drawAW 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards infinite;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+    }
+
+    .loading-aw .sub-text {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
       color: var(--text2);
-      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      animation: fadeInText 1.5s ease-in-out infinite alternate;
     }
 
-    .loader-bar-bg {
-      width: 200px;
-      height: 1px;
-      background: var(--border);
+    @keyframes drawAW {
+      0% {
+        stroke-dashoffset: 600;
+      }
+      70% {
+        stroke-dashoffset: 0;
+      }
+      90% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 0.3;
+      }
     }
 
-    .loader-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #ffffff, #888888);
-      width: 0%;
-      transition: width 1.5s ease;
-    }
-
-    .loader-logo {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--text);
+    @keyframes fadeInText {
+      from { opacity: 0.3; }
+      to { opacity: 0.9; }
     }
 
     /* ── PARTICLES ── */
@@ -3120,9 +3158,12 @@
 
   <!-- LOADER -->
   <div id="loader">
-    <div class="loader-logo">AW</div>
-    <div class="loader-bar-bg">
-      <div class="loader-bar-fill" id="loaderBar"></div>
+    <div class="loading-aw">
+      <svg viewBox="0 0 170 90" xmlns="http://www.w3.org/2000/svg">
+        <!-- Stylized AW: Tall outer left stroke of A (Y=82) and tall outer right stroke of W (Y=8) -->
+        <path class="bg-path" d="M 20 82 L 55 15 L 85 72 L 105 32 L 125 72 L 160 8 M 40 44 L 70 44" />
+        <path class="draw-path" d="M 20 82 L 55 15 L 85 72 L 105 32 L 125 72 L 160 8 M 40 44 L 70 44" />
+      </svg>
     </div>
   </div>
 
@@ -4286,13 +4327,11 @@
   <script>
     // ── LOADER ──
     window.addEventListener('load', () => {
-      const bar = document.getElementById('loaderBar');
       const loader = document.getElementById('loader');
-      bar.style.width = '100%';
       setTimeout(() => {
         loader.classList.add('out');
         setTimeout(() => loader.remove(), 500);
-      }, 1600);
+      }, 1200);
     });
 
     // ── TYPING EFFECT ──

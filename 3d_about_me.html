@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Interactive Black & White Card</title>
+    <style>
+        body {
+            background-color: #050505;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .scene {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            perspective: 1500px;
+            z-index: 10;
+        }
+
+        /* Ambient animated background */
+        .ambient-bg {
+            position: absolute;
+            width: 200vw;
+            height: 200vh;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            animation: pulse-bg 8s infinite alternate;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes pulse-bg {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* The wrapper that handles the 3D mouse tracking */
+        .card-wrapper {
+            width: 360px;
+            height: 520px;
+            z-index: 10;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            transition: transform 0.1s ease-out;
+            /* Smooth JS tracking */
+        }
+
+        /* The inner card that handles the flip */
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Flip state class */
+        .card-wrapper.is-flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+            /* Allows nested 3D elements */
+        }
+
+        /* Front Face: Pure Black with White accents */
+        .card-front {
+            background: #0a0a0a;
+            color: #ffffff;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Dynamic glare effect */
+        .glare {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+
+        .card-wrapper:hover .glare {
+            opacity: 1;
+        }
+
+        /* Parallax pop-out elements */
+        .profile-container {
+            transform: translateZ(60px);
+            position: relative;
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            margin-bottom: 25px;
+            background: #ffffff url('https://github.com/abduIwahid.png') center/cover;
+            filter: grayscale(100%);
+            transition: filter 0.4s ease;
+        }
+
+        .card-wrapper:hover .profile-img {
+            filter: grayscale(0%);
+        }
+
+        .name {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transform: translateZ(40px);
+            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .role {
+            font-size: 14px;
+            margin-top: 8px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #aaaaaa;
+            transform: translateZ(30px);
+        }
+
+        .click-hint {
+            position: absolute;
+            bottom: 25px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-transform: uppercase;
+            transform: translateZ(20px);
+            opacity: 0.5;
+            animation: pulse-text 2s infinite;
+        }
+
+        @keyframes pulse-text {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Back Face: Pure White with Black accents */
+        .card-back {
+            background: #ffffff;
+            color: #000000;
+            transform: rotateY(180deg);
+            padding: 35px;
+            text-align: center;
+            box-sizing: border-box;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .back-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 10px;
+            display: inline-block;
+            transform: translateZ(40px);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .back-text {
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-weight: 500;
+            transform: translateZ(30px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            transform: translateZ(50px);
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #000000;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-btn:hover {
+            background: #ffffff;
+            color: #000000;
+            border: 2px solid #000000;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animated border line on the back */
+        .card-back::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            pointer-events: none;
+            transform: translateZ(10px);
+        }
+    </style>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="ambient-bg"></div>
+
+    <div class="scene">
+        <div class="card-wrapper" id="card">
+            <div class="card-inner">
+
+                <!-- FRONT OF CARD (Black) -->
+                <div class="card-face card-front">
+                <div class="glare" id="glare"></div>
+
+                <div class="profile-container">
+                    <div class="profile-img"></div>
+                </div>
+
+                <h1 class="name">Abdul Wahid</h1>
+                <h2 class="role">AI / ML Developer</h2>
+
+                <div class="click-hint">Click to Flip</div>
+            </div>
+
+            <!-- BACK OF CARD (White) -->
+            <div class="card-face card-back">
+                <h2 class="back-title">About Me</h2>
+
+                <p class="back-text">
+                    I build intelligent systems, predictive models, and scalable full-stack MLOps pipelines. Obsessed
+                    with elegant code, data science, and modern aesthetics.
+                </p>
+
+                <div class="social-links">
+                    <!-- Ensure you stop event propagation on buttons so clicking them doesn't flip the card -->
+                    <a href="https://github.com/abduIwahid" class="social-btn" target="_blank"
+                        onclick="event.stopPropagation()"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/abdu1wahid" class="social-btn" target="_blank"
+                        onclick="event.stopPropagation()"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.abdulwahid.me" class="social-btn" target="_blank"
+                        onclick="event.stopPropagation()"><i class="fas fa-globe"></i></a>
+                </div>
+
+                <div class="click-hint" style="color: #000; bottom: 15px;">Click to Flip Back</div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <script>
+        const cardWrapper = document.getElementById('card');
+        const glare = document.getElementById('glare');
+
+        // Handle 3D Mouse Tracking
+        document.addEventListener('mousemove', (e) => {
+            // Find center of screen
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+
+            // Apply tilt rotation
+            cardWrapper.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+
+            // Move the glare effect based on mouse position
+            const glareX = e.pageX / window.innerWidth * 100;
+            const glareY = e.pageY / window.innerHeight * 100;
+            glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.15) 0%, transparent 60%)`;
+        });
+
+        // Reset transform on mouse leave window
+        document.addEventListener('mouseleave', () => {
+            cardWrapper.style.transform = `rotateY(0deg) rotateX(0deg)`;
+            cardWrapper.style.transition = `transform 0.5s ease`;
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cardWrapper.style.transition = `transform 0.1s ease-out`;
+        });
+
+        // Handle Flipping the card
+        cardWrapper.addEventListener('click', () => {
+            cardWrapper.classList.toggle('is-flipped');
+        });
+    </script>
+</body>
+
+</html>

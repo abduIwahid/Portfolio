@@ -5106,102 +5106,149 @@
       });
     });
 
-    // ── INTERACTIVE SMOKE & LIGHT BACKGROUND EFFECT (PC & Mobile Touch) ──
+    // ── PREMIUM AMBIENT LIGHT & STARDUST INTERACTIVE BACKGROUND ──
     const canvas = document.getElementById('particles-canvas');
     const ctx = canvas.getContext('2d');
-
-    let smokeParticles = [];
-    const maxSmokeParticles = 75;
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
-
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    class SmokeParticle {
-      constructor(x, y) {
-        this.x = x + (Math.random() - 0.5) * 12;
-        this.y = y + (Math.random() - 0.5) * 12;
-        this.size = Math.random() * 25 + 15; // Puff size
-        this.maxSize = this.size + Math.random() * 35 + 20;
-        this.vx = (Math.random() - 0.5) * 0.8;
-        this.vy = (Math.random() - 0.5) * 0.8 - 0.3; // Slight upward drift
-        this.alpha = Math.random() * 0.3 + 0.25; // Glow intensity
-        this.decay = Math.random() * 0.005 + 0.004;
+    // Smooth pointer tracking for spotlight glow
+    let targetX = canvas.width / 2;
+    let targetY = canvas.height / 2;
+    let pointerX = targetX;
+    let pointerY = targetY;
+
+    window.addEventListener('mousemove', (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) {
+        targetX = e.touches[0].clientX;
+        targetY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    // Ambient floating stardust nodes
+    const particleCount = window.innerWidth < 768 ? 35 : 65;
+    const stardust = [];
+
+    class StardustNode {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.baseSize = Math.random() * 1.6 + 0.6;
+        this.size = this.baseSize;
+        this.pulseSpeed = Math.random() * 0.02 + 0.01;
+        this.pulse = Math.random() * Math.PI;
       }
 
       update() {
         this.x += this.vx;
         this.y += this.vy;
-        if (this.size < this.maxSize) {
-          this.size += 0.4;
+        this.pulse += this.pulseSpeed;
+
+        if (this.x < 0) this.x = canvas.width;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.y < 0) this.y = canvas.height;
+        if (this.y > canvas.height) this.y = 0;
+
+        // Subtle reaction to pointer proximity
+        const dx = pointerX - this.x;
+        const dy = pointerY - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 180) {
+          const force = (180 - dist) / 180;
+          this.size = this.baseSize + force * 1.8;
+        } else {
+          this.size = this.baseSize;
         }
-        this.alpha -= this.decay;
       }
 
       draw() {
-        if (this.alpha <= 0) return;
-        ctx.save();
+        const opacity = (Math.sin(this.pulse) + 1) / 2 * 0.4 + 0.15;
         ctx.beginPath();
-        const gradient = ctx.createRadialGradient(
-          this.x, this.y, 0,
-          this.x, this.y, this.size
-        );
-        gradient.addColorStop(0, `rgba(255, 255, 255, ${this.alpha})`);
-        gradient.addColorStop(0.4, `rgba(220, 225, 255, ${this.alpha * 0.5})`);
-        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-        
-        ctx.fillStyle = gradient;
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
         ctx.fill();
-        ctx.restore();
       }
     }
 
-    function addSmoke(x, y, count = 2) {
-      for (let i = 0; i < count; i++) {
-        if (smokeParticles.length < maxSmokeParticles) {
-          smokeParticles.push(new SmokeParticle(x, y));
-        }
-      }
+    for (let i = 0; i < particleCount; i++) {
+      stardust.push(new StardustNode());
     }
 
-    // Pointer events for desktop and mobile touch interaction
-    window.addEventListener('mousemove', (e) => {
-      addSmoke(e.clientX, e.clientY, 1);
-    });
-
-    window.addEventListener('touchmove', (e) => {
-      if (e.touches && e.touches[0]) {
-        addSmoke(e.touches[0].clientX, e.touches[0].clientY, 2);
-      }
-    }, { passive: true });
-
-    window.addEventListener('touchstart', (e) => {
-      if (e.touches && e.touches[0]) {
-        addSmoke(e.touches[0].clientX, e.touches[0].clientY, 3);
-      }
-    }, { passive: true });
-
-    function animateSmoke() {
+    function renderBackgroundEffect() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      for (let i = smokeParticles.length - 1; i >= 0; i--) {
-        const p = smokeParticles[i];
-        p.update();
-        p.draw();
-        if (p.alpha <= 0) {
-          smokeParticles.splice(i, 1);
+      // Smooth lerp pointer position
+      pointerX += (targetX - pointerX) * 0.08;
+      pointerY += (targetY - pointerY) * 0.08;
+
+      // 1. Draw Premium Ambient Soft Radial Light Spotlight under cursor/touch
+      const ambientGlow = ctx.createRadialGradient(
+        pointerX, pointerY, 0,
+        pointerX, pointerY, 320
+      );
+      ambientGlow.addColorStop(0, 'rgba(255, 255, 255, 0.06)');
+      ambientGlow.addColorStop(0.35, 'rgba(255, 255, 255, 0.025)');
+      ambientGlow.addColorStop(0.7, 'rgba(255, 255, 255, 0.008)');
+      ambientGlow.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+      ctx.save();
+      ctx.fillStyle = ambientGlow;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.restore();
+
+      // 2. Update and draw stardust nodes & connecting luxury constellation lines
+      for (let i = 0; i < stardust.length; i++) {
+        stardust[i].update();
+        stardust[i].draw();
+
+        // Connect node to pointer if close
+        const pdx = pointerX - stardust[i].x;
+        const pdy = pointerY - stardust[i].y;
+        const pDist = Math.sqrt(pdx * pdx + pdy * pdy);
+        if (pDist < 160) {
+          ctx.beginPath();
+          ctx.moveTo(stardust[i].x, stardust[i].y);
+          ctx.lineTo(pointerX, pointerY);
+          const lineAlpha = (1 - pDist / 160) * 0.12;
+          ctx.strokeStyle = `rgba(255, 255, 255, ${lineAlpha})`;
+          ctx.lineWidth = 0.75;
+          ctx.stroke();
+        }
+
+        // Connect nearby nodes together
+        for (let j = i + 1; j < stardust.length; j++) {
+          const dx = stardust[i].x - stardust[j].x;
+          const dy = stardust[i].y - stardust[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 110) {
+            ctx.beginPath();
+            ctx.moveTo(stardust[i].x, stardust[i].y);
+            ctx.lineTo(stardust[j].x, stardust[j].y);
+            const lineAlpha = (1 - dist / 110) * 0.06;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${lineAlpha})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
         }
       }
 
-      requestAnimationFrame(animateSmoke);
+      requestAnimationFrame(renderBackgroundEffect);
     }
 
-    animateSmoke();
+    renderBackgroundEffect();
 
     // 3D Card JS
 

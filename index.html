@@ -44,6 +44,7 @@
     html {
       scroll-behavior: smooth;
       font-size: 16px;
+      overflow-x: hidden;
     }
 
     body {
@@ -52,6 +53,8 @@
       color: var(--text);
       overflow-x: hidden;
       line-height: 1.7;
+      min-width: 0;
+      width: 100%;
     }
 
     /* ── NOISE OVERLAY ── */
@@ -152,9 +155,11 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      padding: 6rem 5rem 4rem;
+      padding: 6rem clamp(1.5rem, 5vw, 5rem) 4rem;
       position: relative;
-      gap: 4rem;
+      gap: clamp(1.5rem, 3vw, 4rem);
+      box-sizing: border-box;
+      width: 100%;
     }
 
     .hero-grid-bg {
@@ -170,8 +175,8 @@
 
     .hero-glow {
       position: absolute;
-      width: 600px;
-      height: 600px;
+      width: clamp(200px, 40vw, 600px);
+      height: clamp(200px, 40vw, 600px);
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 70%);
       top: -10%;
@@ -182,8 +187,8 @@
 
     .hero-glow2 {
       position: absolute;
-      width: 400px;
-      height: 400px;
+      width: clamp(150px, 30vw, 400px);
+      height: clamp(150px, 30vw, 400px);
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
       bottom: 5%;
@@ -502,7 +507,9 @@
     /* ── SECTIONS ── */
     section {
       position: relative;
-      padding: 6rem 5rem;
+      padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem);
+      box-sizing: border-box;
+      width: 100%;
     }
 
     .section-label {
@@ -2482,12 +2489,14 @@
     footer {
       background: var(--bg);
       border-top: 1px solid var(--border);
-      padding: 2rem 5rem;
+      padding: 2rem clamp(1.5rem, 5vw, 5rem);
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
+      box-sizing: border-box;
+      width: 100%;
     }
 
     .footer-copy {
@@ -2537,6 +2546,36 @@
       transition-delay: 0.3s;
     }
 
+    /* ── TABLET BREAKPOINT (768px – 900px) ── */
+    @media (max-width: 900px) and (min-width: 769px) {
+      #hero {
+        grid-template-columns: 1fr 1fr;
+        padding: 5rem 2.5rem 3rem;
+        gap: 2rem;
+      }
+
+      .hero-name {
+        font-size: clamp(2.4rem, 4.5vw, 3.5rem);
+      }
+
+      .avatar-wrapper {
+        width: 200px;
+        height: 200px;
+      }
+
+      .about-grid {
+        gap: 2.5rem;
+      }
+
+      .contact-grid {
+        gap: 2.5rem;
+      }
+
+      .edu-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* ── MOBILE MENU ── */
     @media(max-width:900px) {
       nav {
@@ -2581,10 +2620,12 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 6rem 1.5rem 4rem;
+        padding: 6rem 1.25rem 4rem;
         gap: 0;
         min-height: 100vh;
         justify-content: center;
+        max-width: 100vw;
+        overflow: hidden;
       }
 
       /* Hero left: all centered */
@@ -2689,7 +2730,7 @@
 
       /* Rest of sections */
       section {
-        padding: 5rem 1.5rem;
+        padding: 4rem 1.25rem;
       }
 
       .about-grid {
@@ -3142,6 +3183,72 @@
     }
     .cursor-arrow-wrapper.scroll .cursor-arrow-icon {
       transform: scale(0.9);
+    }
+
+    /* ── GLOBAL OVERFLOW CONTAINMENT ── */
+    /* Prevent any child from blowing out the viewport horizontally */
+    #hero, #about, #skills, #projects, #experience, #education,
+    #certificates, #github-stats, #contact, footer {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Ensure the projects & certs slider wrappers clip correctly */
+    .projects-window-container,
+    .certs-window-container {
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .projects-slider-wrapper,
+    .certs-slider-wrapper {
+      overflow: hidden;
+      max-width: 100%;
+    }
+
+    /* Responsive project slider layout for medium screens */
+    @media (max-width: 900px) {
+      .slide-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .project-browser-panel {
+        display: none; /* hide the mock browser on mobile to save space */
+      }
+
+      .project-info-panel {
+        border-right: none;
+        border-bottom: none;
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    /* Small phones: tighter still */
+    @media (max-width: 400px) {
+      .hero-btns {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-primary, .btn-outline {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .stats-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .stat-val {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Fluid typography scale so zoom doesn't break layout */
+    @media (max-width: 1200px) {
+      .section-title {
+        font-size: clamp(1.8rem, 4vw, 3rem);
+      }
     }
 </style>
 </head>

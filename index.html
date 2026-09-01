@@ -4,6 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    /* Mobile-only 50% zoom: runs synchronously before first paint */
+    (function () {
+      var isMobile = /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+        || (typeof navigator.maxTouchPoints === 'number' && navigator.maxTouchPoints > 1 && !/iPad|Macintosh/i.test(navigator.userAgent));
+      if (isMobile) {
+        document.querySelector('meta[name="viewport"]').setAttribute(
+          'content',
+          'width=device-width, initial-scale=0.5, minimum-scale=0.25, maximum-scale=5.0, user-scalable=yes'
+        );
+      }
+    })();
+  </script>
   <meta name="description"
     content="Abdul Wahid — AI/ML Developer & BS Artificial Intelligence student at COMSATS University. Specializing in Python, Machine Learning, and Software Engineering.">
   <meta name="keywords"

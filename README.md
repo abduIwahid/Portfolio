@@ -127,7 +127,7 @@ Got a project idea, collaboration, or just want to say hi?
 | 📧 Email | [abdulwahid.connects@gmail.com](mailto:abdulwahid.connects@gmail.com) |
 | 💼 LinkedIn | [linkedin.com/in/abdu1wahid](https://linkedin.com/in/abdu1wahid) |
 | 💬 WhatsApp | [+92 307 8141252](https://wa.me/923078141252) |
-| 📸 Instagram | [@abdu1vvahid](https://instagram.com/abdu1vvahid) |
+| 📸 Instagram | [@abdu1vvahid](https://instagram.com/xabdulwahid) |
 
 ---
 

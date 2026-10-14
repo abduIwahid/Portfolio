@@ -1,13 +1,17 @@
-# New Feature Prompt Template
+# New Feature Task Template
 
-Before work, read `brain/00-START-HERE.md`, `brain/changes/current-state.md`, and the latest three session logs. Then read relevant PRD/design/security/deployment docs.
+Before work: read `00-START-HERE.md`, `changes/current-state.md`, and the last three session files. Read only other files relevant to the task.
 
-Feature: [name]
-User problem: [specific problem]
-Acceptance criteria: [observable criteria]
-Priority: MUST / SHOULD / COULD
-Allowed files: [list]
-Out of scope: [list]
-Dependencies/services: Do not add without explicit approval.
+- **Feature:** [name]
+- **User problem:** [problem]
+- **PRD acceptance criteria:** [criteria]
+- **Judging criteria supported:** [innovation / technical execution / design / impact / demo]
+- **Allowed scope:** [files/routes/components]
+- **Out of scope:** [explicit exclusions]
+- **Design tokens/states:** Follow `DESIGN.md`; no hardcoded colors.
+- **Security/privacy:** Validate boundaries; do not expose secrets.
+- **Tests:** [specific tests]
+- **Timebox:** ≤30 minutes; cut SHOULD/COULD work if >20% late.
+- **Dependencies/services:** Ask before adding any; respect 3:00 freeze.
 
-Plan first. Keep task under 30 minutes. Use DESIGN.md tokens; validate inputs; preserve existing behavior; keep static-site architecture unless approved otherwise. Test desktop/mobile and relevant routes. After work, create a session log, update changelog/current-state/build plan/decisions as relevant, and report tests and unknowns. Do not claim deployment unless verified.
+Mock-first. Keep deployment working. After the task, create the required session file, update changelog/current-state/BUILD_PLAN/DECISIONS/TOOLS as applicable, run checks, and commit with Conventional Commits. Never invent history or claims.

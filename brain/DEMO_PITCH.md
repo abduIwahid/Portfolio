@@ -1,45 +1,58 @@
 # Demo Pitch
 
-## 3-minute walkthrough
-**0:00–0:25 — Problem:** Recruiters need a fast way to verify a candidate's skills and inspect real work. A visually attractive portfolio is not enough if links break or claims cannot be checked.
+## Three-minute demo script
+**0:00–0:25 — Problem**
+“Recruiters often see a list of skills without enough evidence of how a developer applies them. This portfolio is designed to make the work inspectable rather than relying on claims.”
 
-**0:25–0:50 — Solution:** Introduce Abdul Wahid's portfolio as a lightweight professional hub, prioritizing a memorable CV route and verified project evidence.
+**0:25–0:45 — Solution**
+“Projects are curated and connected to detailed case studies, source repositories, evaluation evidence, and related technical writing.”
 
-**0:50–1:45 — Demo:** Open homepage, use `/cv`, visit a project, show its repository/demo links, then show GitHub/LinkedIn and mobile navigation. Only demo routes confirmed working in production.
+**0:45–1:45 — Demo-critical path**
+1. Open homepage and point out the verified identity and featured work.
+2. Open the project directory and filter by category/technology.
+3. Open a case study and explain the problem, implementation, evaluation evidence, and limitations.
+4. Open its repository or live demo.
 
-**1:45–2:20 — Technical execution:** Explain static HTML/CSS/JavaScript, Vercel hosting, route redirects, public GitHub API integration, and why no database/backend is needed for public content.
+**1:45–2:15 — Supporting experience**
+Show CV page/download/print, verified credentials/experience, and one article linked to a project.
 
-**2:20–2:45 — Design/accessibility:** Show responsive layout, readable hierarchy, keyboard focus, loading/error fallback for external data.
+**2:15–2:40 — Engineering**
+Explain typed local content, Next.js rendering, Zod-validated contact endpoint, graceful GitHub fallback, design tokens, and testing.
 
-**2:45–3:00 — Next steps:** Improve case studies, publish properly cited technical articles, automate link checks if justified.
+**2:40–3:00 — Impact and next steps**
+Explain how this helps reviewers evaluate work and how future improvements will add reproducible project evidence and articles.
 
-## Pitch-deck outline
-1. Problem: recruiter friction and unverifiable portfolio claims.
-2. Solution: clean, fast professional hub with concise URLs.
-3. Demo: CV route, projects, repository evidence, mobile.
-4. Tech: static site, Vercel, GitHub integration.
-5. Future: verified case studies, article library, accessibility/performance improvements.
+## Pitch deck outline
+1. Problem and target audience
+2. Solution and user journey
+3. Demo screenshots / case-study path
+4. Architecture and design decisions
+5. Verification, accessibility, and performance
+6. Roadmap and impact
 
 ## Judging criteria mapping
-No formal judging criteria were supplied; inferred criteria are product clarity, execution, design, impact, and demo reliability.
+| Criterion | Evidence to show |
+|---|---|
+| Innovation | Evidence-linked case studies and related technical writing, not a generic landing page |
+| Technical execution | Typed content, search/filter behavior, validation, resilient optional integrations, tests |
+| Design | Restrained custom token system, responsive layout, light/dark mode, accessible states |
+| Impact | Recruiters/reviewers can inspect projects and source evidence quickly |
+| Demo quality | Reliable route sequence, live deployment, tested contact or honest fallback |
 
-| PRD MUST | Product clarity | Execution | Design | Impact | Demo quality |
-|---|---|---|---|---|---|
-| Working CV route | ✓ | ✓ |  | ✓ | ✓ |
-| Correct profile links | ✓ | ✓ |  | ✓ | ✓ |
-| Preserve existing site |  | ✓ |  | ✓ | ✓ |
-| Responsive navigation |  | ✓ | ✓ | ✓ | ✓ |
-| Accurate project evidence | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Accessibility baseline |  | ✓ | ✓ | ✓ |  |
+Every MUST feature in `PRD.md` maps to one or more judging criteria in this table and its acceptance table.
 
-## Submission summary
-**Title:** Abdul Wahid — AI/ML Developer Portfolio  
-**Summary:** A lightweight personal portfolio that connects visitors to verified projects, professional profiles, and a concise CV route. Built with static web technologies and hosted on Vercel.  
-**Live demo:** `https://abdulwahid.me` — verify current production state before submission.  
-**Differentiator:** Prioritizes working links and evidence-backed project details over unsupported claims and unnecessary infrastructure.
+## Devpost-style submission summary
+**Title:** Abdul Wahid — Evidence-First AI/ML Portfolio  
+**Summary:** A responsive professional portfolio that connects AI/ML projects to case studies, source repositories, evaluation evidence, and technical writing. Built to make technical work easier to inspect and verify.  
+**Problem:** Skill lists alone do not show how a developer frames, builds, evaluates, and communicates a project.  
+**Solution:** A searchable project directory, selected case studies, verified profile content, CV access, and research-oriented articles.  
+**Tech:** Planned Next.js, TypeScript, Tailwind CSS, Zod, Resend, Vercel.  
+**Live demo:** TBD after deployment.  
+**Repository:** TBD after creation.  
+Do not claim completed features until verified in the deployed app.
 
-## Backup demo
-- Keep a local static copy served with `python -m http.server 8000`.
-- Record a 60–90 second demo after the deployed site is verified.
-- Keep a screenshot of the homepage and the CV route result.
-- If the custom domain fails, use the fallback Vercel domain only after confirming it works.
+## Backup demo plan
+- Record a 60–90 second walkthrough by 3:30.
+- Keep approved screenshots and case-study text available locally.
+- If network fails, use recorded video and local preview.
+- If contact email is not configured, show direct contact links and explicitly state the form is not enabled.

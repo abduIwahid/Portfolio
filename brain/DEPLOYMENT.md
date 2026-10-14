@@ -1,43 +1,51 @@
 # Deployment
 
 ## Current state
-The supplied repository includes `vercel.json` with a redirect from `/cv` to `/CV.pdf`. The ZIP alone does not prove that the custom domain is connected correctly or that production currently serves the latest commit.
+The application source exists. Package installation, production build, remote repository creation, and deployment have not been verified.
 
-## Before deploy
-1. Confirm the correct GitHub repository and production branch.
-2. Open the Vercel project and inspect Domains and latest deployment.
-3. Confirm `abdulwahid.me` and `abdul-wahid-portfolio.vercel.app` are attached as intended.
-4. Verify the existing CV file path and all redirect destinations.
-5. Preview the change before production where possible.
-6. Never change DNS records without confirming current provider/records and owner approval.
-
-## Static deployment
-1. Push approved changes to the connected repository/branch.
-2. Wait for the Vercel deployment to report Ready.
-3. Inspect build/deployment logs for errors.
-4. Test the preview URL first.
-5. Test production URLs in a private/incognito session and a mobile browser.
+## Vercel deployment
+1. Create the new GitHub repository and commit the docs.
+2. Create the Next.js application only after implementation is authorized.
+3. Import the repository into Vercel.
+4. Set framework preset to Next.js; keep build command at the framework default unless justified.
+5. Add required environment variables to Preview and Production separately.
+6. Deploy the initial empty shell early.
+7. Verify preview deployment before connecting the custom domain.
+8. Connect `abdulwahid.me` only after domain ownership/DNS access is confirmed.
+9. Verify HTTPS, redirects, canonical URL, sitemap, robots, contact flow, and all core routes.
+10. Keep previous production deployment available for rollback.
 
 ## Environment variables
-None required for the current site. If future secrets are needed, configure them in Vercel project settings and document names only in `.env.example` and `ENV.md`. Never expose secrets in browser code.
+See `ENV.md`. Never place server secrets in `NEXT_PUBLIC_*`. Add variables only when their integration is active.
 
-## Domain behavior
-- Preferred canonical domain: `https://abdulwahid.me` (confirm www/apex behavior).
-- Fallback deployment: `https://abdul-wahid-portfolio.vercel.app`.
-- `/cv` should resolve to `/CV.pdf`; preserve the existing rule unless a tested alternative is approved.
-- External profile redirects should be added only after confirming destinations.
+## Contact provider
+- Create Resend account only if contact form is included.
+- Verify sender/domain according to current provider requirements.
+- Add `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAIL` in Vercel.
+- Send an actual test message and confirm receipt.
+- If provider configuration blocks delivery, disable the form and present direct email/LinkedIn links. Do not simulate success.
 
 ## Preview vs production
-Use preview deployments to test route behavior and visual changes. Do not rely solely on localhost because Vercel redirects and domain routing can differ.
+- Preview: test branches and PRs; use non-production recipient where possible.
+- Production: approved content and correct canonical URL.
+- Do not reuse test secrets across environments if avoidable.
+
+## Domain and DNS
+- Primary target: `abdulwahid.me` (TBD until ownership/access confirmed).
+- Vercel subdomain: TBD, generated after project creation.
+- Follow Vercel's current domain instructions; do not guess DNS record values.
 
 ## Rollback
-If the deployment breaks the homepage, CV, navigation, or responsive layout, promote the last known-good Vercel deployment using the dashboard's rollback/redeploy controls. Confirm the official current workflow before use.
+1. Open Vercel deployment history.
+2. Promote the last known-good deployment.
+3. Verify homepage, projects, CV, and contact fallback.
+4. Log rollback in `brain/changes/sessions/` and changelog.
 
 ## Post-deploy smoke test
-- [ ] Homepage loads.
-- [ ] `/cv` opens the PDF.
-- [ ] Existing pages/assets load.
-- [ ] Changed routes work.
-- [ ] Mobile navigation works.
-- [ ] No redirect loop or broken internal links.
-- [ ] Latest production deployment and tested commit are recorded in session log.
+- [ ] Open homepage and project directory.
+- [ ] Open one case study and one article.
+- [ ] Download/print CV.
+- [ ] Submit contact test if configured.
+- [ ] Check mobile menu/theme toggle.
+- [ ] Verify canonical URL, sitemap, robots, and 404.
+- [ ] Review Vercel logs for runtime errors.

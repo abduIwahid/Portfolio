@@ -1,36 +1,40 @@
 # Testing Strategy
 
-## Current testing status
-No automated test configuration was found in the supplied repository snapshot. The project currently has no declared install/build/lint scripts.
+## Test pyramid
+- Unit tests: content validation, search/filter behavior, contact schema, role-specific CV selection.
+- Component tests: accessible form states and project filter empty state if time permits.
+- Browser smoke test: primary project path and key routes.
+- Manual: keyboard, mobile layout, theme, external links, contact delivery.
 
-## Manual critical-path checklist
-- [ ] Homepage opens on custom domain and fallback Vercel domain.
-- [ ] `/cv` reaches the current `CV.pdf` without a redirect loop.
-- [ ] PDF renders/downloads on mobile and desktop.
-- [ ] `/github`, `/linkedin`, and `/leetcode` point to the intended profiles if implemented.
-- [ ] Every internal route linked from navigation opens directly and survives refresh.
-- [ ] Existing 3D/about page still loads.
-- [ ] Every project repository/demo link opens the intended destination.
-- [ ] External GitHub API failure does not break the page.
-- [ ] Mobile menu works by touch and keyboard.
-- [ ] No horizontal overflow at 320px, 360px, 768px, and desktop widths.
-- [ ] Focus is visible; images have meaningful alt text; links have descriptive labels.
-- [ ] Browser console has no new uncaught errors.
-- [ ] No secrets or private configuration are present in client assets.
-- [ ] Vercel production deployment is checked after publishing.
+## Critical-path manual checklist
+- [ ] Homepage loads on desktop and mobile.
+- [ ] Header navigation and skip link work with keyboard.
+- [ ] Theme toggle changes theme and persists safely.
+- [ ] Project search and filters return correct records.
+- [ ] Featured project opens a case study.
+- [ ] Case study repository/demo links point to real destinations.
+- [ ] Article index and article page render without placeholder/lorem text.
+- [ ] CV page renders, PDF download works, print stylesheet is readable.
+- [ ] Contact validation blocks malformed/oversized input.
+- [ ] Contact success appears only after provider success; provider failure shows a clear error.
+- [ ] Unknown route renders custom 404.
+- [ ] Sitemap, robots, canonical and Open Graph metadata are valid.
+- [ ] No browser console errors or broken images.
+- [ ] No API key or private credential appears in browser bundle or repository.
+- [ ] Production build passes and deployed URL smoke test passes.
 
-## Automated tests
-For this static site, begin with a link/route smoke test only if the test runner is approved. Do not install Playwright/Vitest solely to satisfy documentation. If added, keep tests focused on:
-- CV redirect destination
-- Required page availability
-- No internal broken links
-- Key navigation interactions
+## Minimal automated tests
+1. Project content schema accepts valid and rejects invalid records.
+2. Search/filter behavior handles no results and combined filters.
+3. Contact schema validates boundaries and rejects invalid email/lengths.
+4. Case-study links and slugs are unique.
+5. Playwright: homepage → projects → one case study → CV route.
 
-## Lighthouse targets
-- Performance ≥ 90
-- Accessibility ≥ 95
-- LCP < 2.5 seconds
-Targets are goals, not claims. Third-party scripts, fonts, and GitHub requests may affect results; record measured results and context.
+## Performance targets
+- Lighthouse Performance ≥90.
+- Accessibility ≥95.
+- LCP <2.5 seconds on a representative production run.
+- If a target cannot be met, record test conditions and root cause; do not fabricate scores.
 
 ## Definition of done
-Acceptance criteria in PRD pass; critical links work; mobile layout is usable; no new severe console errors; docs/change logs updated; deployment smoke test is complete or explicitly marked unverified.
+Build, lint, typecheck, critical tests, manual critical path, accessibility spot check, and production smoke test are complete. Any skipped test is documented with a reason and risk.

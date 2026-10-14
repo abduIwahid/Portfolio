@@ -1,20 +1,27 @@
 # Ethics and Privacy
 
-## Scope
-This is a public professional portfolio. No AI inference, user accounts, or user-uploaded data are required by the current scope.
-
 ## Data handling
-- Publish only professional information the owner intends to make public.
-- Do not collect visitor data unless there is a clear, approved need.
-- Review any analytics, embedded third-party widgets, contact forms, and external scripts before enabling them.
-- Do not expose private email addresses, credentials, tokens, or sensitive information.
-- Provide a clear way to contact the owner through explicitly approved public channels.
+- Public profile information is published only after owner review.
+- Avoid exposing private identifiers, personal phone numbers, private email addresses, or unnecessary location details.
+- Contact form data is sent to the configured provider and is not stored in a project database by default.
+- Tell visitors what the contact form does; do not imply confidentiality beyond the actual provider/process.
+- Use analytics only after reviewing provider behavior and applicable legal obligations.
+- Do not add AI/LLM processing of visitor messages in v1.
 
-## AI/model limits
-The portfolio may link to AI/ML projects, but project pages must accurately describe the dataset, evaluation method, limitations, and intended use. Do not imply that a demo model is clinically reliable or production-safe without evidence.
+## AI/ML project claims
+- Clearly distinguish a trained model, a prototype, a rule-based feature, and a deployed inference service.
+- Report metrics only when linked to reproducible evaluation or an approved source.
+- Describe dataset source, limitations, split methodology, and known bias where relevant.
+- Do not claim clinical, financial, or other high-stakes suitability from a student prototype.
+- For healthcare or other sensitive-domain projects, state that demos are educational and not a substitute for professional judgment when appropriate.
 
-## Bias and consent
-For projects using human or sensitive data, document dataset provenance, consent/legal basis where applicable, possible bias, and limitations. Do not publish personal or medical data in screenshots or demo data.
+## Bias and limitations
+- Avoid broad claims that a model is objective or unbiased.
+- Include relevant limitations and data constraints in case studies.
+- If a model's behavior is not independently evaluated, label that limitation explicitly.
 
-## Legal note
-This document is not legal advice. Verify applicable privacy, copyright, and accessibility obligations for the relevant jurisdiction before adding tracking, forms, or third-party services.
+## Consent and ownership
+- Do not publish third-party personal data, private project code, employer/client secrets, or unpublished research without permission.
+- Confirm the owner's role/contribution for each team project.
+- Respect third-party repository licenses and attribution.
+- Privacy notice and terms are not legal advice; verify for the relevant jurisdiction before launch.

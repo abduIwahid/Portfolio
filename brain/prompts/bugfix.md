@@ -1,11 +1,14 @@
-# Bugfix Prompt Template
+# Bugfix Task Template
 
-Read the mandatory start-of-work files and latest three session logs first.
+Read `00-START-HERE.md`, `changes/current-state.md`, and the last three session files first.
 
-Bug: [observable issue]
-Expected: [expected behavior]
-Actual: [actual behavior]
-Reproduction: [steps/device/browser]
-Evidence: [console error/screenshot/route]
+- **Observed behavior:** [exact symptom]
+- **Expected behavior:** [expected result]
+- **Reproduction steps:** [steps]
+- **Environment:** [local/preview/production, browser/device]
+- **Evidence:** [logs/screenshot/test; redact secrets]
+- **Likely area:** [routes/components/integration]
+- **Acceptance criteria:** reproduce, fix root cause, add regression test where practical.
+- **Constraints:** no unrelated refactors; do not add dependencies/services without approval; honor dependency freeze.
 
-Investigate before editing. Identify the smallest likely cause, explain the proposed fix, and avoid unrelated refactors. Preserve existing behavior. Add or perform a regression test. Do not add dependencies without approval. Log files changed, evidence, test result, status, and next steps in `/brain/changes/`; update changelog and current-state. Never say fixed unless reproduction no longer occurs.
+Inspect before editing. Run targeted test, lint/typecheck/build as relevant, and smoke-test affected route. Log the session and verified changelog/current-state update. Commit as `fix: ...` and reference the session file.

@@ -1,25 +1,29 @@
-# Glossary
+# Glossary and Naming
 
 | Term | Meaning |
 |---|---|
-| CV | Curriculum vitae; current repository contains `CV.pdf`. |
-| Route | A URL path such as `/cv` or `/projects`. |
-| Redirect | Sends a browser from one URL to another. |
-| Internal page | Content served by this portfolio rather than an external destination. |
-| Static site | Files delivered without a custom application server/database. |
-| Vercel preview | A deployment used to test changes before production. |
-| Production | The public website visitors currently use. |
-| Verified | Directly confirmed from repository, provider, or live test evidence. |
-| Inferred | Reasonable interpretation not directly proven by available evidence. |
-| Unknown | Requires human confirmation or testing. |
-| Case study | A project explanation covering problem, approach, evidence, and limitations. |
-| WCAG AA | Web accessibility contrast and usability standard target. |
-| Canonical URL | Preferred URL search engines should treat as the primary version. |
-| Demo-critical | The single behavior that must work during a demonstration. |
-| MUST/SHOULD/COULD | Required, high-value if time allows, and optional scope levels. |
+| Project | A verified repository or application Abdul materially worked on |
+| Case study | Detailed, evidence-based explanation of a project's problem, approach, implementation, evaluation, and limitations |
+| Evidence link | Repository, live demo, benchmark, report, credential, or other source supporting a claim |
+| Featured project | Curated project selected for the homepage |
+| Article | Technical writing entry, stored as reviewed content |
+| Credential | Certificate or credential with verified issuer/date and public proof where available |
+| Claim ledger | Table of factual claims, sources, status, and owner approval |
+| External metadata | Information fetched from GitHub or another provider; optional enhancement |
+| MUST/SHOULD/COULD | Priority categories; MUST is required for initial release |
+| Demo-critical path | Homepage → project directory → case study → evidence/repository link |
 
 ## Naming conventions
-- Use lowercase, hyphenated paths for new pages: `/churn-prediction`.
-- Keep the existing filename `CV.pdf` unless a deliberate, tested migration is approved.
-- Use Conventional Commits: `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`.
-- Do not change public profile URLs without owner confirmation.
+- Routes and content slugs: lowercase kebab-case.
+- Components: PascalCase.
+- Functions/variables: camelCase.
+- Types: PascalCase.
+- Environment variables: uppercase snake case.
+- CSS variables: `--semantic-shade`.
+- Session logs: `YYYY-MM-DD-NN-short-title.md`.
+- Commits: Conventional Commits, with session file referenced in message/body.
+
+## Claim labels
+- **Verified:** directly supported by an inspected source or owner-approved evidence.
+- **Inferred:** reasonable but not directly established; do not publish as a factual achievement.
+- **Unknown:** insufficient evidence; ask the owner or omit.

@@ -1,10 +1,12 @@
-# UI Polish Prompt Template
+# Design-Token-Compliant UI Polish Template
 
-Read the mandatory start-of-work files, PRD, DESIGN.md, current-state, and recent sessions.
+Read `00-START-HERE.md`, `changes/current-state.md`, and the last three session files first.
 
-Target page/component: [name]
-Issue: [specific visual/usability issue]
-Viewport/evidence: [screen size, screenshot]
-Acceptance criteria: [observable result]
+- **Target screen/component:** [name]
+- **Problem:** [visual/interaction issue]
+- **Desired outcome:** [specific measurable improvement]
+- **Reference/evidence:** [screenshot or observation]
+- **Must preserve:** content, behavior, accessibility, mobile layout.
+- **States to inspect:** default, hover, focus, disabled, loading, error, empty, success as applicable.
 
-Use only DESIGN.md tokens for new/changed UI. No gradients, glow palettes, glassmorphism, arbitrary colors, or decorative animation without a reason. Preserve content and functionality. Check keyboard focus, WCAG AA contrast, reduced motion, mobile layout, and empty/loading/error states when applicable. Do not add UI controls that do nothing. Test at 320px, 360px, 768px, and desktop. Log files/evidence and update current-state.
+Use only semantic tokens in `DESIGN.md`. Solid colors only; no gradients, purple/blue glow, glassmorphism, or decorative effects. Use Lucide only; no emoji UI icons. Respect reduced motion and WCAG AA. Do not invent screenshots or metrics. Run responsive/accessibility checks, log the session, update changelog/current-state, and commit with `fix:` or `style:` only if the repository convention allows it.

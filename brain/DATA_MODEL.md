@@ -1,29 +1,49 @@
 # Data Model
 
-## Current state
-No database or persistent application data model is present in the supplied repository snapshot.
+## Decision
+Version-controlled content files are the source of truth. No SQL/NoSQL database is justified for the first release; no user accounts or persistent visitor data are required.
 
 ## Entities
-| Entity | Fields | Source |
+| Entity | Key fields | Relations |
 |---|---|---|
-| Portfolio project | title, summary, category, repo URL, demo URL, verified metrics, status | Static content / owner-maintained |
-| Certificate | title, issuer, date, verification URL | Owner-provided evidence |
-| Article | slug, title, summary, status, date, updated date, body, references | Markdown/static content if implemented |
-| Experience entry | organization, role, dates, responsibilities, evidence URL | Owner-confirmed |
-| Link | label, destination, route type, verification status | Static configuration |
-| Achievement | title, date, issuer/event, result, evidence URL | Owner-confirmed |
+| Profile | name, headline, summary, location (approved), public links | Owns experiences, education, credentials |
+| Project | slug, title, summary, category, stack, status, role, repo URL, demo URL, featured | Has case study and evidence links |
+| CaseStudy | project slug, problem, approach, architecture, evaluation, limitations, lessons | Belongs to one Project |
+| Article | slug, title, excerpt, date, tags, body, reading time, status | May link to Projects |
+| Experience | organization, role, dates, bullets, evidence/source | Belongs to Profile |
+| Education | institution, program, dates, verified details | Belongs to Profile |
+| Credential | title, issuer, issue date, credential URL/ID only if public and approved | Belongs to Profile |
+| ContactSubmission | name, email, message, timestamp/request ID | Transient; sent to email provider, not stored by default |
+| ExternalRepository | repository URL, language, description, updated date | Optional enrichment of Project |
 
 ## Relations
-- A project can have zero or more documentation/article references.
-- An article can cite multiple references.
-- Project, certificate, experience, and achievement entries can link to external evidence.
-- No user-owned records or private accounts exist.
+```mermaid
+erDiagram
+  PROFILE ||--o{ PROJECT : showcases
+  PROJECT ||--o| CASE_STUDY : explains
+  PROJECT }o--o{ ARTICLE : related_to
+  PROFILE ||--o{ EXPERIENCE : has
+  PROFILE ||--o{ EDUCATION : has
+  PROFILE ||--o{ CREDENTIAL : lists
+```
 
-## Indexes and RLS
-Not applicable without a database. Do not introduce SQL indexes or row-level security for static files.
+## Validation and indexes
+- `slug`: lowercase kebab-case, unique.
+- Project/article slugs must be unique and URL-safe.
+- Required text fields must be non-empty and within bounded lengths.
+- External URLs must use HTTPS unless localhost in development.
+- Category/tag filtering uses normalized string arrays; no database indexes needed.
+- Content loader should validate all records at build/test time.
+- Optional GitHub metadata should be keyed by repository full name and cached/revalidated.
 
-## Seed/demo data
-Use existing repository links and only owner-verified project facts. No demo account is required. Placeholder content must be visibly marked TBD/draft and must not appear as a verified credential.
+## Access and RLS
+- No database tables, authentication, or RLS in v1.
+- All committed content is public by design; review before publishing.
+- Contact messages are not persisted in the application database.
+- If a database is introduced later, stop and obtain approval; define RLS policies and retention/deletion rules first.
 
-## Privacy rules
-Do not copy private user data into static content. Public professional links should be checked with the owner before changing.
+## Seed/demo data plan
+- Use verified profile content and a small set of confirmed repositories.
+- Never create fake portfolio projects or fake evaluation metrics as seed data.
+- Placeholder project records may be used only in local development and must be visibly labelled `DEMO / PLACEHOLDER`, excluded from production.
+- Demo walkthrough should use real approved projects and stable links.

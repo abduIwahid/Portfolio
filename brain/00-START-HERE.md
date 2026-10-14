@@ -1,33 +1,34 @@
 # Start Here
 
 ## One-liner
-A lightweight, static personal portfolio for Abdul Wahid, an AI/ML student, with reliable access to verified projects, CV, and professional profiles.
+Build a premium, evidence-first AI/ML developer portfolio that helps recruiters evaluate verified work through project exploration, technical case studies, research writing, and clear professional contact paths.
 
 ## Current phase
-**Implementation and static validation complete; production deployment not verified.** The existing homepage and CV are preserved, supporting pages and Vercel routes are added, and a static validation pass has been completed.
+**Phase 1 — Initial application implementation created; package install and production verification are pending.**
 
 ## Demo-critical feature
-A visitor can use `/cv` on the custom domain to reach the existing `CV.pdf`.
+A recruiter can browse a curated project, open its case study, understand the problem, method, implementation, and verified evaluation evidence, then inspect the repository or live demo.
 
 ## Differentiator
-Minimal, fast, dependency-light professional hub; prioritize useful evidence of work over decorative features.
+Connect projects to evidence: code/repository, implementation choices, evaluation, limitations, and related technical articles. Avoid unsupported claims and decorative AI clichés.
 
 ## Reading order
-1. `CLAUDE.md` — agent rules and entry point.
-2. `brain/changes/current-state.md` — what exists now.
-3. Latest three session files in `brain/changes/sessions/`.
-4. `brain/PRD.md` — product scope and acceptance criteria.
-5. `brain/ARCHITECTURE.md` and `brain/DESIGN.md`.
-6. `brain/SECURITY.md`, `brain/TESTING.md`, `brain/DEPLOYMENT.md`.
-7. `brain/BUILD_PLAN.md`, `brain/WORKFLOW.md`, and task-specific docs.
+1. `/CLAUDE.md` — hard rules and entry point
+2. `/brain/00-START-HERE.md` — this file
+3. `/brain/changes/current-state.md`
+4. The three most recent session files in `/brain/changes/sessions/`
+5. `/brain/PRD.md`
+6. `/brain/DECISIONS.md`, `/brain/TOOLS.md`
+7. Task-specific docs: architecture, design, data, API, security, build plan, testing, deployment
+8. `/brain/WORKFLOW.md` before every task
 
-## Links to project files
+## Project files
 - [PRD](PRD.md)
 - [Architecture](ARCHITECTURE.md)
 - [Data model](DATA_MODEL.md)
 - [API specification](API_SPEC.md)
 - [Design system](DESIGN.md)
-- [Tools](TOOLS.md)
+- [Tool choices](TOOLS.md)
 - [Build plan](BUILD_PLAN.md)
 - [Testing](TESTING.md)
 - [Deployment](DEPLOYMENT.md)
@@ -40,8 +41,25 @@ Minimal, fast, dependency-light professional hub; prioritize useful evidence of 
 - [Demo pitch](DEMO_PITCH.md)
 - [Glossary](GLOSSARY.md)
 - [Ethics and privacy](ETHICS_PRIVACY.md)
+- [Claim ledger](claim-ledger.md)
 - [Change log](changes/changelog.md)
 - [Current state](changes/current-state.md)
+- [Audit prompt](prompts/audit-changes.md)
+- [Feature prompt](prompts/new-feature.md)
+- [Bugfix prompt](prompts/bugfix.md)
+- [Refactor prompt](prompts/refactor.md)
+- [Review prompt](prompts/review.md)
+- [Deploy-fix prompt](prompts/deploy-fix.md)
+- [UI polish prompt](prompts/ui-polish.md)
+
+## Inputs and assumptions
+- Idea: new personal portfolio for Abdul Wahid — AI/ML Developer.
+- Team: solo for initial 4-hour sprint; owner and additional contributors must be confirmed.
+- Preferred stack: none specified; see `DECISIONS.md`.
+- Judging: assume innovation, technical execution, design, impact, and demo quality.
+- Deployment: Vercel target; custom domain `abdulwahid.me` only after ownership/DNS confirmation.
+- Content source links supplied: GitHub `https://github.com/abduIwahid`, LinkedIn `https://www.linkedin.com/in/abdu1wahid`, CV `https://abdul-wahid-portfolio.vercel.app/CV.pdf`.
+- Source profile information must be verified against repositories and approved before publishing. Some profile details may be stale or conflicting.
 
 ## Immediate next step
-Deploy the updated repository, then verify every clean route, redirect, PDF access, 404 behavior, and mobile layout on the actual Vercel deployment. Do not claim production success until those checks pass.
+Human reviews this documentation and answers the open questions in `DECISIONS.md`. The owner authorized implementation on 2026-10-14 and confirmed the two contact emails and churn metrics. Review `brain/claim-ledger.md` and `brain/changes/current-state.md` before continuing. Initial source code exists, but dependency installation, production build, browser QA, and deployment have not been verified.

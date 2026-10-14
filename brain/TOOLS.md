@@ -1,45 +1,40 @@
 # Tools and Services
 
 ## Selection principle
-Use the fewest services possible. This portfolio is currently static; adding a database, auth provider, email sender, cache, or AI API is unnecessary for the stated goals.
+Use the fewest services possible. The portfolio is content-first and does not need a database, authentication, file storage, or an AI API in v1.
 
-| Category | Choice | Why | Limits/setup/fallback |
-|---|---|---|---|
-| Code hosting | GitHub | Existing repository | Account already appears to exist; check repo permissions |
-| Hosting | Vercel | Existing deployment/config | Verify current plan limits and domain settings on official Vercel pages; fallback is the existing `*.vercel.app` domain |
-| Domain/DNS | Existing registrar/DNS provider — TBD | Custom domain already referenced | Provider and DNS records unknown; do not alter until verified |
-| Icons | Lucide for new UI | Consistent lightweight icon family | Current site uses Font Awesome references; use existing icons until migration is approved |
-| Fonts | System Helvetica stack for new pages | Avoid remote font dependency | Current page references Google Fonts; fallback system stack |
-| Testing | Browser manual checks; Playwright only if approved | No test runner is currently configured | No new dependency by default; manual route/link checklist fallback |
-| Diagrams | Mermaid | Text-based and versionable | No account required for source diagrams |
-| Secrets | Vercel environment settings only if later needed | No env vars currently required | Never commit real values |
+| Category | Pick | Purpose | Free-tier note (checked 2026-10-14) | Env vars | Setup estimate | Fallback / gotcha |
+|---|---|---|---|---|---|---|
+| Code hosting/CI | GitHub + GitHub Actions | Source control and CI | Verify current Actions minutes/storage on official page before relying on CI quota | GitHub repo secrets only if needed | 10–20 min | Local build/test; no secrets in repo |
+| Frontend/backend hosting | Vercel | Next.js and contact route | Hobby is personal/non-commercial; docs show 100 GB Fast Data Transfer and 50,000 Analytics events, limits can change | `NEXT_PUBLIC_SITE_URL`, provider vars | 15–30 min | Static site remains useful if contact integration is unavailable |
+| Content | MDX/JSON files | Projects, articles, profile | No service quota; repository is source of truth | None | 15–30 min | Use validated local data |
+| Contact email | Resend | Deliver contact form | Official pricing currently states 3,000 emails/month and 100/day on Free; domain verification/recipient restrictions must be checked before demo | `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAIL` | 15–30 min | If not configured, show direct email/LinkedIn links and disable form honestly |
+| Analytics | Vercel Analytics | Basic traffic analytics | Official docs list 50,000 events on Hobby, one-month reporting; check current limits before enabling | Usually integration-managed | 5–10 min | Omit analytics until consent/privacy configuration is reviewed |
+| Icons | Lucide | Consistent UI icons | Open-source; verify current license/usage | None | 5 min | Text labels |
+| Testing | Vitest + Playwright | Unit tests and browser smoke test | Package/license/version details verify at install | None | 15–30 min | Manual critical path if time constrained |
+| Forms/schema | Zod | Server-side validation | Open-source; check current package docs | None | 5–10 min | Server-side manual validation is not preferred |
 
-## Official pages to verify before implementation
-- Vercel pricing: https://vercel.com/pricing
-- Vercel redirects: https://vercel.com/docs/redirects
-- GitHub pricing: https://github.com/pricing
-- GitHub REST API rate limits: https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api
+Official pages:
+- Vercel Hobby: https://vercel.com/docs/plans/hobby
+- Vercel Analytics limits: https://vercel.com/docs/analytics/limits-and-pricing
+- Resend pricing: https://resend.com/pricing
+- GitHub Actions billing: https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions
 - Lucide: https://lucide.dev/
-- Playwright: https://playwright.dev/
+- Zod: https://zod.dev/
 
-Free-tier numbers are intentionally not stated here because they change. Verify the official page immediately before relying on a limit.
-
-## Accounts to check in the first 15 minutes
-- [ ] GitHub account and repository write access
-- [ ] Vercel account and correct project access
-- [ ] Domain registrar/DNS account access (provider TBD)
-- [ ] Confirm whether the custom domain is attached to the same Vercel project as the fallback domain
-
-No additional account should be created for the current static portfolio scope.
+## Accounts to create in the first 15 minutes
+- [ ] GitHub account/repository (new repo; name TBD).
+- [ ] Vercel account and link GitHub.
+- [ ] Resend account only if the contact form is included in the first release.
+- [ ] Confirm control of `abdulwahid.me` and access to DNS provider; do not change DNS until deployment is verified.
 
 ## Free-tier gotchas
-- Vercel plan terms, build quotas, function limits, and commercial-use terms can change; verify the current official plan. The current static site should not need serverless functions.
-- External GitHub API calls can be rate-limited or unavailable; the page must remain useful without live stats.
-- Google Fonts and third-party assets can fail or increase load time.
-- Domain configuration may differ between apex and `www`; inspect actual DNS and Vercel domain settings before changing records.
+- Vercel Hobby is restricted to personal, non-commercial use; confirm the intended use and current terms. If the site becomes commercial, choose a compliant plan.
+- Vercel usage quotas and function limits can change; check official pages immediately before deployment.
+- Resend free tier: current pricing page states 3,000 emails/month and 100/day. Sender/domain verification and allowed recipients can constrain the demo; verify domain and test an actual delivery.
+- GitHub public API limits and caching rules must be verified if using authenticated metadata. The site must not rely on API availability.
+- Avoid Supabase/Render/Railway for v1: no database/backend service is required; Render free services sleep and Railway relies on trial credits.
+- No paid font, image, CMS, or model API is required.
 
 ## Cost and scaling
-The static site can remain low-cost at current scale. If traffic or content needs grow, first measure performance and maintenance pain. Add services only for a concrete need; any paid plan, backend, CMS, or analytics requires owner approval and a cost review.
-
-## Decision record
-See `DECISIONS.md` for choices and alternatives.
+Start with file-backed content and Vercel personal hosting only if permitted by current terms. Resend handles low-volume contact submissions. If traffic or contact volume grows, inspect actual usage before upgrading. Consider a CMS or database only after a documented need; do not add infrastructure speculatively.

@@ -1,20 +1,12 @@
-# Session: Portfolio implementation
+# Session: Initial Portfolio Implementation
 
-## Goal
-Implement the documented portfolio route/content improvements while preserving the existing homepage, visual identity, and CV.
-
-## Changes
-- Added clean internal routes for projects, experience, certificates, blog, contact, links, achievements, docs, and three project detail pages.
-- Added privacy, terms, 404, sitemap, and robots files.
-- Updated Vercel redirects/rewrites and homepage footer links.
-- Added skip-to-content links, visible keyboard focus, and reduced-motion CSS to supporting pages.
-- Updated certificate/achievement copy to avoid presenting participation as a prize and removed a fabricated verification URL.
-- Replaced the stale README project structure and deployment instructions.
-
-## Validation
-- HTML parsing, route/link checks, in-page anchor checks, local asset reference checks, and `node --check` for extracted inline JavaScript completed without reported errors.
-- A Playwright/Chromium visual pass could not run because browser navigation was blocked by the environment. Do not represent this as end-to-end verified.
-- No deployment was performed.
-
-## Follow-up
-After deployment, verify `/cv`, the external profile redirects, each rewritten route, the 404 page, PDF response, and mobile behavior in a real browser.
+- **Date:** 2026-10-14
+- **Goal / user request:** “now start building portfolio full start to end strictly follow previous details”. Owner answers: primary contact `contact@abdulwahid.me`, secondary `abdulwahid.connects@gmail.com`; churn metrics confirmed; use CV + public GitHub only for claims and omit unverified LinkedIn-specific details.
+- **What was done:** Built a fresh Next.js App Router/TypeScript portfolio source package, responsive design system, project explorer and case-study routes, two technical articles with references, about/experience/education/credentials, CV page and PDF, contact route with server-side Zod validation and optional Resend delivery, privacy page, custom 404, sitemap/robots, theme toggle, icon/manifest, basic source checks, claim ledger, and README/deployment docs.
+- **Files touched:** `app/`, `components/`, `content/`, `public/`, `tests/`, root config/docs, and relevant `/brain` files.
+- **Decisions + reasoning:** Used local typed content as source of truth; did not depend on GitHub API. Primary email is `contact@abdulwahid.me`; secondary `abdulwahid.connects@gmail.com` is optional CC. Contact form is disabled without verified provider configuration. No analytics, database, or model inference service added. No phone number published. No remote repo/deployment claimed.
+- **Problems hit + fixes:** Package registry access timed out during `npm install`; source was syntax-transpiled with the globally available TypeScript compiler and source-level tests were run instead. Fixed article navigation to use normal fragment links and moved print behaviour into a client component. Switched to an ESLint v8 legacy config for compatibility with the selected Next.js toolchain.
+- **Verification:** `npm test` passed 6/6. TypeScript/TSX syntax transpilation passed for 29 files with zero syntax diagnostics. Contrast-ratio spot checks passed for primary/muted/accent-ink text pairs. The two-page CV PDF was rendered and visually inspected. Dependency install, typecheck, lint, Next production build, browser/accessibility tests, and deployment smoke test remain pending.
+- **Status:** Partial — source implementation complete, runtime/build/deployment verification blocked by package registry access and missing deployment credentials.
+- **Related commit hash:** `4aa093e` (local initial implementation commit; no remote repository or deployment is available in this environment).
+- **Next steps:** Run `npm install`, `npm run typecheck`, `npm run lint`, `npm test`, and `npm run build` in a network-enabled environment; fix all build issues; test mobile/keyboard/theme and actual contact delivery; create/push the new GitHub repository; deploy to Vercel; confirm canonical domain and DNS before connecting it.

@@ -1,24 +1,25 @@
 # Contributing
 
-This is currently a personal static portfolio maintained primarily by its owner. External contributions should be discussed before work begins.
+This is planned for a solo-owned portfolio; use the rules below if collaborators are added.
 
 ## Branch and PR rules
-- Create a focused branch: `feat/short-description`, `fix/short-description`, or `docs/short-description`.
-- Keep changes small and scoped to one task.
-- Open a PR with summary, screenshots for UI changes, manual test evidence, and any routing/deployment implications.
-- Do not merge unreviewed changes directly to production unless the owner explicitly approves.
-- Use Conventional Commits: `feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`.
-- Never commit secrets, personal data that is not already intentionally public, generated build output, or unrelated files.
+- `main` must remain deployable.
+- Use short branches: `feat/project-explorer`, `fix/contact-validation`, `docs/case-study-evidence`.
+- Use Conventional Commits: `feat:`, `fix:`, `docs:`, `chore:`, `test:`, `refactor:`.
+- PRs must state goal, acceptance criteria, screenshots for UI changes, test/build results, and linked session log.
+- Do not merge if build, typecheck, or core tests fail.
+- No direct production-only edits that are absent from Git.
 
 ## Folder ownership
-- Root HTML and current UI: owner approval required.
-- `brain/`: project planning, decisions, security, and change history.
-- `CV.pdf`, profile assets, contact destinations: owner-only changes unless explicitly approved.
-- Vercel/domain configuration: owner approval required.
+| Area | Default owner | Notes |
+|---|---|---|
+| `/app`, `/components` | Builder | UI and route implementation |
+| `/content` | Abdul Wahid/content approver | Verified public claims only |
+| `/brain` | Planner / task owner | Update logs with every change |
+| `/lib/integrations` | Integration owner | Contact, GitHub metadata, analytics |
+| `/tests` | Reviewer / Builder | Critical-path tests |
 
-## Review checklist
-- Existing design and responsive behavior preserved.
-- All changed links tested.
-- No unsupported personal/professional claims.
-- Accessibility and security considerations reviewed.
-- `brain/changes/` logs updated.
+## Content review
+- Verify project descriptions against repositories and working demos.
+- Ask before publishing phone numbers, private email addresses, personal identifiers, or unapproved details.
+- Never invent metrics or label a mock feature as live.

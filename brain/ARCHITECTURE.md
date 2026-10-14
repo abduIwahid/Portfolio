@@ -1,69 +1,94 @@
 # Architecture
 
-## Current stack (verified from repository snapshot)
-- Static HTML/CSS/vanilla JavaScript in `index.html`.
-- Separate `3d_about_me.html`.
-- `CV.pdf` and `profile.png` in repository root.
-- `vercel.json` currently contains a `/cv` redirect to `/CV.pdf`.
-- No `package.json`, server, database, auth, or build pipeline was observed in the supplied ZIP.
-- `index.html` references public GitHub API endpoints and external fonts/assets.
+## Planned stack
+- Next.js App Router + TypeScript strict.
+- Tailwind CSS with design tokens from `DESIGN.md`.
+- File-backed typed content (MDX/JSON/TS modules); no database for v1.
+- Zod for API and content-boundary validation.
+- Resend for contact email delivery, if account/domain constraints are resolved.
+- Vercel for hosting and optional Vercel Analytics.
+- Lucide icons only.
+- Vitest for focused unit tests; Playwright for critical-path smoke test if setup time permits.
 
-## Proposed approach
-Keep the existing static architecture unless a concrete requirement proves it insufficient. Prefer static internal pages or a small shared client-side navigation strategy over adding a framework for simple content.
-
-## Intended folder structure
+## Planned folder structure
 ```text
-/
-├── index.html
-├── 3d_about_me.html
-├── CV.pdf
-├── profile.png
-├── vercel.json
-├── README.md
-├── CLAUDE.md
-├── AGENTS.md
-├── .env.example
-└── brain/
-    ├── *.md
-    ├── changes/
-    └── prompts/
+app/
+  (site)/page.tsx
+  projects/page.tsx
+  projects/[slug]/page.tsx
+  writing/page.tsx
+  writing/[slug]/page.tsx
+  about/page.tsx
+  cv/page.tsx
+  contact/page.tsx
+  api/contact/route.ts
+  not-found.tsx
+components/
+  layout/  projects/  writing/  cv/  ui/
+content/
+  projects/  articles/  profile.ts  experience.ts  credentials.ts
+lib/
+  content/  validation/  integrations/  seo/
+public/
+  icons/  images/  cv/
+tests/
+brain/
 ```
-Additional source files/routes are **proposed, not verified**. Decide structure only after auditing the complete existing HTML and deployment behavior.
+This is planned structure, not existing code.
 
 ## Data flow
 ```mermaid
-flowchart TD
-  Visitor --> Vercel
-  Vercel --> StaticPages[HTML/CSS/JS assets]
-  StaticPages --> GitHubAPI[Public GitHub API]
-  StaticPages --> ExternalAssets[Fonts and third-party assets]
-  Visitor --> CVRoute[/cv]
-  CVRoute --> CVPDF[CV.pdf]
+flowchart LR
+  Content[Reviewed local content files] --> Loader[Typed content loader]
+  Loader --> Pages[Server-rendered routes]
+  Pages --> UI[Accessible components]
+  UI --> Search[Client-side search/filter]
+  UI --> Contact[Contact form]
+  Contact --> Validate[Zod validation + abuse controls]
+  Validate --> Resend[Resend API]
+  Pages -. optional metadata .-> GitHub[GitHub public API]
+  GitHub --> Cache[Build-time/revalidated metadata + local fallback]
 ```
 
-## Auth flow
-Not applicable: current site has no user accounts or authentication. Do not add auth for a public portfolio.
+## Routes
+| Route | Purpose | Rendering |
+|---|---|---|
+| `/` | Home, identity, featured projects | Server-rendered |
+| `/projects` | Search/filter project directory | Server + small client filter |
+| `/projects/[slug]` | Project case study | Static/ISR where supported |
+| `/writing` | Article directory | Server-rendered |
+| `/writing/[slug]` | Article | Static |
+| `/about` | Profile, experience, education, credentials | Server-rendered |
+| `/cv` | CV page, PDF and print | Server-rendered |
+| `/contact` | Contact information/form | Server-rendered + client validation |
+| `/api/contact` | Validated contact submission | Server route |
+| `/sitemap.xml`, `/robots.txt` | Search engine discovery | Generated |
+| `not-found` | Helpful 404 | Static |
 
-## Components / services
-- Main page: `index.html`.
-- 3D/about page: `3d_about_me.html`.
-- CV file: `CV.pdf`.
-- Profile image: `profile.png`.
-- Vercel redirects: `vercel.json`.
-- External GitHub data/widgets: client-side calls; handle failures with a graceful fallback.
+## Authentication flow
+No user authentication is needed. Portfolio visitors do not create accounts. Contact form identity is not trusted; treat all submitted fields as untrusted input.
 
-## Code conventions for future changes
-- Prefer semantic HTML and small, readable vanilla JS modules.
-- Avoid adding TypeScript or a framework unless architecture is explicitly approved.
-- Keep styles centralized where feasible; no new hardcoded color values outside design tokens.
-- Use clear names, avoid duplicated logic, and guard optional DOM elements.
-- Validate any form inputs at boundaries; never trust browser validation alone.
-- Use one consistent error presentation pattern.
-- Do not place secrets in browser JavaScript.
-- Keep pages usable if a third-party API is unavailable.
+## Components/services
+- Layout: header, navigation, footer, theme toggle, skip link.
+- Projects: project card, filter/search bar, case-study sections, evidence links.
+- Writing: article card, category chips, table of contents, related projects.
+- CV: verified content view, PDF download, print stylesheet.
+- UI: button, input, card, modal, toast, table, empty state, skeleton, error state.
+- Integrations: Resend contact delivery; optional GitHub metadata; Vercel Analytics.
 
-## Unknowns to verify
-- Actual Vercel project settings and domain attachment.
-- Whether all existing content is truly inlined in `index.html`.
-- Exact production behavior of `/cv` and external CV links.
-- Current accessibility/performance scores.
+## Code conventions
+- TypeScript strict; avoid `any`.
+- Feature-based folders and predictable naming.
+- Zod validation at boundaries.
+- One typed API error format: `{ error: { code, message, requestId? } }`.
+- No hardcoded colors; use design tokens only.
+- Keep server-only keys in server modules; do not import secrets into client components.
+- Keep external API results optional and gracefully degraded.
+- Content schema changes require content validation tests.
+
+## Performance strategy
+- Prefer server components and static rendering.
+- Client components only for interactions requiring browser state.
+- Avoid heavy animation and third-party UI bundles.
+- Optimize images and provide explicit dimensions.
+- No runtime LLM/model inference in the portfolio.

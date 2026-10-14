@@ -1,12 +1,13 @@
-# Deployment Failure Prompt Template
+# Failed Deployment Fix Template
 
-Read the mandatory start-of-work files, deployment/security docs, current-state, and recent sessions.
+Read `00-START-HERE.md`, `changes/current-state.md`, and the last three session files first.
 
-Deployment failure: [exact error]
-Provider/deployment ID: [if available]
-Commit: [hash]
-Expected: [result]
-Actual: [result]
-Logs/evidence: [paste relevant output]
+- **Deployment URL/ID:** [value]
+- **Failure stage:** [install/build/runtime/domain]
+- **Exact error:** [redacted log excerpt]
+- **Last known-good deployment:** [URL/ID]
+- **Recent changes:** [commit/session]
+- **Environment:** Preview or Production
+- **Acceptance criteria:** deployment succeeds and core routes pass smoke tests.
 
-Diagnose from logs and repository config. Do not change DNS, secrets, build settings, dependencies, or architecture without approval. Prefer the smallest reversible fix. Test preview first, then production. Record rollback plan and smoke-test evidence. Update session log/changelog/current-state and mark anything not verified as Unknown.
+Do not paste secrets into logs. Inspect failure evidence before changing code. Avoid unrelated changes and new dependencies. If production is broken, restore last known-good deployment first, then debug. Verify env vars and provider/domain configuration. Log all changes and rollback details; update changelog/current-state and commit with `fix:` or `chore:`.

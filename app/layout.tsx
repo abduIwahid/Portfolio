@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: 'Abdul Wahid — AI/ML Developer', description: 'Evidence-first AI/ML projects, technical case studies, and writing.' },
   icons: { icon: '/icons/favicon.svg', shortcut: '/icons/favicon.svg' }, manifest: '/manifest.webmanifest'
 };
-export const viewport: Viewport = { themeColor: '#171717', colorScheme: 'light dark' };
+export const viewport: Viewport = { themeColor: '#f8f8f8', colorScheme: 'light' };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" suppressHydrationWarning><body><a className="skip-link" href="#main">Skip to content</a><SiteHeader /><main id="main">{children}</main><SiteFooter /></body></html>;
+  return <html lang="en" data-theme="light" suppressHydrationWarning><body><a className="skip-link" href="#main">Skip to content</a><SiteHeader /><main id="main">{children}</main><SiteFooter /></body></html>;
 }

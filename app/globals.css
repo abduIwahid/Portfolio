@@ -90,6 +90,27 @@ button { color: inherit; }
 .button-secondary:hover { border-color: var(--accent); background: var(--accent-soft); }
 .button:disabled { cursor: wait; opacity: .65; transform: none; }
 
+/* ── Hero split layout ───────────────────────────────────────────────── */
+.hero-split { display: grid; grid-template-columns: 1fr auto; gap: clamp(40px, 6vw, 100px); align-items: center; }
+.hero-pfp-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; flex-shrink: 0; }
+.pfp-ring-outer { position: relative; width: 220px; height: 220px; cursor: pointer; }
+.pfp-ring-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.pfp-ring-spin { transform-origin: 110px 110px; animation: ring-spin 9s linear infinite; }
+.pfp-ring-counter { transform-origin: 110px 110px; animation: ring-spin 18s linear infinite reverse; opacity: .45; }
+.pfp-orbit-dot { transform-origin: 110px 110px; animation: ring-spin 9s linear infinite; filter: drop-shadow(0 0 6px var(--accent)); }
+@keyframes ring-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.pfp-img-wrap { position: absolute; inset: 14px; border-radius: 50%; overflow: hidden; background: var(--surface-alt); box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--border), 0 12px 40px rgb(0 0 0 / .14); transition: box-shadow .3s ease, transform .3s ease; }
+.pfp-img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; transition: transform .4s ease, filter .4s ease; filter: saturate(.9); }
+.pfp-ring-outer:hover .pfp-ring-spin { animation-duration: 3s; }
+.pfp-ring-outer:hover .pfp-orbit-dot { animation-duration: 3s; }
+.pfp-ring-outer:hover .pfp-ring-counter { animation-duration: 7s; }
+.pfp-ring-outer:hover .pfp-img-wrap { box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--accent), 0 18px 50px rgb(0 0 0 / .22); transform: scale(1.03); }
+.pfp-ring-outer:hover .pfp-img { transform: scale(1.07); filter: saturate(1.1) brightness(1.04); }
+.pfp-badge { display: inline-flex; align-items: center; gap: 7px; padding: 6px 13px; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; transition: border-color .2s ease, color .2s ease; }
+.pfp-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 2px rgb(34 197 94 / .25); animation: pulse-dot 2s ease-in-out infinite; }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .6; transform: scale(.85); } }
+.pfp-badge:hover { border-color: #22c55e; color: var(--foreground); }
+
 .section { padding: 78px 0; width: 100%; }
 .section + .section { border-top: 1px solid var(--border); }
 .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 32px; }
@@ -296,6 +317,9 @@ button { color: inherit; }
 @media (max-width: 1024px) {
   .hero { padding: 72px 0 64px; }
   .section { padding: 64px 0; }
+  .hero-split { gap: 40px; }
+  .pfp-ring-outer { width: 190px; height: 190px; }
+  .pfp-ring-svg { viewBox: '0 0 190 190'; }
   .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
   .principles-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
   .stats-strip { grid-template-columns: repeat(4, 1fr); }
@@ -312,6 +336,8 @@ button { color: inherit; }
 /* ── Tablet portrait (≤ 900px) ──────────────────────────────────────── */
 @media (max-width: 900px) {
   .hero { padding: 62px 0 54px; }
+  .hero-split { gap: 30px; }
+  .pfp-ring-outer { width: 170px; height: 170px; }
   .case-layout { grid-template-columns: minmax(0, 1fr) 210px; gap: 24px; }
   .about-grid { gap: 36px; }
   .article-shell { gap: 30px; }
@@ -339,6 +365,9 @@ button { color: inherit; }
   .theme-toggle { position: static; }
   /* Hero */
   .hero { padding: 48px 0 44px; }
+  .hero-split { grid-template-columns: 1fr; gap: 36px; }
+  .hero-pfp-wrap { order: -1; }
+  .pfp-ring-outer { width: 160px; height: 160px; }
   .hero h1 { font-size: clamp(40px, 12vw, 64px); letter-spacing: -.065em; }
   .hero-copy { font-size: 15px; margin-top: 20px; }
   .hero-actions { margin-top: 26px; gap: 10px; }

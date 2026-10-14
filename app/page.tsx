@@ -6,8 +6,30 @@ import { profile } from '@/content/profile';
 
 export default function HomePage() {
   return <>
-    <section className="hero"><div className="container">
+    <section className="hero"><div className="container hero-split">
       <div className="hero-main"><p className="eyebrow">AI/ML Developer</p><h1>Make the model.<br /><em>Question the result.</em></h1><p className="hero-copy">I&apos;m <strong>Abdul Wahid</strong>, an Artificial Intelligence undergraduate building practical machine-learning systems, explainable workflows, and software around data.</p><div className="hero-actions"><Link className="button button-primary" href="/projects">Explore selected work <ArrowUpRight size={17} /></Link><Link className="button button-secondary" href="/cv">View CV <ArrowRight size={16} /></Link></div><div className="hero-socials"><a href={profile.github} target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a><a href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a><a href={`mailto:${profile.email}`}><Mail size={16} /> Email</a></div></div>
+
+      {/* Profile picture with animated ring */}
+      <div className="hero-pfp-wrap" aria-hidden="true">
+        <div className="pfp-ring-outer">
+          <svg className="pfp-ring-svg" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="110" cy="110" r="104" stroke="var(--accent)" strokeWidth="2.5" strokeDasharray="16 10" strokeLinecap="round" className="pfp-ring-spin"/>
+            <circle cx="110" cy="110" r="104" stroke="var(--border-strong)" strokeWidth="1" strokeDasharray="4 28" strokeLinecap="round" className="pfp-ring-counter"/>
+            <circle cx="110" cy="6" r="5" fill="var(--accent)" className="pfp-orbit-dot"/>
+          </svg>
+          <div className="pfp-img-wrap">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://avatars.githubusercontent.com/abduIwahid"
+              alt="Abdul Wahid"
+              className="pfp-img"
+              width={160}
+              height={160}
+            />
+          </div>
+        </div>
+        <div className="pfp-badge">Available for roles</div>
+      </div>
     </div></section>
 
     <section className="section"><div className="container"><div className="section-heading"><div><p className="eyebrow">Selected work</p><h2>Projects with a point of view.</h2></div><div><p>Not just a stack of technologies. Each case study explains the problem, the approach, the evidence, and what remains uncertain.</p><Link className="text-link" href="/projects">Explore all projects <ArrowUpRight size={16} /></Link></div></div><div className="project-grid">{featuredProjects.slice(0, 4).map((project, index) => <article className={`project-card project-${project.accent}`} key={project.slug}><div className="project-card-top"><span className="project-index">{String(index + 1).padStart(2, '0')}</span><span className="project-kind">{project.category}</span><span className="project-arrow"><ArrowUpRight size={19} /></span></div><div className="project-card-body"><p className="project-overline">{project.kind}</p><h2><Link href={`/projects/${project.slug}`}>{project.name}</Link></h2><p className="project-summary">{project.summary}</p><div className="tag-row">{project.stack.slice(0, 4).map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div></div><div className="project-card-bottom"><span>{project.status}</span><Link href={`/projects/${project.slug}`}>Read case study <ArrowUpRight size={15} /></Link></div></article>)}</div></div></section>

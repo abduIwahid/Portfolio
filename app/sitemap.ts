@@ -1,0 +1,4 @@
+import type { MetadataRoute } from 'next';
+import { projects } from '@/content/projects';
+import { articles } from '@/content/articles';
+export default function sitemap(): MetadataRoute.Sitemap { const base = (process.env.NEXT_PUBLIC_SITE_URL || 'https://abdulwahid.me').replace(/\/$/, ''); const routes = ['', '/projects', '/writing', '/about', '/cv', '/contact', '/privacy']; return [...routes.map((route) => ({ url: `${base}${route}`, lastModified: new Date('2026-10-14'), changeFrequency: route === '' ? 'weekly' as const : 'monthly' as const, priority: route === '' ? 1 : 0.7 })), ...projects.map((project) => ({ url: `${base}/projects/${project.slug}`, lastModified: new Date('2026-10-14'), changeFrequency: 'monthly' as const, priority: project.featured ? 0.8 : 0.6 })), ...articles.map((article) => ({ url: `${base}/writing/${article.slug}`, lastModified: new Date(article.date), changeFrequency: 'monthly' as const, priority: 0.7 }))]; }

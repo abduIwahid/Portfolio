@@ -1,0 +1,5 @@
+import type { Metadata } from 'next';
+import { ProjectExplorer } from '@/components/project-explorer';
+import { projects } from '@/content/projects';
+export const metadata: Metadata = { title: 'Projects', description: 'Explore AI/ML projects, engineering work, and evidence-based technical case studies by Abdul Wahid.', alternates: { canonical: '/projects' } };
+export default function ProjectsPage() { return <><section className="page-hero"><div className="container page-intro-row"><div className="page-heading"><p className="eyebrow">Project directory · {projects.length} projects</p><h1>Work you can<br />look under the hood of.</h1><p>Search by domain, method, or tool. Each case study separates implementation details from evaluation evidence and makes limitations explicit.</p></div><aside className="page-side-note">Repository links are the source of truth for implementation. This site adds context; it does not replace code review.</aside></div></section><section className="section"><div className="container"><ProjectExplorer projects={projects} /></div></section></>; }

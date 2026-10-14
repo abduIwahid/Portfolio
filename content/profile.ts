@@ -19,5 +19,13 @@ export const profile = {
   activities: [
     { title: 'AI/ML Team Member', organization: 'Google Developer Groups on Campus · COMSATS Attock', period: '2026 – 2027' },
     { title: 'Participant', organization: 'Mind to Machine 2026 AI Hackathon · COMSATS Wah', period: 'May 2026' }
+  ],
+  skills: [
+    { group: 'Languages', items: ['Python', 'Java', 'JavaScript', 'TypeScript', 'SQL'] },
+    { group: 'ML / Data', items: ['scikit-learn', 'LightGBM', 'SHAP', 'MLflow', 'Pandas', 'NumPy', 'Matplotlib'] },
+    { group: 'AI Tools', items: ['FastAPI', 'Gemini API', 'GitHub API'] },
+    { group: 'Web', items: ['Next.js', 'React', 'Flask', 'Node.js'] },
+    { group: 'Databases', items: ['MySQL', 'Supabase'] },
+    { group: 'DevOps', items: ['Docker', 'Vercel', 'Git'] },
   ]
 } as const;

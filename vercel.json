@@ -65,6 +65,14 @@
     {
       "source": "/connect-four-ai",
       "destination": "/connect-four-ai.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
     }
   ]
 }

@@ -4,6 +4,67 @@
       "source": "/cv",
       "destination": "/CV.pdf",
       "permanent": false
+    },
+    {
+      "source": "/github",
+      "destination": "https://github.com/abduIwahid",
+      "permanent": false
+    },
+    {
+      "source": "/linkedin",
+      "destination": "https://www.linkedin.com/in/abdu1wahid",
+      "permanent": false
+    },
+    {
+      "source": "/leetcode",
+      "destination": "https://leetcode.com/u/abdu1wahid/",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/projects",
+      "destination": "/projects.html"
+    },
+    {
+      "source": "/certificates",
+      "destination": "/certificates.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/experience",
+      "destination": "/experience.html"
+    },
+    {
+      "source": "/links",
+      "destination": "/links.html"
+    },
+    {
+      "source": "/achievements",
+      "destination": "/achievements.html"
+    },
+    {
+      "source": "/docs",
+      "destination": "/docs.html"
+    },
+    {
+      "source": "/nearsend",
+      "destination": "/nearsend.html"
+    },
+    {
+      "source": "/churn-prediction",
+      "destination": "/churn-prediction.html"
+    },
+    {
+      "source": "/connect-four-ai",
+      "destination": "/connect-four-ai.html"
     }
   ]
 }

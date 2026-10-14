@@ -9,22 +9,17 @@ export default function HomePage() {
     <section className="hero"><div className="container hero-split">
       <div className="hero-main"><p className="eyebrow">AI/ML Developer</p><h1>Make the model.<br /><em>Question the result.</em></h1><p className="hero-copy">I&apos;m <strong>Abdul Wahid</strong>, an Artificial Intelligence undergraduate building practical machine-learning systems, explainable workflows, and software around data.</p><div className="hero-actions"><Link className="button button-primary" href="/projects">Explore selected work <ArrowUpRight size={17} /></Link><Link className="button button-secondary" href="/cv">View CV <ArrowRight size={16} /></Link></div><div className="hero-socials"><a href={profile.github} target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a><a href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a><a href={`mailto:${profile.email}`}><Mail size={16} /> Email</a></div></div>
 
-      {/* Profile picture with animated ring */}
+      {/* Profile picture — floating gradient frame */}
       <div className="hero-pfp-wrap" aria-hidden="true">
-        <div className="pfp-ring-outer">
-          <svg className="pfp-ring-svg" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="110" cy="110" r="104" stroke="var(--accent)" strokeWidth="2.5" strokeDasharray="16 10" strokeLinecap="round" className="pfp-ring-spin"/>
-            <circle cx="110" cy="110" r="104" stroke="var(--border-strong)" strokeWidth="1" strokeDasharray="4 28" strokeLinecap="round" className="pfp-ring-counter"/>
-            <circle cx="110" cy="6" r="5" fill="var(--accent)" className="pfp-orbit-dot"/>
-          </svg>
+        <div className="pfp-frame">
           <div className="pfp-img-wrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://avatars.githubusercontent.com/abduIwahid"
               alt="Abdul Wahid"
               className="pfp-img"
-              width={160}
-              height={160}
+              width={200}
+              height={200}
             />
           </div>
         </div>

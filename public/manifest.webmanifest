@@ -1,0 +1,10 @@
+{
+  "name": "Abdul Wahid — AI/ML Developer",
+  "short_name": "Abdul Wahid",
+  "description": "Evidence-first AI/ML projects, case studies, and technical writing.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f8f8",
+  "theme_color": "#171717",
+  "icons": [{ "src": "/icons/mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

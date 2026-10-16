@@ -46,7 +46,7 @@ export const projects: Project[] = [
     slug: 'customer-churn-prediction', name: 'Customer Churn Prediction', category: 'Machine Learning', kind: 'Classification · Coursework',
     summary: 'A supervised-learning study comparing classification approaches for identifying customers who may leave a service.',
     problem: 'Retention teams need useful risk signals, but classifying churn requires more than selecting a model with a high headline accuracy. Precision, recall, F1, class balance, and the decision threshold all matter.',
-    role: 'Team coursework project; model experimentation and analysis are represented in the public repository.', status: 'Academic project', featured: true,
+    role: 'Team coursework project; model experimentation and analysis are represented in the public repository.', status: 'Customer Churn Prediction', featured: true,
     stack: ['Python', 'Pandas', 'NumPy', 'scikit-learn', 'Matplotlib', 'Seaborn'],
     highlights: ['Data cleaning and exploratory analysis', 'Compared Logistic Regression, Random Forest, and an MLP classifier', 'Explored clustering as a complementary unsupervised view of customer groups', 'Selected Logistic Regression for the reported baseline result'],
     approach: [
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     slug: 'predictly', name: 'Predictly', category: 'Applied AI', kind: 'Property intelligence · Web app',
     summary: 'A real-estate valuation dashboard that combines market context with transparent, local image-quality signals.',
     problem: 'Property estimates are easy to present as precise even when inputs are incomplete. Predictly separates its estimate from image-derived signals and makes the supporting context visible.',
-    role: 'Personal project; implementation and limitations are described in the public repository.', status: 'Live demo', featured: true,
+    role: 'Personal project; implementation and limitations are described in the public repository.', status: 'Real-Estate Valuation Web App', featured: true,
     stack: ['Python', 'Flask', 'Pillow', 'JavaScript', 'Leaflet'],
     highlights: ['Property estimates for Lahore, Karachi, Islamabad, Rawalpindi, Faisalabad, and Multan', 'Local image analysis for brightness, colour richness, contrast, and sharpness', 'PDF report, historical-trend views, map exploration, and mortgage estimate', 'Comparable listings and amenity adjustments are presented as contextual features, not independently verified market data'],
     approach: [
@@ -87,7 +87,7 @@ export const projects: Project[] = [
     slug: 'nearsend', name: 'NearSend', category: 'Web Engineering', kind: 'Browser-to-browser file transfer',
     summary: 'Private nearby file sharing designed to move files between devices without accounts, cloud uploads, or share links.',
     problem: 'Moving a file from a phone to a laptop often involves sending it through an inbox or uploading it to a third-party service. NearSend explores a direct browser-to-browser path.',
-    role: 'Personal project; public repository and live application.', status: 'Live demo', featured: false,
+    role: 'Personal project; public repository and live application.', status: 'File-Sharing Web Application', featured: false,
     stack: ['JavaScript', 'WebRTC', 'WebSocket', 'Node.js', 'PWA', 'Vercel'],
     highlights: ['Device discovery and pairing for devices on a shared Wi-Fi network or hotspot', 'WebRTC data channels for direct transfer after signalling', 'QR-based pairing and multi-file transfer interface', 'Signalling service coordinates peers; file transfer is designed to happen peer-to-peer'],
     approach: [
@@ -143,7 +143,7 @@ export const projects: Project[] = [
     slug: 'study-hub', name: 'Study Hub', category: 'Web Engineering', kind: 'Academic resource hub · PWA',
     summary: 'A course-resource web app for organizing lecture notes, PDFs, CDFs, and lab manuals with search and study helpers.',
     problem: 'Course materials can be scattered across multiple sources. Study Hub provides a single searchable place for students to find and revisit resources.',
-    role: 'Personal/academic project; included in the owner-provided CV.', status: 'Live demo', featured: true,
+    role: 'Personal/academic project; included in the owner-provided CV.', status: 'All course material is available', featured: true,
     stack: ['JavaScript', 'PWA', 'GitHub API', 'Gemini API'],
     highlights: ['Resources organized across four courses', 'Search, type filters, favorites, and recently viewed items', 'PWA support and password-protected admin workflow', 'Optional AI-generated study summaries, quizzes, and viva questions'],
     approach: [{ title: 'Organize course content', body: 'A searchable resource catalogue gives course material consistent metadata and a simpler discovery flow.' }, { title: 'Support revision', body: 'Study helpers can turn selected material into summaries and practice prompts; generated content should be checked against the source material.' }],

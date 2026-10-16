@@ -105,13 +105,13 @@ button { color: inherit; }
   transition: transform .35s ease;
 }
 
-/* SVG ring overlay — positioned to extend beyond the image */
+/* SVG ring overlay — positioned to extend just beyond the image */
 .pfp-ring-svg {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 296px;
-  height: 296px;
+  width: 244px;
+  height: 244px;
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 0;
@@ -137,6 +137,8 @@ button { color: inherit; }
 .pfp-ring-outer  { transform-origin: 148px 148px; animation: ring-spin    14s linear infinite; }
 .pfp-ring-inner  { transform-origin: 148px 148px; animation: ring-counter  9s linear infinite; }
 .pfp-orbit-dot   { transform-origin: 148px 148px; animation: ring-spin    14s linear infinite; }
+/* About page — no float animation */
+.pfp-frame-about { animation: none; }
 
 .pfp-img {
   width: 100%;
@@ -583,4 +585,40 @@ button { color: inherit; }
 .github-languages { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 15px; }
 .github-languages > span:first-child { margin-right: 4px; color: var(--muted); font-size: 10px; }
 .github-snapshot-note, .github-snapshot-state { display: flex; align-items: center; gap: 8px; margin: 15px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.github-snapshot-note, .github-snapshot-state { display: flex; align-items: center; gap: 8px; margin: 15px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
 @media (max-width: 700px) { .mobile-menu-toggle { order: 3; margin-left: 0; } .metric-playground-grid { grid-template-columns: 1fr; } .github-snapshot-head { flex-wrap: wrap; } .github-snapshot-head > .text-link { width: 100%; } .github-stat-grid > div { padding: 12px 9px; } .github-stat-grid strong { font-size: 22px; } }
+
+/* ── Animated hamburger icon ─────────────────────────────────────────── */
+.hamburger-icon { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 18px; height: 18px; gap: 0; }
+.bar { display: block; width: 18px; height: 1.5px; background: var(--foreground); border-radius: 2px; transition: transform .28s cubic-bezier(.4,0,.2,1), opacity .2s ease, width .28s ease; transform-origin: center; }
+.bar-1 { transform: translateY(-5px); }
+.bar-2 { opacity: 1; }
+.bar-3 { transform: translateY(5px); }
+.hamburger-icon.is-open .bar-1 { transform: translateY(0) rotate(45deg); }
+.hamburger-icon.is-open .bar-2 { opacity: 0; width: 0; }
+.hamburger-icon.is-open .bar-3 { transform: translateY(0) rotate(-45deg); }
+
+/* ── Links page ──────────────────────────────────────────────────────── */
+.links-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.links-card { display: flex; align-items: center; gap: 18px; padding: 20px 22px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); text-decoration: none; color: var(--foreground); transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; cursor: pointer; }
+.links-card:hover { transform: translateY(-3px); border-color: var(--border-strong); box-shadow: 0 10px 32px rgb(0 0 0 / .07); }
+.links-card-icon { display: grid; place-items: center; width: 44px; height: 44px; flex-shrink: 0; border-radius: 10px; background: var(--surface-alt); color: var(--link-color, var(--foreground)); border: 1px solid var(--border); transition: background .2s ease; }
+.links-card:hover .links-card-icon { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.links-card-body { flex: 1; min-width: 0; }
+.links-card-label { display: block; font-size: 14px; font-weight: 650; letter-spacing: -.02em; }
+.links-card-handle { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; }
+.links-card-desc { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.links-card-arrow { display: grid; place-items: center; width: 30px; height: 30px; flex-shrink: 0; border: 1px solid var(--border); border-radius: 50%; color: var(--muted); transition: background .18s ease, border-color .18s ease, color .18s ease; }
+.links-card:hover .links-card-arrow { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+
+/* ── About page — hero with PFP ─────────────────────────────────────── */
+.about-hero-row { display: flex; align-items: center; gap: clamp(40px, 6vw, 90px); padding: 74px 0 48px; }
+.about-pfp-wrap { flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 204px; height: 204px; }
+
+/* ── GitHub snake animation ──────────────────────────────────────────── */
+.github-snake-wrap { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--border); }
+.github-snake-img { width: 100%; height: auto; border-radius: 6px; display: block; }
+
+/* ── Responsive additions ────────────────────────────────────────────── */
+@media (max-width: 900px) { .links-grid { grid-template-columns: 1fr; } .about-hero-row { flex-direction: column; align-items: flex-start; gap: 28px; padding: 48px 0 32px; } }
+@media (max-width: 700px) { .links-card { gap: 12px; padding: 14px 16px; } .links-card-desc { display: none; } .about-pfp-wrap { width: 160px; height: 160px; } }

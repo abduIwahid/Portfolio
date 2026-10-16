@@ -34,7 +34,6 @@ export default function HomePage() {
             />
           </div>
         </div>
-        <div className="pfp-badge">Available for roles</div>
       </div>
     </div></section>
 

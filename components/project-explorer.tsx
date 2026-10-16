@@ -1,7 +1,7 @@
 'use client';
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Search, X } from 'lucide-react';
+import { ArrowUpRight, Github, Search, X } from 'lucide-react';
 import type { Project } from '@/content/projects';
 
 export function ProjectExplorer({ projects }: { projects: Project[] }) {
@@ -26,7 +26,16 @@ export function ProjectExplorer({ projects }: { projects: Project[] }) {
     <div className="filter-row" aria-label="Filter by category">{categories.map((item) => <button type="button" key={item} onClick={() => setCategory(item)} className={`filter-chip ${category === item ? 'selected' : ''}`} aria-pressed={category === item}>{item}</button>)}</div>
     <p className="results-count" aria-live="polite">{filtered.length} {filtered.length === 1 ? 'project' : 'projects'} <span>·</span> {category === 'All' ? 'All categories' : category}</p>
     {filtered.length ? <div className="project-grid">{filtered.map((project, index) => <article className={`project-card project-${project.accent}`} key={project.slug}>
-      <div className="project-card-top"><span className="project-index">{String(index + 1).padStart(2, '0')}</span><span className="project-kind">{project.category}</span><span className="project-arrow"><ArrowUpRight size={19} /></span></div>
+      <div className="project-card-top">
+        <span className="project-index">{String(index + 1).padStart(2, '0')}</span>
+        <span className="project-kind">{project.category}</span>
+        <div className="project-card-top-actions">
+          {project.repo && <a href={project.repo} target="_blank" rel="noreferrer" className="project-github-btn" aria-label={`GitHub repo for ${project.name}`}><Github size={15} /></a>}
+          {project.demo
+            ? <a href={project.demo} target="_blank" rel="noreferrer" className="project-arrow project-arrow-link" aria-label={`Live demo of ${project.name}`}><ArrowUpRight size={19} /></a>
+            : <span className="project-arrow"><ArrowUpRight size={19} /></span>}
+        </div>
+      </div>
       <div className="project-card-body"><p className="project-overline">{project.kind}</p><h2><Link href={`/projects/${project.slug}`}>{project.name}</Link></h2><p className="project-summary">{project.summary}</p><div className="tag-row">{project.stack.slice(0, 4).map((tag) => <span className="tag" key={tag}>{tag}</span>)}{project.stack.length > 4 && <span className="tag more-tag">+{project.stack.length - 4}</span>}</div></div>
       <div className="project-card-bottom"><span>{project.status}</span><Link href={`/projects/${project.slug}`}>Read case study <ArrowUpRight size={15} /></Link></div>
     </article>)}</div> : <div className="empty-state"><p className="eyebrow">No matching projects</p><h2>Try another search.</h2><p>Clear the search or choose a different category to see more work.</p><button className="button button-secondary" onClick={() => { setQuery(''); setCategory('All'); }}>Reset filters</button></div>}

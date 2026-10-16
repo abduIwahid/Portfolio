@@ -40,7 +40,7 @@ export const projects: Project[] = [
       { label: 'Reproducibility', value: 'MLflow', note: 'Experiment tracking is part of the documented stack.' }
     ],
     limitations: ['Results depend on the dataset, target definition, split strategy, and class balance; a single score should not be generalized across clinical use cases.', 'The system is a technical project, not a certified medical device or a substitute for professional judgement.', 'Dataset-level details and evaluation protocols should be reviewed in the repository before using results for research conclusions.'],
-    repo: 'https://github.com/abduIwahid/Ezitech-Internship', demo: 'https://ezitech-internship.vercel.app', accent: 'orange'
+    repo: 'https://github.com/abduIwahid/MediSight-Healthcare-Platform', demo: 'https://medisight-healthcare.vercel.app', accent: 'orange'
   },
   {
     slug: 'customer-churn-prediction', name: 'Customer Churn Prediction', category: 'Machine Learning', kind: 'Classification · Coursework',
@@ -61,7 +61,7 @@ export const projects: Project[] = [
       { label: 'Selected baseline', value: 'Logistic Regression', note: 'Reported as the selected model in the CV.' }
     ],
     limitations: ['The reported values need to be interpreted in the context of the data split and class distribution.', 'A coursework result is not evidence of production performance or causal drivers of churn.', 'Clustering is exploratory and should not be interpreted as ground-truth customer segments without validation.'],
-    repo: 'https://github.com/abduIwahid/Customer-Churn-Prediction', accent: 'ink'
+    repo: 'https://github.com/abduIwahid/Churnex', demo: 'https://churnex.vercel.app', accent: 'ink'
   },
   {
     slug: 'predictly', name: 'Predictly', category: 'Applied AI', kind: 'Property intelligence · Web app',
@@ -87,7 +87,7 @@ export const projects: Project[] = [
     slug: 'nearsend', name: 'NearSend', category: 'Web Engineering', kind: 'Browser-to-browser file transfer',
     summary: 'Private nearby file sharing designed to move files between devices without accounts, cloud uploads, or share links.',
     problem: 'Moving a file from a phone to a laptop often involves sending it through an inbox or uploading it to a third-party service. NearSend explores a direct browser-to-browser path.',
-    role: 'Personal project; public repository and live application.', status: 'Live demo', featured: true,
+    role: 'Personal project; public repository and live application.', status: 'Live demo', featured: false,
     stack: ['JavaScript', 'WebRTC', 'WebSocket', 'Node.js', 'PWA', 'Vercel'],
     highlights: ['Device discovery and pairing for devices on a shared Wi-Fi network or hotspot', 'WebRTC data channels for direct transfer after signalling', 'QR-based pairing and multi-file transfer interface', 'Signalling service coordinates peers; file transfer is designed to happen peer-to-peer'],
     approach: [
@@ -143,13 +143,13 @@ export const projects: Project[] = [
     slug: 'study-hub', name: 'Study Hub', category: 'Web Engineering', kind: 'Academic resource hub · PWA',
     summary: 'A course-resource web app for organizing lecture notes, PDFs, CDFs, and lab manuals with search and study helpers.',
     problem: 'Course materials can be scattered across multiple sources. Study Hub provides a single searchable place for students to find and revisit resources.',
-    role: 'Personal/academic project; included in the owner-provided CV. A project-specific repository URL has not been confirmed.', status: 'Academic project', featured: false,
+    role: 'Personal/academic project; included in the owner-provided CV.', status: 'Live demo', featured: true,
     stack: ['JavaScript', 'PWA', 'GitHub API', 'Gemini API'],
     highlights: ['Resources organized across four courses', 'Search, type filters, favorites, and recently viewed items', 'PWA support and password-protected admin workflow', 'Optional AI-generated study summaries, quizzes, and viva questions'],
     approach: [{ title: 'Organize course content', body: 'A searchable resource catalogue gives course material consistent metadata and a simpler discovery flow.' }, { title: 'Support revision', body: 'Study helpers can turn selected material into summaries and practice prompts; generated content should be checked against the source material.' }],
     evidence: [{ label: 'Coverage', value: '4 courses', note: 'CV description of the current resource hub.' }],
     limitations: ['AI-generated summaries or questions may contain errors and require review.', 'Resource availability depends on the configured content source and repository access.', 'Do not expose administrative credentials or private course materials in a public deployment.'],
-    accent: 'paper'
+    repo: 'https://github.com/abduIwahid/fa24-bai', demo: 'https://fa24-bai.vercel.app', accent: 'paper'
   }
 ];
 

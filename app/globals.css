@@ -199,12 +199,19 @@ button { color: inherit; }
 .text-link svg, .project-card-bottom a svg { transition: transform .18s ease; }
 .text-link:hover svg, .project-card-bottom a:hover svg { transform: translate(2px, -2px); }
 .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.project-card { display: flex; flex-direction: column; min-height: 365px; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
-.project-card:hover { transform: translateY(-3px); border-color: var(--border-strong); box-shadow: var(--shadow-md); }
-.project-card-top { min-height: 57px; display: flex; align-items: center; gap: 12px; padding: 15px 20px; border-bottom: 1px solid var(--border); }
+.project-card { display: flex; flex-direction: column; min-height: 365px; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); transition: transform .22s ease, border-color .22s ease, box-shadow .25s ease; cursor: pointer; }
+.project-card:hover { transform: translateY(-5px) scale(1.012); border-color: var(--border-strong); box-shadow: 0 16px 48px rgb(0 0 0 / .10), 0 4px 12px rgb(0 0 0 / .06); }
+.project-card-top { min-height: 57px; display: flex; align-items: center; gap: 12px; padding: 15px 20px; border-bottom: 1px solid var(--border); background: var(--surface-alt); }
+.project-card-top-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.project-github-btn { display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid var(--border); border-radius: 50%; color: var(--muted); transition: background .18s ease, border-color .18s ease, color .18s ease; }
+.project-github-btn:hover { background: var(--surface-alt); border-color: var(--border-strong); color: var(--foreground); }
 .project-index { color: var(--accent-ink); font-size: 11px; font-weight: 750; letter-spacing: .08em; }
 .project-kind { color: var(--muted); font-size: 11px; }
-.project-arrow { margin-left: auto; display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid var(--border); border-radius: 50%; }
+.project-arrow { margin-left: auto; display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid var(--border); border-radius: 50%; flex-shrink: 0; }
+.project-arrow-link { margin-left: 0; display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid var(--border); border-radius: 50%; flex-shrink: 0; color: var(--muted); transition: background .18s ease, border-color .18s ease, color .18s ease; }
+.project-arrow-link:hover { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+.project-card:hover .project-arrow-link { border-color: var(--accent); }
+.project-orange .project-arrow { border-color: var(--accent); background: var(--accent-soft); }
 .project-card-body { flex: 1; padding: 23px 22px 26px; }
 .project-overline { margin: 0 0 9px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .project-card h2 { margin: 0; font-size: clamp(22px, 2.6vw, 30px); line-height: 1.15; letter-spacing: -.045em; font-weight: 650; }
@@ -215,9 +222,7 @@ button { color: inherit; }
 .more-tag { border-style: dashed; }
 .project-card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 22px; border-top: 1px solid var(--border); color: var(--muted); font-size: 11px; }
 .project-card-bottom a { display: inline-flex; align-items: center; gap: 5px; color: var(--foreground); font-size: 11px; font-weight: 650; white-space: nowrap; }
-.project-paper .project-card-top { background: var(--surface-alt); }
 .project-ink .project-index { color: var(--foreground); }
-.project-orange .project-arrow { border-color: var(--accent); background: var(--accent-soft); }
 
 .stats-strip { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); }
 .stat-item { min-height: 122px; padding: 22px; }

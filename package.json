@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.mjs",
-    "generate:cv": "python3 scripts/generate_cv.py"
+    "generate:cv": "python3 scripts/generate_cv.py",
+    "doctor": "npx react-doctor@latest"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",

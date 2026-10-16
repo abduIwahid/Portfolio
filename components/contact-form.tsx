@@ -1,21 +1,36 @@
 'use client';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useRef } from 'react';
 import { ArrowUpRight, CheckCircle2, LoaderCircle, Send } from 'lucide-react';
 
 type State = { status: 'idle' | 'sending' | 'success' | 'error'; message: string };
 export function ContactForm({ enabled }: { enabled: boolean }) {
   const [state, setState] = useState<State>({ status: 'idle', message: '' });
+  const busyRef = useRef(false);
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    // Re‑entry guard – prevent double submission while request is in flight
+    if (busyRef.current) return;
     const form = event.currentTarget;
     const data = new FormData(form);
     setState({ status: 'sending', message: 'Sending your message…' });
     try {
-      const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: data.get('name'), email: data.get('email'), message: data.get('message'), website: data.get('website') }) });
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.get('name'),
+          email: data.get('email'),
+          message: data.get('message'),
+          website: data.get('website')
+        })
+      });
       const result = await response.json() as { ok?: boolean; message?: string; error?: { message?: string } };
       if (!response.ok || !result.ok) throw new Error(result.error?.message || 'Message could not be sent. Please use direct email instead.');
-      setState({ status: 'success', message: result.message || 'Message sent successfully.' }); form.reset();
-    } catch (error) { setState({ status: 'error', message: error instanceof Error ? error.message : 'Something went wrong. Please use direct email instead.' }); }
+      setState({ status: 'success', message: result.message || 'Message sent successfully.' });
+      form.reset();
+    } catch (error) {
+      setState({ status: 'error', message: error instanceof Error ? error.message : 'Something went wrong. Please use direct email instead.' });
+    }
   }
   if (!enabled) return <div className="form-not-configured"><p className="eyebrow">Direct contact</p><h3>Email delivery is not configured yet.</h3><p>The form stays disabled until a verified email provider is connected. Use either address to reach me directly.</p><span className="form-note">No message is stored or sent by this page in the current configuration.</span></div>;
   return <form className="contact-form" onSubmit={submit}>

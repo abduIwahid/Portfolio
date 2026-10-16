@@ -12,7 +12,7 @@ export default function HomePage() {
     <section className="hero"><div className="container hero-split">
       <div className="hero-main"><p className="eyebrow">AI/ML Developer</p><h1>Make the model.<br /><em>Question the result.</em></h1><p className="hero-copy">I&apos;m <strong>Abdul Wahid</strong>, an Artificial Intelligence undergraduate building practical machine-learning systems, explainable workflows, and software around data.</p><div className="hero-actions"><Link className="button button-primary" href="/projects">Explore selected work <ArrowUpRight size={17} /></Link><Link className="button button-secondary" href="/cv">View CV <ArrowRight size={16} /></Link></div><div className="hero-socials"><a href={profile.github} target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a><a href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a><a href={`mailto:${profile.email}`}><Mail size={16} /> Email</a></div></div>
 
-      {/* Profile picture — floating ring */}
+      {/* Profile picture — floating ring + availability badge */}
       <div className="hero-pfp-wrap" aria-hidden="true">
         <div className="pfp-frame">
           <svg className="pfp-ring-svg" viewBox="0 0 296 296" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,6 +34,7 @@ export default function HomePage() {
             />
           </div>
         </div>
+        <span className="pfp-badge">Available for roles</span>
       </div>
     </div></section>
 

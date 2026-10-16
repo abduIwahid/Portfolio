@@ -614,8 +614,8 @@ button { color: inherit; }
 .links-card:hover .links-card-arrow { background: var(--accent); border-color: var(--accent); color: var(--ink); }
 
 /* ── About page — hero with PFP ─────────────────────────────────────── */
-.about-hero-row { display: flex; align-items: center; gap: clamp(40px, 6vw, 90px); padding: 74px 0 48px; }
-.about-pfp-wrap { flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 204px; height: 204px; }
+.about-hero-row { display: flex; align-items: center; gap: clamp(40px, 6vw, 90px); }
+.about-pfp-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 18px; }
 
 /* ── GitHub snake animation ──────────────────────────────────────────── */
 .github-snake-wrap { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--border); }
@@ -667,12 +667,12 @@ button { color: inherit; }
 /* ── Responsive additions ────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .links-grid { grid-template-columns: 1fr; }
-  .about-hero-row { flex-direction: column; align-items: flex-start; gap: 28px; padding: 48px 0 32px; }
+  .about-hero-row { flex-direction: column; align-items: flex-start; gap: 28px; }
 }
 @media (max-width: 700px) {
   .links-card { gap: 12px; padding: 14px 16px; }
   .links-card-desc { display: none; }
-  .about-pfp-wrap { width: 160px; height: 160px; }
+  /* about-pfp-wrap: size handled by pfp-frame breakpoint rules */
 }
 
 /* ── iPad portrait (768px) ───────────────────────────────────────────── */
@@ -711,7 +711,7 @@ button { color: inherit; }
   .eyebrow { font-size: 10px; letter-spacing: .13em; }
   .pfp-frame { width: 140px; height: 140px; }
   .pfp-ring-svg { width: 210px; height: 210px; }
-  .about-pfp-wrap { width: 140px; height: 140px; }
+  /* about-pfp-wrap: size handled by pfp-frame breakpoint rules */
   .project-card { min-height: auto; }
   .project-card h2 { font-size: clamp(20px, 7vw, 26px); }
   .stats-strip { grid-template-columns: 1fr; }

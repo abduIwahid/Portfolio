@@ -32,6 +32,7 @@ export default function AboutPage() {
               />
             </div>
           </div>
+          <span className="pfp-badge">Available for roles</span>
         </div>
         <div className="page-heading">
           <p className="eyebrow">About me</p>

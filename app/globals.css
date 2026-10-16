@@ -94,22 +94,31 @@ button { color: inherit; }
 .hero-split { display: grid; grid-template-columns: 1fr auto; gap: clamp(40px, 6vw, 100px); align-items: center; }
 .hero-pfp-wrap { display: flex; flex-direction: column; align-items: center; gap: 18px; flex-shrink: 0; }
 
-/* ── Floating gradient-border frame ─────────────────────────────────── */
+/* ── Profile picture frame — clean with gray orbit rings ────────────── */
 .pfp-frame {
   position: relative;
-  width: 224px;
-  height: 224px;
+  width: 204px;
+  height: 204px;
   border-radius: 50%;
-  /* Gradient border via padding + background */
-  padding: 3px;
-  background: conic-gradient(from 120deg, var(--accent), var(--border-strong) 40%, var(--accent) 60%, var(--border-strong) 80%, var(--accent));
-  box-shadow: 0 12px 40px rgb(249 115 22 / .18), 0 4px 14px rgb(0 0 0 / .07);
   animation: pfp-float 5s ease-in-out infinite;
   cursor: pointer;
-  transition: box-shadow .35s ease;
+  transition: transform .35s ease;
 }
 
-/* Inner white gap between gradient border and image */
+/* SVG ring overlay — positioned to extend beyond the image */
+.pfp-ring-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 296px;
+  height: 296px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+
+/* Image wrapper — clean circular crop */
 .pfp-img-wrap {
   width: 100%;
   height: 100%;
@@ -117,29 +126,17 @@ button { color: inherit; }
   overflow: hidden;
   background: var(--surface);
   position: relative;
-  /* 2px inner gap so gradient border breathes */
-  outline: 3px solid var(--surface);
-  outline-offset: -3px;
+  z-index: 1;
+  box-shadow: 0 4px 28px rgb(0 0 0 / .10);
+  border: 2px solid var(--border);
 }
 
-/* Shimmer overlay that sweeps across the image */
-.pfp-img-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    transparent 25%,
-    rgba(255 255 255 / .13) 50%,
-    transparent 75%
-  );
-  background-size: 250% 250%;
-  background-position: 200% 200%;
-  animation: pfp-shimmer 5s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 2;
-}
+/* Ring spin animations */
+@keyframes ring-spin    { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
+@keyframes ring-counter { from { transform: rotate(0deg);   } to { transform: rotate(-360deg); } }
+.pfp-ring-outer  { transform-origin: 148px 148px; animation: ring-spin    14s linear infinite; }
+.pfp-ring-inner  { transform-origin: 148px 148px; animation: ring-counter  9s linear infinite; }
+.pfp-orbit-dot   { transform-origin: 148px 148px; animation: ring-spin    14s linear infinite; }
 
 .pfp-img {
   width: 100%;
@@ -155,26 +152,23 @@ button { color: inherit; }
 
 /* Float animation — gentle levitation */
 @keyframes pfp-float {
-  0%, 100% { transform: translateY(0px);   box-shadow: 0 12px 40px rgb(249 115 22 / .18), 0 4px 14px rgb(0 0 0 / .07); }
-  50%       { transform: translateY(-11px); box-shadow: 0 26px 60px rgb(249 115 22 / .28), 0 8px 22px rgb(0 0 0 / .11); }
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-10px); }
 }
 
-/* Shimmer sweep */
-@keyframes pfp-shimmer {
-  0%, 40%  { background-position: 200% 200%; opacity: 0; }
-  55%      { opacity: 1; }
-  70%, 100%{ background-position: -50% -50%; opacity: 0; }
-}
 
-/* Hover — pause float, boost glow & image */
+
+/* Hover — pause float, subtle scale on image */
 .pfp-frame:hover {
   animation-play-state: paused;
-  box-shadow: 0 20px 60px rgb(249 115 22 / .38), 0 8px 24px rgb(0 0 0 / .14);
 }
 .pfp-frame:hover .pfp-img {
   transform: scale(1.06);
-  filter: saturate(1.12) brightness(1.04);
+  filter: saturate(1.08) brightness(1.03);
 }
+/* Rings react to card hover */
+.pfp-frame:hover .pfp-ring-outer { animation-duration: 6s; }
+.pfp-frame:hover .pfp-ring-inner { animation-duration: 4s; }
 
 /* Availability badge */
 .pfp-badge { display: inline-flex; align-items: center; gap: 7px; padding: 6px 13px; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; transition: border-color .2s ease, color .2s ease; }
@@ -185,7 +179,7 @@ button { color: inherit; }
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .pfp-frame { animation: none; }
-  .pfp-img-wrap::after { animation: none; }
+  .pfp-ring-outer, .pfp-ring-inner, .pfp-orbit-dot { animation: none; }
   .pfp-badge::before { animation: none; }
 }
 
@@ -211,7 +205,6 @@ button { color: inherit; }
 .project-arrow-link { margin-left: 0; display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid var(--border); border-radius: 50%; flex-shrink: 0; color: var(--muted); transition: background .18s ease, border-color .18s ease, color .18s ease; }
 .project-arrow-link:hover { background: var(--accent); border-color: var(--accent); color: var(--ink); }
 .project-card:hover .project-arrow-link { border-color: var(--accent); }
-.project-orange .project-arrow { border-color: var(--accent); background: var(--accent-soft); }
 .project-card-body { flex: 1; padding: 23px 22px 26px; }
 .project-overline { margin: 0 0 9px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .project-card h2 { margin: 0; font-size: clamp(22px, 2.6vw, 30px); line-height: 1.15; letter-spacing: -.045em; font-weight: 650; }

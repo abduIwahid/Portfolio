@@ -4,7 +4,7 @@ import { projects } from '@/content/projects';
 import { articles } from '@/content/articles';
 import { profile } from '@/content/profile';
 
-const HOME_PROJECT_SLUGS = ['medisight-ai', 'customer-churn-prediction', 'study-hub', 'predictly'];
+const HOME_PROJECT_SLUGS = ['medisight-ai', 'customer-churn-prediction', 'study-hub', 'nearsend'];
 const homeProjects = HOME_PROJECT_SLUGS.map((slug) => projects.find((p) => p.slug === slug)!).filter(Boolean);
 
 export default function HomePage() {
@@ -15,13 +15,13 @@ export default function HomePage() {
       {/* Profile picture — floating ring */}
       <div className="hero-pfp-wrap" aria-hidden="true">
         <div className="pfp-frame">
-          <svg className="pfp-ring-svg" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Outer spinning dashed ring — theme foreground */}
-            <circle cx="120" cy="120" r="113" stroke="var(--foreground)" strokeWidth="1.5" strokeDasharray="14 9" strokeLinecap="round" className="pfp-ring-spin"/>
-            {/* Inner counter-rotating dots — border-strong */}
-            <circle cx="120" cy="120" r="113" stroke="var(--border-strong)" strokeWidth="1" strokeDasharray="3 24" strokeLinecap="round" className="pfp-ring-counter"/>
-            {/* Single orbit dot — foreground */}
-            <circle cx="120" cy="7" r="4" fill="var(--foreground)" className="pfp-orbit-dot"/>
+          <svg className="pfp-ring-svg" viewBox="0 0 296 296" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Outer slow-spinning dashed ring */}
+            <circle cx="148" cy="148" r="138" stroke="var(--border-strong)" strokeWidth="1.5" strokeDasharray="14 9" strokeLinecap="round" className="pfp-ring-outer"/>
+            {/* Inner faster counter-rotating dotted ring */}
+            <circle cx="148" cy="148" r="126" stroke="var(--border)" strokeWidth="1.5" strokeDasharray="4 18" strokeLinecap="round" className="pfp-ring-inner"/>
+            {/* Small orbit dot on the outer ring */}
+            <circle cx="148" cy="10" r="3.5" fill="var(--border-strong)" className="pfp-orbit-dot"/>
           </svg>
           <div className="pfp-img-wrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}

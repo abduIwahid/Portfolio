@@ -752,7 +752,7 @@ button { color: inherit; }
    Animated Day / Night Theme Toggle
    ══════════════════════════════════════════════════════════════════════════ */
 .theme-switch {
-  --toggle-size: 26px;
+  --toggle-size: 16px;
   --container-width: 5.625em;
   --container-height: 2.5em;
   --container-radius: 0.38em;

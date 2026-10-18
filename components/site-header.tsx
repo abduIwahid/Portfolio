@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { ThemeToggle } from './theme-toggle';
-
+import Logo from '@/app/components/Logo';
 const links = [
   { href: '/', label: 'Home' },
   { href: '/projects', label: 'Projects' },
@@ -20,19 +20,8 @@ export function SiteHeader() {
   return <header className="site-header">
     <div className="container header-inner">
       <Link href="/" className="brand" aria-label="Abdul Wahid home" onClick={() => setOpen(false)}>
-        <span className="brand-mark" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="22" height="22" aria-hidden="true" focusable="false">
-            <path
-              d="M 28 20 A 11 11 0 1 0 28 40 C 35 36 42 46 46 30 C 50 18 54 44 58 26"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="3.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <circle cx="58" cy="17" r="2.8" fill="#f97316"/>
-          </svg>
-        </span><span className="brand-name">Abdul Wahid <small>AI/ML Developer</small></span>
+        <Logo size={48} />
+        <span className="brand-name">Abdul Wahid <small>AI/ML Developer</small></span>
       </Link>
       <button
         className="icon-button mobile-menu-toggle"
@@ -56,5 +45,5 @@ export function SiteHeader() {
       </nav>
       <ThemeToggle />
     </div>
-  </header>;
+  </header>
 }

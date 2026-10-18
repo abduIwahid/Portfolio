@@ -92,7 +92,7 @@ button { color: inherit; }
 
 /* ── Hero split layout ───────────────────────────────────────────────── */
 .hero-split { display: grid; grid-template-columns: 1fr auto; gap: clamp(40px, 6vw, 100px); align-items: center; }
-.hero-pfp-wrap { display: flex; flex-direction: column; align-items: center; gap: 18px; flex-shrink: 0; }
+.hero-pfp-wrap { display: flex; flex-direction: column; align-items: center; gap: 18px; flex-shrink: 0; margin-right: clamp(20px, 4vw, 64px); }
 
 /* ── Profile picture frame — clean with gray orbit rings ────────────── */
 .pfp-frame {
@@ -110,8 +110,8 @@ button { color: inherit; }
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 244px;
-  height: 244px;
+  width: 180px;
+  height: 180px;
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 0;
@@ -132,11 +132,7 @@ button { color: inherit; }
 }
 
 /* Ring spin animations */
-@keyframes ring-spin    { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
-@keyframes ring-counter { from { transform: rotate(0deg);   } to { transform: rotate(-360deg); } }
-.pfp-ring-outer  { transform-origin: 148px 148px; animation: ring-spin    14s linear infinite; }
-.pfp-ring-inner  { transform-origin: 148px 148px; animation: ring-counter  9s linear infinite; }
-.pfp-orbit-dot   { transform-origin: 148px 148px; animation: ring-spin    14s linear infinite; }
+
 /* About page — no float animation */
 .pfp-frame-about { animation: none; }
 
@@ -169,8 +165,7 @@ button { color: inherit; }
   filter: saturate(1.08) brightness(1.03);
 }
 /* Rings react to card hover */
-.pfp-frame:hover .pfp-ring-outer { animation-duration: 6s; }
-.pfp-frame:hover .pfp-ring-inner { animation-duration: 4s; }
+
 
 /* Availability badge */
 .pfp-badge { display: inline-flex; align-items: center; gap: 7px; padding: 6px 13px; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; transition: border-color .2s ease, color .2s ease; }
@@ -181,7 +176,7 @@ button { color: inherit; }
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .pfp-frame { animation: none; }
-  .pfp-ring-outer, .pfp-ring-inner, .pfp-orbit-dot { animation: none; }
+
   .pfp-badge::before { animation: none; }
 }
 
@@ -741,4 +736,16 @@ button { color: inherit; }
   :root { --content: 1300px; }
   .hero h1 { font-size: clamp(72px, 6.5vw, 104px); }
   .section { padding: 90px 0; }
+}
+
+/* ── Brand logo – square with baked-in rounded corners ───────────────────── */
+.logo-wrap {
+  display: inline-flex;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 22%;
+}
+.logo-img {
+  object-fit: cover;
+  display: block;
 }

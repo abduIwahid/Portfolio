@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
   openGraph: { type: 'website', url: '/', title: 'Abdul Wahid — AI/ML Developer', description: 'Evidence-first AI/ML projects, technical case studies, and writing.', siteName: 'Abdul Wahid' },
   twitter: { card: 'summary_large_image', title: 'Abdul Wahid — AI/ML Developer', description: 'Evidence-first AI/ML projects, technical case studies, and writing.' },
-  icons: { icon: '/icons/favicon.svg', shortcut: '/icons/favicon.svg' }, manifest: '/manifest.webmanifest'
+  icons: { icon: '/icons/favicon.png', shortcut: '/icons/favicon.png', apple: '/icons/favicon.png' }, manifest: '/manifest.webmanifest'
 };
 export const viewport: Viewport = { themeColor: '#f8f8f8', colorScheme: 'light' };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

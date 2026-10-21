@@ -36,7 +36,7 @@ export function ProjectExplorer({ projects }: { projects: Project[] }) {
           <Link href={`/projects/${project.slug}`} className="project-arrow project-arrow-link" aria-label={`Read the case study of ${project.name}`}><ArrowUpRight size={19} /></Link>
         </div>
       </div>
-      <div className="project-card-body"><p className="project-summary">{project.summary}</p></div>
+      <div className="project-card-body"><p className="project-summary">{project.summary}</p><div className="tag-row">{project.stack.slice(0, 4).map((tag) => <span className="tag" key={tag}>{tag}</span>)}{project.stack.length > 4 && <span className="tag more-tag">+{project.stack.length - 4}</span>}</div></div>
       
     </article></Reveal>)}</div> : <div className="empty-state"><p className="eyebrow">No matching projects</p><h2>Try another search.</h2><p>Clear the search or choose a different category to see more work.</p><button className="button button-secondary" onClick={() => { setQuery(''); setCategory('All'); }}>Reset filters</button></div>}
   </>;

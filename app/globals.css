@@ -606,8 +606,9 @@ button {
   min-height: 365px;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface);
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--surface), color-mix(in srgb, var(--foreground) 3.5%, var(--surface)));
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--foreground) 6%, transparent), 0 12px 28px -10px color-mix(in srgb, var(--foreground) 16%, transparent), inset 0 1px 0 color-mix(in srgb, var(--background) 60%, transparent);
   transition: transform .22s ease, border-color .22s ease, box-shadow .25s ease;
   cursor: pointer;
   min-width: 0;
@@ -826,9 +827,9 @@ button {
 }@media (hover: hover) and (pointer: fine) {
 
 .project-card:hover {
-  transform: translateY(-5px) scale(1.012);
+  transform: translateY(-7px) scale(1.015);
   border-color: var(--border-strong);
-  box-shadow: 0 16px 48px rgb(0 0 0 / .10), 0 4px 12px rgb(0 0 0 / .06);
+  box-shadow: 0 2px 3px color-mix(in srgb, var(--foreground) 8%, transparent), 0 26px 52px -14px color-mix(in srgb, var(--foreground) 28%, transparent), inset 0 1px 0 color-mix(in srgb, var(--background) 60%, transparent);
 }}
 
 .project-card-top {
@@ -846,6 +847,19 @@ button {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.project-card-name {
+  font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
+  font-size: clamp(20px, 5.4vw, 25px);
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .project-github-btn {

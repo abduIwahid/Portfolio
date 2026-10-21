@@ -34,9 +34,7 @@ export function ProjectExplorer({ projects }: { projects: Project[] }) {
         <span className="project-kind">{project.category}</span>
         <div className="project-card-top-actions">
           {project.repo && <a href={project.repo} target="_blank" rel="noreferrer" className="project-github-btn" aria-label={`GitHub repo for ${project.name}`}><Github size={15} /></a>}
-          {project.demo
-            ? <a href={project.demo} target="_blank" rel="noreferrer" className="project-arrow project-arrow-link" aria-label={`Live demo of ${project.name}`}><ArrowUpRight size={19} /></a>
-            : <span className="project-arrow"><ArrowUpRight size={19} /></span>}
+          <Link href={`/projects/${project.slug}`} className="project-arrow project-arrow-link" aria-label={`Read the case study of ${project.name}`}><ArrowUpRight size={19} /></Link>
         </div>
       </div>
       <div className="project-card-body"><p className="project-overline">{project.kind}</p><h2><Link href={`/projects/${project.slug}`}>{project.name}</Link></h2><p className="project-summary">{project.summary}</p><div className="tag-row">{project.stack.slice(0, 4).map((tag) => <span className="tag" key={tag}>{tag}</span>)}{project.stack.length > 4 && <span className="tag more-tag">+{project.stack.length - 4}</span>}</div></div>

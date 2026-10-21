@@ -2,10 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const PATH_A =
-  'M 86 40 C 58 26, 24 44, 21 75 C 18 105, 36 125, 61 123 C 83 121, 95 103, 93 79 C 91 57, 76 44, 59 47 C 43 50, 35 65, 38 80 C 41 95, 54 103, 67 100 C 79 97, 88 87, 91 74 L 97 108 C 99 118, 108 120, 112 112';
-const PATH_W =
-  'M 104 56 L 118 112 C 120 121, 128 121, 131 113 L 146 62 L 161 113 C 164 121, 172 121, 174 112 L 190 54';
+const PATH_ONE =
+  'M 64 124 C 34 118, 20 96, 21 72 C 22 46, 42 30, 68 32 C 88 34, 97 50, 96 72 C 95 92, 80 105, 61 103 C 42 101, 34 85, 40 66 C 45 51, 60 45, 73 51 C 85 55, 91 64, 92 76 C 96 94, 102 108, 110 118 L 129 60 L 148 118 L 186 56';
 
 const DRAW_MS = 1650;
 const HOLD_MS = 280;
@@ -28,8 +26,7 @@ export function IntroLoader() {
   const [gone, setGone] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const stageWrapRef = useRef<HTMLDivElement>(null);
-  const pathARef = useRef<SVGPathElement>(null);
-  const pathWRef = useRef<SVGPathElement>(null);
+  const pathRef = useRef<SVGPathElement>(null);
   const cometRef = useRef<SVGCircleElement>(null);
   const dotRef = useRef<SVGCircleElement>(null);
   const pctRef = useRef<HTMLSpanElement>(null);
@@ -56,19 +53,15 @@ export function IntroLoader() {
       /* private mode: intro simply plays again next time */
     }
 
-    const A = pathARef.current;
-    const W = pathWRef.current;
+    const P = pathRef.current;
     const comet = cometRef.current;
-    if (!A || !W || !comet) {
+    if (!P || !comet) {
       setGone(true);
       return;
     }
-    const lenA = A.getTotalLength();
-    const lenW = W.getTotalLength();
-    A.style.strokeDasharray = `${lenA}`;
-    A.style.strokeDashoffset = `${lenA}`;
-    W.style.strokeDasharray = `${lenW}`;
-    W.style.strokeDashoffset = `${lenW}`;
+    const len = P.getTotalLength();
+    P.style.strokeDasharray = `${len}`;
+    P.style.strokeDashoffset = `${len}`;
 
     document.body.style.overflow = 'hidden';
 
@@ -101,11 +94,8 @@ export function IntroLoader() {
       if (phase === 'draw') {
         const t = Math.min(1, (now - start) / DRAW_MS);
         const e = easeInOut(t);
-        const aT = Math.min(1, e / 0.58);
-        const wT = Math.max(0, Math.min(1, (e - 0.5) / 0.5));
-        A.style.strokeDashoffset = `${lenA * (1 - aT)}`;
-        W.style.strokeDashoffset = `${lenW * (1 - wT)}`;
-        const pt = wT > 0 ? W.getPointAtLength(lenW * wT) : A.getPointAtLength(lenA * Math.max(0.0001, aT));
+        P.style.strokeDashoffset = `${len * (1 - e)}`;
+        const pt = P.getPointAtLength(len * Math.max(0.0001, e));
         comet.setAttribute('cx', `${pt.x}`);
         comet.setAttribute('cy', `${pt.y}`);
         if (barRef.current) barRef.current.style.transform = `scaleX(${e})`;
@@ -173,12 +163,10 @@ export function IntroLoader() {
     <div className="intro" ref={rootRef} aria-hidden="true">
       <div className="intro-stage" ref={stageWrapRef}>
         <svg className="intro-logo" viewBox="0 0 240 150" fill="none">
-          <path className="intro-ghost" d={PATH_A} />
-          <path className="intro-ghost" d={PATH_W} />
-          <path className="intro-draw" d={PATH_A} ref={pathARef} />
-          <path className="intro-draw" d={PATH_W} ref={pathWRef} />
-          <circle className="intro-comet" r="6" cx="86" cy="40" ref={cometRef} />
-          <circle className="intro-dot" cx="206" cy="38" r="7.5" ref={dotRef} />
+          <path className="intro-ghost" d={PATH_ONE} />
+          <path className="intro-draw" d={PATH_ONE} ref={pathRef} />
+          <circle className="intro-comet" r="6" cx="64" cy="124" ref={cometRef} />
+          <circle className="intro-dot" cx="210" cy="38" r="7.5" ref={dotRef} />
         </svg>
         <div className="intro-meta">
           <span className="intro-stage-label" ref={stageLabelRef}>

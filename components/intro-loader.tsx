@@ -2,12 +2,15 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+/** The real AW monogram as ONE continuous stroke: the round "a" flows
+ *  diagonally into the "W" and ends under the orange dot. */
 const PATH_ONE =
   'M 66 125 C 44 124, 28 112, 21 96 C 14 78, 24 54, 42 43 C 54 36, 74 34, 88 43 C 102 52, 108 66, 107 80 C 106 90, 103 98, 99 105 L 138 127 L 160 57 L 183 127 L 216 68';
 
 const DRAW_MS = 1650;
-const HOLD_MS = 280;
-const ZOOM_MS = 800;
+const HOLD_MS = 240;
+const TRAVEL_MS = 680;
+const THROUGH_MS = 780;
 
 const STAGES: [number, string][] = [
   [0, 'INIT'],
@@ -17,10 +20,13 @@ const STAGES: [number, string][] = [
   [97, 'READY'],
 ];
 
+type Phase = 'draw' | 'hold' | 'travel' | 'through';
+
 /**
- * One-time-per-session intro: the AW monogram draws itself with a glowing
- * orange comet, a progress bar and stage labels run underneath, then the
- * view flies into the logo's orange dot and the portfolio opens.
+ * One-time-per-session intro: the AW monogram draws itself as one connected
+ * line with a glowing orange comet, the progress line underneath fills in
+ * sync, then the logo's orange dot drifts to the centre of the screen —
+ * and the view flies through it into the portfolio.
  */
 export function IntroLoader() {
   const [gone, setGone] = useState(false);
@@ -29,6 +35,7 @@ export function IntroLoader() {
   const pathRef = useRef<SVGPathElement>(null);
   const cometRef = useRef<SVGCircleElement>(null);
   const dotRef = useRef<SVGCircleElement>(null);
+  const flyRef = useRef<HTMLDivElement>(null);
   const pctRef = useRef<HTMLSpanElement>(null);
   const stageLabelRef = useRef<HTMLSpanElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
@@ -66,28 +73,42 @@ export function IntroLoader() {
     document.body.style.overflow = 'hidden';
 
     let raf = 0;
-    let phase: 'draw' | 'hold' | 'zoom' = 'draw';
+    let phase: Phase = 'draw';
     const start = performance.now();
-    let holdStart = 0;
-    let zoomStart = 0;
+    let phaseStart = start;
     let lastPct = -1;
     let lastStage = '';
+    // Finale geometry, captured when the travel phase begins
+    let dotCX = 0;
+    let dotCY = 0;
+    let moveX = 0;
+    let moveY = 0;
+    let coverScale = 60;
+    let overflowRestored = false;
 
     const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
-    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
-
-    const setupZoom = () => {
-      const wrap = stageWrapRef.current;
-      const dot = dotRef.current;
-      if (!wrap || !dot) return;
-      const s = wrap.getBoundingClientRect();
-      const d = dot.getBoundingClientRect();
-      wrap.style.transformOrigin = `${d.left + d.width / 2 - s.left}px ${d.top + d.height / 2 - s.top}px`;
-    };
+    const easeIn = (t: number) => t * t * t;
 
     const finish = () => {
-      document.body.style.overflow = '';
+      if (!overflowRestored) document.body.style.overflow = '';
       setGone(true);
+    };
+
+    const setupTravel = () => {
+      const dot = dotRef.current;
+      const fly = flyRef.current;
+      if (!dot || !fly) return;
+      const r = dot.getBoundingClientRect();
+      dotCX = r.left + r.width / 2;
+      dotCY = r.top + r.height / 2;
+      moveX = window.innerWidth / 2 - dotCX;
+      moveY = window.innerHeight / 2 - dotCY;
+      coverScale = (Math.max(window.innerWidth, window.innerHeight) * 1.35) / 20;
+      fly.style.left = `${dotCX}px`;
+      fly.style.top = `${dotCY}px`;
+      fly.style.opacity = '1';
+      fly.classList.add('intro-fly-pulsing');
+      dot.style.opacity = '0';
     };
 
     const tick = (now: number) => {
@@ -113,25 +134,48 @@ export function IntroLoader() {
         }
         if (t >= 1) {
           phase = 'hold';
-          holdStart = now;
+          phaseStart = now;
           comet.style.opacity = '0';
           dotRef.current?.classList.add('intro-dot-on');
           if (captionRef.current) captionRef.current.style.opacity = '1';
         }
       } else if (phase === 'hold') {
-        if (now - holdStart >= HOLD_MS) {
-          phase = 'zoom';
-          zoomStart = now;
-          setupZoom();
+        if (now - phaseStart >= HOLD_MS) {
+          phase = 'travel';
+          phaseStart = now;
+          setupTravel();
+        }
+      } else if (phase === 'travel') {
+        const t = Math.min(1, (now - phaseStart) / TRAVEL_MS);
+        const e = easeInOut(t);
+        const fly = flyRef.current;
+        if (fly) {
+          fly.style.transform = `translate(-50%, -50%) translate(${moveX * e}px, ${moveY * e}px) scale(${1 + e * 0.55})`;
+        }
+        const wrap = stageWrapRef.current;
+        if (wrap) {
+          wrap.style.opacity = `${1 - e * 0.88}`;
+          wrap.style.transform = `scale(${1 - e * 0.04})`;
+        }
+        if (t >= 1) {
+          phase = 'through';
+          phaseStart = now;
+          fly?.classList.remove('intro-fly-pulsing');
         }
       } else {
-        const zt = Math.min(1, (now - zoomStart) / ZOOM_MS);
-        const ze = easeOut(zt);
-        const wrap = stageWrapRef.current;
-        if (wrap) wrap.style.transform = `scale(${1 + ze * 15})`;
+        const t = Math.min(1, (now - phaseStart) / THROUGH_MS);
+        const e = easeIn(t);
+        const fly = flyRef.current;
+        if (fly) {
+          fly.style.transform = `translate(-50%, -50%) translate(${moveX}px, ${moveY}px) scale(${1.55 + e * coverScale})`;
+        }
         const root = rootRef.current;
-        if (root) root.style.opacity = zt < 0.55 ? '1' : `${1 - (zt - 0.55) / 0.45}`;
-        if (zt >= 1) {
+        if (root && t > 0.62) root.style.opacity = `${1 - (t - 0.62) / 0.38}`;
+        if (t > 0.8 && !overflowRestored) {
+          overflowRestored = true;
+          document.body.style.overflow = '';
+        }
+        if (t >= 1) {
           finish();
           return;
         }
@@ -141,12 +185,21 @@ export function IntroLoader() {
     raf = requestAnimationFrame(tick);
 
     const skip = () => {
-      if (phase !== 'zoom') {
-        phase = 'zoom';
-        zoomStart = performance.now();
+      if (phase === 'draw' || phase === 'hold') {
+        // Jump to the centred dot and fly through quickly
+        P.style.strokeDashoffset = '0';
+        comet.style.opacity = '0';
         dotRef.current?.classList.add('intro-dot-on');
-        if (cometRef.current) cometRef.current.style.opacity = '0';
-        setupZoom();
+        setupTravel();
+        const fly = flyRef.current;
+        if (fly) {
+          fly.style.transform = `translate(-50%, -50%) translate(${moveX}px, ${moveY}px) scale(1.55)`;
+          fly.classList.remove('intro-fly-pulsing');
+        }
+        const wrap = stageWrapRef.current;
+        if (wrap) wrap.style.opacity = '0.12';
+        phase = 'through';
+        phaseStart = performance.now() - THROUGH_MS * 0.35;
       }
     };
     window.addEventListener('pointerdown', skip);
@@ -186,6 +239,7 @@ export function IntroLoader() {
           Portfolio Loaded
         </p>
       </div>
+      <div className="intro-fly" ref={flyRef} />
     </div>
   );
 }

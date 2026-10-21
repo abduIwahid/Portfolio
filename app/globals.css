@@ -4130,3 +4130,32 @@ button {
   box-shadow: 0 0 10px var(--accent), 0 0 22px color-mix(in srgb, var(--accent) 60%, transparent);
   flex: none;
 }
+
+
+/* Flying dot finale: the logo's orange dot travels to screen centre, then the view passes through it */
+.intro-fly {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, color-mix(in srgb, var(--accent) 45%, #ffffff), var(--accent) 68%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1001;
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 60%, transparent), 0 0 44px color-mix(in srgb, var(--accent) 35%, transparent);
+  will-change: transform;
+}
+
+.intro-fly-pulsing {
+  animation: intro-fly-pulse 0.55s ease-in-out infinite alternate;
+}
+
+@keyframes intro-fly-pulse {
+  from {
+    box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 55%, transparent), 0 0 38px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  to {
+    box-shadow: 0 0 26px color-mix(in srgb, var(--accent) 75%, transparent), 0 0 64px color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+}

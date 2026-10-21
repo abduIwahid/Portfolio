@@ -30,15 +30,14 @@ export function ProjectExplorer({ projects }: { projects: Project[] }) {
     {filtered.length ? <div className="project-grid">{filtered.map((project, index) => <Reveal key={project.slug} delay={(index % 3) * 90}><article className={`project-card project-${project.accent}`}>
       {project.demo && <ProjectShot demo={project.demo} name={project.name} />}
       <div className="project-card-top">
-        <span className="project-index">{String(index + 1).padStart(2, '0')}</span>
-        <span className="project-kind">{project.category}</span>
+        <span className="project-card-name">{project.name}</span>
         <div className="project-card-top-actions">
           {project.repo && <a href={project.repo} target="_blank" rel="noreferrer" className="project-github-btn" aria-label={`GitHub repo for ${project.name}`}><Github size={15} /></a>}
           <Link href={`/projects/${project.slug}`} className="project-arrow project-arrow-link" aria-label={`Read the case study of ${project.name}`}><ArrowUpRight size={19} /></Link>
         </div>
       </div>
-      <div className="project-card-body"><p className="project-overline">{project.kind}</p><h2><Link href={`/projects/${project.slug}`}>{project.name}</Link></h2><p className="project-summary">{project.summary}</p><div className="tag-row">{project.stack.slice(0, 4).map((tag) => <span className="tag" key={tag}>{tag}</span>)}{project.stack.length > 4 && <span className="tag more-tag">+{project.stack.length - 4}</span>}</div></div>
-      <div className="project-card-bottom"><span>{project.status}</span><span className="project-card-actions">{project.demo && <a className="project-live-btn" href={project.demo} target="_blank" rel="noreferrer">Live demo <ArrowUpRight size={13} /></a>}<Link href={`/projects/${project.slug}`}>Read case study <ArrowUpRight size={15} /></Link></span></div>
+      <div className="project-card-body"><p className="project-summary">{project.summary}</p></div>
+      
     </article></Reveal>)}</div> : <div className="empty-state"><p className="eyebrow">No matching projects</p><h2>Try another search.</h2><p>Clear the search or choose a different category to see more work.</p><button className="button button-secondary" onClick={() => { setQuery(''); setCategory('All'); }}>Reset filters</button></div>}
   </>;
 }

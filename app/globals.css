@@ -213,12 +213,12 @@ button {
   font-size: 13px;
   font-weight: 550;
   transition: color .18s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .nav-link:hover,
 .nav-link.active {
   color: var(--foreground);
-}
+}}
 
 .nav-link.active {
   text-decoration: underline;
@@ -230,22 +230,23 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 10px 13px;
+  height: 38px;
+  padding: 0 13px;
   border: 1px solid var(--border-strong);
   border-radius: 5px;
   font-size: 13px;
   font-weight: 600;
   transition: background .18s ease, border-color .18s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .nav-contact:hover {
   border-color: var(--accent);
   background: var(--accent-soft);
-}
+}}
 
 @media (max-width: 700px) {
   .nav-contact {
-    padding: 7px 10px;
+    padding: 0 10px;
     font-size: 12px;
     white-space: nowrap;
   }
@@ -265,11 +266,11 @@ button {
   background: var(--surface);
   cursor: pointer;
   transition: border-color .18s ease, background .18s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .icon-button:hover {
   border-color: var(--accent);
-}
+}}
 
 .mobile-menu-toggle {
   display: none;
@@ -347,31 +348,31 @@ button {
   font-weight: 650;
   cursor: pointer;
   transition: transform .18s ease, background .18s ease, border-color .18s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .button:hover {
   transform: translateY(-1px);
-}
+}}
 
 .button-primary {
   background: var(--foreground);
   color: var(--background);
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .button-primary:hover {
   background: var(--accent);
   color: var(--ink);
-}
+}}
 
 .button-secondary {
   border-color: var(--border-strong);
   background: var(--surface);
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .button-secondary:hover {
   border-color: var(--accent);
   background: var(--accent-soft);
-}
+}}
 
 .button:disabled {
   cursor: wait;
@@ -463,19 +464,19 @@ button {
   50% {
     transform: translateY(-10px);
   }
-}
+}@media (hover: hover) and (pointer: fine) {
 
 
 
 /* Hover — pause float, subtle scale on image */
 .pfp-frame:hover {
   animation-play-state: paused;
-}
+}}@media (hover: hover) and (pointer: fine) {
 
 .pfp-frame:hover .pfp-img {
   transform: scale(1.06);
   filter: saturate(1.08) brightness(1.03);
-}
+}}
 
 /* Rings react to card hover */
 
@@ -519,12 +520,12 @@ button {
     opacity: .6;
     transform: scale(.85);
   }
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .pfp-badge:hover {
   border-color: #22c55e;
   color: var(--foreground);
-}
+}}
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
@@ -587,12 +588,12 @@ button {
 .text-link svg,
 .project-card-bottom a svg {
   transition: transform .18s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .text-link:hover svg,
 .project-card-bottom a:hover svg {
   transform: translate(2px, -2px);
-}
+}}
 
 .project-grid {
   display: grid;
@@ -631,11 +632,11 @@ button {
   object-fit: cover;
   object-position: top center;
   transition: transform .35s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .project-card:hover .project-shot img {
   transform: scale(1.03);
-}
+}}
 
 .project-shot-badge {
   position: absolute;
@@ -706,12 +707,12 @@ button {
   letter-spacing: .02em;
   white-space: nowrap;
   transition: background .18s ease, color .18s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .project-live-btn:hover {
   background: var(--accent);
   color: var(--ink);
-}
+}}
 
 /* Click-to-load live preview (project detail pages) */
 .live-preview {
@@ -823,20 +824,20 @@ button {
   .live-preview-text strong {
     font-size: 16px;
   }
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .project-card:hover {
   transform: translateY(-5px) scale(1.012);
   border-color: var(--border-strong);
   box-shadow: 0 16px 48px rgb(0 0 0 / .10), 0 4px 12px rgb(0 0 0 / .06);
-}
+}}
 
 .project-card-top {
-  min-height: 57px;
+  min-height: 52px;
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 15px 20px;
+  padding: 11px 18px;
   border-bottom: 1px solid var(--border);
   background: var(--surface-alt);
 }
@@ -857,13 +858,13 @@ button {
   border-radius: 50%;
   color: var(--muted);
   transition: background .18s ease, border-color .18s ease, color .18s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .project-github-btn:hover {
   background: var(--surface-alt);
   border-color: var(--border-strong);
   color: var(--foreground);
-}
+}}
 
 .project-index {
   color: var(--accent-ink);
@@ -899,21 +900,21 @@ button {
   flex-shrink: 0;
   color: var(--muted);
   transition: background .18s ease, border-color .18s ease, color .18s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .project-arrow-link:hover {
   background: var(--accent);
   border-color: var(--accent);
   color: var(--ink);
-}
+}}@media (hover: hover) and (pointer: fine) {
 
 .project-card:hover .project-arrow-link {
   border-color: var(--accent);
-}
+}}
 
 .project-card-body {
   flex: 1;
-  padding: 23px 22px 26px;
+  padding: 16px 20px 20px;
   min-width: 0;
 }
 
@@ -932,13 +933,13 @@ button {
   line-height: 1.15;
   letter-spacing: -.045em;
   font-weight: 650;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .project-card h2 a:hover {
   text-decoration: underline;
   text-decoration-color: var(--accent);
   text-underline-offset: 4px;
-}
+}}
 
 .project-summary {
   max-width: 550px;
@@ -1113,12 +1114,12 @@ button {
   border: 1px solid var(--border);
   border-radius: 50%;
   transition: background .18s ease, border-color .18s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .writing-row:hover .writing-arrow {
   background: var(--accent-soft);
   border-color: var(--accent);
-}
+}}
 
 .page-hero {
   padding: clamp(48px, 10vw, 74px) 0 clamp(30px, 8vw, 48px);
@@ -1227,14 +1228,14 @@ button {
   font-size: 11px;
   cursor: pointer;
   transition: border-color .15s ease, background .15s ease, color .15s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .filter-chip:hover,
 .filter-chip.selected {
   border-color: var(--foreground);
   background: var(--foreground);
   color: var(--background);
-}
+}}
 
 .results-count {
   margin: 20px 0 16px;
@@ -1283,11 +1284,11 @@ button {
   margin-bottom: 34px;
   color: var(--muted);
   font-size: 11px;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .breadcrumbs a:hover {
   color: var(--foreground);
-}
+}}
 
 .case-hero h1 {
   max-width: 900px;
@@ -1456,13 +1457,13 @@ button {
   border-radius: 6px;
   background: var(--surface);
   transition: transform .2s ease, border-color .2s ease, box-shadow .22s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .related-card:hover {
   transform: translateY(-3px);
   border-color: var(--border-strong);
   box-shadow: 0 8px 24px rgb(0 0 0 / .07);
-}
+}}
 
 .related-card h3 {
   margin: 9px 0;
@@ -1558,11 +1559,11 @@ button {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.5;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .article-aside a:hover {
   color: var(--foreground);
-}
+}}
 
 .reference-list {
   display: grid;
@@ -1686,13 +1687,13 @@ button {
   border-radius: 6px;
   background: var(--surface);
   transition: transform .2s ease, border-color .2s ease, box-shadow .22s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .credential-card:hover {
   transform: translateY(-3px);
   border-color: var(--border-strong);
   box-shadow: 0 8px 26px rgb(0 0 0 / .07);
-}
+}}
 
 .credential-card h3 {
   margin: 10px 0 6px;
@@ -2024,11 +2025,11 @@ button {
   background: var(--accent);
   color: var(--ink);
   transition: transform .2s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .round-arrow:hover {
   transform: rotate(45deg);
-}
+}}
 
 .footer-bottom {
   display: flex;
@@ -2055,11 +2056,11 @@ button {
   display: grid;
   place-items: center;
   transition: color .15s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .footer-links a:hover {
   color: var(--accent);
-}
+}}
 
 /* ── Large desktop / wide zoom-out (1280px+) ─────────────────────────── */
 @media (min-width: 1280px) {
@@ -2659,11 +2660,11 @@ button {
   color: var(--muted);
   font-size: 11px;
   font-weight: 600;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .hero-socials a:hover {
   color: var(--foreground);
-}
+}}
 
 .fine-print {
   margin: 12px 0 0;
@@ -2801,11 +2802,11 @@ button {
   color: var(--muted);
   font-size: 11px;
   cursor: pointer;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .metric-reset:hover {
   color: var(--foreground);
-}
+}}
 
 .metric-results {
   display: grid;
@@ -3035,13 +3036,13 @@ button {
   color: var(--foreground);
   transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
   cursor: pointer;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .links-card:hover {
   transform: translateY(-3px);
   border-color: var(--border-strong);
   box-shadow: 0 10px 32px rgb(0 0 0 / .07);
-}
+}}
 
 .links-card-icon {
   display: grid;
@@ -3054,13 +3055,13 @@ button {
   color: var(--link-color, var(--foreground));
   border: 1px solid var(--border);
   transition: background .2s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .links-card:hover .links-card-icon {
   background: var(--accent-soft);
   border-color: var(--accent);
   color: var(--accent);
-}
+}}
 
 .links-card-body {
   flex: 1;
@@ -3098,13 +3099,13 @@ button {
   border-radius: 50%;
   color: var(--muted);
   transition: background .18s ease, border-color .18s ease, color .18s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .links-card:hover .links-card-arrow {
   background: var(--accent);
   border-color: var(--accent);
   color: var(--ink);
-}
+}}
 
 /* ── About page — hero with PFP ─────────────────────────────────────── */
 .about-hero-row {
@@ -3150,23 +3151,23 @@ button {
 
 [data-theme="dark"] .github-snake-img {
   filter: brightness(1.1) saturate(1.2);
-}
+}@media (hover: hover) and (pointer: fine) {
 
 /* ── Timeline hover ──────────────────────────────────────────────────── */
 .timeline-item:hover {
   background: var(--surface-alt);
-}
+}}
 
 /* ── Principle card hover ────────────────────────────────────────────── */
 .principle-card {
   transition: transform .2s ease, border-color .2s ease, box-shadow .22s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .principle-card:hover {
   transform: translateY(-3px);
   border-color: var(--accent);
   box-shadow: 0 8px 26px rgb(0 0 0 / .07);
-}
+}}
 
 /* ── Writing row hover ───────────────────────────────────────────────── */
 .writing-row {
@@ -3175,39 +3176,39 @@ button {
   margin: 0 -12px;
   padding-left: 12px;
   padding-right: 12px;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .writing-row:hover {
   background: var(--surface-alt);
-}
+}}
 
 /* ── Stat item hover ─────────────────────────────────────────────────── */
 .stat-item {
   transition: background .18s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .stat-item:hover {
   background: var(--surface-alt);
-}
+}}
 
 /* ── Contact link hover ──────────────────────────────────────────────── */
 .contact-link {
   transition: transform .2s ease, border-color .2s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .contact-link:hover {
   transform: translateY(-2px);
   border-color: var(--accent);
-}
+}}
 
 /* ── Focus list hover ────────────────────────────────────────────────── */
 .focus-list span {
   transition: color .15s ease;
-}
+}@media (hover: hover) and (pointer: fine) {
 
 .focus-list span:hover {
   color: var(--accent);
-}
+}}
 
 /* ── CV actions ──────────────────────────────────────────────────────── */
 .cv-actions {

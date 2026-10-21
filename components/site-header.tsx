@@ -29,9 +29,9 @@ export function SiteHeader() {
           const isActive = isHome ? pathname === '/' : pathname === link.href || pathname.startsWith(`${link.href}/`);
           return <Link key={link.href} href={link.href} className={isActive ? 'nav-link active' : 'nav-link'} onClick={() => setOpen(false)}>{link.label}</Link>;
         })}
-        <Link href="/contact" className={`nav-contact ${pathname === '/contact' ? 'active' : ''}`} onClick={() => setOpen(false)}>Let&apos;s talk <ArrowUpRight size={15} /></Link>
       </nav>
       <div className="header-actions">
+        <Link href="/contact" className={`nav-contact ${pathname === '/contact' ? 'active' : ''}`} onClick={() => setOpen(false)}>Let&apos;s talk <ArrowUpRight size={15} /></Link>
         <ThemeToggle />
         <button
           className="icon-button mobile-menu-toggle"

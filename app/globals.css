@@ -143,6 +143,14 @@ button {
   border-bottom: 1px solid var(--border);
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
 .header-inner {
   min-height: 76px;
   display: flex;
@@ -1051,7 +1059,7 @@ button {
 
 .writing-row {
   display: grid;
-  grid-template-columns: 140px 1fr 44px;
+  grid-template-columns: 150px minmax(0, 1fr) 44px;
   align-items: center;
   gap: 25px;
   padding: 23px 0;
@@ -1062,6 +1070,10 @@ button {
   color: var(--muted);
   font-size: 11px;
   line-height: 1.8;
+}
+
+.writing-main {
+  min-width: 0;
 }
 
 .writing-title {
@@ -2135,7 +2147,7 @@ button {
   }
 
   .writing-row {
-    grid-template-columns: 110px 1fr 44px;
+    grid-template-columns: 120px minmax(0, 1fr) 44px;
     gap: 18px;
   }
 
@@ -2155,12 +2167,6 @@ button {
   .header-inner {
     min-height: 62px;
     gap: 10px;
-  }
-
-  .header-inner>.theme-toggle {
-    order: 2;
-    margin-left: auto;
-    flex-shrink: 0;
   }
 
   .brand-mark {
@@ -2344,24 +2350,9 @@ button {
 
   /* Writing */
   .writing-row {
-    grid-template-columns: 1fr 38px;
-    gap: 10px;
+    grid-template-columns: 96px minmax(0, 1fr) 38px;
+    gap: 12px;
     padding: 18px 0;
-  }
-
-  .writing-meta {
-    grid-column: 1 / 2;
-    grid-row: 1;
-  }
-
-  .writing-main {
-    grid-column: 1 / 2;
-    grid-row: 2;
-  }
-
-  .writing-arrow {
-    grid-column: 2;
-    grid-row: 1 / span 2;
   }
 
   .writing-title {
@@ -3332,11 +3323,6 @@ button {
     gap: 28px;
   }
 
-  .writing-row {
-    grid-template-columns: 100px 1fr 44px;
-    gap: 14px;
-  }
-
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -3453,23 +3439,8 @@ button {
   }
 
   .writing-row {
-    grid-template-columns: 1fr 38px;
-    gap: 8px;
-  }
-
-  .writing-meta {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .writing-main {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .writing-arrow {
-    grid-column: 2;
-    grid-row: 1 / span 2;
+    grid-template-columns: 84px minmax(0, 1fr) 38px;
+    gap: 10px;
   }
 
   .cv-sheet {

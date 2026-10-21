@@ -20,7 +20,7 @@ function rateLimited(key: string): boolean {
 }
 export async function POST(request: NextRequest) {
   const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.CONTACT_FROM_EMAIL;
+  const from = process.env.CONTACT_FROM_EMAIL || process.env.CONTACT_FORM_EMAIL;
   const to = process.env.CONTACT_TO_EMAIL;
   if (!apiKey || !from || !to) return NextResponse.json({ error: { code: 'CONTACT_NOT_CONFIGURED', message: 'Email delivery is not configured. Please use one of the direct email links.' } }, { status: 503 });
   const contentLength = Number(request.headers.get('content-length') || 0);

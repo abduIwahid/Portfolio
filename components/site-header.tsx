@@ -23,18 +23,6 @@ export function SiteHeader() {
         <Logo size={48} />
         <span className="brand-name">Abdul Wahid <small>AI/ML Developer</small></span>
       </Link>
-      <button
-        className="icon-button mobile-menu-toggle"
-        onClick={() => setOpen(!open)}
-        aria-label={open ? 'Close navigation' : 'Open navigation'}
-        aria-expanded={open}
-      >
-        <span className={`hamburger-icon ${open ? 'is-open' : ''}`} aria-hidden="true">
-          <span className="bar bar-1" />
-          <span className="bar bar-2" />
-          <span className="bar bar-3" />
-        </span>
-      </button>
       <nav className={`main-nav ${open ? 'is-open' : ''}`} aria-label="Main navigation">
         {links.map((link) => {
           const isHome = link.href === '/';
@@ -43,7 +31,21 @@ export function SiteHeader() {
         })}
         <Link href="/contact" className={`nav-contact ${pathname === '/contact' ? 'active' : ''}`} onClick={() => setOpen(false)}>Let&apos;s talk <ArrowUpRight size={15} /></Link>
       </nav>
-      <ThemeToggle />
+      <div className="header-actions">
+        <ThemeToggle />
+        <button
+          className="icon-button mobile-menu-toggle"
+          onClick={() => setOpen(!open)}
+          aria-label={open ? 'Close navigation' : 'Open navigation'}
+          aria-expanded={open}
+        >
+          <span className={`hamburger-icon ${open ? 'is-open' : ''}`} aria-hidden="true">
+            <span className="bar bar-1" />
+            <span className="bar bar-2" />
+            <span className="bar bar-3" />
+          </span>
+        </button>
+      </div>
     </div>
   </header>
 }

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight, ExternalLink, Github } from 'lucide-react';
 import { getProject, projects } from '@/content/projects';
+import { LivePreview } from '@/components/live-preview';
 
 export function generateStaticParams() { return projects.map((project) => ({ slug: project.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -14,6 +15,7 @@ export default async function ProjectCaseStudy({ params }: { params: Promise<{ s
   const related = projects.filter((item) => item.slug !== project.slug && (item.category === project.category || item.stack.some((tech) => project.stack.includes(tech)))).slice(0, 2);
   return <>
     <section className="case-hero"><div className="container"><div className="breadcrumbs"><Link href="/">Home</Link><span>/</span><Link href="/projects">Projects</Link><span>/</span><span>{project.name}</span></div><p className="eyebrow">Case study · {project.category}</p><h1>{project.name}<br /><span style={{ color: 'var(--muted)', fontSize: '0.48em', letterSpacing: '-.04em' }}>{project.kind}</span></h1><p className="case-deck">{project.summary}</p><div className="case-meta"><span>{project.status}</span><span>{project.category}</span></div><div className="case-actions">{project.repo && <a className="button button-primary" href={project.repo} target="_blank" rel="noreferrer"><Github size={16} /> View source <ArrowUpRight size={16} /></a>}{project.demo && <a className="button button-secondary" href={project.demo} target="_blank" rel="noreferrer"><ExternalLink size={15} /> Open live demo</a>}<Link className="button button-secondary" href="/projects"><ArrowLeft size={15} /> All projects</Link></div></div></section>
+    {project.demo && <section className="section" style={{ paddingTop: 0 }}><div className="container"><LivePreview demo={project.demo} name={project.name} /></div></section>}
     <section className="section"><div className="container case-layout"><div className="case-content">
       <section className="case-section"><p className="eyebrow">01 / Context</p><h2>The problem</h2><p>{project.problem}</p><p><strong>My role:</strong> {project.role}</p></section>
       <section className="case-section"><p className="eyebrow">02 / Implementation</p><h2>How it works</h2>{project.approach.map((step, index) => <div key={step.title} style={{ marginTop: 22 }}><h3 style={{ margin: 0, fontSize: 17, letterSpacing: '-.03em' }}><span style={{ color: 'var(--accent)', marginRight: 10 }}>{String(index + 1).padStart(2, '0')}</span>{step.title}</h3><p>{step.body}</p></div>)}<h3 style={{ marginTop: 28, fontSize: 15 }}>Implementation highlights</h3><ul>{project.highlights.map((item) => <li key={item}>{item}</li>)}</ul></section>

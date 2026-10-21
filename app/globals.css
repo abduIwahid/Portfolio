@@ -466,13 +466,11 @@ button {
     transform: translateY(-10px);
   }
 }@media (hover: hover) and (pointer: fine) {
-subtle scale on image */
+/* Hover — pause float, subtle scale on image */
 .pfp-frame:hover {
   animation-play-state: paused;
 }}
-/* Hover — pause float {
-  animation-play-state: paused;
-}@media (hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) {
 
 .pfp-frame:hover .pfp-img {
   transform: scale(1.06);

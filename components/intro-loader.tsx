@@ -35,6 +35,8 @@ export function IntroLoader() {
   const pctRef = useRef<HTMLSpanElement>(null);
   const stageLabelRef = useRef<HTMLSpanElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
+  const tipRef = useRef<HTMLDivElement>(null);
+  const captionRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     let seen = false;
@@ -106,11 +108,12 @@ export function IntroLoader() {
         const pt = wT > 0 ? W.getPointAtLength(lenW * wT) : A.getPointAtLength(lenA * Math.max(0.0001, aT));
         comet.setAttribute('cx', `${pt.x}`);
         comet.setAttribute('cy', `${pt.y}`);
+        if (barRef.current) barRef.current.style.transform = `scaleX(${e})`;
+        if (tipRef.current) tipRef.current.style.left = `${e * 100}%`;
         const pct = Math.round(t * 100);
         if (pct !== lastPct) {
           lastPct = pct;
           if (pctRef.current) pctRef.current.textContent = `${pct}%`;
-          if (barRef.current) barRef.current.style.transform = `scaleX(${t})`;
           let stage = 'INIT';
           for (const [th, label] of STAGES) if (pct >= th) stage = label;
           if (stage !== lastStage && stageLabelRef.current) {
@@ -123,6 +126,7 @@ export function IntroLoader() {
           holdStart = now;
           comet.style.opacity = '0';
           dotRef.current?.classList.add('intro-dot-on');
+          if (captionRef.current) captionRef.current.style.opacity = '1';
         }
       } else if (phase === 'hold') {
         if (now - holdStart >= HOLD_MS) {
@@ -180,14 +184,19 @@ export function IntroLoader() {
           <span className="intro-stage-label" ref={stageLabelRef}>
             INIT
           </span>
-          <span className="intro-pct" ref={pctRef}>
-            0%
-          </span>
         </div>
-        <p className="intro-caption">Portfolio Loaded</p>
-      </div>
-      <div className="intro-bar">
-        <div className="intro-bar-fill" ref={barRef} />
+        <div className="intro-progress">
+          <div className="intro-progress-fill" ref={barRef} />
+          <div className="intro-progress-tip" ref={tipRef}>
+            <span className="intro-progress-dot" />
+            <span className="intro-pct" ref={pctRef}>
+              0%
+            </span>
+          </div>
+        </div>
+        <p className="intro-caption" ref={captionRef}>
+          Portfolio Loaded
+        </p>
       </div>
     </div>
   );

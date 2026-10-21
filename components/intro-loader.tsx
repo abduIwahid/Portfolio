@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 const PATH_ONE =
-  'M 64 124 C 34 118, 20 96, 21 72 C 22 46, 42 30, 68 32 C 88 34, 97 50, 96 72 C 95 92, 80 105, 61 103 C 42 101, 34 85, 40 66 C 45 51, 60 45, 73 51 C 85 55, 91 64, 92 76 C 96 94, 102 108, 110 118 L 129 60 L 148 118 L 186 56';
+  'M 66 125 C 44 124, 28 112, 21 96 C 14 78, 24 54, 42 43 C 54 36, 74 34, 88 43 C 102 52, 108 66, 107 80 C 106 90, 103 98, 99 105 L 138 127 L 160 57 L 183 127 L 216 68';
 
 const DRAW_MS = 1650;
 const HOLD_MS = 280;
@@ -162,11 +162,11 @@ export function IntroLoader() {
   return (
     <div className="intro" ref={rootRef} aria-hidden="true">
       <div className="intro-stage" ref={stageWrapRef}>
-        <svg className="intro-logo" viewBox="0 0 240 150" fill="none">
+        <svg className="intro-logo" viewBox="0 0 250 160" fill="none">
           <path className="intro-ghost" d={PATH_ONE} />
           <path className="intro-draw" d={PATH_ONE} ref={pathRef} />
-          <circle className="intro-comet" r="6" cx="64" cy="124" ref={cometRef} />
-          <circle className="intro-dot" cx="210" cy="38" r="7.5" ref={dotRef} />
+          <circle className="intro-comet" r="6" cx="66" cy="125" ref={cometRef} />
+          <circle className="intro-dot" cx="226" cy="44" r="8" ref={dotRef} />
         </svg>
         <div className="intro-meta">
           <span className="intro-stage-label" ref={stageLabelRef}>

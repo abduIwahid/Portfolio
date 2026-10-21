@@ -4032,7 +4032,7 @@ button {
 
 .intro-ghost {
   stroke: color-mix(in srgb, var(--foreground) 13%, transparent);
-  stroke-width: 13;
+  stroke-width: 14;
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
@@ -4040,7 +4040,7 @@ button {
 
 .intro-draw {
   stroke: var(--foreground);
-  stroke-width: 13;
+  stroke-width: 14;
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;

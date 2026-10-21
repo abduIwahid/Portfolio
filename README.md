@@ -32,18 +32,9 @@ My focus is practical machine learning: explainable AI (XAI), MLOps, and buildin
 
 Next.js 15 · React 19 · TypeScript · Tailwind CSS · Lucide icons · Resend (contact form) · Deployed on Vercel
 
-## Run locally
-
-```bash
-npm install
-npm run dev
-```
-
-Open `http://localhost:3000`.
-
 ## Connect
 
 - Portfolio: [abdulwahid.me](https://www.abdulwahid.me)
 - GitHub: [github.com/abduIwahid](https://github.com/abduIwahid)
 - LinkedIn: [linkedin.com/in/abdu1wahid](https://www.linkedin.com/in/abdu1wahid)
-- Email: contact@abdulwahid.me
+- Email: [contact@abdulwahid.me](mailto:contact@abdulwahid.me)

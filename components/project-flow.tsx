@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from 'react';
+import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, Github, X } from 'lucide-react';
 import type { Project } from '@/content/projects';
@@ -11,15 +11,18 @@ import { LivePreview } from './live-preview';
  * Scroll-driven project flow. A tall stage pins a sticky viewport; the
  * scroll position alone decides which project card is in front, so the
  * flow runs forwards and backwards at exactly the visitor's scroll speed.
+ * Performance: transforms are written straight to the DOM in a rAF loop —
+ * React only re-renders when the front card index actually changes.
  * Clicking the front card opens its details with a live preview.
  */
 export function ProjectFlow({ projects }: { projects: Project[] }) {
   const stageRef = useRef<HTMLDivElement>(null);
-  const [seg, setSeg] = useState(0);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const hintRef = useRef<HTMLParagraphElement>(null);
+  const [active, setActive] = useState(0);
   const [staticMode, setStaticMode] = useState(false);
   const [selected, setSelected] = useState<Project | null>(null);
   const n = projects.length;
-  const active = Math.min(n - 1, Math.max(0, Math.round(seg)));
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -27,6 +30,36 @@ export function ProjectFlow({ projects }: { projects: Project[] }) {
       return;
     }
     let raf = 0;
+    let lastActive = 0;
+    const applyCard = (i: number, s: number) => {
+      const node = cardRefs.current[i];
+      if (!node) return;
+      const d = s - i;
+      let opacity = 0;
+      let ty = 64;
+      let sc = 0.95;
+      if (d <= -1) {
+        opacity = 0;
+      } else if (d < 0) {
+        const t = d + 1;
+        opacity = t;
+        ty = 64 * (1 - t);
+        sc = 0.95 + 0.05 * t;
+      } else if (d < 1) {
+        opacity = 1 - d;
+        ty = -44 * d;
+        sc = 1 - 0.06 * d;
+      } else {
+        opacity = 0;
+        ty = -44;
+        sc = 0.94;
+      }
+      node.style.opacity = opacity.toFixed(3);
+      node.style.transform = `translate3d(0, ${ty.toFixed(1)}px, 0) scale(${sc.toFixed(3)})`;
+      node.style.zIndex = String(50 - Math.round(Math.abs(d) * 10));
+      node.style.visibility = opacity <= 0.01 ? 'hidden' : 'visible';
+      node.style.pointerEvents = Math.round(s) === i ? 'auto' : 'none';
+    };
     const update = () => {
       raf = 0;
       const el = stageRef.current;
@@ -35,7 +68,15 @@ export function ProjectFlow({ projects }: { projects: Project[] }) {
       const total = el.offsetHeight - window.innerHeight;
       const p = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
       const s = p * (n - 1);
-      setSeg((prev) => (Math.abs(prev - s) > 0.0015 ? s : prev));
+      for (let i = 0; i < n; i++) applyCard(i, s);
+      if (hintRef.current) {
+        hintRef.current.style.opacity = s < 0.15 ? '1' : '0';
+      }
+      const a = Math.min(n - 1, Math.max(0, Math.round(s)));
+      if (a !== lastActive) {
+        lastActive = a;
+        setActive(a);
+      }
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update);
@@ -63,39 +104,6 @@ export function ProjectFlow({ projects }: { projects: Project[] }) {
       document.body.style.overflow = prev;
     };
   }, [selected]);
-
-  const cardStyle = (i: number): CSSProperties => {
-    const d = seg - i;
-    let opacity = 0;
-    let ty = 72;
-    let sc = 0.94;
-    let rot = 0;
-    if (d <= -1) {
-      opacity = 0;
-    } else if (d < 0) {
-      const t = d + 1;
-      opacity = t;
-      ty = 72 * (1 - t);
-      sc = 0.94 + 0.06 * t;
-      rot = 1.4 * (1 - t);
-    } else if (d < 1) {
-      opacity = 1 - d;
-      ty = -52 * d;
-      sc = 1 - 0.07 * d;
-      rot = -1.4 * d;
-    } else {
-      opacity = 0;
-      ty = -52;
-      sc = 0.93;
-    }
-    return {
-      opacity,
-      transform: `translateY(${ty}px) scale(${sc}) rotate(${rot}deg)`,
-      zIndex: 50 - Math.round(Math.abs(d) * 10),
-      pointerEvents: i === active ? 'auto' : 'none',
-      visibility: opacity <= 0.01 ? 'hidden' : 'visible',
-    };
-  };
 
   const stop = (e: MouseEvent) => e.stopPropagation();
 
@@ -153,7 +161,14 @@ export function ProjectFlow({ projects }: { projects: Project[] }) {
           <div className="flow-sticky">
             <div className="flow-cards">
               {projects.map((project, i) => (
-                <div key={project.slug} className="flow-card" style={cardStyle(i)}>
+                <div
+                  key={project.slug}
+                  className="flow-card"
+                  ref={(el) => {
+                    cardRefs.current[i] = el;
+                  }}
+                  style={{ opacity: i === 0 ? 1 : 0 }}
+                >
                   {renderCard(project)}
                 </div>
               ))}
@@ -167,7 +182,7 @@ export function ProjectFlow({ projects }: { projects: Project[] }) {
               <p className="flow-counter">
                 {String(active + 1).padStart(2, '0')} / {String(n).padStart(2, '0')} · {projects[active].name}
               </p>
-              <p className="flow-scroll-hint" style={{ opacity: seg < 0.15 ? 1 : 0 }}>
+              <p className="flow-scroll-hint" ref={hintRef}>
                 Scroll — projects flow by, scroll back to rewind
               </p>
             </div>

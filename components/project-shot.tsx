@@ -2,11 +2,11 @@
 import { useState } from 'react';
 
 /** Fresh screenshot of a live site, captured on demand by the mShots service. */
-export function shotUrl(demo: string) {
-  return `https://s0.wp.com/mshots/v1/${encodeURIComponent(demo)}?w=1200`;
+export function shotUrl(demo: string, width = 1200) {
+  return `https://s0.wp.com/mshots/v1/${encodeURIComponent(demo)}?w=${width}`;
 }
 
-export function ProjectShot({ demo, name }: { demo: string; name: string }) {
+export function ProjectShot({ demo, name, width = 800 }: { demo: string; name: string; width?: number }) {
   const [failed, setFailed] = useState(false);
   if (failed) return null;
   return (
@@ -18,7 +18,7 @@ export function ProjectShot({ demo, name }: { demo: string; name: string }) {
       aria-label={`Open the live site of ${name}`}
     >
       <img
-        src={shotUrl(demo)}
+        src={shotUrl(demo, width)}
         alt={`Live screenshot of ${name}`}
         loading="lazy"
         onError={() => setFailed(true)}

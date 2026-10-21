@@ -42,9 +42,13 @@ export async function POST(request: NextRequest) {
       subject: `Portfolio message from ${parsed.data.name}`,
       text: `Name: ${parsed.data.name}\nEmail: ${parsed.data.email}\n\n${parsed.data.message}`
     });
-    if (result.error) throw new Error('Email provider returned an error');
+    if (result.error) {
+      console.error('Resend send error:', JSON.stringify(result.error));
+      throw new Error('Email provider returned an error');
+    }
     return NextResponse.json({ ok: true, message: 'Your message has been sent.' });
-  } catch {
+  } catch (err) {
+    console.error('Contact delivery failed:', err instanceof Error ? err.message : String(err));
     return NextResponse.json({ error: { code: 'DELIVERY_FAILED', message: 'Message delivery failed. Please email me directly instead.' } }, { status: 500 });
   }
 }

@@ -4003,3 +4003,106 @@ button {
     box-shadow: none;
   }
 }
+
+
+/* ---------- Intro loader (logo draw + fly into the dot) ---------- */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  will-change: transform;
+}
+
+.intro-logo {
+  width: min(320px, 68vw);
+  height: auto;
+  overflow: visible;
+}
+
+.intro-ghost {
+  stroke: color-mix(in srgb, var(--foreground) 13%, transparent);
+  stroke-width: 13;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.intro-draw {
+  stroke: var(--foreground);
+  stroke-width: 13;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.intro-comet {
+  fill: var(--accent);
+  filter: drop-shadow(0 0 6px var(--accent)) drop-shadow(0 0 16px color-mix(in srgb, var(--accent) 65%, transparent));
+  transition: opacity 0.2s ease;
+}
+
+.intro-dot {
+  fill: var(--accent);
+  transform: scale(0);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--accent) 70%, transparent));
+}
+
+.intro-dot-on {
+  transform: scale(1);
+}
+
+.intro-meta {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+}
+
+.intro-stage-label {
+  color: var(--muted);
+}
+
+.intro-pct {
+  color: var(--accent);
+  font-size: 16px;
+}
+
+.intro-caption {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.intro-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: color-mix(in srgb, var(--foreground) 10%, transparent);
+}
+
+.intro-bar-fill {
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 55%, var(--background)), var(--accent));
+}

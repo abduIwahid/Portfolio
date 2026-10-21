@@ -3,6 +3,7 @@ import './globals.css';
 import { Anton } from 'next/font/google';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
+import { IntroLoader } from '@/components/intro-loader';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://abdulwahid.me';
 export const metadata: Metadata = {
@@ -18,5 +19,5 @@ export const viewport: Viewport = { themeColor: '#f8f8f8', colorScheme: 'light' 
 const displayFont = Anton({ weight: '400', subsets: ['latin'], variable: '--font-display', display: 'swap' });
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-theme="light" suppressHydrationWarning className={displayFont.variable}><body><a className="skip-link" href="#main">Skip to content</a><SiteHeader /><main id="main">{children}</main><SiteFooter /></body></html>;
+  return <html lang="en" data-theme="light" suppressHydrationWarning className={displayFont.variable}><body><a className="skip-link" href="#main">Skip to content</a><SiteHeader /><main id="main">{children}</main><SiteFooter /><IntroLoader /></body></html>;
 }

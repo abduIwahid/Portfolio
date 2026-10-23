@@ -4159,3 +4159,85 @@ button {
     box-shadow: 0 0 26px color-mix(in srgb, var(--accent) 75%, transparent), 0 0 64px color-mix(in srgb, var(--accent) 45%, transparent);
   }
 }
+
+/* ===== Hero: giant headline + portrait cut-out (2026-10-23) =======
+   ECHO-style composition: two-line Anton headline (second line
+   faded), the portrait overlapping it, copy and actions centered. */
+.hero-echo {
+    text-align: center;
+}
+.hero-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.hero-echo .hero-eyebrow {
+    justify-content: center;
+}
+.hero-headline-wrap {
+    position: relative;
+    width: 100%;
+    margin-top: 4px;
+    padding-bottom: clamp(118px, 16.5vw, 208px);
+}
+.hero-echo h1.hero-giant {
+    max-width: none;
+    margin: 0;
+    font-family: var(--font-display), 'Arial Narrow', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+}
+.hg-line {
+    display: block;
+    line-height: 0.98;
+    font-size: clamp(42px, 9.4vw, 130px);
+    white-space: nowrap;
+}
+.hg-solid {
+    color: var(--foreground);
+}
+.hg-faded {
+    background: linear-gradient(180deg, var(--foreground) 0%, transparent 94%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0.45;
+}
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+    .hg-faded { color: var(--muted); }
+}
+.hero-cutout {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: clamp(168px, 25.5vw, 322px);
+    width: auto;
+    z-index: 2;
+    pointer-events: none;
+    filter: drop-shadow(0 16px 26px rgb(0 0 0 / 0.20));
+}
+.hero-echo .hero-badge {
+    position: absolute;
+    left: 50%;
+    bottom: -13px;
+    transform: translateX(-50%);
+    z-index: 3;
+    white-space: nowrap;
+}
+.hero-copy-center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: clamp(34px, 4.5vw, 48px);
+}
+.hero-actions-center,
+.hero-socials-center {
+    justify-content: center;
+}
+@media (max-width: 560px) {
+    .hg-line { font-size: clamp(34px, 11.8vw, 64px); }
+    .hero-headline-wrap { padding-bottom: clamp(96px, 30vw, 130px); }
+    .hero-cutout { height: clamp(140px, 42vw, 190px); }
+}

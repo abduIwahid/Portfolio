@@ -4275,3 +4275,13 @@ button {
     box-shadow: 0 18px 40px rgb(0 0 0 / 0.14);
     padding: 10px 18px 18px;
 }
+
+/* Mobile hero fix (2026-10-23): the faded second line is longer
+   ("QUESTION THE RESULT.") and was clipping at both edges on
+   phones — give it its own smaller size under 560px. */
+@media (max-width: 560px) {
+    .hg-faded {
+        font-size: clamp(29px, 9.2vw, 52px);
+        letter-spacing: -0.01em;
+    }
+}

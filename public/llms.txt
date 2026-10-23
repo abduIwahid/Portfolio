@@ -1,0 +1,33 @@
+# Abdul Wahid — AI/ML Developer
+
+> Portfolio of Abdul Wahid, an Artificial Intelligence undergraduate at COMSATS University Islamabad (Attock Campus) and a machine-learning developer focused on explainable AI (XAI), model evaluation and MLOps. His work pairs predictive models with the evidence around them: experiment tracking, SHAP explainability, APIs and usable interfaces.
+
+## About
+
+- Education: BS Artificial Intelligence, COMSATS University Islamabad — Attock Campus (2024–2028).
+- Experience: Machine Learning Intern at Ezitech Institute (Eziline Software House), Islamabad — healthcare ML with XGBoost/LightGBM (best 0.83 AUC-ROC), MLflow experiment tracking, SHAP explanations served through FastAPI, Docker and drift monitoring.
+- Skills: Python, scikit-learn, Pandas, NumPy, MLflow, SHAP; FastAPI, Flask, Next.js, React; MySQL, PostgreSQL, Supabase; Git/GitHub, Vercel, Docker.
+
+## Selected projects
+
+- MediSight AI: an explainable healthcare risk-modelling workflow with model evaluation, experiment tracking and a clinician-facing interface.
+- Customer Churn Prediction: a supervised-learning study comparing classifiers for churn (84% accuracy, 71% F1).
+- Study Hub (FA24-BAI): a course-materials hub built and maintained for his whole university cohort — https://fa24-bai.vercel.app
+- Predictly: a Pakistani real-estate price prediction project.
+- NearSend, Churnex, EPMS: additional software and ML projects documented on the portfolio site and GitHub.
+
+## Pages
+
+- [Home](https://abdulwahid.me/): selected work and introduction.
+- [Projects](https://abdulwahid.me/projects): case studies explaining each project's problem, approach, evidence and open questions.
+- [Writing](https://abdulwahid.me/writing): technical writing.
+- [About](https://abdulwahid.me/about)
+- [CV](https://abdulwahid.me/cv)
+- [Contact](https://abdulwahid.me/contact)
+- [Links](https://abdulwahid.me/links)
+
+## Elsewhere
+
+- GitHub: https://github.com/abduIwahid
+- LinkedIn: https://www.linkedin.com/in/abdu1wahid
+- Email: contact@abdulwahid.me

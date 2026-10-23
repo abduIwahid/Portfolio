@@ -4241,3 +4241,61 @@ button {
     .hero-headline-wrap { padding-bottom: clamp(96px, 30vw, 130px); }
     .hero-cutout { height: clamp(140px, 42vw, 190px); }
 }
+
+/* ===== ECHO-style shell pass (2026-10-23): floating pill header,
+   Anton section headings, giant closing headline. The intro loader
+   is deliberately untouched — it is an original piece. ============ */
+.site-header {
+    background: transparent;
+    border-bottom: none;
+    padding: 14px clamp(8px, 2vw, 24px) 0;
+    pointer-events: none;
+}
+.header-inner {
+    pointer-events: auto;
+    min-height: 64px;
+    padding: 8px 12px 8px 18px;
+    background: color-mix(in srgb, var(--background) 84%, transparent);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    backdrop-filter: blur(14px) saturate(1.4);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    box-shadow: 0 14px 34px rgb(0 0 0 / 0.10);
+}
+.nav-contact {
+    border-radius: 999px;
+}
+.main-nav.is-open {
+    background: color-mix(in srgb, var(--background) 94%, transparent);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    backdrop-filter: blur(14px) saturate(1.4);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    margin: 10px clamp(8px, 2vw, 24px) 0;
+    box-shadow: 0 18px 40px rgb(0 0 0 / 0.14);
+    padding: 10px 18px 18px;
+}
+.section-heading h2,
+.page-heading h1 {
+    font-family: var(--font-display), 'Arial Narrow', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-size: clamp(30px, 4.4vw, 58px);
+    line-height: 1.02;
+}
+.closing-giant {
+    flex-direction: column;
+    align-items: flex-start;
+}
+.closing-cta .closing-giant-title {
+    font-family: var(--font-display), 'Arial Narrow', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(58px, 11.5vw, 156px);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+}
+.closing-giant .closing-actions {
+    margin-top: 26px;
+}

@@ -4285,3 +4285,21 @@ button {
         letter-spacing: -0.01em;
     }
 }
+
+/* ===== Hero headline: measured fluid sizing (2026-10-23) ========
+   Both lines now share ONE size derived from the real Anton font
+   metrics: "QUESTION THE RESULT." measures 8.27em including
+   letter-spacing, so 11.2cqw keeps it at ~93% of the headline
+   wrap's width on every screen — no clipping, no size mismatch
+   between the lines, at any device width or zoom. =============== */
+.hero-headline-wrap {
+    container-type: inline-size;
+}
+.hg-line {
+    font-size: clamp(40px, 9.4vw, 130px); /* fallback where cqw is unsupported */
+    font-size: 11.2cqw;
+}
+@media (max-width: 560px) {
+    .hg-line { font-size: 11.2cqw; }
+    .hg-faded { font-size: 11.2cqw; letter-spacing: 0.01em; }
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { ArrowUpRight, Github, Linkedin, Mail, Instagram, BookOpen, Database, Code2 } from 'lucide-react';
 import { profile } from '@/content/profile';
+import { Reveal } from '@/components/reveal';
 
 export const metadata: Metadata = {
   title: 'Links',
@@ -95,10 +96,10 @@ export default function LinksPage() {
     <section className="section">
       <div className="container">
         <div className="links-grid">
-          {socialLinks.map((link) => {
+          {socialLinks.map((link, index) => {
             const Icon = link.icon;
             return (
-              <a
+              <Reveal key={link.id} className="reveal-fill" delay={(index % 4) * 70}><a
                 key={link.id}
                 href={link.href}
                 target={link.href.startsWith('mailto') ? undefined : '_blank'}
@@ -115,7 +116,7 @@ export default function LinksPage() {
                   <p className="links-card-desc">{link.description}</p>
                 </div>
                 <span className="links-card-arrow"><ArrowUpRight size={17} /></span>
-              </a>
+              </a></Reveal>
             );
           })}
         </div>

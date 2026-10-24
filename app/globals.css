@@ -21,7 +21,7 @@
   --footer-muted: #b2b2b2;
   --footer-border: #383838;
   --shadow-sm: 0 1px 2px rgb(0 0 0 / .04);
-  --shadow-md: 0 8px 28px rgb(0 0 0 / .06);
+  --shadow-md: 0 1px 2px rgb(0 0 0 / .05), 0 12px 32px rgb(0 0 0 / .07);
   --content: 1200px;
 }
 
@@ -42,7 +42,7 @@
   --footer-muted: #b2b2b2;
   --footer-border: #383838;
   --shadow-sm: 0 1px 2px rgb(0 0 0 / .2);
-  --shadow-md: 0 8px 28px rgb(0 0 0 / .18);
+  --shadow-md: 0 1px 2px rgb(0 0 0 / .3), 0 12px 32px rgb(0 0 0 / .25);
 }
 
 * {
@@ -60,7 +60,7 @@ body {
   width: 100%;
   background: var(--background);
   color: var(--foreground);
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-sans), 'Archivo', 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -212,7 +212,7 @@ button {
   color: var(--muted);
   font-size: 13px;
   font-weight: 550;
-  transition: color .18s ease;
+  transition: color .2s ease;
 }@media (hover: hover) and (pointer: fine) {
 .nav-link:hover {
   color: var(--foreground);
@@ -237,7 +237,7 @@ button {
   border-radius: 5px;
   font-size: 13px;
   font-weight: 600;
-  transition: background .18s ease, border-color .18s ease;
+  transition: background .2s ease, border-color .2s ease;
 }@media (hover: hover) and (pointer: fine) {
 
 .nav-contact:hover {
@@ -260,13 +260,13 @@ button {
 .icon-button {
   display: inline-grid;
   place-items: center;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border: 1px solid var(--border);
   border-radius: 6px;
   background: var(--surface);
   cursor: pointer;
-  transition: border-color .18s ease, background .18s ease;
+  transition: border-color .2s ease, background .2s ease;
 }@media (hover: hover) and (pointer: fine) {
 
 .icon-button:hover {
@@ -290,8 +290,9 @@ button {
   gap: 10px;
   color: var(--muted);
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .16em;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-weight: 500;
+  letter-spacing: .14em;
   text-transform: uppercase;
 }
 
@@ -344,11 +345,11 @@ button {
   min-height: 46px;
   padding: 12px 16px;
   border: 1px solid transparent;
-  border-radius: 5px;
+  border-radius: 6px;
   font-size: 13px;
   font-weight: 650;
   cursor: pointer;
-  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
 }@media (hover: hover) and (pointer: fine) {
 
 .button:hover {
@@ -558,8 +559,7 @@ button {
   margin-bottom: 13px;
 }
 
-.section-heading h2,
-.page-heading h1 {
+.section-heading h2 {
   margin: 0;
   font-size: clamp(28px, 4vw, 54px);
   line-height: 1.07;
@@ -586,7 +586,7 @@ button {
 
 .text-link svg,
 .project-card-bottom a svg {
-  transition: transform .18s ease;
+  transition: transform .2s ease;
 }@media (hover: hover) and (pointer: fine) {
 
 .text-link:hover svg,
@@ -706,7 +706,7 @@ button {
   font-weight: 600;
   letter-spacing: .02em;
   white-space: nowrap;
-  transition: background .18s ease, color .18s ease;
+  transition: background .2s ease, color .2s ease;
 }@media (hover: hover) and (pointer: fine) {
 
 .project-live-btn:hover {
@@ -865,12 +865,12 @@ button {
 .project-github-btn {
   display: grid;
   place-items: center;
-  width: 29px;
-  height: 29px;
+  width: 34px;
+  height: 34px;
   border: 1px solid var(--border);
   border-radius: 50%;
   color: var(--muted);
-  transition: background .18s ease, border-color .18s ease, color .18s ease;
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
 }@media (hover: hover) and (pointer: fine) {
 
 .project-github-btn:hover {
@@ -895,8 +895,8 @@ button {
   margin-left: auto;
   display: grid;
   place-items: center;
-  width: 29px;
-  height: 29px;
+  width: 34px;
+  height: 34px;
   border: 1px solid var(--border);
   border-radius: 50%;
   flex-shrink: 0;
@@ -912,7 +912,7 @@ button {
   border-radius: 50%;
   flex-shrink: 0;
   color: var(--muted);
-  transition: background .18s ease, border-color .18s ease, color .18s ease;
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
 }@media (hover: hover) and (pointer: fine) {
 
 .project-arrow-link:hover {
@@ -973,7 +973,7 @@ button {
   align-items: center;
   padding: 5px 8px;
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 6px;
   color: var(--muted);
   font-size: 10px;
   line-height: 1.3;
@@ -1051,7 +1051,7 @@ button {
 .principle-card {
   padding: 22px;
   border: 1px solid var(--border);
-  border-radius: 7px;
+  border-radius: 8px;
   background: var(--surface);
 }
 
@@ -1126,7 +1126,7 @@ button {
   height: 38px;
   border: 1px solid var(--border);
   border-radius: 50%;
-  transition: background .18s ease, border-color .18s ease;
+  transition: background .2s ease, border-color .2s ease;
 }@media (hover: hover) and (pointer: fine) {
 
 .writing-row:hover .writing-arrow {
@@ -1214,13 +1214,16 @@ button {
   background: transparent;
   color: var(--muted);
   cursor: pointer;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
 }
 
 .sort-field select {
   min-height: 46px;
   padding: 0 34px 0 12px;
   border: 1px solid var(--border);
-  border-radius: 5px;
+  border-radius: 6px;
   background: var(--surface);
   color: var(--foreground);
   font-size: 12px;
@@ -1233,14 +1236,17 @@ button {
 }
 
 .filter-chip {
-  padding: 8px 11px;
+  padding: 9px 12px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 6px;
   background: var(--surface);
   color: var(--muted);
   font-size: 11px;
   cursor: pointer;
-  transition: border-color .15s ease, background .15s ease, color .15s ease;
+  transition: border-color .2s ease, background .2s ease, color .2s ease;
 }@media (hover: hover) and (pointer: fine) {
 .filter-chip:hover {
   border-color: var(--foreground);
@@ -1659,7 +1665,7 @@ button {
   border-bottom: 1px solid var(--border);
   border-radius: 6px;
   margin: 0 -12px;
-  transition: background .18s ease;
+  transition: background .2s ease;
 }
 
 .timeline-period {
@@ -1700,7 +1706,7 @@ button {
 .credential-card {
   padding: 19px;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 8px;
   background: var(--surface);
   transition: transform .2s ease, border-color .2s ease, box-shadow .22s ease;
 }@media (hover: hover) and (pointer: fine) {
@@ -1864,7 +1870,7 @@ button {
   place-items: center;
   width: 36px;
   height: 36px;
-  border-radius: 5px;
+  border-radius: 6px;
   background: var(--surface-alt);
 }
 
@@ -2071,7 +2077,9 @@ button {
 .footer-links a {
   display: grid;
   place-items: center;
-  transition: color .15s ease;
+  width: 40px;
+  height: 40px;
+  transition: color .2s ease;
 }@media (hover: hover) and (pointer: fine) {
 
 .footer-links a:hover {
@@ -2699,8 +2707,8 @@ button {
 
 .closing-cta h2 {
   margin: 0;
-  font-size: clamp(32px, 4.5vw, 52px);
-  line-height: 1.05;
+  font-size: clamp(32px, 5vw, 57px);
+  line-height: 1.06;
   letter-spacing: -.06em;
 }
 
@@ -3114,7 +3122,7 @@ button {
   border: 1px solid var(--border);
   border-radius: 50%;
   color: var(--muted);
-  transition: background .18s ease, border-color .18s ease, color .18s ease;
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
 }@media (hover: hover) and (pointer: fine) {
 
 .links-card:hover .links-card-arrow {
@@ -3187,7 +3195,7 @@ button {
 
 /* ── Writing row hover ───────────────────────────────────────────────── */
 .writing-row {
-  transition: background .18s ease;
+  transition: background .2s ease;
   border-radius: 6px;
   margin: 0 -12px;
   padding-left: 12px;
@@ -3200,7 +3208,7 @@ button {
 
 /* ── Stat item hover ─────────────────────────────────────────────────── */
 .stat-item {
-  transition: background .18s ease;
+  transition: background .2s ease;
 }@media (hover: hover) and (pointer: fine) {
 
 .stat-item:hover {
@@ -3219,7 +3227,7 @@ button {
 
 /* ── Focus list hover ────────────────────────────────────────────────── */
 .focus-list span {
-  transition: color .15s ease;
+  transition: color .2s ease;
 }@media (hover: hover) and (pointer: fine) {
 
 .focus-list span:hover {
@@ -4303,3 +4311,9 @@ button {
     .hg-line { font-size: 11.2cqw; }
     .hg-faded { font-size: 11.2cqw; letter-spacing: 0.01em; }
 }
+
+/* ===== 2026-10-24 consistency + scroll-motion round ===== */
+.reveal-auto { height: auto; }
+.reveal-fill > a { height: 100%; }
+.eyebrow-spaced { margin-top: 42px; }
+@media print { .reveal { opacity: 1 !important; transform: none !important; transition: none !important; } }

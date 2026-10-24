@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowUpRight, ExternalLink } from 'lucide-react';
 import { profile } from '@/content/profile';
 import { projects } from '@/content/projects';
+import { Reveal } from '@/components/reveal';
 
 export const metadata: Metadata = {
   title: 'CV',
@@ -54,7 +55,7 @@ export default function CvPage() {
         </a>
       </div>
 
-      <article className="cv-sheet cv2">
+      <Reveal className="reveal-auto"><article className="cv-sheet cv2">
         <header className="cv2-head">
           <h1 className="cv2-name">{profile.name}</h1>
           <p className="cv2-role">AI / ML Developer · Explainable AI · MLOps</p>
@@ -175,7 +176,7 @@ export default function CvPage() {
             </section>
           </aside>
         </div>
-      </article>
+      </article></Reveal>
 
       <p className="cv-footnote">
         This CV view mirrors the PDF version. For formal applications, use the PDF. <Link href="/contact">Contact me <ArrowUpRight size={12} style={{ verticalAlign: 'middle' }} /></Link>

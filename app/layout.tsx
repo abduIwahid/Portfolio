@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
   openGraph: { type: 'website', url: '/', title: 'Abdul Wahid — AI/ML Developer', description: 'Evidence-first AI/ML projects, technical case studies, and writing.', siteName: 'Abdul Wahid' },
   twitter: { card: 'summary_large_image', title: 'Abdul Wahid — AI/ML Developer', description: 'Evidence-first AI/ML projects, technical case studies, and writing.' },
-  icons: { icon: '/icons/favicon.png', shortcut: '/icons/favicon.png', apple: '/icons/favicon.png' }, manifest: '/manifest.webmanifest'
+  icons: { icon: '/icons/favicon.png', shortcut: '/icons/favicon.png', apple: '/icons/favicon.png' }, manifest: '/manifest.webmanifest',
+  verification: { google: '124602Qsd3dsa2VJZU5U6LBW-0LsmzkFI3Tg0nFkvnQ' }
 };
 export const viewport: Viewport = { themeColor: [{ media: '(prefers-color-scheme: light)', color: '#f8f8f8' }, { media: '(prefers-color-scheme: dark)', color: '#171717' }], colorScheme: 'light dark' };
 const displayFont = Anton({ weight: '400', subsets: ['latin'], variable: '--font-display', display: 'swap' });

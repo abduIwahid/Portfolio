@@ -5088,6 +5088,18 @@ html.custom-cursor-on select {
   }
 }
 
+/* Home project grid: the grid items are the reveal wrappers, whose
+   automatic minimum is the widest card's min-content — and the
+   "Customer Churn Prediction" card's nowrap Anton name puts that
+   at 359px, so the single 1fr track resolved to 359px and the home
+   page scrolled sideways below ~371px viewport (measured:
+   scrollWidth 371 at both 320 and 360). Items here may shrink
+   below their content size; the card name already truncates with
+   an ellipsis by design, which is what now happens at 320px. */
+.project-grid > * {
+  min-width: 0;
+}
+
 /* Fluid mobile scale-down (2026-11-03): the "75% zoom" feel,
    achieved the fluid way — no viewport scaling. At <=640px the
    large type drops one notch (roughly x0.87) through the small

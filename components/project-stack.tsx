@@ -1,9 +1,10 @@
 'use client';
 import { useEffect, useRef, type CSSProperties } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, ExternalLink, Github } from 'lucide-react';
+import { ArrowUpRight, Github } from 'lucide-react';
 import type { Project } from '@/content/projects';
 import { ProjectShot } from './project-shot';
+import { VisitPill } from './visit-pill';
 
 /**
  * Stacking project panels for /projects.
@@ -137,7 +138,7 @@ export function ProjectStack({ projects }: { projects: Project[] }) {
                 <Link className="text-link" href={`/projects/${project.slug}`}>Read case study <ArrowUpRight size={16} /></Link>
                 <div className="stack-card-icon-actions">
                   {project.repo && <a href={project.repo} target="_blank" rel="noreferrer" className="project-github-btn" aria-label={`GitHub repo for ${project.name}`}><Github size={15} /></a>}
-                  {project.demo && <a href={project.demo} target="_blank" rel="noreferrer" className="project-github-btn" aria-label={`Live demo of ${project.name}`}><ExternalLink size={15} /></a>}
+                  {project.demo && <VisitPill href={project.demo} name={project.name} />}
                 </div>
               </div>
             </div>

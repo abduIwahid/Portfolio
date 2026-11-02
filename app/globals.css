@@ -812,6 +812,78 @@ button {
   transform: scale(1.06);
 }}
 
+/* Expanding "Visit" pill (2026-11-02): the live-site action on the
+   /projects stack panels and the case-study heroes
+   (components/visit-pill.tsx). A 44px ink circle at rest; on hover
+   or focus-visible the label slides in and the pill grows to
+   ~108px in-flow, so siblings glide instead of being overlapped.
+   Colours ride the primary-button pair (foreground on background),
+   which stays visible in both themes. */
+.visit-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--foreground);
+  color: var(--background);
+  overflow: hidden;
+  text-decoration: none;
+  transition: width .26s var(--ease-house);
+}
+
+.visit-pill-label {
+  max-width: 0;
+  padding-left: 0;
+  opacity: 0;
+  transform: translateX(5px);
+  white-space: nowrap;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: max-width .26s var(--ease-house), padding-left .26s var(--ease-house), opacity .26s var(--ease-house), transform .26s var(--ease-house);
+}
+
+.visit-pill-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .visit-pill:hover {
+    width: 108px;
+  }
+
+  .visit-pill:hover .visit-pill-label {
+    max-width: 64px;
+    padding-left: 16px;
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.visit-pill:focus-visible {
+  width: 108px;
+}
+
+.visit-pill:focus-visible .visit-pill-label {
+  max-width: 64px;
+  padding-left: 16px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visit-pill,
+  .visit-pill-label {
+    transition: none;
+  }
+}
+
 .project-index {
   color: var(--accent-ink);
   font-size: 11px;

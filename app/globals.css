@@ -5178,48 +5178,91 @@ html.custom-cursor-on select {
    nothing here applies above 640px: desktop (>=1024px) computed
    sizes are byte-identical to before. Floors hold: body text
    stays >=15px and tap targets keep their >=44px height — only
-   display type and spacing move. */
+   display type and spacing move.
+   Second pass (same day): another ~x0.88 on the large type at
+   phone widths and spacing down ~15-20%, after the owner asked
+   for the 75% feel taken further. New entries join the same
+   block (card names, stack titles, marquee words, 404 numerals,
+   card/grid/stack spacing). Measured at 390px before/after;
+   nothing above 640px changes. */
 @media (max-width: 640px) {
   .hg-line {
-    font-size: clamp(30px, 9.3vw, 60px); /* fallback where cqw is unsupported */
-    font-size: 9.7cqw;
+    font-size: clamp(26px, 8.2vw, 60px); /* fallback where cqw is unsupported */
+    font-size: 8.55cqw;
   }
 
   .hero-headline-wrap.about-headline-wrap .hg-line {
-    font-size: clamp(28px, 6.9vw, 96px); /* fallback where cqw is unsupported */
-    font-size: 8.2cqw;
+    font-size: clamp(25px, 6.1vw, 96px); /* fallback where cqw is unsupported */
+    font-size: 7.3cqw;
   }
 
   .page-heading h1 {
-    font-size: clamp(34px, 10.4vw, 54px);
+    font-size: clamp(30px, 9.2vw, 54px);
   }
 
   .case-hero h1 {
-    font-size: clamp(34px, 10.4vw, 60px);
+    font-size: clamp(30px, 9.2vw, 60px);
   }
 
   .article-header h1 {
-    font-size: clamp(34px, 9.2vw, 54px);
+    font-size: clamp(30px, 8.1vw, 54px);
   }
 
   .section-heading h2 {
-    font-size: clamp(24px, 3.6vw, 28px);
+    font-size: clamp(21px, 3.6vw, 28px);
   }
 
   .stat-value {
-    font-size: clamp(21px, 2.8vw, 24px);
+    font-size: clamp(18.5px, 2.8vw, 24px);
   }
 
   .closing-cta h2 {
-    font-size: clamp(27px, 7vw, 32px);
+    font-size: clamp(24px, 6.2vw, 32px);
+  }
+
+  .project-card-name {
+    font-size: clamp(17.5px, 4.8vw, 25px);
+  }
+
+  .stack-card-title {
+    font-size: clamp(24.5px, 3vw, 40px);
+  }
+
+  .x-word,
+  .x-sep {
+    font-size: clamp(23px, 3.2vw, 46px);
+  }
+
+  .page-heading>.nf-pixel-code {
+    font-size: clamp(56px, 14vw, 150px);
   }
 
   .section {
-    padding: clamp(34px, 5.5vw, 72px) 0;
+    padding: clamp(28px, 5.5vw, 72px) 0;
   }
 
   .hero {
-    padding: clamp(40px, 7vw, 56px) 0 clamp(34px, 5vw, 48px);
+    padding: clamp(33px, 7vw, 56px) 0 clamp(28px, 5vw, 48px);
+  }
+
+  .section-heading {
+    margin-bottom: 18.5px;
+  }
+
+  .project-grid {
+    gap: 10px;
+  }
+
+  .project-card-body {
+    padding: 14px 17px 17px;
+  }
+
+  .stack-card-text {
+    padding: 18px;
+  }
+
+  .stack-card-wrap {
+    margin-bottom: 17px;
   }
 }
 

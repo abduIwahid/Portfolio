@@ -84,6 +84,19 @@ body {
   font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  /* Sticky-footer shell: the column always spans the viewport and main
+     absorbs the slack, so the footer sits at the bottom edge on short
+     pages instead of ending mid-screen with paper showing below it.
+     Normal flow only — Lenis (window mode) and the sticky header are
+     unaffected. */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 a {

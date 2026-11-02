@@ -21,16 +21,16 @@ const SKILL_GROUPS: { title: string; items: string }[] = [
   { title: 'Core Concepts', items: 'Classification, model evaluation, explainability (XAI), LLM integration (Gemini API), data structures, OOP, database design' },
 ];
 
-const CERTIFICATIONS: { title: string; org: string }[] = [
-  { title: 'Google AI Essentials', org: 'Google Career Certificates · Coursera, May 2026' },
-  { title: 'AI & Machine Learning Developer', org: 'Programming Hub, Feb – Apr 2026' },
-  { title: 'ML with NumPy & Pandas', org: 'Educative, May 2026' },
+const CERTIFICATIONS: { title: string; org: string; date: string }[] = [
+  { title: 'Google AI Essentials', org: 'Google Career Certificates · Coursera', date: 'May 2026' },
+  { title: 'AI & Machine Learning Developer', org: 'Programming Hub', date: 'Feb – Apr 2026' },
+  { title: 'ML with NumPy & Pandas', org: 'Educative', date: 'May 2026' },
 ];
 
-const ACTIVITIES: { title: string; org: string }[] = [
-  { title: 'Participant: DeepBuild Hackathon', org: 'SoftTech · COMSATS Attock, Oct 2026' },
-  { title: 'AI/ML Team Member', org: 'GDG on Campus · COMSATS Attock, 2026 – 2027' },
-  { title: 'Hackathon Participant', org: 'Mind to Machine 2026 AI Hackathon · COMSATS Wah, May 2026' },
+const ACTIVITIES: { title: string; org: string; date: string }[] = [
+  { title: 'Participant: DeepBuild Hackathon', org: 'SoftTech · COMSATS Attock', date: 'Oct 2026' },
+  { title: 'AI/ML Team Member', org: 'GDG on Campus · COMSATS Attock', date: '2026 – 2027' },
+  { title: 'Hackathon Participant', org: 'Mind to Machine 2026 AI Hackathon · COMSATS Wah', date: 'May 2026' },
 ];
 
 export default function CvPage() {
@@ -160,8 +160,11 @@ export default function CvPage() {
               <h2>Certifications</h2>
               {CERTIFICATIONS.map((cert) => (
                 <div className="cv2-cert" key={cert.title}>
-                  <strong>{cert.title}</strong>
-                  <span>{cert.org}</span>
+                  <div className="cv2-cert-main">
+                    <strong>{cert.title}</strong>
+                    <span>{cert.org}</span>
+                  </div>
+                  <span className="cv2-cert-date">{cert.date}</span>
                 </div>
               ))}
             </section>
@@ -170,8 +173,11 @@ export default function CvPage() {
               <h2>Activities</h2>
               {ACTIVITIES.map((act) => (
                 <div className="cv2-cert" key={act.title}>
-                  <strong>{act.title}</strong>
-                  <span>{act.org}</span>
+                  <div className="cv2-cert-main">
+                    <strong>{act.title}</strong>
+                    <span>{act.org}</span>
+                  </div>
+                  <span className="cv2-cert-date">{act.date}</span>
                 </div>
               ))}
             </section>

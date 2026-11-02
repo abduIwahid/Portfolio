@@ -4075,7 +4075,15 @@ button {
 }
 
 .cv2-cert {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
   margin-bottom: 15px;
+}
+
+.cv2-cert-main {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .cv2-cert strong {
@@ -4086,6 +4094,14 @@ button {
 .cv2-cert span {
   color: var(--muted);
   font-size: 12.5px;
+}
+
+/* Entry date: top-right corner of the entry, on the title's baseline */
+.cv2-cert-date {
+  flex: none;
+  margin-left: auto;
+  text-align: right;
+  white-space: nowrap;
 }
 
 @media (max-width: 860px) {

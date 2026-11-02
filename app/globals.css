@@ -4896,24 +4896,44 @@ html.custom-cursor-on select {
     margin-bottom: 20px;
   }
 
+  /* One column: media on top (16/9), text below, natural height. Every
+     width in the chain is 100% or a minmax(0, 1fr) track, so nothing in
+     the panel can exceed the card's width or overflow the page. */
   .stack-card {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: minmax(0, 1fr);
     height: auto;
   }
 
   .stack-card-media {
     order: -1;
+    width: 100%;
+    min-width: 0;
   }
 
   .stack-card-media .project-shot {
+    position: relative;
+    width: 100%;
     height: auto;
     aspect-ratio: 16 / 9;
     border-left: 0;
     border-bottom: 1px solid var(--border);
   }
 
+  .stack-card-media .project-shot img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .stack-card-text {
+    width: 100%;
+    min-width: 0;
+  }
+
   .stack-card-cover {
+    width: 100%;
     min-height: 168px;
     border-left: 0;
     border-bottom: 1px solid var(--border);

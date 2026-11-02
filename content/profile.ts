@@ -12,7 +12,7 @@ export const profile = {
     { title: 'BS Artificial Intelligence', organization: 'COMSATS University Islamabad · Attock Campus', period: 'Aug 2024 – 2028', detail: 'CGPA 3.46 / 4.00 · Current semester stated on public profile: 5th' },
     { title: 'Intermediate in Computer Science (ICS)', organization: 'Fazaia Degree College ARF Kamra', period: '2022 – 2024', detail: '827 / 1100 (75.2%)' }
   ],
-  experience: [{ title: 'Machine Learning Intern', organization: 'Ezitech Institute (Eziline Software House)', location: 'Islamabad, Pakistan', period: 'Jul – Sep 2026', details: ['Worked on the MediSight AI project across model benchmarking, explainability, and ML operations workflows.', 'Used LightGBM, scikit-learn, SHAP, MLflow, and FastAPI within a broader web application.', 'The project documentation describes seven de-identified healthcare dataset domains and a LightGBM AUC–ROC result of 0.8307.'] }],
+  experience: [{ title: 'Machine Learning Intern (Remote)', organization: 'Ezitech Institute (Eziline Software House)', location: 'Islamabad, Pakistan', period: 'Jul – Sep 2026', details: ['Built the WhyRisk (formerly MediSight AI) platform during this internship, across model benchmarking, explainability, and ML operations workflows.', 'Used LightGBM, scikit-learn, SHAP, MLflow, and FastAPI within a broader web application.', 'Trained and benchmarked classifiers across seven de-identified healthcare datasets; the best model (LightGBM) reached 0.83 AUC-ROC.'] }],
   credentials: [
     { title: 'Google AI Essentials Specialization', issuer: 'Google Career Certificates · Coursera', period: 'May 2026' },
     { title: 'AI & Machine Learning Developer', issuer: 'Programming Hub', period: 'Feb – Apr 2026' }

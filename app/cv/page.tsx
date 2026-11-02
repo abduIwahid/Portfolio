@@ -14,20 +14,21 @@ export const metadata: Metadata = {
 const CV_PROJECT_SLUGS = ['medisight-ai', 'customer-churn-prediction', 'predictly', 'nearsend', 'study-hub'];
 
 const SKILL_GROUPS: { title: string; items: string }[] = [
-  { title: 'Languages', items: 'Python, Java, C++, JavaScript, HTML, CSS' },
+  { title: 'Languages', items: 'Python, Java, C++, JavaScript, TypeScript, HTML, CSS' },
   { title: 'ML & Data', items: 'scikit-learn, LightGBM, XGBoost, NumPy, Pandas, Matplotlib, SHAP, MLflow' },
   { title: 'Web & APIs', items: 'FastAPI, Flask, Next.js, React, Node.js, REST APIs' },
   { title: 'Data & Tools', items: 'MySQL, PostgreSQL, Supabase, Git, GitHub, Vercel, Docker' },
-  { title: 'Core Concepts', items: 'Classification, model evaluation, explainability (XAI), data structures, OOP, database design' },
+  { title: 'Core Concepts', items: 'Classification, model evaluation, explainability (XAI), LLM integration (Gemini API), data structures, OOP, database design' },
 ];
 
 const CERTIFICATIONS: { title: string; org: string }[] = [
-  { title: 'Google AI Essentials Specialization', org: 'Google Career Certificates · Coursera, May 2026' },
+  { title: 'Google AI Essentials', org: 'Google Career Certificates · Coursera, May 2026' },
   { title: 'AI & Machine Learning Developer', org: 'Programming Hub, Feb – Apr 2026' },
   { title: 'ML with NumPy & Pandas', org: 'Educative, May 2026' },
 ];
 
 const ACTIVITIES: { title: string; org: string }[] = [
+  { title: 'Participant — DeepBuild Hackathon', org: 'SoftTech · COMSATS Attock, Oct 2026' },
   { title: 'AI/ML Team Member', org: 'GDG on Campus · COMSATS Attock, 2026 – 2027' },
   { title: 'Hackathon Participant', org: 'Mind to Machine 2026 AI Hackathon · COMSATS Wah, May 2026' },
 ];
@@ -80,10 +81,12 @@ export default function CvPage() {
         </header>
 
         <p className="cv2-summary">
-          Artificial Intelligence undergraduate focused on practical machine learning, model evaluation,
-          explainability, and building useful software around data. Hands-on experience includes
-          healthcare-oriented ML workflows, classification, data analysis, and web applications that
-          connect technical work to a usable interface.
+          BS Artificial Intelligence undergraduate (CGPA 3.46/4.00) and Machine Learning Intern at Ezitech
+          Institute, where I trained and benchmarked XGBoost and LightGBM models on healthcare datasets
+          (best: LightGBM, 0.83 AUC-ROC), with MLflow experiment tracking and SHAP-based explanations
+          served through FastAPI. I build and deploy full-stack ML products end to end, including WhyRisk,
+          a live explainable healthcare risk platform, and Study Hub, a resource platform used by my entire
+          BS AI class cohort. Focus areas: explainable AI (XAI), MLOps, and production ML workflows.
         </p>
 
         <div className="cv2-grid">
@@ -92,15 +95,15 @@ export default function CvPage() {
               <h2>Experience</h2>
               <div className="cv2-item">
                 <div className="cv2-item-head">
-                  <strong>Machine Learning Intern</strong>
+                  <strong>Machine Learning Intern (Remote)</strong>
                   <span>Jul – Sep 2026</span>
                 </div>
                 <p className="cv2-org">Ezitech Institute (Eziline Software House) · Islamabad, Pakistan</p>
                 <ul>
-                  <li>Worked on MediSight AI, an explainable healthcare risk-modelling workflow across seven de-identified dataset domains.</li>
+                  <li>Built WhyRisk (formerly MediSight AI) during this internship, an explainable healthcare risk-modelling workflow across seven de-identified dataset domains.</li>
                   <li>Used LightGBM, scikit-learn, SHAP, MLflow, and FastAPI for model benchmarking, experiment tracking, and explanation workflows.</li>
                   <li>Contributed to MLOps-oriented drift monitoring/retraining flows and a web application built with Next.js, TypeScript, and Supabase.</li>
-                  <li>Project notes report a LightGBM AUC–ROC of 0.8307; interpretation depends on the task-specific evaluation setup.</li>
+                  <li>Trained and benchmarked XGBoost, LightGBM, and scikit-learn classifiers; the best model (LightGBM) reached 0.83 AUC-ROC.</li>
                 </ul>
               </div>
             </section>

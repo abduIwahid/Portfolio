@@ -22,10 +22,10 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: 'medisight-ai', name: 'MediSight AI', category: 'Machine Learning', kind: 'ML engineering · Internship',
-    summary: 'An explainable healthcare risk-modelling workflow built around model evaluation, experiment tracking, and a clinician-facing interface.',
+    slug: 'medisight-ai', name: 'WhyRisk', category: 'Machine Learning', kind: 'ML engineering · Internship',
+    summary: 'A live explainable healthcare risk platform: a LightGBM diabetes risk model trained on 70,692 health records (BRFSS), with patient-level SHAP explanations and role-based access for patients, doctors, and admins.',
     problem: 'Healthcare prediction work is not only about producing a score. Models need reproducible experiments, understandable feature contributions, and clear boundaries around what a prediction can and cannot say.',
-    role: 'Machine Learning Intern at Ezitech Institute (Eziline Software House); contribution described in the project repository and CV.', status: 'Internship project · Jul–Sep 2026', featured: true,
+    role: 'Designed and built as Machine Learning Intern (Remote) at Ezitech Institute (Eziline Software House); maintained and improved since.', status: 'Built during internship · Jul–Sep 2026 · Live, actively maintained', featured: true,
     stack: ['Python', 'LightGBM', 'scikit-learn', 'SHAP', 'MLflow', 'FastAPI', 'Next.js', 'TypeScript', 'Supabase', 'Docker'],
     highlights: ['Model training and benchmarking across seven de-identified healthcare dataset domains', 'SHAP-based explanation workflow exposed through a FastAPI service', 'Experiment tracking with MLflow and an interface for reviewing model behaviour', 'MLOps-oriented drift monitoring and retraining workflow documented in the project'],
     approach: [
@@ -35,7 +35,7 @@ export const projects: Project[] = [
       { title: 'Serve the workflow', body: 'A FastAPI service connects model operations to a Next.js interface, with Supabase used for application data and supporting functionality.' }
     ],
     evidence: [
-      { label: 'Evaluation', value: '0.8307 AUC–ROC', note: 'LightGBM result stated in the CV/project notes; task-specific context should be checked before comparing with other models.' },
+      { label: 'Evaluation', value: '0.8222 AUC–ROC', note: 'LightGBM diabetes risk model on a held-out test split (BRFSS, 70,692 records); the live model card documents the full evaluation.' },
       { label: 'Datasets', value: '7 domains', note: 'De-identified healthcare dataset domains described in project documentation.' },
       { label: 'Reproducibility', value: 'MLflow', note: 'Experiment tracking is part of the documented stack.' }
     ],

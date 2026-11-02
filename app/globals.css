@@ -4560,7 +4560,7 @@ html.custom-cursor-on select {
     cursor: auto !important;
 }
 
-.custom-cursor {
+.custom-cursor-dot {
     position: fixed;
     top: 0;
     left: 0;
@@ -4574,11 +4574,24 @@ html.custom-cursor-on select {
     will-change: transform, opacity;
 }
 
-/* Expanded over interactive elements: filled white with difference
-   blending, so whatever sits under the circle inverts. */
-.custom-cursor.cursor-active {
+/* Hover circle: a SEPARATE full-size (64px) element, white with
+   difference blending, so whatever sits under it inverts. It is
+   never an upscaled small raster — it springs from scale 0.15 to 1
+   at its native size, which keeps its edge vector-crisp (the old
+   single 10px element scaled 6x rendered pixelated). */
+.custom-cursor-circle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
     background: #fff;
     mix-blend-mode: difference;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform, opacity;
 }
 
 /* ── Scroll text marquee (home, under the hero) ──────────────────────

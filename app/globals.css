@@ -420,87 +420,7 @@ button {
   padding-right: clamp(16px, 3.5vw, 56px);
 }
 
-/* ── Profile picture frame — clean with gray orbit rings ────────────── */
-.pfp-frame {
-  position: relative;
-  width: clamp(140px, 16vw, 240px);
-  height: clamp(140px, 16vw, 240px);
-  border-radius: 50%;
-  animation: pfp-float 5s ease-in-out infinite;
-  cursor: pointer;
-  transition: transform .35s ease;
-}
-
-/* SVG ring overlay — positioned to extend just beyond the image */
-.pfp-ring-svg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 180px;
-  height: 180px;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 0;
-  overflow: visible;
-}
-
-/* Image wrapper — clean circular crop */
-.pfp-img-wrap {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--surface);
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 4px 28px rgb(0 0 0 / .10);
-  border: 2px solid var(--border);
-}
-
-/* Ring spin animations */
-
-/* About page — no float animation */
-.pfp-frame-about {
-  animation: none;
-}
-
-.pfp-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  display: block;
-  filter: saturate(.92);
-  transition: transform .45s ease, filter .45s ease;
-  position: relative;
-  z-index: 1;
-}
-
-/* Float animation — gentle levitation */
-@keyframes pfp-float {
-
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-}@media (hover: hover) and (pointer: fine) {
-/* Hover — pause float, subtle scale on image */
-.pfp-frame:hover {
-  animation-play-state: paused;
-}}
-@media (hover: hover) and (pointer: fine) {
-
-.pfp-frame:hover .pfp-img {
-  transform: scale(1.06);
-  filter: saturate(1.08) brightness(1.03);
-}}
-
 /* Rings react to card hover */
-
 
 /* Availability badge */
 .pfp-badge {
@@ -536,9 +456,6 @@ button {
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .pfp-frame {
-    animation: none;
-  }
 
   .pfp-badge::before {
     animation: none;
@@ -1643,48 +1560,6 @@ button {
   font-weight: 700;
 }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: .9fr 1.1fr;
-  gap: clamp(40px, 8vw, 100px);
-  align-items: start;
-}
-
-.about-statement {
-  position: sticky;
-  top: 110px;
-}
-
-.about-statement h2 {
-  margin: 0;
-  font-size: clamp(29px, 4vw, 45px);
-  line-height: 1.15;
-  letter-spacing: -.06em;
-}
-
-.about-statement p {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.8;
-}
-
-.focus-list {
-  display: grid;
-  gap: 8px;
-  margin-top: 24px;
-}
-
-.focus-list span {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-}
-
-.focus-list svg {
-  color: var(--accent);
-}
-
 .timeline {
   border-top: 1px solid var(--border);
 }
@@ -2139,10 +2014,6 @@ button {
     gap: 32px;
   }
 
-  .about-grid {
-    gap: 48px;
-  }
-
   .article-shell {
     gap: 40px;
   }
@@ -2186,10 +2057,6 @@ button {
   .case-layout {
     grid-template-columns: minmax(0, 1fr) 210px;
     gap: 24px;
-  }
-
-  .about-grid {
-    gap: 36px;
   }
 
   .article-shell {
@@ -2304,11 +2171,6 @@ button {
 
   .hero-pfp-wrap {
     order: -1;
-  }
-
-  .pfp-frame {
-    width: 160px;
-    height: 160px;
   }
 
   .hero h1 {
@@ -2513,16 +2375,6 @@ button {
   .article-aside a {
     display: inline-block;
     margin-right: 10px;
-  }
-
-  /* About */
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .about-statement {
-    position: static;
   }
 
   .timeline-item {
@@ -3156,21 +3008,6 @@ button {
   color: var(--ink);
 }}
 
-/* ── About page — hero with PFP ─────────────────────────────────────── */
-.about-hero-row {
-  display: flex;
-  align-items: center;
-  gap: clamp(40px, 6vw, 90px);
-}
-
-.about-pfp-wrap {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-}
-
 /* ── GitHub snake animation ──────────────────────────────────────────── */
 .github-snake-wrap {
   margin-top: 28px;
@@ -3251,15 +3088,6 @@ button {
   border-color: var(--accent);
 }}
 
-/* ── Focus list hover ────────────────────────────────────────────────── */
-.focus-list span {
-  transition: color .2s ease;
-}@media (hover: hover) and (pointer: fine) {
-
-.focus-list span:hover {
-  color: var(--accent);
-}}
-
 /* ── CV actions ──────────────────────────────────────────────────────── */
 .cv-actions {
   display: flex;
@@ -3314,12 +3142,6 @@ button {
   .links-grid {
     grid-template-columns: 1fr;
   }
-
-  .about-hero-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 28px;
-  }
 }
 
 @media (max-width: 700px) {
@@ -3332,7 +3154,6 @@ button {
     display: none;
   }
 
-  /* about-pfp-wrap: size handled by pfp-frame breakpoint rules */
 }
 
 /* ── iPad portrait (768px) ───────────────────────────────────────────── */
@@ -3340,15 +3161,6 @@ button {
   .credential-grid {
     grid-template-columns: 1fr;
     gap: 10px;
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .about-statement {
-    position: static;
   }
 
   .stats-strip {
@@ -3382,10 +3194,6 @@ button {
   .timeline-item {
     grid-template-columns: 90px 1fr;
     gap: 16px;
-  }
-
-  .about-hero-row {
-    gap: 28px;
   }
 
   .contact-grid {
@@ -3551,11 +3359,6 @@ button {
   .hero h1 {
     font-size: clamp(72px, 6.5vw, 110px);
   }
-
-  .pfp-frame {
-    width: clamp(200px, 18vw, 300px);
-    height: clamp(200px, 18vw, 300px);
-  }
 }
 
 /* ── Brand logo – square with baked-in rounded corners ───────────────────── */
@@ -3570,7 +3373,6 @@ button {
   object-fit: cover;
   display: block;
 }
-
 
 /* ---------- Skeleton loading preview ---------- */
 .skel {
@@ -3641,7 +3443,6 @@ button {
 @media (prefers-reduced-motion: reduce) {
   .skel-block { animation: none; }
 }
-
 
 /* ---------- Scroll-driven project flow ---------- */
 .flow {
@@ -3836,7 +3637,6 @@ button {
     animation: none;
   }
 }
-
 
 /* ---------- Flow performance: lighter paint inside the scroll stage ---------- */
 .flow-card .project-card {
@@ -4047,7 +3847,6 @@ button {
   }
 }
 
-
 /* ---------- Intro loader (logo draw + fly into the dot) ---------- */
 .intro {
   position: fixed;
@@ -4173,7 +3972,6 @@ button {
   flex: none;
 }
 
-
 /* Flying dot finale: the logo's orange dot travels to screen centre, then the view passes through it */
 .intro-fly {
   position: fixed;
@@ -4283,7 +4081,6 @@ button {
     .hero-headline-wrap { padding-bottom: clamp(96px, 30vw, 130px); }
     .hero-cutout { height: clamp(140px, 42vw, 190px); }
 }
-
 
 /* ===== Floating pill header (2026-10-23, restored on its own at
    Wadi's request — the rest of the shell pass stays reverted) ===== */
@@ -4504,4 +4301,36 @@ button {
     .hero-glow {
         display: none !important;
     }
+}
+
+/* ===== About page: home-parity hero + sections (2026-11-02) ======
+   The About hero reuses the home hero-echo composition; only the
+   headline measure differs. Home's 11.2cqw is tuned to
+   "QUESTION THE RESULT." (8.27em); About's longest line,
+   "SERIOUS ABOUT THE SYSTEM.", measures ~9.9em, so 9.4cqw keeps it
+   at the same ~93% of the wrap width on every screen. */
+.hero-headline-wrap.about-headline-wrap .hg-line {
+    font-size: clamp(34px, 7.9vw, 110px); /* fallback where cqw is unsupported */
+    font-size: 9.4cqw;
+}
+
+/* Focus areas: principle-card family, four across on desktop */
+.principles-grid.focus-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+@media (max-width: 1024px) {
+    .principles-grid.focus-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 700px) {
+    .principles-grid.focus-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Timeline / credential content keeps the old column's readable
+   measure under the full-width section headings */
+.about-col {
+    max-width: 940px;
 }

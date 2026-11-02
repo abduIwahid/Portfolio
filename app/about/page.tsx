@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowUpRight, Check, Download, Github, Linkedin, Mail } from 'lucide-react';
 import { profile } from '@/content/profile';
 import { GitHubSnapshot } from '@/components/github-snapshot';
+import { StackBand } from '@/components/stack-band';
 import { Reveal } from '@/components/reveal';
 import { HeroGlow } from '@/components/pointer-glow';
 import { heroCutout } from '../hero-image';
@@ -30,6 +31,8 @@ export default function AboutPage() {
     </div></section>
 
     <section className="section"><div className="container"><Reveal className="reveal-auto"><div className="stats-strip"><div className="stat-item"><span className="stat-value">BS AI</span><span className="stat-label">COMSATS, Attock Campus</span></div><div className="stat-item"><span className="stat-value">ML + AI</span><span className="stat-label">Core technical interests</span></div><div className="stat-item"><span className="stat-value">8+</span><span className="stat-label">Projects documented here</span></div><div className="stat-item"><span className="stat-value">2026</span><span className="stat-label">ML internship experience</span></div></div></Reveal><p className="fine-print">Project count reflects the currently documented portfolio, not an independent measure of impact. Details and limits are provided on each project page.</p></div></section>
+
+    <StackBand />
 
     <section className="section"><div className="container"><Reveal className="reveal-auto"><div className="section-heading"><div><p className="eyebrow">What I care about</p><h2>Good engineering makes technical work easier to trust.</h2></div><p>I like projects where mathematical thinking meets practical implementation: define the task, build a sensible baseline, inspect errors, and explain the result without overselling it.</p></div></Reveal><div className="principles-grid focus-grid">{profile.focus.map((item, index) => <Reveal key={item} delay={index * 90}><article className="principle-card"><span className="principle-number"><Check size={15} /></span><h3>{item}</h3></article></Reveal>)}</div></div></section>
 

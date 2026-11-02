@@ -4708,6 +4708,98 @@ html.custom-cursor-on select {
     will-change: transform, opacity;
 }
 
+/* ── Tech-stack band (/about, below the stats strip) ───────────────
+   Constant-speed loop of Wadi's real tools (components/stack-band).
+   The track holds two identical sets and translates -50%; the mask
+   fades both edges. Icons are monochrome silhouettes in the site
+   ink: brightness(0) flattens any brand colour to black, opacity
+   sets the ~65% ink level; dark theme inverts to a light silhouette. */
+.stack-band {
+  overflow: hidden;
+  padding: 22px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+.stack-band-track {
+  display: flex;
+  width: max-content;
+  animation: stack-band-scroll 32s linear infinite;
+}
+
+.stack-band:hover .stack-band-track {
+  animation-play-state: paused;
+}
+
+.stack-band-set {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  padding-right: 56px;
+  flex: none;
+}
+
+.stack-band-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+}
+
+.stack-band-icon {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  filter: brightness(0);
+  opacity: .65;
+}
+
+:root[data-theme="dark"] .stack-band-icon {
+  filter: brightness(0) invert(1);
+}
+
+.stack-band-name {
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: color-mix(in srgb, var(--foreground) 78%, transparent);
+}
+
+@keyframes stack-band-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stack-band {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .stack-band-track {
+    animation: none;
+    width: auto;
+    flex-wrap: wrap;
+  }
+
+  .stack-band-set {
+    flex-wrap: wrap;
+    row-gap: 18px;
+  }
+
+  .stack-band-set + .stack-band-set {
+    display: none;
+  }
+}
+
 /* ── Scroll text marquee (home, under the hero) ──────────────────────
    Decorative Anton band: slow constant drift, hurries with scroll
    velocity, never reverses. Track is doubled and wraps at -50%. */

@@ -1103,6 +1103,46 @@ button {
   line-height: 1.7;
 }
 
+/* 404 pixel accents — Press Start 2P is loaded locally on the 404 page only */
+.page-heading>.nf-pixel-chip {
+  font-family: var(--font-pixel), 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--accent);
+  margin: 0 0 26px;
+}
+
+.nf-cursor {
+  display: inline-block;
+  margin-left: 8px;
+  animation: nf-blink 1.1s steps(1, end) infinite;
+}
+
+@keyframes nf-blink {
+  0%, 60% { opacity: 1; }
+  61%, 100% { opacity: 0; }
+}
+
+.page-heading>.nf-pixel-code {
+  font-family: var(--font-pixel), 'Courier New', monospace;
+  font-size: clamp(64px, 14vw, 150px);
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--foreground);
+  margin: 0 0 30px;
+}
+
+.nf-pixel-code .nf-accent {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-cursor {
+    animation: none;
+  }
+}
+
 .page-intro-row {
   display: flex;
   align-items: end;

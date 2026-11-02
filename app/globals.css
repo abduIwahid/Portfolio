@@ -5082,7 +5082,7 @@ html.custom-cursor-on select {
    so the full row fits with room to spare at 320px. The subtitle
    already steps aside at <=480px; this is the next step of the
    same ladder, not a new pattern. */
-@media (max-width: 420px) {
+@media (max-width: 388px) {
   .brand-name {
     display: none;
   }

@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { ArrowUpRight, Github, RefreshCw } from 'lucide-react';
 import { profile } from '@/content/profile';
 
-type Snapshot = { available: true; publicRepos: number; stars: number; forks: number; languages: { name: string; count: number }[]; updatedAt: string } | { available: false; message: string };
+type ContributionDay = { date: string; level: number; count: number };
+type Snapshot = { available: true; publicRepos: number; stars: number; forks: number; languages: { name: string; count: number }[]; contributions: { total: number; weeks: (ContributionDay | null)[][] } | null; updatedAt: string } | { available: false; message: string };
 
 export function GitHubSnapshot() {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
@@ -42,21 +43,26 @@ export function GitHubSnapshot() {
         : <div className="github-snapshot-state">{snapshot.message}</div>
     }
 
-    {/* GitHub contribution snake animation */}
-    <div className="github-snake-wrap">
-      <p className="eyebrow" style={{ marginBottom: 14 }}>Contribution activity</p>
-      <picture>
-        <source
-          media="(prefers-color-scheme: dark)"
-          srcSet="https://raw.githubusercontent.com/abduIwahid/abduIwahid/output/github-contribution-grid-snake-dark.svg"
-        />
-        <img
-          src="https://raw.githubusercontent.com/abduIwahid/abduIwahid/output/github-contribution-grid-snake.svg"
-          alt="GitHub contribution snake animation"
-          className="github-snake-img"
-          loading="lazy"
-        />
-      </picture>
-    </div>
+    {/* Contribution graph, rendered from the calendar data in the
+        snapshot so the cells take the site's own theme tokens and read
+        correctly under both the light and dark theme toggles. */}
+    {snapshot?.available && snapshot.contributions && (
+      <div className="github-contrib-wrap">
+        <p className="eyebrow" style={{ marginBottom: 14 }}>Contribution activity</p>
+        <div className="contrib-grid" role="img" aria-label={`GitHub contribution graph for the last year: ${snapshot.contributions.total} contributions`}>
+          {snapshot.contributions.weeks.map((week, weekIndex) => (
+            <div className="contrib-week" key={weekIndex}>
+              {week.map((day, dayIndex) => day
+                ? <span className="contrib-cell" key={dayIndex} data-level={day.level} title={`${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}`} />
+                : <span className="contrib-cell contrib-cell-empty" key={dayIndex} aria-hidden="true" />)}
+            </div>
+          ))}
+        </div>
+        <div className="contrib-foot">
+          <span>{snapshot.contributions.total} contributions in the last year</span>
+          <span className="contrib-legend">Less {[0, 1, 2, 3, 4].map((level) => <span className="contrib-cell" key={level} data-level={level} />)} More</span>
+        </div>
+      </div>
+    )}
   </div>;
 }

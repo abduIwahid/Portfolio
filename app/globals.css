@@ -3223,35 +3223,77 @@ button {
   color: var(--ink);
 }}
 
-/* ── GitHub snake animation ──────────────────────────────────────────── */
-.github-snake-wrap {
+/* Contribution graph: DOM cells coloured from theme tokens, so the
+   graph belongs to the site in both themes — level 0 is a quiet
+   neutral mixed from the foreground, levels 1–4 are the accent at
+   rising strength. No external image, no GitHub palette. */
+.github-contrib-wrap {
   margin-top: 28px;
   padding-top: 22px;
   border-top: 1px solid var(--border);
 }
 
-.github-snake-wrap picture {
+.contrib-grid {
+  display: flex;
+  gap: 3px;
+}
+
+.contrib-week {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  gap: 3px;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.contrib-cell {
   display: block;
-  padding: 16px;
-  background: var(--surface-alt);
-  border-radius: 8px;
-  border: 1px solid var(--border);
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--foreground) 8%, transparent);
 }
 
-.github-snake-img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-  display: block;
+.contrib-cell[data-level="1"] {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
-/* Light mode: boost contrast so green cells are clearly visible */
-:root:not([data-theme="dark"]) .github-snake-img {
-  filter: contrast(1.15) saturate(1.6);
+.contrib-cell[data-level="2"] {
+  background: color-mix(in srgb, var(--accent) 55%, transparent);
 }
 
-[data-theme="dark"] .github-snake-img {
-  filter: brightness(1.1) saturate(1.2);
+.contrib-cell[data-level="3"] {
+  background: color-mix(in srgb, var(--accent) 78%, transparent);
+}
+
+.contrib-cell[data-level="4"] {
+  background: var(--accent);
+}
+
+.contrib-cell-empty {
+  background: transparent;
+}
+
+.contrib-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.contrib-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.contrib-legend .contrib-cell {
+  width: 10px;
+  height: 10px;
+  aspect-ratio: auto;
 }@media (hover: hover) and (pointer: fine) {
 
 /* ── Timeline hover ──────────────────────────────────────────────────── */

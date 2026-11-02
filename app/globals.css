@@ -836,7 +836,7 @@ button {
   font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
   font-size: clamp(20px, 5.4vw, 25px);
   font-weight: 400;
-  letter-spacing: 0.015em;
+  letter-spacing: 0;
   text-transform: uppercase;
   line-height: 1.1;
   min-width: 0;
@@ -1129,7 +1129,12 @@ button {
 }
 
 .page-heading h1 {
+  font-family: var(--font-display), 'Arial Narrow', sans-serif;
   font-size: clamp(40px, 6vw, 72px);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .page-heading>p {
@@ -1297,10 +1302,12 @@ button {
 .case-hero h1 {
   max-width: 900px;
   margin: 0;
+  font-family: var(--font-display), 'Arial Narrow', sans-serif;
   font-size: clamp(42px, 7vw, 84px);
   line-height: .99;
-  letter-spacing: -.075em;
-  font-weight: 650;
+  letter-spacing: 0;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
 .case-deck {
@@ -1495,9 +1502,12 @@ button {
 
 .article-header h1 {
   margin: 0;
+  font-family: var(--font-display), 'Arial Narrow', sans-serif;
   font-size: clamp(40px, 6.4vw, 74px);
+  font-weight: 400;
   line-height: 1.02;
-  letter-spacing: -.07em;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .article-header .article-deck {
@@ -3536,10 +3546,10 @@ button {
 .skel-block {
   background: color-mix(in srgb, var(--foreground) 9%, transparent);
   border-radius: 10px;
-  animation: skel-pulse 1.5s ease-in-out infinite;
+  animation: skel-shimmer 1.5s ease-in-out infinite;
 }
 
-@keyframes skel-pulse {
+@keyframes skel-shimmer {
   0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
 }
@@ -3735,7 +3745,7 @@ button {
   font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
   font-size: clamp(28px, 6vw, 40px);
   font-weight: 400;
-  letter-spacing: 0.015em;
+  letter-spacing: 0;
   text-transform: uppercase;
   line-height: 1.05;
   margin: 8px 40px 10px 0;
@@ -3813,7 +3823,7 @@ button {
   font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
   font-size: clamp(38px, 8vw, 60px);
   font-weight: 400;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   text-transform: uppercase;
   line-height: 1;
 }
@@ -4142,10 +4152,10 @@ button {
 }
 
 .intro-fly-pulsing {
-  animation: intro-fly-pulse 0.55s ease-in-out infinite alternate;
+  animation: intro-fly-glow 0.55s ease-in-out infinite alternate;
 }
 
-@keyframes intro-fly-pulse {
+@keyframes intro-fly-glow {
   from {
     box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 55%, transparent), 0 0 38px color-mix(in srgb, var(--accent) 30%, transparent);
   }
@@ -4181,7 +4191,7 @@ button {
     font-family: var(--font-display), 'Arial Narrow', sans-serif;
     font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.01em;
+    letter-spacing: 0;
 }
 .hg-line {
     display: block;

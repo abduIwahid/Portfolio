@@ -1,13 +1,15 @@
 import Link from 'next/link';
 import { ArrowUpRight, Home } from 'lucide-react';
 import { Press_Start_2P } from 'next/font/google';
+import { DotsField } from '@/components/dots-field';
 
 const pixelFont = Press_Start_2P({ weight: '400', subsets: ['latin'], variable: '--font-pixel' });
 
 export default function NotFound() {
   return (
-    <section className={`page-hero ${pixelFont.variable}`}>
-      <div className="container page-heading">
+    <section className={`page-hero ${pixelFont.variable}`} style={{ position: 'relative', overflow: 'hidden' }}>
+      <DotsField />
+      <div className="container page-heading" style={{ position: 'relative' }}>
         <p className="nf-pixel-chip">
           GAME OVER<span className="nf-cursor" aria-hidden="true">▮</span>
         </p>

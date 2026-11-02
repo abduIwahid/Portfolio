@@ -22,6 +22,7 @@
   --footer-border: #383838;
   --shadow-sm: 0 1px 2px rgb(0 0 0 / .04);
   --shadow-md: 0 1px 2px rgb(0 0 0 / .05), 0 12px 32px rgb(0 0 0 / .07);
+  --ease-house: cubic-bezier(.22, .8, .3, 1);
   --content: 1200px;
 }
 
@@ -208,14 +209,34 @@ button {
 }
 
 .nav-link {
+  position: relative;
   color: var(--muted);
   font-size: 13px;
   font-weight: 550;
-  transition: color .2s ease;
+  transition: color .25s var(--ease-house);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 .nav-link:hover {
   color: var(--foreground);
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
 }}
+.nav-link.active::after {
+  transform: scaleX(0);
+}
 .nav-link.active {
   color: var(--foreground);
 }
@@ -236,7 +257,7 @@ button {
   border-radius: 5px;
   font-size: 13px;
   font-weight: 600;
-  transition: background .2s ease, border-color .2s ease;
+  transition: background .25s var(--ease-house), border-color .25s var(--ease-house), transform .25s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .nav-contact:hover {
@@ -265,11 +286,13 @@ button {
   border-radius: 6px;
   background: var(--surface);
   cursor: pointer;
-  transition: border-color .2s ease, background .2s ease;
+  transition: border-color .25s var(--ease-house), background .25s var(--ease-house), transform .25s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .icon-button:hover {
   border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: scale(1.06);
 }}
 
 .mobile-menu-toggle {
@@ -347,7 +370,7 @@ button {
   font-size: 13px;
   font-weight: 650;
   cursor: pointer;
-  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+  transition: transform .25s var(--ease-house), background .25s var(--ease-house), border-color .25s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .button:hover {
@@ -566,11 +589,20 @@ button {
   font-size: 13px;
   font-weight: 650;
   white-space: nowrap;
-}
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: left calc(100% - 1px);
+  background-size: 0% 2px;
+  transition: background-size .3s var(--ease-house);
+}@media (hover: hover) and (pointer: fine) {
+
+.text-link:hover {
+  background-size: calc(100% - 24px) 2px;
+}}
 
 .text-link svg,
 .project-card-bottom a svg {
-  transition: transform .2s ease;
+  transition: transform .25s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .text-link:hover svg,
@@ -593,7 +625,7 @@ button {
   border-radius: 12px;
   background: linear-gradient(180deg, var(--surface), color-mix(in srgb, var(--foreground) 3.5%, var(--surface)));
   box-shadow: 0 1px 2px color-mix(in srgb, var(--foreground) 6%, transparent), 0 12px 28px -10px color-mix(in srgb, var(--foreground) 16%, transparent), inset 0 1px 0 color-mix(in srgb, var(--background) 60%, transparent);
-  transition: transform .22s ease, border-color .22s ease, box-shadow .25s ease;
+  transition: transform .3s var(--ease-house), border-color .3s var(--ease-house), box-shadow .35s var(--ease-house);
   cursor: pointer;
   min-width: 0;
 }
@@ -615,7 +647,7 @@ button {
   display: block;
   object-fit: cover;
   object-position: top center;
-  transition: transform .35s ease;
+  transition: transform .5s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .project-card:hover .project-shot img {
@@ -689,7 +721,7 @@ button {
   font-weight: 600;
   letter-spacing: .02em;
   white-space: nowrap;
-  transition: background .2s ease, color .2s ease;
+  transition: background .25s var(--ease-house), color .25s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .project-live-btn:hover {
@@ -810,8 +842,8 @@ button {
 }@media (hover: hover) and (pointer: fine) {
 
 .project-card:hover {
-  transform: translateY(-7px) scale(1.015);
-  border-color: var(--border-strong);
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
   box-shadow: 0 2px 3px color-mix(in srgb, var(--foreground) 8%, transparent), 0 26px 52px -14px color-mix(in srgb, var(--foreground) 28%, transparent), inset 0 1px 0 color-mix(in srgb, var(--background) 60%, transparent);
 }}
 
@@ -853,13 +885,14 @@ button {
   border: 1px solid var(--border);
   border-radius: 50%;
   color: var(--muted);
-  transition: background .2s ease, border-color .2s ease, color .2s ease;
+  transition: background .25s var(--ease-house), border-color .25s var(--ease-house), color .25s var(--ease-house), transform .25s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .project-github-btn:hover {
-  background: var(--surface-alt);
+  background: var(--accent-soft);
   border-color: var(--border-strong);
   color: var(--foreground);
+  transform: scale(1.06);
 }}
 
 .project-index {
@@ -889,19 +922,20 @@ button {
   margin-left: 0;
   display: grid;
   place-items: center;
-  width: 29px;
-  height: 29px;
+  width: 34px;
+  height: 34px;
   border: 1px solid var(--border);
   border-radius: 50%;
   flex-shrink: 0;
   color: var(--muted);
-  transition: background .2s ease, border-color .2s ease, color .2s ease;
+  transition: background .25s var(--ease-house), border-color .25s var(--ease-house), color .25s var(--ease-house), transform .25s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .project-arrow-link:hover {
   background: var(--accent);
   border-color: var(--accent);
   color: var(--ink);
+  transform: scale(1.06);
 }}@media (hover: hover) and (pointer: fine) {
 
 .project-card:hover .project-arrow-link {
@@ -910,8 +944,14 @@ button {
 
 .project-card-body {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 16px 20px 20px;
   min-width: 0;
+}
+
+.project-card-body .tag-row {
+  margin-top: auto;
 }
 
 .project-overline {
@@ -1069,7 +1109,7 @@ button {
 
 .writing-row {
   display: grid;
-  grid-template-columns: 150px minmax(0, 1fr) 44px;
+  grid-template-columns: 150px minmax(0, 1fr) 38px;
   align-items: center;
   gap: 25px;
   padding: 23px 0;
@@ -1108,12 +1148,13 @@ button {
   height: 38px;
   border: 1px solid var(--border);
   border-radius: 50%;
-  transition: background .2s ease, border-color .2s ease;
+  transition: background .25s var(--ease-house), border-color .25s var(--ease-house), transform .25s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .writing-row:hover .writing-arrow {
   background: var(--accent-soft);
   border-color: var(--accent);
+  transform: scale(1.06);
 }}
 
 .page-hero {
@@ -1125,7 +1166,7 @@ button {
 }
 
 .page-heading .eyebrow {
-  margin-bottom: 17px;
+  margin-bottom: 16px;
 }
 
 .page-heading h1 {
@@ -1139,7 +1180,7 @@ button {
 
 .page-heading>p {
   max-width: 680px;
-  margin: 19px 0 0;
+  margin: 20px 0 0;
   color: var(--muted);
   font-size: 17px;
   line-height: 1.7;
@@ -1233,7 +1274,7 @@ button {
   color: var(--muted);
   font-size: 11px;
   cursor: pointer;
-  transition: border-color .2s ease, background .2s ease, color .2s ease;
+  transition: border-color .25s var(--ease-house), background .25s var(--ease-house), color .25s var(--ease-house), transform .25s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 .filter-chip:hover {
   border-color: var(--foreground);
@@ -1312,7 +1353,7 @@ button {
 
 .case-deck {
   max-width: 760px;
-  margin: 23px 0 0;
+  margin: 20px 0 0;
   color: var(--muted);
   font-size: clamp(17px, 2vw, 21px);
   line-height: 1.65;
@@ -1358,6 +1399,7 @@ button {
 
 .case-section:first-child {
   border-top: 0;
+  padding-top: 22px;
 }
 
 .case-section h2 {
@@ -1466,7 +1508,7 @@ button {
   border: 1px solid var(--border);
   border-radius: 6px;
   background: var(--surface);
-  transition: transform .2s ease, border-color .2s ease, box-shadow .22s ease;
+  transition: transform .25s var(--ease-house), border-color .25s var(--ease-house), box-shadow .3s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .related-card:hover {
@@ -1555,7 +1597,7 @@ button {
 .article-aside {
   position: sticky;
   top: 105px;
-  padding-top: 28px;
+  padding-top: 50px;
 }
 
 .article-aside h3 {
@@ -1698,7 +1740,7 @@ button {
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--surface);
-  transition: transform .2s ease, border-color .2s ease, box-shadow .22s ease;
+  transition: transform .25s var(--ease-house), border-color .25s var(--ease-house), box-shadow .3s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .credential-card:hover {
@@ -1802,13 +1844,6 @@ button {
 
 .cv-item p {
   margin: 4px 0;
-}
-
-.cv-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-bottom: 20px;
 }
 
 .cv-footnote {
@@ -2035,7 +2070,7 @@ button {
   border-radius: 50%;
   background: var(--accent);
   color: var(--ink);
-  transition: transform .2s ease;
+  transition: transform .25s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .round-arrow:hover {
@@ -2068,11 +2103,12 @@ button {
   place-items: center;
   width: 40px;
   height: 40px;
-  transition: color .2s ease;
+  transition: color .25s var(--ease-house), transform .25s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .footer-links a:hover {
   color: var(--accent);
+  transform: scale(1.06);
 }}
 
 /* ── Large desktop / wide zoom-out (1280px+) ─────────────────────────── */
@@ -2175,7 +2211,7 @@ button {
   }
 
   .writing-row {
-    grid-template-columns: 120px minmax(0, 1fr) 44px;
+    grid-template-columns: 120px minmax(0, 1fr) 38px;
     gap: 18px;
   }
 
@@ -2709,7 +2745,7 @@ button {
 .closing-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 9px;
+  gap: 10px;
 }
 
 .metric-playground,
@@ -3047,7 +3083,7 @@ button {
   background: var(--surface);
   text-decoration: none;
   color: var(--foreground);
-  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  transition: transform .25s var(--ease-house), border-color .25s var(--ease-house), box-shadow .3s var(--ease-house);
   cursor: pointer;
 }@media (hover: hover) and (pointer: fine) {
 
@@ -3173,7 +3209,7 @@ button {
 
 /* ── Principle card hover ────────────────────────────────────────────── */
 .principle-card {
-  transition: transform .2s ease, border-color .2s ease, box-shadow .22s ease;
+  transition: transform .25s var(--ease-house), border-color .25s var(--ease-house), box-shadow .3s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .principle-card:hover {
@@ -3184,7 +3220,7 @@ button {
 
 /* ── Writing row hover ───────────────────────────────────────────────── */
 .writing-row {
-  transition: background .2s ease;
+  transition: background .25s var(--ease-house), transform .25s var(--ease-house);
   border-radius: 6px;
   margin: 0 -12px;
   padding-left: 12px;
@@ -3193,6 +3229,7 @@ button {
 
 .writing-row:hover {
   background: var(--surface-alt);
+  transform: translateY(-2px);
 }}
 
 /* ── Stat item hover ─────────────────────────────────────────────────── */
@@ -3206,7 +3243,7 @@ button {
 
 /* ── Contact link hover ──────────────────────────────────────────────── */
 .contact-link {
-  transition: transform .2s ease, border-color .2s ease;
+  transition: transform .25s var(--ease-house), border-color .25s var(--ease-house);
 }@media (hover: hover) and (pointer: fine) {
 
 .contact-link:hover {
@@ -4310,3 +4347,161 @@ button {
 .reveal-fill > a { height: 100%; }
 .eyebrow-spaced { margin-top: 42px; }
 @media print { .reveal { opacity: 1 !important; transform: none !important; transition: none !important; } }
+
+/* ===== Motion & alignment round (2026-11-02) =====================
+   Pointer glow layers, page transitions, touch press feedback and
+   the placement fixes from the full-site audit. All motion uses the
+   house ease (--ease-house); nothing here uses backdrop-filter. */
+
+/* Fixed glow that trails the pointer behind all content. Negative
+   z-index keeps it below every element while staying above the
+   page background; the gradient itself carries the ~0.07 tint. */
+.pointer-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1200px;
+    height: 1200px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 7%, transparent), transparent 68%);
+    pointer-events: none;
+    z-index: -1;
+    opacity: .5;
+    will-change: transform, opacity;
+}
+
+/* Hero-scoped glow (stronger tint, follows the pointer over the hero) */
+.hero {
+    position: relative;
+}
+.hero-stage {
+    position: relative;
+    z-index: 1;
+}
+.hero-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 12%, transparent), transparent 68%);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+/* Route-change entrance (app/template.tsx) */
+@keyframes page-enter {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.page-enter {
+    /* backwards fill only: after the entrance finishes no transform
+       persists on the wrapper, so position: fixed descendants (the
+       project-flow modal) keep viewport positioning. */
+    animation: page-enter .3s var(--ease-house) backwards;
+}
+
+/* Eyebrow rhythm inside page heroes: one gap for every page */
+.case-hero .eyebrow,
+.article-header .eyebrow {
+    margin-bottom: 16px;
+}
+
+/* Touch devices: no hover, so tappable elements answer with a press */
+@media (hover: none) {
+    .button:active,
+    .nav-contact:active,
+    .filter-chip:active {
+        transform: scale(.98);
+    }
+
+    .project-card:active,
+    .principle-card:active,
+    .links-card:active,
+    .credential-card:active,
+    .related-card:active,
+    .contact-link:active {
+        transform: scale(.98);
+    }
+
+    .project-card:active {
+        border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    }
+
+    .icon-button:active,
+    .project-github-btn:active,
+    .project-arrow-link:active,
+    .links-card-arrow:active {
+        transform: scale(.94);
+        background: var(--accent-soft);
+    }
+
+    .writing-row:active {
+        background: var(--surface-alt);
+    }
+}
+
+/* Dark CTA band: centre the text block and its round button as one
+   unit on mobile (the button was previously hidden below 700px) */
+@media (max-width: 700px) {
+    .footer-top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 22px;
+    }
+
+    .footer-top .eyebrow {
+        justify-content: center;
+    }
+
+    .round-arrow {
+        display: grid;
+    }
+}
+
+/* Reduced motion: every new effect off, hover lifts neutralised */
+@media (prefers-reduced-motion: reduce) {
+    .page-enter {
+        animation: none;
+    }
+
+    .pointer-glow,
+    .hero-glow {
+        display: none;
+    }
+
+    .project-card:hover,
+    .principle-card:hover,
+    .links-card:hover,
+    .credential-card:hover,
+    .related-card:hover,
+    .contact-link:hover,
+    .writing-row:hover,
+    .icon-button:hover,
+    .project-github-btn:hover,
+    .project-arrow-link:hover,
+    .writing-row:hover .writing-arrow,
+    .footer-links a:hover,
+    .nav-link:hover::after {
+        transform: none;
+    }
+}
+
+@media print {
+    .pointer-glow,
+    .hero-glow {
+        display: none !important;
+    }
+}

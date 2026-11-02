@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 /**
  * Magnetic hover for primary calls to action.
  *
- * Every `.button-primary` and the header `.nav-contact` pill gently
+ * Every `.button-primary` and the header `.hire-button` gently
  * translates toward the cursor (max ~4px) while hovered and eases back
  * on leave. Fine pointers only, disabled under prefers-reduced-motion.
  * A MutationObserver rebinds buttons that appear after client-side
@@ -60,7 +60,7 @@ export function MagneticButtons() {
     };
 
     const scan = () => {
-      document.querySelectorAll<HTMLElement>('.button-primary, .nav-contact').forEach(bind);
+      document.querySelectorAll<HTMLElement>('.button-primary, .hire-button').forEach(bind);
     };
     scan();
     const observer = new MutationObserver(scan);

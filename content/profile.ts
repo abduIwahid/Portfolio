@@ -14,7 +14,7 @@ export const profile = {
   ],
   experience: [{ title: 'Machine Learning Intern (Remote)', organization: 'Ezitech Institute (Eziline Software House)', location: 'Islamabad, Pakistan', period: 'Jul – Sep 2026', details: ['Built the WhyRisk (formerly MediSight AI) platform during this internship, across model benchmarking, explainability, and ML operations workflows.', 'Used LightGBM, scikit-learn, SHAP, MLflow, and FastAPI within a broader web application.', 'Trained and benchmarked classifiers across seven de-identified healthcare datasets; the best model (LightGBM) reached 0.83 AUC-ROC.'] }],
   credentials: [
-    { title: 'Google AI Essentials Specialization', issuer: 'Google Career Certificates · Coursera', period: 'May 2026' },
+    { title: 'Google AI Essentials', issuer: 'Google Career Certificates · Coursera', period: 'May 2026' },
     { title: 'AI & Machine Learning Developer', issuer: 'Programming Hub', period: 'Feb – Apr 2026' }
   ],
   activities: [

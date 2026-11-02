@@ -5,25 +5,26 @@ import { LogoMark } from './logo-mark';
 
 const DRAW_MS = 1650;
 const HOLD_MS = 240;
-const TRAVEL_MS = 680;
-const THROUGH_MS = 780;
+/* Finale length preserves the old travel (680ms) + through (780ms)
+   beats as a single fade: the filled mark and stage fade out, then the
+   root fades. Lock-release and root-fade moments inside the finale are
+   placed at the same absolute times they had in the old timeline. */
+const FINALE_MS = 1460;
 
-type Phase = 'draw' | 'hold' | 'travel' | 'through';
+type Phase = 'draw' | 'hold' | 'finale';
 
 /**
  * One-time-per-session intro: the AW brand mark IS the loading bar — a
  * full-colour copy fills left to right over a 13% ghost copy, driven by
  * the same rAF progress that used to draw the old glyph. Once full, the
- * accent disc at the mark's tail drifts to the centre of the screen —
- * and the view flies through it into the portfolio.
+ * mark holds briefly, then the filled logo and stage fade out into the
+ * portfolio.
  */
 export function IntroLoader() {
   const [gone, setGone] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const stageWrapRef = useRef<HTMLDivElement>(null);
-  const markRef = useRef<HTMLDivElement>(null);
   const fillRef = useRef<HTMLDivElement>(null);
-  const flyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let seen = false;
@@ -55,39 +56,13 @@ export function IntroLoader() {
     let phase: Phase = 'draw';
     const start = performance.now();
     let phaseStart = start;
-    // Finale geometry, captured when the travel phase begins
-    let anchorX = 0;
-    let anchorY = 0;
-    let moveX = 0;
-    let moveY = 0;
-    let coverScale = 60;
     let overflowRestored = false;
 
     const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
-    const easeIn = (t: number) => t * t * t;
 
     const finish = () => {
       if (!overflowRestored) document.body.style.overflow = '';
       setGone(true);
-    };
-
-    const setupTravel = () => {
-      const mark = markRef.current;
-      const fly = flyRef.current;
-      if (!mark || !fly) return;
-      const r = mark.getBoundingClientRect();
-      // The disc starts on the mark's tail flick — the detached stroke at
-      // the right end of the glyph, centred in its bounding area (the old
-      // glyph's orange dot sat at the same end of its logo).
-      anchorX = r.left + r.width * 0.89;
-      anchorY = r.top + r.height * 0.46;
-      moveX = window.innerWidth / 2 - anchorX;
-      moveY = window.innerHeight / 2 - anchorY;
-      coverScale = (Math.max(window.innerWidth, window.innerHeight) * 1.35) / 20;
-      fly.style.left = `${anchorX}px`;
-      fly.style.top = `${anchorY}px`;
-      fly.style.opacity = '1';
-      fly.classList.add('intro-fly-pulsing');
     };
 
     const tick = (now: number) => {
@@ -101,37 +76,25 @@ export function IntroLoader() {
         }
       } else if (phase === 'hold') {
         if (now - phaseStart >= HOLD_MS) {
-          phase = 'travel';
+          phase = 'finale';
           phaseStart = now;
-          setupTravel();
         }
-      } else if (phase === 'travel') {
-        const t = Math.min(1, (now - phaseStart) / TRAVEL_MS);
+      } else {
+        const t = Math.min(1, (now - phaseStart) / FINALE_MS);
         const e = easeInOut(t);
-        const fly = flyRef.current;
-        if (fly) {
-          fly.style.transform = `translate(-50%, -50%) translate(${moveX * e}px, ${moveY * e}px) scale(${1 + e * 0.55})`;
-        }
         const wrap = stageWrapRef.current;
         if (wrap) {
           wrap.style.opacity = `${1 - e * 0.88}`;
           wrap.style.transform = `scale(${1 - e * 0.04})`;
         }
-        if (t >= 1) {
-          phase = 'through';
-          phaseStart = now;
-          fly?.classList.remove('intro-fly-pulsing');
-        }
-      } else {
-        const t = Math.min(1, (now - phaseStart) / THROUGH_MS);
-        const e = easeIn(t);
-        const fly = flyRef.current;
-        if (fly) {
-          fly.style.transform = `translate(-50%, -50%) translate(${moveX}px, ${moveY}px) scale(${1.55 + e * coverScale})`;
-        }
+        /* Root fade starts 1164ms into the finale and the scroll lock
+           releases at 1304ms — the same absolute moments the old
+           through phase faded (t > 0.62 of 780ms after a 680ms travel)
+           and restored overflow (t > 0.8), so total runtime and the
+           Lenis interplay are unchanged. */
         const root = rootRef.current;
-        if (root && t > 0.62) root.style.opacity = `${1 - (t - 0.62) / 0.38}`;
-        if (t > 0.8 && !overflowRestored) {
+        if (root && t > 0.797) root.style.opacity = `${1 - (t - 0.797) / (1 - 0.797)}`;
+        if (t > 0.893 && !overflowRestored) {
           overflowRestored = true;
           document.body.style.overflow = '';
         }
@@ -146,18 +109,19 @@ export function IntroLoader() {
 
     const skip = () => {
       if (phase === 'draw' || phase === 'hold') {
-        // Fill the mark instantly, jump to the centred disc and fly through
+        /* Fill the mark instantly and jump into the finale at the point
+           that leaves the same remaining runtime the old skip had
+           (65% of the old 780ms through phase = 507ms, i.e. finale
+           t = 1 - 507/1460 ≈ 0.653), with the stage already faded to
+           that moment's value. */
         fill.style.width = '100%';
-        setupTravel();
-        const fly = flyRef.current;
-        if (fly) {
-          fly.style.transform = `translate(-50%, -50%) translate(${moveX}px, ${moveY}px) scale(1.55)`;
-          fly.classList.remove('intro-fly-pulsing');
-        }
         const wrap = stageWrapRef.current;
-        if (wrap) wrap.style.opacity = '0.12';
-        phase = 'through';
-        phaseStart = performance.now() - THROUGH_MS * 0.35;
+        if (wrap) {
+          wrap.style.opacity = '0.332';
+          wrap.style.transform = 'scale(0.9696)';
+        }
+        phase = 'finale';
+        phaseStart = performance.now() - FINALE_MS * 0.653;
       }
     };
     window.addEventListener('pointerdown', skip);
@@ -173,7 +137,7 @@ export function IntroLoader() {
   return (
     <div className="intro" ref={rootRef} aria-hidden="true">
       <div className="intro-stage" ref={stageWrapRef}>
-        <div className="intro-mark" ref={markRef}>
+        <div className="intro-mark">
           <div className="intro-mark-base">
             <LogoMark className="intro-mark-svg" />
           </div>
@@ -184,7 +148,6 @@ export function IntroLoader() {
           </div>
         </div>
       </div>
-      <div className="intro-fly" ref={flyRef} />
     </div>
   );
 }

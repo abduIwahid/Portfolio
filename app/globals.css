@@ -3931,6 +3931,16 @@ button {
   white-space: nowrap;
 }
 
+.cv2-item-head-actions {
+  align-items: center;
+}
+
+.cv2-item-actions {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
 .cv2-org {
   color: var(--accent);
   font-weight: 600;

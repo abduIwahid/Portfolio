@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowUpRight, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, ExternalLink, Github } from 'lucide-react';
 import { profile } from '@/content/profile';
 import { projects } from '@/content/projects';
 import { Reveal } from '@/components/reveal';
@@ -132,16 +132,15 @@ export default function CvPage() {
               <h2>Projects</h2>
               {cvProjects.map((project) => (
                 <div className="cv2-item" key={project.slug}>
-                  <div className="cv2-item-head">
+                  <div className="cv2-item-head cv2-item-head-actions">
                     <strong>{project.name}</strong>
-                    <span>{project.category}</span>
+                    <span className="cv2-item-actions">
+                      {project.repo ? <a href={project.repo} target="_blank" rel="noreferrer" className="project-github-btn" aria-label={`GitHub repo for ${project.name}`}><Github size={15} /></a> : null}
+                      {project.demo ? <a href={project.demo} target="_blank" rel="noreferrer" className="project-github-btn" aria-label={`Live demo of ${project.name}`}><ExternalLink size={15} /></a> : null}
+                    </span>
                   </div>
                   <p>{project.summary}</p>
                   <p className="cv2-stack">{project.stack.slice(0, 5).join(' · ')}</p>
-                  <p className="cv2-links">
-                    {project.repo ? <a href={project.repo} target="_blank" rel="noreferrer">Source repository <ArrowUpRight size={10} style={{ verticalAlign: 'middle' }} /></a> : <span>Source repository link not confirmed</span>}
-                    {project.demo ? <> · <a href={project.demo} target="_blank" rel="noreferrer">Live demo <ArrowUpRight size={10} style={{ verticalAlign: 'middle' }} /></a></> : null}
-                  </p>
                 </div>
               ))}
             </section>

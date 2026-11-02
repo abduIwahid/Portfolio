@@ -2003,6 +2003,48 @@ button {
   font-size: 11px;
 }
 
+/* Giant faded wordmark (2026-11-02): the footer's closing signature.
+   Letters rise once, staggered, when the band scrolls into view
+   (components/footer-wordmark.tsx). The footer is ink-dark in both
+   themes, so the faded signature is mixed from the footer's own
+   paper colour at 12% — var(--foreground) at 12% would composite
+   to the footer background itself in the light theme (invisible). */
+.footer-wordmark {
+  overflow: hidden;
+  padding: 36px 16px 28px;
+  text-align: center;
+  font-family: var(--font-display), 'Arial Narrow', sans-serif;
+  font-size: clamp(64px, 15.5vw, 240px);
+  line-height: .9;
+  letter-spacing: 0;
+  white-space: nowrap;
+  color: color-mix(in srgb, var(--paper) 12%, transparent);
+  user-select: none;
+}
+
+.wm-letter {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.wm-letter-in {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform .7s var(--ease-house);
+}
+
+.footer-wordmark.in-view .wm-letter-in {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wm-letter-in {
+    transform: none;
+    transition: none;
+  }
+}
+
 .footer-note {
   margin-left: auto;
 }

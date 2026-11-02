@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import { profile } from '@/content/profile';
+import { FooterWordmark } from './footer-wordmark';
 export function SiteFooter() {
   return <footer className="site-footer">
     <div className="container footer-top">
@@ -17,5 +18,6 @@ export function SiteFooter() {
         <Link href="/contact" aria-label="Contact page"><ArrowUpRight size={17} /></Link>
       </div>
     </div>
+    <FooterWordmark />
   </footer>;
 }

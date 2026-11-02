@@ -4374,3 +4374,168 @@ button {
 .about-col {
     max-width: 940px;
 }
+
+/* ===== Centre-alignment pass (2026-11-02) ==========================
+   The display layer centres, the reading layer stays left: page
+   heroes, section headings, case/article heroes, the home closing
+   CTA and the contact column are centred; body copy, card
+   internals, list rows, timelines, form fields and the CV sheet
+   keep their left alignment. */
+
+/* Page heroes: every .page-heading surface gets the same centred
+   composition (writing, cv, contact, links, privacy, 404, and the
+   projects heading now that the side note sits beneath it). */
+.page-heading {
+    margin-inline: auto;
+    text-align: center;
+}
+
+.page-heading .eyebrow {
+    justify-content: center;
+}
+
+.page-heading>p {
+    margin-inline: auto;
+}
+
+.page-heading .hero-actions {
+    justify-content: center;
+}
+
+/* Privacy embeds its reading column inside the heading block: the
+   column itself centres, its text stays left. */
+.page-heading .case-content {
+    margin-inline: auto;
+    text-align: left;
+}
+
+/* Projects: the side note moves from a right rail to a centred
+   footnote under the centred heading. */
+.page-side-note-center {
+    max-width: 560px;
+    margin: 26px auto 0;
+    padding: 14px 0 0;
+    border-left: 0;
+    border-top: 2px solid var(--accent);
+    text-align: center;
+}
+
+/* Section headings: centred title block with a centred intro line;
+   the grids and lists below them are untouched. */
+.section-heading {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.section-heading .eyebrow {
+    justify-content: center;
+}
+
+.section-heading p {
+    max-width: 640px;
+}
+
+/* Case-study and article heroes: headlines, decks and meta/action
+   rows centre; breadcrumbs stay at the top-left as wayfinding, and
+   the body layouts below are unchanged. */
+.case-hero {
+    text-align: center;
+}
+
+.case-hero .eyebrow {
+    justify-content: center;
+}
+
+.case-hero h1 {
+    margin-inline: auto;
+}
+
+.case-deck {
+    margin: 20px auto 0;
+}
+
+.case-meta,
+.case-actions {
+    justify-content: center;
+}
+
+.article-header {
+    text-align: center;
+}
+
+.article-header .eyebrow {
+    justify-content: center;
+}
+
+.article-header .article-deck {
+    margin: 20px auto 0;
+}
+
+.article-meta {
+    justify-content: center;
+}
+
+/* Home closing CTA: ends the page on the same centred note as the
+   hero that opens it. */
+.closing-cta {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+}
+
+.closing-cta .eyebrow {
+    justify-content: center;
+}
+
+.closing-actions {
+    justify-content: center;
+}
+
+/* Contact: one centred narrow column. The heading block centres;
+   the link cards and every form label/field stay left inside it. */
+.contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 780px;
+    margin-inline: auto;
+}
+
+.contact-details {
+    text-align: center;
+}
+
+.contact-details>p {
+    max-width: 560px;
+    margin-inline: auto;
+}
+
+/* CV page: the Download CV action row centres under the centred
+   heading; the CV sheet itself is untouched. */
+.cv-actions {
+    justify-content: center;
+}
+
+/* Button alignment discipline: action rows align their buttons on
+   one centre line, and buttons keep one height (min-height on
+   .button) with icon and label centred as a unit, so a primary and
+   a secondary button never step against each other. */
+.hero-actions,
+.case-actions,
+.closing-actions,
+.cv-actions {
+    align-items: center;
+}
+
+@media (max-width: 560px) {
+
+    /* Centred hero actions stack as equal full-width buttons. */
+    .hero-actions-center {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-actions-center .button {
+        width: 100%;
+    }
+}

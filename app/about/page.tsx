@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, Check, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowUpRight, Check, Download, Github, Linkedin, Mail } from 'lucide-react';
 import { profile } from '@/content/profile';
 import { GitHubSnapshot } from '@/components/github-snapshot';
 import { Reveal } from '@/components/reveal';
@@ -25,7 +25,7 @@ export default function AboutPage() {
       </div>
 
       <p className="hero-copy hero-copy-center">{profile.summary}</p>
-      <div className="hero-actions hero-actions-center"><Link className="button button-primary" href="/projects">Explore selected work <ArrowUpRight size={17} /></Link><Link className="button button-secondary" href="/cv">View CV <ArrowRight size={16} /></Link></div>
+      <div className="hero-actions hero-actions-center"><Link className="button button-primary" href="/projects">Explore selected work <ArrowUpRight size={17} /></Link><a className="button button-secondary" href="/CV.pdf" download>Download CV <Download size={16} /></a></div>
       <div className="hero-socials hero-socials-center"><a href={profile.github} target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a><a href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a><a href={`mailto:${profile.email}`}><Mail size={16} /> Email</a></div>
     </div></section>
 

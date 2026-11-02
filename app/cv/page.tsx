@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowUpRight, ExternalLink, Github } from 'lucide-react';
+import { ArrowUpRight, Download, ExternalLink, Github } from 'lucide-react';
 import { profile } from '@/content/profile';
 import { projects } from '@/content/projects';
 import { Reveal } from '@/components/reveal';
@@ -48,11 +48,10 @@ export default function CvPage() {
         <a
           className="button button-primary"
           href="/CV.pdf"
-          target="_blank"
-          rel="noreferrer"
-          id="view-cv-btn"
+          download
+          id="download-cv-btn"
         >
-          <ExternalLink size={16} /> View CV
+          <Download size={16} /> Download CV
         </a>
       </div>
 

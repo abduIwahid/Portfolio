@@ -4539,3 +4539,44 @@ button {
         width: 100%;
     }
 }
+
+/* ===== Custom physics cursor (2026-11-02) =========================
+   Desktop fine pointers only. components/custom-cursor.tsx adds
+   .custom-cursor-on to <html> only after it initialises, so with no
+   JS, on touch devices, or under reduced motion the native cursor
+   is never hidden. Text entry keeps its native cursor. */
+html.custom-cursor-on,
+html.custom-cursor-on * {
+    cursor: none !important;
+}
+
+html.custom-cursor-on input,
+html.custom-cursor-on textarea,
+html.custom-cursor-on [contenteditable] {
+    cursor: text !important;
+}
+
+html.custom-cursor-on select {
+    cursor: auto !important;
+}
+
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--foreground);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform, opacity;
+}
+
+/* Expanded over interactive elements: filled white with difference
+   blending, so whatever sits under the circle inverts. */
+.custom-cursor.cursor-active {
+    background: #fff;
+    mix-blend-mode: difference;
+}

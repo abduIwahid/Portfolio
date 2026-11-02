@@ -1,10 +1,8 @@
 'use client';
 import { useMemo, useState } from 'react';
-import Link from 'next/link';
-import { ArrowUpRight, Github, Search, X } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import type { Project } from '@/content/projects';
-import { ProjectShot } from './project-shot';
-import { Reveal } from './reveal';
+import { ProjectStack } from './project-stack';
 
 export function ProjectExplorer({ projects }: { projects: Project[] }) {
   const [query, setQuery] = useState('');
@@ -27,17 +25,6 @@ export function ProjectExplorer({ projects }: { projects: Project[] }) {
     </div>
     <div className="filter-row" aria-label="Filter by category">{categories.map((item) => <button type="button" key={item} onClick={() => setCategory(item)} className={`filter-chip ${category === item ? 'selected' : ''}`} aria-pressed={category === item}>{item}</button>)}</div>
     <p className="results-count" aria-live="polite">{filtered.length} {filtered.length === 1 ? 'project' : 'projects'}, {category === 'All' ? 'All categories' : category}</p>
-    {filtered.length ? <div className="project-grid">{filtered.map((project, index) => <Reveal key={project.slug} delay={(index % 3) * 90}><article className={`project-card project-${project.accent}`}>
-      {project.demo && <ProjectShot demo={project.demo} name={project.name} />}
-      <div className="project-card-top">
-        <span className="project-card-name">{project.name}</span>
-        <div className="project-card-top-actions">
-          {project.repo && <a href={project.repo} target="_blank" rel="noreferrer" className="project-github-btn" aria-label={`GitHub repo for ${project.name}`}><Github size={15} /></a>}
-          <Link href={`/projects/${project.slug}`} className="project-arrow project-arrow-link" aria-label={`Read the case study of ${project.name}`}><ArrowUpRight size={19} /></Link>
-        </div>
-      </div>
-      <div className="project-card-body"><p className="project-summary">{project.summary}</p><div className="tag-row">{project.stack.slice(0, 4).map((tag) => <span className="tag" key={tag}>{tag}</span>)}{project.stack.length > 4 && <span className="tag more-tag">+{project.stack.length - 4}</span>}</div></div>
-      
-    </article></Reveal>)}</div> : <div className="empty-state"><p className="eyebrow">No matching projects</p><h2>Try another search.</h2><p>Clear the search or choose a different category to see more work.</p><button className="button button-secondary" onClick={() => { setQuery(''); setCategory('All'); }}>Reset filters</button></div>}
+    {filtered.length ? <ProjectStack projects={filtered} /> : <div className="empty-state"><p className="eyebrow">No matching projects</p><h2>Try another search.</h2><p>Clear the search or choose a different category to see more work.</p><button className="button button-secondary" onClick={() => { setQuery(''); setCategory('All'); }}>Reset filters</button></div>}
   </>;
 }

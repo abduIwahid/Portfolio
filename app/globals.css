@@ -4634,3 +4634,159 @@ html.custom-cursor-on select {
     transform: none !important;
   }
 }
+
+/* ── Project stack (/projects) ───────────────────────────────────────
+   Large panels in sticky shells: each covered panel leaves a strip
+   peeking at the top (14px step, 8px on mobile) while the scroll
+   driver scales and dims it. Site tokens only — no per-project
+   background colours. */
+.project-stack {
+  --stack-header: 76px;
+}
+
+.stack-card-wrap {
+  position: sticky;
+  top: calc(var(--stack-header) + var(--stack-i, 0) * 14px);
+  margin-bottom: 28px;
+}
+
+.stack-card-wrap:last-child {
+  margin-bottom: 0;
+}
+
+.stack-card {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  height: clamp(480px, 72vh, 620px);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--surface), color-mix(in srgb, var(--foreground) 3.5%, var(--surface)));
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--foreground) 6%, transparent), 0 18px 38px -12px color-mix(in srgb, var(--foreground) 20%, transparent), inset 0 1px 0 color-mix(in srgb, var(--background) 60%, transparent);
+  transform-origin: center top;
+  min-width: 0;
+}
+
+.stack-card-text {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(22px, 3vw, 40px);
+  min-width: 0;
+}
+
+.stack-card-eyebrow {
+  margin-bottom: 14px;
+}
+
+.stack-card-title {
+  margin: 0;
+  font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+
+.stack-card-summary {
+  margin: 16px 0 20px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.stack-card-tags {
+  margin-bottom: 22px;
+}
+
+.stack-card-actions {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stack-card-icon-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.stack-card-media {
+  position: relative;
+  min-height: 0;
+  min-width: 0;
+}
+
+.stack-card-media .project-shot {
+  height: 100%;
+  aspect-ratio: auto;
+  border-bottom: 0;
+  border-left: 1px solid var(--border);
+}
+
+.stack-card-cover {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: clamp(22px, 3vw, 40px);
+  background: var(--surface-alt);
+  border-left: 1px solid var(--border);
+}
+
+.stack-card-cover-name {
+  font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--foreground) 78%, var(--surface));
+}
+
+.stack-card-cover-kind {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 550;
+}
+
+@media (max-width: 759px) {
+  .stack-card-wrap {
+    top: calc(var(--stack-header) + var(--stack-i, 0) * 8px);
+    margin-bottom: 20px;
+  }
+
+  .stack-card {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .stack-card-media {
+    order: -1;
+  }
+
+  .stack-card-media .project-shot {
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-left: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stack-card-cover {
+    min-height: 168px;
+    border-left: 0;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stack-card-wrap {
+    position: static;
+  }
+}

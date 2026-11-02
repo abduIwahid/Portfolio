@@ -4020,7 +4020,7 @@ button {
   }
 }
 
-/* ---------- Intro loader (logo draw + fly into the dot) ---------- */
+/* ---------- Intro loader (logo fill-up + fly-through finale) ---------- */
 .intro {
   position: fixed;
   inset: 0;
@@ -4039,113 +4039,38 @@ button {
   will-change: transform;
 }
 
-.intro-logo {
-  width: min(320px, 68vw);
-  height: auto;
-  overflow: visible;
-}
-
-.intro-ghost {
-  stroke: color-mix(in srgb, var(--foreground) 13%, transparent);
-  stroke-width: 14;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
-}
-
-.intro-draw {
-  stroke: var(--foreground);
-  stroke-width: 14;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
-}
-
-.intro-comet {
-  fill: var(--accent);
-  filter: drop-shadow(0 0 6px var(--accent)) drop-shadow(0 0 16px color-mix(in srgb, var(--accent) 65%, transparent));
-  transition: opacity 0.2s ease;
-}
-
-.intro-dot {
-  fill: var(--accent);
-  transform: scale(0);
-  transform-box: fill-box;
-  transform-origin: center;
-  transition: transform 0.38s cubic-bezier(.22, .8, .3, 1);
-  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--accent) 70%, transparent));
-}
-
-.intro-dot-on {
-  transform: scale(1);
-}
-
-.intro-meta {
-  display: flex;
-  gap: 16px;
-  align-items: baseline;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-}
-
-.intro-stage-label {
-  color: var(--muted);
-}
-
-.intro-pct {
-  color: var(--accent);
-  font-size: 16px;
-}
-
-.intro-caption {
-  opacity: 0;
-  transition: opacity 0.45s ease;
-  font-size: 11px;
-  letter-spacing: 0.02em;
-  color: var(--muted);
-}
-
-.intro-progress {
+.intro-mark {
   position: relative;
-  width: 100%;
-  height: 6px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--foreground) 12%, transparent);
-  margin-top: 6px;
+  width: min(300px, 62vw);
+  aspect-ratio: 963 / 321;
 }
 
-.intro-progress-fill {
+.intro-mark-base {
   position: absolute;
   inset: 0;
-  border-radius: 999px;
-  transform: scaleX(0);
-  transform-origin: left;
-  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 55%, var(--background)), var(--accent));
+  opacity: 0.13;
 }
 
-.intro-progress-tip {
+.intro-mark-fill {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 0;
-  transform: translate(-0%, -50%);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  pointer-events: none;
+  height: 100%;
+  width: 0;
+  overflow: hidden;
 }
 
-.intro-progress-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent);
-  transform: translateX(-50%);
-  box-shadow: 0 0 10px var(--accent), 0 0 22px color-mix(in srgb, var(--accent) 60%, transparent);
-  flex: none;
+.intro-mark-fill-inner {
+  width: min(300px, 62vw);
+  height: 100%;
 }
 
-/* Flying dot finale: the logo's orange dot travels to screen centre, then the view passes through it */
+.intro-mark-svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Flying dot finale: the accent disc at the mark's tail travels to screen centre, then the view passes through it */
 .intro-fly {
   position: fixed;
   width: 20px;

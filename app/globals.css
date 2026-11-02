@@ -1766,6 +1766,48 @@ button {
   font-size: 12px;
 }
 
+/* ── About entries: centred stacks (2026-11-02 fix round) ──────────
+   Experience / Education / Community entries on /about lose the
+   date rail and read as centred stacks under their (already centred)
+   headings: date line on top, then title, organisation and details,
+   all centred in a 620px measure — nothing sits at the side or clips
+   at the left edge. Scoped to .about-col, which appears only on
+   /about, so /cv keeps its own layout untouched. */
+.about-col .timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-col .timeline-period {
+  text-align: center;
+}
+
+.about-col .timeline-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.about-col .timeline-content p,
+.about-col .timeline-content li {
+  text-align: center;
+}
+
+.about-col .timeline-content ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.about-col .credential-card {
+  text-align: center;
+}
+
 .cv-sheet {
   max-width: 880px;
   margin: 0 auto 70px;

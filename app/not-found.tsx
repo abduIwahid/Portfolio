@@ -7,7 +7,7 @@ const pixelFont = Press_Start_2P({ weight: '400', subsets: ['latin'], variable: 
 
 export default function NotFound() {
   return (
-    <section className={`page-hero ${pixelFont.variable}`} style={{ position: 'relative', overflow: 'hidden' }}>
+    <section className={`page-hero nf-hero ${pixelFont.variable}`} style={{ position: 'relative', overflow: 'hidden' }}>
       <DotsField />
       <div className="container page-heading" style={{ position: 'relative' }}>
         <p className="nf-pixel-chip">

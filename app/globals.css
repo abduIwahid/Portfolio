@@ -1200,6 +1200,17 @@ button {
   padding: clamp(48px, 10vw, 74px) 0 clamp(30px, 8vw, 48px);
 }
 
+/* 404: the section fills the flexible main area (see the sticky-footer
+   shell on body) and centres its composition vertically in the space
+   between header and footer; the dots canvas stays absolute over the
+   whole section behind the content. */
+.nf-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+}
+
 .page-heading {
   max-width: 850px;
 }

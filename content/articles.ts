@@ -19,7 +19,7 @@ export const articles: Article[] = [
     ]
   },
   {
-    slug: 'what-explainability-can-and-cannot-tell-you', title: 'What explainability can — and cannot — tell you',
+    slug: 'what-explainability-can-and-cannot-tell-you', title: 'What explainability can, and cannot, tell you',
     deck: 'Feature attribution is a lens on model behaviour, not a shortcut to causality or trust.', category: 'Explainable AI', date: '2026-10-14', readTime: '5 min read', status: 'Published', projectSlugs: ['medisight-ai'],
     sections: [
       { heading: 'An explanation answers a narrower question', paragraphs: ['Feature-attribution methods can help inspect which inputs contributed to a model output under a defined explanation method. That is valuable for debugging, model review, and communicating behaviour. It does not automatically explain the real-world process that generated the outcome.', 'A feature can be influential because it is correlated with a meaningful variable, because it proxies for a sensitive attribute, or because the training data contains a spurious pattern. Attribution alone cannot tell you which story is true.'] },

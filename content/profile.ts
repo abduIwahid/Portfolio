@@ -9,7 +9,7 @@ export const profile = {
   summary: 'Artificial Intelligence undergraduate focused on practical machine learning, model evaluation, explainability, and building useful software around data. I enjoy the part where an experiment becomes a system someone else can inspect and use.',
   focus: ['Machine learning & evaluation', 'Data science workflows', 'Explainable AI', 'Software for AI products'],
   educationHistory: [
-    { title: 'BS Artificial Intelligence', organization: 'COMSATS University Islamabad · Attock Campus', period: 'Aug 2024 – 2028', detail: 'CGPA 3.46 / 4.00 · Current semester stated on public profile: 5th' },
+    { title: 'BS Artificial Intelligence', organization: 'COMSATS University Islamabad · Attock Campus', period: 'Aug 2024 – 2028', detail: 'CGPA 3.46 / 4.00, current semester stated on public profile: 5th' },
     { title: 'Intermediate in Computer Science (ICS)', organization: 'Fazaia Degree College ARF Kamra', period: '2022 – 2024', detail: '827 / 1100 (75.2%)' }
   ],
   experience: [{ title: 'Machine Learning Intern (Remote)', organization: 'Ezitech Institute (Eziline Software House)', location: 'Islamabad, Pakistan', period: 'Jul – Sep 2026', details: ['Built the WhyRisk (formerly MediSight AI) platform during this internship, across model benchmarking, explainability, and ML operations workflows.', 'Used LightGBM, scikit-learn, SHAP, MLflow, and FastAPI within a broader web application.', 'Trained and benchmarked classifiers across seven de-identified healthcare datasets; the best model (LightGBM) reached 0.83 AUC-ROC.'] }],

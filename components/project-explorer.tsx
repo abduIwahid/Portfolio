@@ -26,7 +26,7 @@ export function ProjectExplorer({ projects }: { projects: Project[] }) {
       <label className="sort-field"><span className="sr-only">Sort projects</span><select value={sort} onChange={(event) => setSort(event.target.value)}><option value="featured">Featured first</option><option value="name">Name A–Z</option></select></label>
     </div>
     <div className="filter-row" aria-label="Filter by category">{categories.map((item) => <button type="button" key={item} onClick={() => setCategory(item)} className={`filter-chip ${category === item ? 'selected' : ''}`} aria-pressed={category === item}>{item}</button>)}</div>
-    <p className="results-count" aria-live="polite">{filtered.length} {filtered.length === 1 ? 'project' : 'projects'} <span>·</span> {category === 'All' ? 'All categories' : category}</p>
+    <p className="results-count" aria-live="polite">{filtered.length} {filtered.length === 1 ? 'project' : 'projects'}, {category === 'All' ? 'All categories' : category}</p>
     {filtered.length ? <div className="project-grid">{filtered.map((project, index) => <Reveal key={project.slug} delay={(index % 3) * 90}><article className={`project-card project-${project.accent}`}>
       {project.demo && <ProjectShot demo={project.demo} name={project.name} />}
       <div className="project-card-top">

@@ -7,7 +7,7 @@ import { Reveal } from '@/components/reveal';
 
 export const metadata: Metadata = {
   title: 'CV',
-  description: 'Curriculum vitae of Abdul Wahid — AI/ML Developer.',
+  description: 'Curriculum vitae of Abdul Wahid, AI/ML Developer.',
   alternates: { canonical: '/cv' },
 };
 
@@ -28,7 +28,7 @@ const CERTIFICATIONS: { title: string; org: string }[] = [
 ];
 
 const ACTIVITIES: { title: string; org: string }[] = [
-  { title: 'Participant — DeepBuild Hackathon', org: 'SoftTech · COMSATS Attock, Oct 2026' },
+  { title: 'Participant: DeepBuild Hackathon', org: 'SoftTech · COMSATS Attock, Oct 2026' },
   { title: 'AI/ML Team Member', org: 'GDG on Campus · COMSATS Attock, 2026 – 2027' },
   { title: 'Hackathon Participant', org: 'Mind to Machine 2026 AI Hackathon · COMSATS Wah, May 2026' },
 ];
@@ -40,7 +40,7 @@ export default function CvPage() {
       <div className="container page-heading">
         <p className="eyebrow">Curriculum vitae</p>
         <h1>Experience, skills,<br />and selected work.</h1>
-        <p>A readable version of my current profile. The PDF is the authoritative version — use it for formal applications.</p>
+        <p>A readable version of my current profile. The PDF is the authoritative version. Use it for formal applications.</p>
       </div>
     </section>
     <div className="container">
@@ -59,7 +59,7 @@ export default function CvPage() {
       <Reveal className="reveal-auto"><article className="cv-sheet cv2">
         <header className="cv2-head">
           <h1 className="cv2-name">{profile.name}</h1>
-          <p className="cv2-role">AI / ML Developer · Explainable AI · MLOps</p>
+          <p className="cv2-role">AI / ML Developer, Explainable AI, MLOps</p>
           <div className="cv2-contact-strip">
             <div>
               <span>Email</span>

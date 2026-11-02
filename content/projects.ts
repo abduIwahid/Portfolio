@@ -25,7 +25,7 @@ export const projects: Project[] = [
     slug: 'medisight-ai', name: 'WhyRisk', category: 'Machine Learning', kind: 'ML engineering · Internship',
     summary: 'A live explainable healthcare risk platform: a LightGBM diabetes risk model trained on 70,692 health records (BRFSS), with patient-level SHAP explanations and role-based access for patients, doctors, and admins.',
     problem: 'Healthcare prediction work is not only about producing a score. Models need reproducible experiments, understandable feature contributions, and clear boundaries around what a prediction can and cannot say.',
-    role: 'Designed and built as Machine Learning Intern (Remote) at Ezitech Institute (Eziline Software House); maintained and improved since.', status: 'Built during internship · Jul–Sep 2026 · Live, actively maintained', featured: true,
+    role: 'Designed and built as Machine Learning Intern (Remote) at Ezitech Institute (Eziline Software House); maintained and improved since.', status: 'Built during internship, Jul–Sep 2026. Live and actively maintained.', featured: true,
     stack: ['Python', 'LightGBM', 'scikit-learn', 'SHAP', 'MLflow', 'FastAPI', 'Next.js', 'TypeScript', 'Supabase', 'Docker'],
     highlights: ['Model training and benchmarking across seven de-identified healthcare dataset domains', 'SHAP-based explanation workflow exposed through a FastAPI service', 'Experiment tracking with MLflow and an interface for reviewing model behaviour', 'MLOps-oriented drift monitoring and retraining workflow documented in the project'],
     approach: [

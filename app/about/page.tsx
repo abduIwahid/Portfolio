@@ -56,7 +56,7 @@ export default function AboutPage() {
           <p className="eyebrow eyebrow-spaced">Education</p>
           <div className="timeline">{profile.educationHistory.map((item) => <article className="timeline-item" key={item.title}><div className="timeline-period">{item.period}</div><div className="timeline-content"><h3>{item.title}</h3><p className="timeline-org">{item.organization}</p><p>{item.detail}</p></div></article>)}</div>
           <p className="eyebrow eyebrow-spaced">Credentials</p>
-          <div className="credential-grid">{profile.credentials.map((item, index) => <Reveal key={item.title} delay={(index % 3) * 90}><article className="credential-card"><span className="project-index">CERTIFICATE</span><h3>{item.title}</h3><p>{item.issuer}</p><p style={{ marginTop: 7 }}>{item.period}</p></article></Reveal>)}</div>
+          <div className="credential-grid">{profile.credentials.map((item, index) => <Reveal key={item.title} delay={(index % 3) * 90}><article className="credential-card"><span className="project-index">Certificate</span><h3>{item.title}</h3><p>{item.issuer}</p><p style={{ marginTop: 7 }}>{item.period}</p></article></Reveal>)}</div>
           <p className="eyebrow eyebrow-spaced">Community</p>
           <div className="timeline">{profile.activities.map((item) => <article className="timeline-item" key={item.title}><div className="timeline-period">{item.period}</div><div className="timeline-content"><h3>{item.title}</h3><p className="timeline-org">{item.organization}</p></div></article>)}</div>
         </div>

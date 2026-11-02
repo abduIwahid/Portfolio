@@ -9,7 +9,7 @@ export function SiteFooter() {
     </div>
     <div className="container footer-bottom">
       <span>© {new Date().getFullYear()} Abdul Wahid</span>
-      <span className="footer-note">Built around evidence, not hype. · <Link href="/privacy">Privacy</Link></span>
+      <span className="footer-note">Built around evidence, not hype. <Link href="/privacy">Privacy</Link></span>
       <div className="footer-links">
         <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17} /></a>
         <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={17} /></a>

@@ -5,7 +5,7 @@ import { Reveal } from '@/components/reveal';
 
 export const metadata: Metadata = {
   title: 'Links',
-  description: 'All profile links and social accounts for Abdul Wahid — AI/ML Developer.',
+  description: 'All profile links and social accounts for Abdul Wahid, AI/ML Developer.',
   alternates: { canonical: '/links' },
 };
 

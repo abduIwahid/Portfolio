@@ -180,10 +180,11 @@ export function ProjectFlow({ projects }: { projects: Project[] }) {
                 ))}
               </div>
               <p className="flow-counter">
-                {String(active + 1).padStart(2, '0')} / {String(n).padStart(2, '0')} · {projects[active].name}
+                <span>{String(active + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span>
+                <span>{projects[active].name}</span>
               </p>
               <p className="flow-scroll-hint" ref={hintRef}>
-                Scroll — projects flow by, scroll back to rewind
+                Scroll: projects flow by, scroll back to rewind
               </p>
             </div>
           </div>
@@ -240,7 +241,8 @@ export function ProjectFlow({ projects }: { projects: Project[] }) {
               )}
             </div>
             <p className="flow-modal-status">
-              {selected.status} · {selected.role}
+              <span>{selected.status}</span>
+              <span>{selected.role}</span>
             </p>
           </div>
         </div>

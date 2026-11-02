@@ -1106,40 +1106,56 @@ button {
 .principles-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 40px;
 }
 
+/* Option C (2026-11-03): numbered columns, no card box - a hairline
+   with an accent tick, a faded Anton numeral, title + icon, then copy. */
 .principle-card {
-  padding: 22px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface);
+  position: relative;
+  border-top: 1px solid var(--border);
 }
 
-.principle-number {
-  display: inline-grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  margin-bottom: 24px;
-  border-radius: 6px;
-  background: var(--accent-soft);
-  color: var(--accent-ink);
-  font-size: 11px;
-  font-weight: 750;
+.principle-card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 34px;
+  height: 3px;
+  background: var(--accent);
+}
+
+.principle-index {
+  display: block;
+  margin-top: 20px;
+  font-family: var(--font-display), 'Arial Narrow', sans-serif;
+  font-size: clamp(52px, 4.6vw, 64px);
+  line-height: 1;
+  letter-spacing: 0;
+  color: color-mix(in srgb, var(--foreground) 14%, transparent);
 }
 
 .principle-card h3 {
-  margin: 0;
-  font-size: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 14px 0 0;
+  font-size: clamp(20px, 1.9vw, 22px);
   letter-spacing: -.03em;
 }
 
+.principle-card h3 svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--accent);
+}
+
 .principle-card p {
-  margin: 9px 0 0;
+  margin: 10px 0 0;
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
+  font-size: clamp(15px, 1.3vw, 16px);
+  line-height: 1.65;
 }
 
 .writing-list {
@@ -2273,7 +2289,7 @@ main:has(.nf-hero) > .page-enter {
 
   .principles-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
+    gap: 32px;
   }
 
   .stats-strip {
@@ -2336,7 +2352,7 @@ main:has(.nf-hero) > .page-enter {
 
   .principles-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    gap: 28px;
   }
 
   .contact-grid {
@@ -2536,15 +2552,7 @@ main:has(.nf-hero) > .page-enter {
   /* Principles */
   .principles-grid {
     grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .principle-card {
-    padding: 18px;
-  }
-
-  .principle-number {
-    margin-bottom: 14px;
+    gap: 34px;
   }
 
   /* Writing */
@@ -3359,17 +3367,6 @@ main:has(.nf-hero) > .page-enter {
   background: var(--surface-alt);
 }}
 
-/* ── Principle card hover ────────────────────────────────────────────── */
-.principle-card {
-  transition: transform .25s var(--ease-house), border-color .25s var(--ease-house), box-shadow .3s var(--ease-house);
-}@media (hover: hover) and (pointer: fine) {
-
-.principle-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent);
-  box-shadow: 0 8px 26px rgb(0 0 0 / .07);
-}}
-
 /* ── Writing row hover ───────────────────────────────────────────────── */
 .writing-row {
   transition: background .25s var(--ease-house), transform .25s var(--ease-house);
@@ -3522,7 +3519,7 @@ main:has(.nf-hero) > .page-enter {
 
   .principles-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 28px;
   }
 
   .related-grid {
@@ -3599,7 +3596,7 @@ main:has(.nf-hero) > .page-enter {
 
   .principles-grid {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 34px;
   }
 
   .credential-grid {
@@ -4457,7 +4454,6 @@ main:has(.nf-hero) > .page-enter {
     }
 
     .project-card:active,
-    .principle-card:active,
     .links-card:active,
     .credential-card:active,
     .related-card:active,
@@ -5224,5 +5220,17 @@ html.custom-cursor-on select {
 
   .hero {
     padding: clamp(40px, 7vw, 56px) 0 clamp(34px, 5vw, 48px);
+  }
+}
+
+/* ===== Principles Option C - phone stack (2026-11-03) =============
+   At <=759px both principle grids stack in a single column, each item
+   full width with the same rule / numeral / title treatment. This
+   block sits last so it wins over the layered grid rules above. */
+@media (max-width: 759px) {
+  .principles-grid,
+  .principles-grid.focus-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
   }
 }

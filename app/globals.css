@@ -56,6 +56,25 @@ html {
   width: 100%;
 }
 
+/* Lenis (components/smooth-scroll.tsx) runs in window mode and drives the
+   real document scroll. While it is active it adds .lenis classes to
+   <html>; the overrides below are Lenis's own recommended set — they
+   neutralise the CSS scroll-behavior above only while Lenis runs, so the
+   two smoothing systems never stack. Without Lenis (prefers-reduced-
+   motion, no JS) the native rule above stands untouched. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   width: 100%;

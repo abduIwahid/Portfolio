@@ -7,6 +7,7 @@ import { IntroLoader } from '@/components/intro-loader';
 import { PointerGlow } from '@/components/pointer-glow';
 import { CustomCursor } from '@/components/custom-cursor';
 import { MagneticButtons } from '@/components/magnetic-buttons';
+import { SmoothScroll } from '@/components/smooth-scroll';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://abdulwahid.me';
 export const metadata: Metadata = {
@@ -24,5 +25,5 @@ const displayFont = Anton({ weight: '400', subsets: ['latin'], variable: '--font
 const bodyFont = Archivo({ weight: ['400', '500', '600', '700', '800'], subsets: ['latin'], variable: '--font-sans', display: 'swap' });
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-theme="light" suppressHydrationWarning className={`${displayFont.variable} ${bodyFont.variable}`}><body><PointerGlow /><CustomCursor /><MagneticButtons /><a className="skip-link" href="#main">Skip to content</a><SiteHeader /><main id="main">{children}</main><SiteFooter /><IntroLoader /></body></html>;
+  return <html lang="en" data-theme="light" suppressHydrationWarning className={`${displayFont.variable} ${bodyFont.variable}`}><body><PointerGlow /><CustomCursor /><MagneticButtons /><SmoothScroll /><a className="skip-link" href="#main">Skip to content</a><SiteHeader /><main id="main">{children}</main><SiteFooter /><IntroLoader /></body></html>;
 }

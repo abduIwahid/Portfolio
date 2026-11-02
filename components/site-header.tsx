@@ -20,7 +20,7 @@ export function SiteHeader() {
   return <header className="site-header">
     <div className="container header-inner">
       <Link href="/" className="brand" aria-label="Abdul Wahid home" onClick={() => setOpen(false)}>
-        <LogoMark height={30} />
+        <LogoMark height={26} />
         <span className="brand-name">Abdul Wahid <small>AI/ML Developer</small></span>
       </Link>
       <nav className={`main-nav ${open ? 'is-open' : ''}`} aria-label="Main navigation">

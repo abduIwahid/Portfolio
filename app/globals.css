@@ -187,6 +187,14 @@ button {
   flex-shrink: 0;
 }
 
+/* Header brand mark: 26px tall (78px wide at the glyph's 3:1 aspect),
+   hard-capped so it can never dominate the header pill again. */
+.brand > svg {
+  height: 26px;
+  max-height: 28px;
+  width: auto;
+}
+
 .brand-mark {
   display: grid;
   place-items: center;
@@ -3598,6 +3606,12 @@ button {
 
   .brand-name {
     font-size: 12px;
+  }
+
+  /* Small phones: the name alone carries the brand row — the subtitle
+     line drops so mark + name + actions fit without crowding. */
+  .brand-name small {
+    display: none;
   }
 }
 

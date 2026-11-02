@@ -188,11 +188,19 @@ button {
 }
 
 /* Header brand mark: 26px tall (78px wide at the glyph's 3:1 aspect),
-   hard-capped so it can never dominate the header pill again. */
+   hard-capped so it can never dominate the header pill again.
+   At ≤ 640px the pill row also carries the name and three controls,
+   so the mark steps down to 22px (66px wide). */
 .brand > svg {
   height: 26px;
   max-height: 28px;
   width: auto;
+}
+
+@media (max-width: 640px) {
+  .brand > svg {
+    height: 22px;
+  }
 }
 
 .brand-mark {
@@ -278,7 +286,9 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  height: 38px;
+  /* Same height as .icon-button (40px) so the pill, theme toggle and
+     hamburger share one centreline in the header actions row. */
+  height: 40px;
   padding: 0 13px;
   border: 1px solid var(--border-strong);
   border-radius: 5px;
@@ -2271,7 +2281,7 @@ button {
 
   .nav-contact {
     font-size: 12px;
-    padding: 8px 10px;
+    padding: 0 10px;
   }
 }
 
@@ -2373,9 +2383,11 @@ button {
     color: var(--accent);
   }
 
+  /* No margin-top here: the pill lives in the .header-actions flex row
+     (align-items: center centres the margin box), so a top margin would
+     push the pill's visible box off the shared centreline. */
   .nav-contact {
     justify-content: center;
-    margin-top: 12px;
   }
 
   .theme-toggle {

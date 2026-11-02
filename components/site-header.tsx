@@ -31,7 +31,7 @@ export function SiteHeader() {
         })}
       </nav>
       <div className="header-actions">
-        <Link href="/contact" className={`nav-contact ${pathname === '/contact' ? 'active' : ''}`} onClick={() => setOpen(false)}>Let&apos;s talk <ArrowUpRight size={15} /></Link>
+        <Link href="/contact" className={`nav-contact ${pathname === '/contact' ? 'active' : ''}`} onClick={() => setOpen(false)}>Let&apos;s talk <ArrowUpRight size={16} /></Link>
         <ThemeToggle />
         <button
           className="icon-button mobile-menu-toggle"

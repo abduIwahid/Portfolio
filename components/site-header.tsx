@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { ThemeToggle } from './theme-toggle';
-import Logo from '@/app/components/Logo';
+import { LogoMark } from './logo-mark';
 const links = [
   { href: '/', label: 'Home' },
   { href: '/projects', label: 'Projects' },
@@ -20,7 +20,7 @@ export function SiteHeader() {
   return <header className="site-header">
     <div className="container header-inner">
       <Link href="/" className="brand" aria-label="Abdul Wahid home" onClick={() => setOpen(false)}>
-        <Logo size={48} />
+        <LogoMark height={30} />
         <span className="brand-name">Abdul Wahid <small>AI/ML Developer</small></span>
       </Link>
       <nav className={`main-nav ${open ? 'is-open' : ''}`} aria-label="Main navigation">

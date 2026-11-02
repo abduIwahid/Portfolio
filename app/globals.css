@@ -4948,15 +4948,18 @@ html.custom-cursor-on select {
 }
 
 .x-sep {
-  font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
   font-size: clamp(26px, 3.2vw, 46px);
-  line-height: 1.1;
-  padding: 0 0.38em;
-  color: var(--accent);
+  width: 0.3em;
+  height: 0.3em;
+  margin: 0 0.5em;
+  background: var(--accent);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  align-self: center;
 }
 
 .x-band-back .x-sep {
-  color: #171512;
+  background: #171512;
 }
 
 @media (prefers-reduced-motion: reduce) {

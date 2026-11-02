@@ -53,7 +53,7 @@ function Sequence({ words }: { words: string[] }) {
       {words.map((word) => (
         <span className="x-item" key={word}>
           <span className="x-word">{word}</span>
-          <span className="x-sep">—</span>
+          <span className="x-sep" />
         </span>
       ))}
     </div>

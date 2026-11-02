@@ -30,7 +30,7 @@ test('article slugs and references are present', () => {
 
 test('required app routes and CV PDF exist', () => {
   for (const file of routeFiles) assert.ok(existsSync(join(root, file)), `missing route: ${file}`);
-  assert.ok(existsSync(join(root, 'public/cv/abdul-wahid-cv.pdf')), 'missing downloadable CV PDF');
+  assert.ok(existsSync(join(root, 'public/CV.pdf')), 'missing downloadable CV PDF');
 });
 
 test('GitHub metadata is optional and has a graceful fallback', () => {

@@ -4580,3 +4580,57 @@ html.custom-cursor-on select {
     background: #fff;
     mix-blend-mode: difference;
 }
+
+/* ── Scroll text marquee (home, under the hero) ──────────────────────
+   Decorative Anton band: slow constant drift, hurries with scroll
+   velocity, never reverses. Track is doubled and wraps at -50%. */
+.text-marquee {
+  width: 100%;
+  padding: 20px 0;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.marquee-seq {
+  display: flex;
+  align-items: baseline;
+  flex-shrink: 0;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.marquee-word {
+  font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+
+.marquee-sep {
+  font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
+  font-size: clamp(26px, 4vw, 42px);
+  line-height: 1.1;
+  padding: 0 0.38em;
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    transform: none !important;
+  }
+}

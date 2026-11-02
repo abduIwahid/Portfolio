@@ -3,7 +3,7 @@ export const profile = {
   location: 'Attock, Punjab, Pakistan', education: 'BS Artificial Intelligence · COMSATS University Islamabad, Attock Campus',
   semester: '5th semester', cgpa: '3.46 / 4.00', expectedGraduation: '2028',
   email: 'contact@abdulwahid.me', secondaryEmail: 'abdulwahid.connects@gmail.com',
-  github: 'https://github.com/abduIwahid', linkedin: 'https://www.linkedin.com/in/abdu1wahid', kaggle: 'https://www.kaggle.com/', leetcode: 'https://leetcode.com/u/abdu1wahid/',
+  github: 'https://github.com/abduIwahid', linkedin: 'https://www.linkedin.com/in/abdu1wahid', kaggle: 'https://www.kaggle.com/abdulwahid1212', leetcode: 'https://leetcode.com/u/abdu1wahid/',
   instagram: 'https://www.instagram.com/xabdulwahid', medium: 'https://medium.com/@abdu1wahid', huggingface: 'https://huggingface.co/abdu1wahid',
   cvSource: 'https://abdul-wahid-portfolio.vercel.app/CV.pdf', domain: 'https://abdulwahid.me',
   summary: 'Artificial Intelligence undergraduate focused on practical machine learning, model evaluation, explainability, and building useful software around data. I enjoy the part where an experiment becomes a system someone else can inspect and use.',

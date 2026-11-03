@@ -22,7 +22,7 @@ export default function AboutPage() {
         <h1 className="hero-giant"><span className="hg-line hg-solid">Curious about the model.</span><span className="hg-line hg-faded">Serious about the system.</span></h1>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={heroCutout} alt="" aria-hidden="true" className="hero-cutout" />
-        <span className="pfp-badge hero-badge">Available for roles</span>
+        <span className="pfp-badge hero-badge">Available for Opportunities</span>
       </div>
 
       <p className="hero-copy hero-copy-center">{profile.summary}</p>

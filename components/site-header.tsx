@@ -1,10 +1,11 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { ArrowRight, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import { ThemeToggle } from './theme-toggle';
 import { LogoMark } from './logo-mark';
+import { profile } from '@/content/profile';
 
 const links = [
   { href: '/', label: 'Home' },
@@ -81,9 +82,18 @@ export function SiteHeader() {
   }, [open ]);
 
   /* While the panel is open: Escape closes it (focus returns to the menu
-     button), a tap outside the header closes it, and body scroll locks —
-     the same lock the intro loader uses, which also stops Lenis via its
-     overflow watcher in smooth-scroll.tsx. */
+     button), a tap outside the header closes it, and ANY deliberate
+     scroll closes it — the panel slides back up the moment the page
+     moves. Deliberately NO body scroll lock here: the old lock
+     (body overflow hidden) silently broke the bar's position: sticky —
+     a non-visible overflow on body turns body into the sticky scroll
+     container, so at any real scroll depth the whole header, freshly
+     opened panel included, teleported back to the top of the document
+     and the menu "never opened". Scroll-to-close replaces the lock:
+     the page effectively stays put because moving it dismisses the
+     panel. The scroll watcher tolerates the momentum tail of the flick
+     that surfaced the bar (a large move always closes; a small move
+     only counts after a short grace period). */
   useEffect(() => {
     if (!open) return;
     const onKey = (event: KeyboardEvent) => {
@@ -97,78 +107,136 @@ export function SiteHeader() {
         setOpen(false);
       }
     };
+    const baseY = window.scrollY;
+    const openedAt = performance.now();
+    const onScroll = () => {
+      const moved = Math.abs(window.scrollY - baseY);
+      if (moved > 48 || (moved > 6 && performance.now() - openedAt > 250)) {
+        setOpen(false);
+      }
+    };
     document.addEventListener('keydown', onKey);
     document.addEventListener('pointerdown', onPointerDown);
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => {
       document.removeEventListener('keydown', onKey);
       document.removeEventListener('pointerdown', onPointerDown);
-      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('scroll', onScroll);
     };
   }, [open ]);
 
   return (
-    <header className={`site-header${hidden ? ' is-hidden' : ''}`} ref={headerRef}>
-      <div className="container header-bar">
-        <div className="header-left">
-          <button
-            ref={toggleRef}
-            type="button"
-            className="icon-button menu-toggle"
-            onClick={() => setOpen(!open)}
-            aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-          >
-            <span className={`hamburger-icon ${open ? 'is-open' : ''}`} aria-hidden="true">
-              <span className="bar bar-1" />
-              <span className="bar bar-2" />
-              <span className="bar bar-3" />
-            </span>
-          </button>
-          <nav className="header-nav" aria-label="Main navigation">
-            {desktopLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={isActive(link.href) ? 'nav-link active' : 'nav-link'}
-                aria-current={isActive(link.href) ? 'page' : undefined}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-        <Link href="/" className="header-brand" aria-label="Abdul Wahid — home" onClick={() => setOpen(false)}>
-          <LogoMark height={24} className="header-mark" />
-        </Link>
-        <div className="header-actions">
-          <ThemeToggle />
-          <Link href="/contact" className="hire-button">
-            Hire me <ArrowRight size={16} aria-hidden="true" />
+    <>
+      <header className={`site-header${hidden ? ' is-hidden' : ''}`} ref={headerRef}>
+        <div className="container header-bar">
+          <div className="header-left">
+            <button
+              ref={toggleRef}
+              type="button"
+              className="icon-button menu-toggle"
+              onClick={() => {
+                if (!open) setHidden(false);
+                setOpen(!open);
+              }}
+              aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+            >
+              <span className={`hamburger-icon ${open ? 'is-open' : ''}`} aria-hidden="true">
+                <span className="bar bar-1" />
+                <span className="bar bar-2" />
+                <span className="bar bar-3" />
+              </span>
+            </button>
+            <nav className="header-nav" aria-label="Main navigation">
+              {desktopLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={isActive(link.href) ? 'nav-link active' : 'nav-link'}
+                  aria-current={isActive(link.href) ? 'page' : undefined}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+          <Link href="/" className="header-brand" aria-label="Abdul Wahid — home" onClick={() => setOpen(false)}>
+            <LogoMark height={24} className="header-mark" />
           </Link>
+          <div className="header-actions">
+            <ThemeToggle />
+            <Link href="/contact" className="hire-button">
+              Hire me <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
-      </div>
-      <div className={`mobile-menu ${open ? 'is-open' : ''}`} id="mobile-menu" aria-hidden={!open}>
-        <nav className="mobile-panel" aria-label="Mobile navigation">
-          <div className="container mobile-menu-inner">
-            {links.map((link) => (
+        <div className={`mobile-menu ${open ? 'is-open' : ''}`} id="mobile-menu" aria-hidden={!open}>
+          <nav className="mobile-panel" aria-label="Mobile navigation">
+            <div className="container mobile-menu-inner">
+              {links.map((link, i) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={isActive(link.href) ? 'mobile-link active' : 'mobile-link'}
+                  aria-current={isActive(link.href) ? 'page' : undefined}
+                  onClick={() => setOpen(false)}
+                  tabIndex={open ? undefined : -1}
+                  style={{ '--i': i } as CSSProperties}
+                >
+                  <span>{link.label}</span>
+                  <ArrowUpRight size={19} aria-hidden="true" />
+                </Link>
+              ))}
+            </div>
+            <div className="container mobile-panel-foot" style={{ '--i': links.length } as CSSProperties}>
               <Link
-                key={link.href}
-                href={link.href}
-                className={isActive(link.href) ? 'mobile-link active' : 'mobile-link'}
-                aria-current={isActive(link.href) ? 'page' : undefined}
+                href="/contact"
+                className="hire-button"
                 onClick={() => setOpen(false)}
                 tabIndex={open ? undefined : -1}
               >
-                <span>{link.label}</span>
-                <ArrowUpRight size={17} aria-hidden="true" />
+                Hire me <ArrowRight size={16} aria-hidden="true" />
               </Link>
-            ))}
-          </div>
-        </nav>
-      </div>
-    </header>
+              <div className="mobile-socials">
+                <a
+                  className="icon-button"
+                  href={profile.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="GitHub"
+                  tabIndex={open ? undefined : -1}
+                >
+                  <Github size={18} aria-hidden="true" />
+                </a>
+                <a
+                  className="icon-button"
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LinkedIn"
+                  tabIndex={open ? undefined : -1}
+                >
+                  <Linkedin size={18} aria-hidden="true" />
+                </a>
+                <a
+                  className="icon-button"
+                  href={`mailto:${profile.email}`}
+                  aria-label="Email"
+                  tabIndex={open ? undefined : -1}
+                >
+                  <Mail size={18} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <div
+        className={`mobile-scrim ${open ? 'is-open' : ''}`}
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+      />
+    </>
   );
 }

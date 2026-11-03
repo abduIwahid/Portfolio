@@ -184,11 +184,12 @@ button {
 /* ── Site header: full-width bar (2026-11-03) ─────────────────────
    Replaces the floating pill. Desktop (>=1024px): text links left,
    the aw mark dead centre, theme toggle + Hire me right. Below
-   1024px the links give way to a menu button and a panel that
-   slides down from under the bar (and back up on close) — a pure
-   transform slide inside a clipping wrapper: no fade, no pop, no
-   backdrop. The bar surface is the theme surface token (white on
-   light, the dark surface on dark); sticky, flush, one hairline. */
+   1024px the links give way to a menu button and a premium panel
+   that slides down from under the bar (and back up on close): large
+   staggered link rows, a Hire me + socials foot row, and a soft
+   scrim over the page that a tap — or any scroll — dismisses. The
+   bar surface is the theme surface token (white on light, the dark
+   surface on dark); sticky, flush, one hairline. */
 .site-header {
   position: sticky;
   z-index: 40;
@@ -359,6 +360,10 @@ button {
   display: none;
 }
 
+.mobile-scrim {
+  display: none;
+}
+
 @media (max-width: 1023px) {
   .header-bar {
     height: 64px;
@@ -394,7 +399,7 @@ button {
     z-index: 5;
     overflow: hidden;
     visibility: hidden;
-    transition: visibility 0s linear .34s;
+    transition: visibility 0s linear .38s;
   }
 
   .mobile-menu.is-open {
@@ -407,7 +412,9 @@ button {
     border-bottom: 1px solid var(--border);
     box-shadow: var(--shadow-md);
     transform: translateY(-100%);
-    transition: transform .32s var(--ease-house);
+    transition: transform .36s var(--ease-house);
+    max-height: calc(100dvh - 64px);
+    overflow-y: auto;
   }
 
   .mobile-menu.is-open .mobile-panel {
@@ -415,8 +422,8 @@ button {
   }
 
   .mobile-menu-inner {
-    padding-top: 6px;
-    padding-bottom: 10px;
+    padding-top: 8px;
+    padding-bottom: 4px;
   }
 
   .mobile-link {
@@ -424,32 +431,127 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 54px;
-    padding: 0 4px 0 16px;
+    min-height: 58px;
+    padding: 0 6px 0 18px;
     border-bottom: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 15px;
-    font-weight: 550;
+    border-radius: 6px;
+    color: var(--foreground);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    transition: color .25s var(--ease-house), background .25s var(--ease-house);
   }
 
   .mobile-link:last-child {
     border-bottom: none;
   }
 
+  .mobile-link svg {
+    color: var(--muted);
+    opacity: 0;
+    transform: translate(-6px, 6px);
+    transition: opacity .25s var(--ease-house), transform .3s var(--ease-house), color .25s var(--ease-house);
+  }
+
+  .mobile-link:active {
+    color: var(--accent-ink);
+    background: var(--accent-soft);
+  }
+
+  .mobile-link:active svg,
+  .mobile-link:focus-visible svg {
+    color: var(--accent);
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
   .mobile-link.active {
-    color: var(--foreground);
-    font-weight: 650;
+    font-weight: 700;
   }
 
   .mobile-link.active::before {
     content: "";
     position: absolute;
     left: 0;
-    top: 13px;
-    bottom: 13px;
+    top: 15px;
+    bottom: 15px;
     width: 3px;
     border-radius: 2px;
     background: var(--accent);
+  }
+
+  /* Rows (and the foot row after them) drift in with a slight stagger
+     each time the panel opens — transform + opacity only, so the
+     panel's own slide stays the one big motion. */
+  .mobile-menu.is-open .mobile-link,
+  .mobile-menu.is-open .mobile-panel-foot {
+    animation: mobile-item-in .38s var(--ease-house) both;
+    animation-delay: calc(var(--i, 0) * 30ms);
+  }
+
+  .mobile-panel-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 8px;
+    padding-top: 14px;
+    padding-bottom: 18px;
+    border-top: 1px solid var(--border);
+  }
+
+  .mobile-socials {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Soft scrim over the page while the panel is open — a token ink
+     wash, deliberately no backdrop blur. Sits one level under the
+     header (z 40) and above the page; a tap on it closes the panel
+     (the header's outside-tap handler would catch it too). */
+  .mobile-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 39;
+    background: color-mix(in srgb, var(--ink) 38%, transparent);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .32s var(--ease-house), visibility 0s linear .34s;
+  }
+
+  .mobile-scrim.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity .32s var(--ease-house);
+  }
+}
+
+@keyframes mobile-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (max-width: 1023px) {
+  .mobile-link:hover {
+    color: var(--accent-ink);
+    background: var(--accent-soft);
+  }
+
+  .mobile-link:hover svg {
+    color: var(--accent);
+    opacity: 1;
+    transform: translate(0, 0);
   }
 }
 
@@ -486,6 +588,15 @@ button {
 @media (prefers-reduced-motion: reduce) {
   .mobile-panel {
     transition: none;
+  }
+
+  .mobile-scrim {
+    transition: none;
+  }
+
+  .mobile-menu.is-open .mobile-link,
+  .mobile-menu.is-open .mobile-panel-foot {
+    animation: none;
   }
 
   .site-header,

@@ -1175,6 +1175,11 @@ button {
 .stat-item {
   min-height: 122px;
   padding: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .stat-item+.stat-item {
@@ -2102,7 +2107,8 @@ main:has(.nf-hero) > .page-enter {
 }
 
 .contact-link {
-  display: flex;
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) 36px;
   align-items: center;
   gap: 13px;
   padding: 14px;
@@ -2139,6 +2145,7 @@ main:has(.nf-hero) > .page-enter {
 
 .contact-link>svg {
   color: var(--muted);
+  justify-self: center;
 }
 
 .contact-form,
@@ -2877,6 +2884,7 @@ main:has(.nf-hero) > .page-enter {
   color: var(--muted);
   font-size: 10px;
   line-height: 1.6;
+  text-align: center;
 }
 
 .closing-cta {
@@ -4686,9 +4694,13 @@ main:has(.nf-hero) > .page-enter {
 }
 
 /* Timeline / credential content keeps the old column's readable
-   measure under the full-width section headings */
+   measure under the full-width section headings. The column itself
+   is centred on the container axis (margin-inline: auto): without
+   it the 940px column hugged the container's left edge and its
+   centred entries sat up to 180px left of the centred headings. */
 .about-col {
     max-width: 940px;
+    margin-inline: auto;
 }
 
 /* ===== Centre-alignment pass (2026-11-02) ==========================

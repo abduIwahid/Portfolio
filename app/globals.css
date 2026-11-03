@@ -1391,12 +1391,23 @@ main:has(.nf-hero) > .page-enter {
   line-height: 1;
   letter-spacing: 0;
   color: var(--accent);
-  margin: 0 0 26px;
+  /* auto inline margins: the generic .page-heading>p 680px cap applies
+     to this <p> too, and this rule's higher specificity otherwise beats
+     the centre pass — the capped box hugged the left and dragged the
+     centred text 85px off the hero axis at desktop widths. */
+  margin: 0 auto 26px;
+  position: relative;
 }
 
 .nf-cursor {
-  display: inline-block;
-  margin-left: 8px;
+  /* Out of flow so the blinking block is not part of the centred line:
+     "GAME OVER" centres on the hero axis alone and the block hangs off
+     its end (text ink is 114px wide at the chip's fixed 12px pixel
+     font, so its end sits 57px past centre; +8px gap). */
+  position: absolute;
+  left: calc(50% + 65px);
+  top: 50%;
+  transform: translateY(-50%);
   animation: nf-blink 1.1s steps(1, end) infinite;
 }
 
@@ -1411,7 +1422,10 @@ main:has(.nf-hero) > .page-enter {
   line-height: 1;
   letter-spacing: 0;
   color: var(--foreground);
-  margin: 0 0 30px;
+  /* auto inline margins for the same reason as the chip above: the
+     680px .page-heading>p cap left this box hugging the left, 85px
+     off-axis at desktop widths. */
+  margin: 0 auto 30px;
 }
 
 .nf-pixel-code .nf-accent {

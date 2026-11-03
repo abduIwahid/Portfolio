@@ -196,6 +196,73 @@ button {
   width: 100%;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
+  transition: transform .32s var(--ease-house);
+}
+
+/* Smart bar (site-header.tsx): scrolling down past ~140px adds
+   .is-hidden and the bar slides up off-screen; any upward scroll
+   removes it again. Pure transform on a sticky element — the layout
+   box stays reserved, so nothing below ever jumps. */
+.site-header.is-hidden {
+  transform: translateY(-100%);
+}
+
+/* Reading progress (components/scroll-progress.tsx): a 3px accent
+   line pinned above the header. scaleX is set inline from the scroll
+   position every frame — deliberately no transition, it tracks 1:1. */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* Back to top (components/back-to-top.tsx): a 48px ink circle in the
+   bottom-right corner, below the header's stacking level. Hidden —
+   faded, nudged down, inert — until the page scrolls past 600px. */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 999px;
+  background: var(--foreground);
+  color: var(--background);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity .3s var(--ease-house), transform .3s var(--ease-house), background .25s var(--ease-house);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .back-to-top:hover {
+    background: color-mix(in srgb, var(--foreground) 86%, var(--background));
+  }
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media (max-width: 640px) {
+  .back-to-top {
+    right: 20px;
+    bottom: 20px;
+  }
 }
 
 .header-bar {
@@ -418,6 +485,11 @@ button {
 
 @media (prefers-reduced-motion: reduce) {
   .mobile-panel {
+    transition: none;
+  }
+
+  .site-header,
+  .back-to-top {
     transition: none;
   }
 }
@@ -2821,6 +2893,8 @@ main:has(.nf-hero) > .page-enter {
 
   .site-header,
   .site-footer,
+  .scroll-progress,
+  .back-to-top,
   .skip-link,
   .cv-actions,
   .page-hero,

@@ -22,16 +22,63 @@ const desktopLinks = links.slice(1);
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const anchorRef = useRef(0);
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
 
-  /* Route change closes the panel (link taps navigate, which lands here). */
+  /* Route change closes the panel (link taps navigate, which lands here)
+     and brings the bar back — the new page starts at the top. */
   useEffect(() => {
     setOpen(false);
+    setHidden(false);
   }, [pathname]);
+
+  /* Smart bar: scrolling down past ~140px slides the bar up off-screen;
+     any upward scroll brings it back, and near the top it is always
+     visible. Direction is judged against the last flip point with a 4px
+     dead-zone, so small scroll wobbles (and Lenis's eased tail) never
+     jitter it. The bar is sticky, so hiding is a pure transform — the
+     layout box stays put and nothing below jumps. While the mobile
+     panel is open the bar never hides: the panel hangs from it. Reads
+     plain window scroll, so it behaves the same with and without
+     Lenis (which runs in window mode and drives the real scroll). */
+  useEffect(() => {
+    anchorRef.current = window.scrollY;
+    if (open) {
+      setHidden(false);
+      return;
+    }
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const y = window.scrollY;
+        if (y <= 140) {
+          setHidden(false);
+          anchorRef.current = y;
+          return;
+        }
+        const delta = y - anchorRef.current;
+        if (delta > 4) {
+          setHidden(true);
+          anchorRef.current = y;
+        } else if (delta < -4) {
+          setHidden(false);
+          anchorRef.current = y;
+        }
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [open ]);
 
   /* While the panel is open: Escape closes it (focus returns to the menu
      button), a tap outside the header closes it, and body scroll locks —
@@ -62,7 +109,7 @@ export function SiteHeader() {
   }, [open ]);
 
   return (
-    <header className="site-header" ref={headerRef}>
+    <header className={`site-header${hidden ? ' is-hidden' : ''}`} ref={headerRef}>
       <div className="container header-bar">
         <div className="header-left">
           <button

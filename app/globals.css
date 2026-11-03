@@ -4848,6 +4848,16 @@ main:has(.nf-hero) > .page-enter {
     justify-content: center;
 }
 
+/* The eyebrow is a <p>, so the 640px cap below (meant for intro
+   lines) also caps the eyebrow's flex row; without auto margins the
+   capped row hugs the left of its centred heading div and the label
+   sits off-axis whenever the title is wider than 640px (measured
+   276px left on /about at 1440, 47px on the home principles heading).
+   Auto margins keep every section-heading eyebrow on the centre axis. */
+.section-heading .eyebrow {
+    margin-inline: auto;
+}
+
 .section-heading p {
     max-width: 640px;
 }

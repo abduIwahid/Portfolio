@@ -5,7 +5,7 @@ import { articles } from '@/content/articles';
 import { profile } from '@/content/profile';
 import { ProjectShot } from '@/components/project-shot';
 import { Reveal } from '@/components/reveal';
-import { HeroGlow } from '@/components/pointer-glow';
+import { HeroNoise } from '@/components/hero-noise';
 import { TextMarquee } from '@/components/text-marquee';
 import { heroCutout } from './hero-image';
 
@@ -14,7 +14,7 @@ const homeProjects = HOME_PROJECT_SLUGS.map((slug) => projects.find((p) => p.slu
 
 export default function HomePage() {
   return <>
-    <section className="hero hero-echo"><HeroGlow /><div className="container hero-stage">
+    <section className="hero hero-echo"><HeroNoise /><div className="container hero-stage">
       <p className="eyebrow hero-eyebrow">AI/ML Developer</p>
       <div className="hero-headline-wrap">
         <h1 className="hero-giant"><span className="hg-line hg-solid">Make the model.</span><span className="hg-line hg-faded">Question the result.</span></h1>

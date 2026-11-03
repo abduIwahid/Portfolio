@@ -1,13 +1,21 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
 /**
  * Pointer-follow glow layers.
  *
  * `PointerGlow` is a single fixed layer mounted once in the root layout:
  * a soft orange radial that trails the pointer with rAF-lerped smoothing.
- * `HeroGlow` is the same mechanism scoped to the homepage hero section,
- * with a stronger tint, following the pointer while it is over the hero.
+ * It is gated OFF on the home route only: the home hero carries its own
+ * cursor-reactive texture (HeroNoise, components/hero-noise.tsx), and
+ * two pointer-reactive layers on one page would fight. Every other
+ * route keeps the glow exactly as before; removing that texture means
+ * deleting the gate below to restore the glow on home.
+ * `HeroGlow` is the same mechanism scoped to a hero section, with a
+ * stronger tint, following the pointer while it is over the hero. It
+ * serves the About hero; the home hero used it until HeroNoise
+ * replaced it there.
  *
  * Mouse: hover-follow, exactly as before — the global layer rests at low
  * opacity near the top of the viewport and brightens while the pointer
@@ -57,10 +65,19 @@ function stepOpacity(s: GlowState, fast: boolean, normal: number) {
 
 export function PointerGlow() {
   const ref = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const isHome = pathname === '/';
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (isHome) {
+      // Home route: the hero texture is the page's only
+      // cursor-reactive layer. Stay fully dark — no listeners,
+      // no rAF — for as long as the route is home.
+      el.style.opacity = '0';
+      return;
+    }
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       el.style.opacity = '0';
       return;
@@ -125,7 +142,7 @@ export function PointerGlow() {
       window.removeEventListener('pointercancel', onUp);
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [isHome]);
 
   return <div ref={ref} className="pointer-glow" aria-hidden="true" />;
 }

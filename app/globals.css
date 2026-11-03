@@ -4445,6 +4445,48 @@ main:has(.nf-hero) > .page-enter {
     z-index: 3;
     white-space: nowrap;
 }
+/* Home hero portrait unit (2026-11-03): the wrapper carries the
+   placement the cutout used to carry itself, giving the portrait
+   a real box for the hover depth effect below and for the
+   cursor's native zone (data-cursor="native", custom-cursor.tsx).
+   The About hero keeps the bare .hero-cutout placement above. */
+.hero-portrait {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: clamp(168px, 25.5vw, 322px);
+    z-index: 2;
+    display: block;
+    line-height: 0;
+}
+.hero-portrait .hero-cutout {
+    position: static;
+    transform: none;
+    height: 100%;
+    display: block;
+}
+@media (max-width: 560px) {
+    .hero-portrait { height: clamp(140px, 42vw, 190px); }
+}
+/* Hover depth: only for pointers that can truly hover, and
+   never under reduced motion. The group lifts and grows a
+   touch while its drop shadow deepens — transform and filter
+   only, so nothing in the layout moves. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .hero-portrait {
+        transition: transform 0.45s var(--ease-house);
+    }
+    .hero-portrait .hero-cutout {
+        transition: filter 0.45s var(--ease-house);
+    }
+    .hero-portrait:hover {
+        transform: translateX(-50%) translateY(-2px) scale(1.04);
+    }
+    .hero-portrait:hover .hero-cutout {
+        filter: drop-shadow(0 26px 42px rgb(0 0 0 / 0.30));
+    }
+}
 .hero-copy-center {
     text-align: center;
     margin-left: auto;
@@ -4865,6 +4907,14 @@ html.custom-cursor-on [contenteditable] {
 }
 
 html.custom-cursor-on select {
+    cursor: auto !important;
+}
+
+/* Native-cursor zones (the home hero portrait): the custom
+   cursor fades out over them in custom-cursor.tsx, and the
+   plain native arrow shows instead — no inversion disc. */
+html.custom-cursor-on [data-cursor="native"],
+html.custom-cursor-on [data-cursor="native"] * {
     cursor: auto !important;
 }
 

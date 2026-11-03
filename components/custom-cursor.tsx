@@ -30,13 +30,19 @@ import { useEffect, useRef } from 'react';
  * `custom-cursor-on` to <html>, which is what hides the native
  * cursor in globals.css. If this component never mounts, the native
  * cursor is untouched. Text entry keeps the native text cursor and
- * the custom cursor fades out over it. Transform/opacity only,
- * pointer-events: none, no shared state with PointerGlow or the
- * magnetic buttons.
+ * the custom cursor fades out over it. Zones marked
+ * data-cursor="native" (the home hero portrait) behave the same
+ * way: the custom cursor fades out and globals.css restores the
+ * plain native arrow, so the portrait never gets the inversion
+ * disc. Transform/opacity only, pointer-events: none, no shared
+ * state with PointerGlow or the magnetic buttons.
  */
 
 const INTERACTIVE = 'a, button, [role="button"], [data-cursor], summary, label';
 const TEXT_ENTRY = 'input, textarea, select, [contenteditable]';
+// Native-cursor zones: the custom cursor fades out here exactly
+// as it does over text entry, and the native arrow shows instead.
+const NATIVE_ZONE = '[data-cursor="native"]';
 
 // Per-60fps-unit spring constants.
 const STIFFNESS = 0.16;
@@ -80,6 +86,7 @@ export function CustomCursor() {
     let hovering = false;
     let pressing = false;
     let overText = false;
+    let overNative = false;
     let inside = false;
     let seen = false;
     let raf = 0;
@@ -97,7 +104,9 @@ export function CustomCursor() {
       }
       const target = event.target as Element | null;
       overText = Boolean(target?.closest?.(TEXT_ENTRY));
-      hovering = !overText && Boolean(target?.closest?.(INTERACTIVE));
+      overNative = Boolean(target?.closest?.(NATIVE_ZONE));
+      hovering =
+        !overText && !overNative && Boolean(target?.closest?.(INTERACTIVE));
     };
     const onDown = () => {
       pressing = true;
@@ -147,7 +156,7 @@ export function CustomCursor() {
       dotScale += vDotScale * steps;
 
       // Master visibility gate, frame-rate independent fade.
-      const gateTarget = inside && !overText ? 1 : 0;
+      const gateTarget = inside && !overText && !overNative ? 1 : 0;
       gate += (gateTarget - gate) * (1 - Math.pow(0.75, steps));
 
       // How far the circle has grown past its resting size (0 at

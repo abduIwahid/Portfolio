@@ -17,8 +17,10 @@ export default function HomePage() {
       <p className="eyebrow hero-eyebrow">AI/ML Developer</p>
       <div className="hero-headline-wrap">
         <h1 className="hero-giant"><span className="hg-line hg-solid">Make the model.</span><span className="hg-line hg-faded">Question the result.</span></h1>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={heroCutout} alt="" aria-hidden="true" className="hero-cutout" />
+        <span className="hero-portrait" data-cursor="native">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={heroCutout} alt="" aria-hidden="true" className="hero-cutout" />
+        </span>
         <span className="pfp-badge hero-badge">Available for Opportunities</span>
       </div>
 

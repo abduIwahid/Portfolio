@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   title: { default: 'Abdul Wahid · AI/ML Developer', template: '%s · Abdul Wahid' },
   description: 'AI/ML developer portfolio focused on machine-learning systems, model evaluation, explainability, and practical software.',
   alternates: { canonical: '/' },
-  openGraph: { type: 'website', url: '/', title: 'Abdul Wahid · AI/ML Developer', description: 'Evidence-first AI/ML projects, technical case studies, and writing.', siteName: 'Abdul Wahid' },
-  twitter: { card: 'summary_large_image', title: 'Abdul Wahid · AI/ML Developer', description: 'Evidence-first AI/ML projects, technical case studies, and writing.' },
+  openGraph: { type: 'website', url: '/', title: 'Abdul Wahid · AI/ML Developer', description: 'Evidence-first AI/ML projects, technical case studies, and writing.', siteName: 'Abdul Wahid', images: [{ url: 'https://www.abdulwahid.me/og-card.png', width: 1200, height: 630, alt: 'Abdul Wahid · AI/ML Developer' }] },
+  twitter: { card: 'summary_large_image', title: 'Abdul Wahid · AI/ML Developer', description: 'Evidence-first AI/ML projects, technical case studies, and writing.', images: ['https://www.abdulwahid.me/og-card.png'] },
   icons: { icon: '/icons/favicon.png', shortcut: '/icons/favicon.png', apple: '/icons/favicon.png' }, manifest: '/manifest.webmanifest',
   verification: { google: '124602Qsd3dsa2VJZU5U6LBW-0LsmzkFI3Tg0nFkvnQ' }
 };

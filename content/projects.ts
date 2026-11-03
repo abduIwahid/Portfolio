@@ -36,6 +36,7 @@ export const projects: Project[] = [
     ],
     evidence: [
       { label: 'Evaluation', value: '0.8222 AUC–ROC', note: 'LightGBM diabetes risk model on a held-out test split (BRFSS, 70,692 records); the live model card documents the full evaluation.' },
+      { label: 'Score check', value: '0.8222, not 0.83', note: "Not the internship's 0.83. That was the best across seven datasets. This 0.8222 is the live model alone, on its held-out test split." },
       { label: 'Datasets', value: '7 domains', note: 'De-identified healthcare dataset domains described in project documentation.' },
       { label: 'Reproducibility', value: 'MLflow', note: 'Experiment tracking is part of the documented stack.' }
     ],

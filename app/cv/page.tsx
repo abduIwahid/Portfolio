@@ -82,7 +82,7 @@ export default function CvPage() {
         <p className="cv2-summary">
           BS Artificial Intelligence undergraduate (CGPA 3.46/4.00) and Machine Learning Intern at Ezitech
           Institute, where I trained and benchmarked XGBoost and LightGBM models on healthcare datasets
-          (best: LightGBM, 0.83 AUC-ROC), with MLflow experiment tracking and SHAP-based explanations
+          (best: LightGBM, 0.83 AUC-ROC across seven healthcare datasets), with MLflow experiment tracking and SHAP-based explanations
           served through FastAPI. I build and deploy full-stack ML products end to end, including WhyRisk,
           a live explainable healthcare risk platform, and Study Hub, a resource platform used by my entire
           BS AI class cohort. Focus areas: explainable AI (XAI), MLOps, and production ML workflows.
@@ -102,7 +102,7 @@ export default function CvPage() {
                   <li>Built WhyRisk (formerly MediSight AI) during this internship, an explainable healthcare risk-modelling workflow across seven de-identified dataset domains.</li>
                   <li>Used LightGBM, scikit-learn, SHAP, MLflow, and FastAPI for model benchmarking, experiment tracking, and explanation workflows.</li>
                   <li>Contributed to MLOps-oriented drift monitoring/retraining flows and a web application built with Next.js, TypeScript, and Supabase.</li>
-                  <li>Trained and benchmarked XGBoost, LightGBM, and scikit-learn classifiers; the best model (LightGBM) reached 0.83 AUC-ROC.</li>
+                  <li>Trained and benchmarked XGBoost, LightGBM, and scikit-learn classifiers; the best model (LightGBM) reached 0.83 AUC-ROC (best across seven healthcare datasets).</li>
                 </ul>
               </div>
             </section>

@@ -652,29 +652,12 @@ button {
   transition: border-color .2s ease, color .2s ease;
 }
 
-.pfp-badge::before {
-  content: '';
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 0 2px rgb(34 197 94 / .25);
-}
-
 @media (hover: hover) and (pointer: fine) {
 
 .pfp-badge:hover {
   border-color: #22c55e;
   color: var(--foreground);
 }}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-
-  .pfp-badge::before {
-    animation: none;
-  }
-}
 
 .section {
   padding: clamp(40px, 6.5vw, 84px) 0;
@@ -1279,8 +1262,10 @@ button {
   gap: 40px;
 }
 
-/* Option C (2026-11-03): numbered columns, no card box - a hairline
-   with an accent tick, a faded Anton numeral, title + icon, then copy. */
+/* Focus areas on /about (the principle-card family): a hairline with
+   an accent tick, then the centred title. The faded numerals and the
+   title icons were removed 2026-11-03 (owner's order); the home
+   principles moved to the stacking cards further down this file. */
 .principle-card {
   position: relative;
   border-top: 1px solid var(--border);
@@ -1296,36 +1281,14 @@ button {
   background: var(--accent);
 }
 
-.principle-index {
-  display: block;
-  margin-top: 20px;
-  font-family: var(--font-display), 'Arial Narrow', sans-serif;
-  font-size: clamp(52px, 4.6vw, 64px);
-  line-height: 1;
-  letter-spacing: 0;
-  color: color-mix(in srgb, var(--foreground) 14%, transparent);
-}
-
 .principle-card h3 {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  justify-content: center;
+  text-align: center;
   margin: 14px 0 0;
   font-size: clamp(20px, 1.9vw, 22px);
   letter-spacing: -.03em;
-}
-
-.principle-card h3 svg {
-  flex: none;
-  margin-top: 3px;
-  color: var(--accent);
-}
-
-.principle-card p {
-  margin: 10px 0 0;
-  color: var(--muted);
-  font-size: clamp(15px, 1.3vw, 16px);
-  line-height: 1.65;
 }
 
 .writing-list {
@@ -5531,3 +5494,89 @@ html.custom-cursor-on [data-cursor="native"] * {
     gap: 34px;
   }
 }
+
+/* ── Principles stack (home, 2026-11-03) ─────────────────────────────
+   The Working principles items as stacking cards, on the same system
+   as the /projects stack: sticky shells offset by the header stack
+   offset plus a 14px step per card (8px on mobile) so covered cards
+   peek, and the same paper surface, border, radius and shadow chrome.
+   The scale/dim driver lives in components/principles-stack.tsx.
+   Inside each card the content is centred: the section's 34x3 accent
+   tick, then the title, then the copy. No numerals, no icons. The
+   min-height is shared by all three cards so the stack stays even at
+   every width; it is sized for the longest copy at 320px. */
+.principles-stack {
+  --stack-header: 72px;
+}
+
+@media (max-width: 1023px) {
+  .principles-stack {
+    --stack-header: 64px;
+  }
+}
+
+.principle-stack-wrap {
+  position: sticky;
+  top: calc(var(--stack-header) + var(--stack-i, 0) * 14px);
+  margin-bottom: 28px;
+}
+
+.principle-stack-wrap:last-child {
+  margin-bottom: 0;
+}
+
+.principle-stack-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 264px;
+  padding: clamp(30px, 4vw, 48px) clamp(22px, 5vw, 64px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--surface), color-mix(in srgb, var(--foreground) 3.5%, var(--surface)));
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--foreground) 6%, transparent), 0 18px 38px -12px color-mix(in srgb, var(--foreground) 20%, transparent), inset 0 1px 0 color-mix(in srgb, var(--background) 60%, transparent);
+  transform-origin: center top;
+  min-width: 0;
+}
+
+.principle-tick {
+  flex: none;
+  width: 34px;
+  height: 3px;
+  background: var(--accent);
+  margin-bottom: 20px;
+}
+
+.principle-stack-card h3 {
+  margin: 0;
+  font-size: clamp(20px, 1.9vw, 22px);
+  letter-spacing: -.03em;
+}
+
+.principle-stack-card p {
+  margin: 12px 0 0;
+  max-width: 600px;
+  color: var(--muted);
+  font-size: clamp(15px, 1.3vw, 16px);
+  line-height: 1.65;
+}
+
+@media (max-width: 759px) {
+  .principle-stack-wrap {
+    top: calc(var(--stack-header) + var(--stack-i, 0) * 8px);
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .principle-stack-wrap {
+    margin-bottom: 17px;
+  }
+}
+
+/* Reduced motion: unlike the project stack, the sticky shells stay in
+   place here — sticking is positional, not an animation, so the cards
+   still stack on scroll; only the scale/dim driver is inert (it
+   checks the same media query in principles-stack.tsx). */

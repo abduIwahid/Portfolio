@@ -186,8 +186,10 @@ button {
    the aw mark dead centre, theme toggle + Hire me right. Below
    1024px the links give way to a menu button and a premium panel
    that slides down from under the bar (and back up on close): large
-   staggered link rows, a Hire me + socials foot row, and a soft
-   scrim over the page that a tap — or any scroll — dismisses. The
+   staggered link rows only — no foot row; socials live on the
+   dedicated /links page, and Hire me stays in the bar alone — and
+   a soft scrim over the page that a tap — or any scroll —
+   dismisses. The
    bar surface is the theme surface token (white on light, the dark
    surface on dark); sticky, flush, one hairline. */
 .site-header {
@@ -423,7 +425,7 @@ button {
 
   .mobile-menu-inner {
     padding-top: 8px;
-    padding-bottom: 4px;
+    padding-bottom: 14px;
   }
 
   .mobile-link {
@@ -480,30 +482,12 @@ button {
     background: var(--accent);
   }
 
-  /* Rows (and the foot row after them) drift in with a slight stagger
-     each time the panel opens — transform + opacity only, so the
-     panel's own slide stays the one big motion. */
-  .mobile-menu.is-open .mobile-link,
-  .mobile-menu.is-open .mobile-panel-foot {
+  /* Rows drift in with a slight stagger each time the panel opens —
+     transform + opacity only, so the panel's own slide stays the one
+     big motion. */
+  .mobile-menu.is-open .mobile-link {
     animation: mobile-item-in .38s var(--ease-house) both;
     animation-delay: calc(var(--i, 0) * 30ms);
-  }
-
-  .mobile-panel-foot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    margin-top: 8px;
-    padding-top: 14px;
-    padding-bottom: 18px;
-    border-top: 1px solid var(--border);
-  }
-
-  .mobile-socials {
-    display: flex;
-    align-items: center;
-    gap: 10px;
   }
 
   /* Soft scrim over the page while the panel is open — a token ink
@@ -594,8 +578,7 @@ button {
     transition: none;
   }
 
-  .mobile-menu.is-open .mobile-link,
-  .mobile-menu.is-open .mobile-panel-foot {
+  .mobile-menu.is-open .mobile-link {
     animation: none;
   }
 

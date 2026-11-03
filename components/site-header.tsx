@@ -2,10 +2,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
-import { ArrowRight, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { ThemeToggle } from './theme-toggle';
 import { LogoMark } from './logo-mark';
-import { profile } from '@/content/profile';
 
 const links = [
   { href: '/', label: 'Home' },
@@ -188,46 +187,6 @@ export function SiteHeader() {
                   <ArrowUpRight size={19} aria-hidden="true" />
                 </Link>
               ))}
-            </div>
-            <div className="container mobile-panel-foot" style={{ '--i': links.length } as CSSProperties}>
-              <Link
-                href="/contact"
-                className="hire-button"
-                onClick={() => setOpen(false)}
-                tabIndex={open ? undefined : -1}
-              >
-                Hire me <ArrowRight size={16} aria-hidden="true" />
-              </Link>
-              <div className="mobile-socials">
-                <a
-                  className="icon-button"
-                  href={profile.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="GitHub"
-                  tabIndex={open ? undefined : -1}
-                >
-                  <Github size={18} aria-hidden="true" />
-                </a>
-                <a
-                  className="icon-button"
-                  href={profile.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="LinkedIn"
-                  tabIndex={open ? undefined : -1}
-                >
-                  <Linkedin size={18} aria-hidden="true" />
-                </a>
-                <a
-                  className="icon-button"
-                  href={`mailto:${profile.email}`}
-                  aria-label="Email"
-                  tabIndex={open ? undefined : -1}
-                >
-                  <Mail size={18} aria-hidden="true" />
-                </a>
-              </div>
             </div>
           </nav>
         </div>

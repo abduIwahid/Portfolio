@@ -4430,7 +4430,7 @@ main:has(.nf-hero) > .page-enter {
   }
 }
 
-/* ---------- Intro loader (logo fill-up + fade finale) ---------- */
+/* ---------- Intro loader (centreline draw + slide-up exit) ---------- */
 .intro {
   position: fixed;
   inset: 0;
@@ -4439,6 +4439,7 @@ main:has(.nf-hero) > .page-enter {
   display: flex;
   align-items: center;
   justify-content: center;
+  will-change: transform;
 }
 
 .intro-stage {
@@ -4455,29 +4456,24 @@ main:has(.nf-hero) > .page-enter {
   aspect-ratio: 963 / 321;
 }
 
-.intro-mark-base {
-  position: absolute;
-  inset: 0;
-  opacity: 0.13;
-}
-
-.intro-mark-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0;
-  overflow: hidden;
-}
-
-.intro-mark-fill-inner {
-  width: min(300px, 62vw);
-  height: 100%;
-}
-
 .intro-mark-svg {
   width: 100% !important;
   height: 100% !important;
+  color: var(--foreground);
+}
+
+/* Soft shadow that rides just under the loader panel's bottom edge
+   while it slides up; the component animates its opacity (peaks as
+   the panel starts to lift, gone by the time it has left). */
+.intro-shadow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 56px;
+  background: linear-gradient(to bottom, rgb(0 0 0 / 0.16), rgb(0 0 0 / 0));
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ===== Hero: giant headline + portrait cut-out (2026-10-23) =======

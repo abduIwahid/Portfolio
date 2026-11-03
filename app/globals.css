@@ -5021,10 +5021,13 @@ html.custom-cursor-on [data-cursor="native"] * {
 
 /* ── Tech-stack band (/about, below the stats strip) ───────────────
    Constant-speed loop of Wadi's real tools (components/stack-band).
-   The track holds two identical sets and translates -50%; the mask
-   fades both edges. Icons are monochrome silhouettes in the site
-   ink: brightness(0) flattens any brand colour to black, opacity
-   sets the ~65% ink level; dark theme inverts to a light silhouette. */
+   The track holds two identical halves of SETS_PER_HALF sets each
+   and translates -50% (exactly one half, so the loop is seamless);
+   the duration is 32s per set in a half, which keeps the original
+   px/s speed. The mask fades both edges. Icons are monochrome
+   silhouettes in the site ink: brightness(0) flattens any brand
+   colour to black, opacity sets the ~65% ink level; dark theme
+   inverts to a light silhouette. */
 .stack-band {
   overflow: hidden;
   padding: 22px 0;
@@ -5038,7 +5041,7 @@ html.custom-cursor-on [data-cursor="native"] * {
 .stack-band-track {
   display: flex;
   width: max-content;
-  animation: stack-band-scroll 32s linear infinite;
+  animation: stack-band-scroll 128s linear infinite;
 }
 
 .stack-band:hover .stack-band-track {

@@ -57,7 +57,7 @@ export default function CvPage() {
 
       <Reveal className="reveal-auto"><article className="cv-sheet cv2">
         <header className="cv2-head">
-          <h1 className="cv2-name">{profile.name}</h1>
+          <h2 className="cv2-name">{profile.name}</h2>
           <p className="cv2-role">AI / ML Developer, Explainable AI, MLOps</p>
           <div className="cv2-contact-strip">
             <div>

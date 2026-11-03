@@ -4992,38 +4992,31 @@ html.custom-cursor-on [data-cursor="native"] * {
     cursor: auto !important;
 }
 
-.custom-cursor-dot {
+/* Directional triangle arrow (2026-11-03): one 24x21 element
+   holding an inline SVG wedge. transform-origin sits on the tip
+   (viewBox (10, 6) of 112x98 = 8.93% / 6.12% of the box), so the
+   component's rotation and scale pivot exactly on the hotspot.
+   The soft drop shadow is a filter on the element and turns with
+   it. No blend modes anywhere — the old dot and the difference-
+   blend disc are gone. */
+.custom-cursor-arrow {
     position: fixed;
     top: 0;
     left: 0;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--foreground);
+    width: 24px;
+    height: 21px;
     opacity: 0;
     pointer-events: none;
     z-index: 9999;
     will-change: transform, opacity;
+    transform-origin: 8.93% 6.12%;
+    filter: drop-shadow(0 3px 5px rgb(0 0 0 / 0.28));
 }
 
-/* Hover circle: a SEPARATE full-size (64px) element, white with
-   difference blending, so whatever sits under it inverts. It is
-   never an upscaled small raster — it springs from scale 0.15 to 1
-   at its native size, which keeps its edge vector-crisp (the old
-   single 10px element scaled 6x rendered pixelated). */
-.custom-cursor-circle {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: #fff;
-    mix-blend-mode: difference;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 9999;
-    will-change: transform, opacity;
+.custom-cursor-arrow svg {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 /* ── Tech-stack band (/about, below the stats strip) ───────────────

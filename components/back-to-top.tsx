@@ -13,25 +13,39 @@ import { ArrowUp } from 'lucide-react';
  * instantly under prefers-reduced-motion, where the entrance animation
  * is also disabled in globals.css. Visibility reads plain window
  * scroll, so it behaves the same with and without Lenis.
+ *
+ * Visibility is re-derived from the live scroll position on every
+ * animation frame (change-guarded, so React re-renders only on an
+ * actual show/hide transition) rather than from discrete scroll
+ * events. A scroll-event-driven state can be left permanently stale
+ * when the tail of a programmatic smooth scroll is coalesced and no
+ * final event reaches the listener — the button then stays visible
+ * at scrollY = 0 with nothing left to correct it. Reading the
+ * position directly each frame (the same direct-read approach as
+ * ScrollProgress) makes the state a faithful function of where the
+ * page actually is, under every kind of scroll: manual, native
+ * smooth, or Lenis-animated.
  */
 export function BackToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     let raf = 0;
-    const update = () => {
-      raf = 0;
-      setVisible(window.scrollY > 600);
+    let current = false;
+    const sync = () => {
+      const next = window.scrollY > 600;
+      if (next !== current) {
+        current = next;
+        setVisible(next);
+      }
     };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
+    const loop = () => {
+      sync();
+      raf = requestAnimationFrame(loop);
     };
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
+    sync();
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   const backToTop = () => {

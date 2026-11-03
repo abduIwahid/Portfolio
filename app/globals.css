@@ -2372,12 +2372,8 @@ main:has(.nf-hero) > .page-enter {
 }
 
 /* Giant faded wordmark (2026-11-02): the footer's closing signature.
-   The name rises and fades in scrubbed to the scroll position as
-   the band enters, and reverses identically on the way back up
-   (components/footer-wordmark.tsx writes transform/opacity on
-   .wm-track only; the band is overflow-hidden, so the sunken name
-   is clipped by the band and the footer never changes height).
-   The footer is ink-dark in both
+   Letters rise once, staggered, when the band scrolls into view
+   (components/footer-wordmark.tsx). The footer is ink-dark in both
    themes, so the faded signature is mixed from the footer's own
    paper colour at 12% — var(--foreground) at 12% would composite
    to the footer background itself in the light theme (invisible). */
@@ -2402,12 +2398,18 @@ main:has(.nf-hero) > .page-enter {
 
 .wm-letter-in {
   display: inline-block;
+  transform: translateY(110%);
+  transition: transform .7s var(--ease-house);
+}
+
+.footer-wordmark.in-view .wm-letter-in {
+  transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wm-track {
-    transform: none !important;
-    opacity: 1 !important;
+  .wm-letter-in {
+    transform: none;
+    transition: none;
   }
 }
 

@@ -18,12 +18,12 @@ const TAIL_LEN = 211.8;
 const TOTAL_LEN = MAIN_LEN + TAIL_LEN;
 const MASK_WIDTH = 62;
 
-const DRAW_MS = 2400;
-const HOLD_MS = 350;
-const SLIDE_MS = 850;
+const DRAW_MS = 1900;
+const HOLD_MS = 250;
+const SLIDE_MS = 700;
 /* Hard cap: whatever happens (throttled rAF, a slow device), the loader
    unmounts by this point so it can never trap the page. */
-const FALLBACK_MS = 4600;
+const FALLBACK_MS = 3800;
 
 /* Pen-speed profile: constant along the stroke, with a gentle blend
    over only the first and last 8% of the draw so the pen neither jerks

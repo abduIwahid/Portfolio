@@ -128,7 +128,7 @@ export function ProjectStack({ projects }: { projects: Project[] }) {
           <article className={`stack-card project-${project.accent}`}>
             <div className="stack-card-text">
               <p className="eyebrow stack-card-eyebrow">{project.kind}</p>
-              <h3 className="stack-card-title">{project.name}</h3>
+              <h2 className="stack-card-title">{project.name}</h2>
               <p className="stack-card-summary">{project.summary}</p>
               <div className="tag-row stack-card-tags">
                 {project.stack.slice(0, 6).map((tag) => <span className="tag" key={tag}>{tag}</span>)}

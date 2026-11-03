@@ -910,6 +910,7 @@ button {
 }
 
 .project-card-name {
+  margin: 0;
   font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
   font-size: clamp(20px, 5.4vw, 25px);
   font-weight: 400;

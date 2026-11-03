@@ -20,7 +20,7 @@ export function ProjectExplorer({ projects }: { projects: Project[] }) {
   }, [projects, query, category, sort]);
   return <>
     <div className="project-controls">
-      <label className="search-field"><Search size={17} /><span className="sr-only">Search projects</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search projects, tools, methods…" />{query && <button type="button" className="clear-search" aria-label="Clear search" onClick={() => setQuery('')}><X size={15} /></button>}</label>
+      <label className="search-field"><Search size={17} /><span className="sr-only">Search projects</span><input value={query} onChange={(event) => setQuery(event.target.value)} aria-label="Search projects" placeholder="Search projects, tools, methods…" />{query && <button type="button" className="clear-search" aria-label="Clear search" onClick={() => setQuery('')}><X size={15} /></button>}</label>
       <label className="sort-field"><span className="sr-only">Sort projects</span><select value={sort} onChange={(event) => setSort(event.target.value)}><option value="featured">Featured first</option><option value="name">Name A–Z</option></select></label>
     </div>
     <div className="filter-row" aria-label="Filter by category">{categories.map((item) => <button type="button" key={item} onClick={() => setCategory(item)} className={`filter-chip ${category === item ? 'selected' : ''}`} aria-pressed={category === item}>{item}</button>)}</div>

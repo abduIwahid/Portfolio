@@ -8,7 +8,8 @@ import { useEffect, useRef } from 'react';
  * (theme foreground, falling to the right) drifts left with the skills
  * list; the back band (fixed accent orange, rising to the right) drifts
  * right with the evidence list. Each band loops its own list seamlessly
- * (doubled track, wraps at exactly -50%), runs at a constant base drift
+ * (track repeats the list COPIES times, wraps after exactly one list
+ * width), runs at a constant base drift
  * plus a smoothed scroll-velocity boost that never reverses it, and the
  * two are deliberately unsynchronised — different words, different
  * phases. Purely decorative, hidden from assistive tech. Hand-rolled rAF
@@ -41,6 +42,14 @@ const BACK_WORDS = [
   'DASHBOARDS',
   'OPEN SOURCE',
 ];
+
+/* Copies of the list per track. The wrap consumes one full list width,
+   so the remaining COPIES - 1 lists must cover the whole band (140% of
+   the section) at the widest viewport: the word size caps at 46px from
+   ~1438px up while the band keeps growing, and at 3440px the band is
+   ~4816px against a ~2810px front list — 3 spare lists cover it with
+   headroom to spare, in motion and in the static reduced-motion state. */
+const COPIES = 4;
 
 const BASE_SPEED = 60; // px/s, constant drift in each band's own direction
 const BOOST_FACTOR = 0.35; // extra px/s per px/s of smoothed scroll velocity
@@ -95,7 +104,7 @@ export function TextMarquee() {
 
     const measure = () => {
       bands.forEach((band) => {
-        band.seqW = band.track.scrollWidth / 2;
+        band.seqW = band.track.scrollWidth / COPIES;
         if (!band.phased && band.seqW > 0) {
           band.offset = band.seqW * band.phase;
           band.phased = true;
@@ -171,14 +180,16 @@ export function TextMarquee() {
     <div className="x-marquee" ref={sectionRef} aria-hidden="true">
       <div className="x-band x-band-back">
         <div className="x-track" ref={backTrackRef}>
-          <Sequence words={BACK_WORDS} />
-          <Sequence words={BACK_WORDS} />
+          {Array.from({ length: COPIES }, (_, i) => (
+            <Sequence key={i} words={BACK_WORDS} />
+          ))}
         </div>
       </div>
       <div className="x-band x-band-front">
         <div className="x-track" ref={frontTrackRef}>
-          <Sequence words={FRONT_WORDS} />
-          <Sequence words={FRONT_WORDS} />
+          {Array.from({ length: COPIES }, (_, i) => (
+            <Sequence key={i} words={FRONT_WORDS} />
+          ))}
         </div>
       </div>
     </div>

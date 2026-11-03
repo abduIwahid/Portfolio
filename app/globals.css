@@ -5122,7 +5122,8 @@ html.custom-cursor-on [data-cursor="native"] * {
    Two decorative Anton bands cross in an X at the section centre.
    The front band (theme foreground) falls to the right and drifts
    left; the back band (fixed accent orange) rises to the right and
-   drifts right. Each track is doubled and wraps at exactly -50%.
+   drifts right. Each track repeats its list and wraps after exactly
+   one list width, so the bands stay full at any viewport width.
    CSS rotate is clockwise-positive: +4deg falls to the right,
    -4deg rises to the right. */
 .x-marquee {

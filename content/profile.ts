@@ -14,12 +14,13 @@ export const profile = {
   ],
   experience: [{ title: 'Machine Learning Intern (Remote)', organization: 'Ezitech Institute (Eziline Software House)', location: 'Islamabad, Pakistan', period: 'Jul – Sep 2026', details: ['Built the WhyRisk (formerly MediSight AI) platform during this internship, across model benchmarking, explainability, and ML operations workflows.', 'Used LightGBM, scikit-learn, SHAP, MLflow, and FastAPI within a broader web application.', 'Trained and benchmarked classifiers across seven de-identified healthcare datasets; the best model (LightGBM) reached 0.83 AUC-ROC.'] }],
   credentials: [
-    { title: 'Google AI Essentials', issuer: 'Google Career Certificates · Coursera', period: 'May 2026' },
-    { title: 'AI & Machine Learning Developer', issuer: 'Programming Hub', period: 'Feb – Apr 2026' }
+    { title: 'Google AI Essentials', issuer: 'Google Career Certificates · Coursera', period: 'May 2026', verify: 'https://www.coursera.org/account/accomplishments/specialization/ET3L35MRSLBI' },
+    { title: 'AI & Machine Learning Developer', issuer: 'Programming Hub', period: 'Feb – Apr 2026', verify: 'https://www.educative.io/verify-certificate/1SX3S0S4GG' }
   ],
   activities: [
+    { title: 'Participant', organization: 'SoftTech · COMSATS University Islamabad, Attock Campus', period: 'October 2026' },
     { title: 'AI/ML Team Member', organization: 'Google Developer Groups on Campus · COMSATS Attock', period: '2026 – 2027' },
-    { title: 'Participant', organization: 'Mind to Machine 2026 AI Hackathon · COMSATS Wah', period: 'May 2026' }
+    { title: 'Participant', organization: 'Mind to Machine 2026 AI Hackathon · COMSATS Wah', period: 'May 2026', proof: 'https://drive.google.com/file/d/1UGs2P9JgDlXth--FgMtQXr_n10pAjnsu/view?usp=sharing' }
   ],
   skills: [
     { group: 'Languages', items: ['Python', 'Java', 'JavaScript', 'TypeScript', 'SQL'] },

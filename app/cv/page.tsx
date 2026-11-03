@@ -21,16 +21,16 @@ const SKILL_GROUPS: { title: string; items: string }[] = [
   { title: 'Core Concepts', items: 'Classification, model evaluation, explainability (XAI), LLM integration (Gemini API), data structures, OOP, database design' },
 ];
 
-const CERTIFICATIONS: { title: string; org: string; date: string }[] = [
-  { title: 'Google AI Essentials', org: 'Google Career Certificates · Coursera', date: 'May 2026' },
-  { title: 'AI & Machine Learning Developer', org: 'Programming Hub', date: 'Feb – Apr 2026' },
+const CERTIFICATIONS: { title: string; org: string; date: string; verify?: string }[] = [
+  { title: 'Google AI Essentials', org: 'Google Career Certificates · Coursera', date: 'May 2026', verify: 'https://www.coursera.org/account/accomplishments/specialization/ET3L35MRSLBI' },
+  { title: 'AI & Machine Learning Developer', org: 'Programming Hub', date: 'Feb – Apr 2026', verify: 'https://www.educative.io/verify-certificate/1SX3S0S4GG' },
   { title: 'ML with NumPy & Pandas', org: 'Educative', date: 'May 2026' },
 ];
 
-const ACTIVITIES: { title: string; org: string; date: string }[] = [
+const ACTIVITIES: { title: string; org: string; date: string; proof?: string }[] = [
   { title: 'Participant: DeepBuild Hackathon', org: 'SoftTech · COMSATS Attock', date: 'Oct 2026' },
   { title: 'AI/ML Team Member', org: 'GDG on Campus · COMSATS Attock', date: '2026 – 2027' },
-  { title: 'Hackathon Participant', org: 'Mind to Machine 2026 AI Hackathon · COMSATS Wah', date: 'May 2026' },
+  { title: 'Hackathon Participant', org: 'Mind to Machine 2026 AI Hackathon · COMSATS Wah', date: 'May 2026', proof: 'https://drive.google.com/file/d/1UGs2P9JgDlXth--FgMtQXr_n10pAjnsu/view?usp=sharing' },
 ];
 
 export default function CvPage() {
@@ -163,6 +163,7 @@ export default function CvPage() {
                   <div className="cv2-cert-main">
                     <strong>{cert.title}</strong>
                     <span>{cert.org}</span>
+                    {cert.verify && <><br /><a className="cv2-verify" href={cert.verify} target="_blank" rel="noopener noreferrer">Verify certificate <ArrowUpRight size={12} /></a></>}
                   </div>
                   <span className="cv2-cert-date">{cert.date}</span>
                 </div>
@@ -176,6 +177,7 @@ export default function CvPage() {
                   <div className="cv2-cert-main">
                     <strong>{act.title}</strong>
                     <span>{act.org}</span>
+                    {act.proof && <><br /><a className="cv2-verify" href={act.proof} target="_blank" rel="noopener noreferrer">Participation certificate <ArrowUpRight size={12} /></a></>}
                   </div>
                   <span className="cv2-cert-date">{act.date}</span>
                 </div>

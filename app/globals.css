@@ -2008,6 +2008,18 @@ main:has(.nf-hero) > .page-enter {
   font-size: 12px;
 }
 
+/* Verify / proof links (2026-11-03 certs round): the .text-link layout
+   and arrow behaviour, in the accent colour, under the card / row text. */
+.credential-verify {
+  margin-top: 12px;
+  color: var(--accent);
+}
+
+.timeline-proof {
+  margin-top: 8px;
+  color: var(--accent);
+}
+
 /* ── About entries: centred stacks (2026-11-02 fix round) ──────────
    Experience / Education / Community entries on /about lose the
    date rail and read as centred stacks under their (already centred)
@@ -4377,6 +4389,21 @@ main:has(.nf-hero) > .page-enter {
 .cv2-cert span {
   color: var(--muted);
   font-size: 12.5px;
+}
+
+/* Verify / proof links inside the CV sheet rows (2026-11-03 certs round) */
+.cv2-verify {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 3px;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--accent);
+}
+
+.cv2-verify:hover {
+  text-decoration: underline;
 }
 
 /* Entry date: top-right corner of the entry, on the title's baseline */

@@ -768,22 +768,6 @@ button {
   transform: scale(1.03);
 }}
 
-.project-shot-badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 9px;
-  border-radius: 999px;
-  background: rgba(12, 12, 12, .78);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
 .live-dot {
   width: 6px;
   height: 6px;
@@ -5202,9 +5186,8 @@ html.custom-cursor-on [data-cursor="native"] * {
 
 /* ── Project stack (/projects) ───────────────────────────────────────
    Large panels in sticky shells: each covered panel leaves a strip
-   peeking at the top (14px step, 8px on mobile) while the scroll
-   driver scales and dims it. Site tokens only — no per-project
-   background colours. */
+   peeking at the top (14px step) while the scroll driver scales and
+   dims it. Site tokens only — no per-project background colours. */
 .project-stack {
   --stack-header: 72px;
 }
@@ -5302,14 +5285,48 @@ html.custom-cursor-on [data-cursor="native"] * {
 }
 
 .stack-card-cover {
+  position: relative;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   gap: 10px;
   padding: clamp(22px, 3vw, 40px);
-  background: var(--surface-alt);
+  overflow: hidden;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--foreground) 6%, var(--surface)), var(--surface-alt));
   border-left: 1px solid var(--border);
+}
+
+/* Designed cover for projects with no live screenshot: a token dot
+   grid over the surface, an oversized faded monogram of the project's
+   initials, then the name and category line. Clearly cover art, not
+   a fake UI screenshot; tokens only, so it holds in both themes. */
+.stack-card-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(color-mix(in srgb, var(--foreground) 12%, transparent) 1px, transparent 1.4px);
+  background-size: 18px 18px;
+}
+
+.stack-card-cover-mono {
+  position: absolute;
+  top: 50%;
+  right: -0.06em;
+  transform: translateY(-54%);
+  font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
+  font-size: clamp(150px, 22vw, 300px);
+  font-weight: 400;
+  line-height: .8;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--foreground) 8%, transparent);
+  pointer-events: none;
+}
+
+.stack-card-cover-name,
+.stack-card-cover-kind {
+  position: relative;
 }
 
 .stack-card-cover-name {
@@ -5330,16 +5347,41 @@ html.custom-cursor-on [data-cursor="native"] * {
 
 @media (max-width: 759px) {
   .stack-card-wrap {
-    top: calc(var(--stack-header) + var(--stack-i, 0) * 8px);
+    top: calc(var(--stack-header) + var(--stack-i, 0) * 14px);
     margin-bottom: 20px;
   }
 
-  /* One column: media on top (16/9), text below, natural height. Every
-     width in the chain is 100% or a minmax(0, 1fr) track, so nothing in
-     the panel can exceed the card's width or overflow the page. */
+  /* One column: media on top (16/9), text below. Every width in the
+     chain is 100% or a minmax(0, 1fr) track, so nothing in the panel
+     can exceed the card's width or overflow the page.
+     Equal heights (2026-11-03): natural heights ran 429-594px at
+     414px wide, so every stack transition travelled a different
+     distance and the deck read as garbled bands on phones. The text
+     row is now a shared allowance — 436px covers the tallest text
+     block measured at 320px (423px), 340px covers 480px and up —
+     capped by the visible sticky window (viewport minus header,
+     media slot and a 12px margin) so a stuck card is fully on
+     screen. If that cap ever bites on a very short viewport, only
+     the summary absorbs it (flex-shrink + overflow hidden below);
+     title, tags and actions always stay reachable. */
   .stack-card {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto min(436px, calc(100svh - var(--stack-header) - (100vw - 26px) * 0.5625 - 12px));
     height: auto;
+  }
+
+  .stack-card-text {
+    min-height: 0;
+  }
+
+  .stack-card-text > :not(.stack-card-summary) {
+    flex-shrink: 0;
+  }
+
+  .stack-card-summary {
+    flex: 0 1 auto;
+    min-height: 0;
+    overflow: hidden;
   }
 
   .stack-card-media {
@@ -5370,11 +5412,20 @@ html.custom-cursor-on [data-cursor="native"] * {
     min-width: 0;
   }
 
+  /* The cover fills exactly the screenshot's box: the same 16/9
+     slot, so no-screenshot cards share the stack's geometry. */
   .stack-card-cover {
     width: 100%;
-    min-height: 168px;
+    height: auto;
+    aspect-ratio: 16 / 9;
     border-left: 0;
     border-bottom: 1px solid var(--border);
+  }
+}
+
+@media (min-width: 480px) and (max-width: 759px) {
+  .stack-card {
+    grid-template-rows: auto min(340px, calc(100svh - var(--stack-header) - (100vw - 26px) * 0.5625 - 12px));
   }
 }
 

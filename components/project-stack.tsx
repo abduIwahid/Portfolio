@@ -9,8 +9,8 @@ import { VisitPill } from './visit-pill';
 /**
  * Stacking project panels for /projects.
  *
- * Each panel wraps in a CSS-sticky shell (offset by a 14px step per index,
- * 8px on mobile) so a strip of every covered panel peeks at the top. A
+ * Each panel wraps in a CSS-sticky shell (offset by a 14px step per index)
+ * so a strip of every covered panel peeks at the top. A
  * small rAF driver measures how far the next panel has travelled over the
  * current one and scales the covered panel down (0.045 per panel above it,
  * floor 0.9) with a slight dim. Transform/filter only, passive listeners,
@@ -46,7 +46,7 @@ export function ProjectStack({ projects }: { projects: Project[] }) {
     const applied = panels.map(() => ({ scale: 1, dim: 1 }));
 
     const compute = () => {
-      const peek = window.innerWidth < 760 ? 8 : 14;
+      const peek = 14;
       const covers: number[] = new Array(wraps.length).fill(0);
       for (let i = 0; i < wraps.length - 1; i++) {
         const current = wraps[i].getBoundingClientRect();
@@ -147,6 +147,7 @@ export function ProjectStack({ projects }: { projects: Project[] }) {
                 ? <ProjectShot demo={project.demo} name={project.name} width={1200} />
                 : (
                   <div className="stack-card-cover" aria-hidden="true">
+                    <span className="stack-card-cover-mono">{project.name.split(' ').filter(Boolean).slice(0, 2).map((word) => word[0]).join('')}</span>
                     <span className="stack-card-cover-name">{project.name}</span>
                     <span className="stack-card-cover-kind">{project.category} · {project.kind}</span>
                   </div>

@@ -23,10 +23,6 @@ export function ProjectShot({ demo, name, width = 800 }: { demo: string; name: s
         loading="lazy"
         onError={() => setFailed(true)}
       />
-      <span className="project-shot-badge">
-        <span className="live-dot" aria-hidden="true" />
-        Live site
-      </span>
     </a>
   );
 }

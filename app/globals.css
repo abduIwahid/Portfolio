@@ -1275,7 +1275,8 @@ button {
   content: "";
   position: absolute;
   top: -1px;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 34px;
   height: 3px;
   background: var(--accent);

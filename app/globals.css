@@ -54,6 +54,16 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
   width: 100%;
+  /* Horizontal overflow guard: the fixed pointer-glow disc is 1200px
+     wide and permanently straddles both viewport edges. Blink and
+     desktop WebKit exclude fixed-element overflow from the scrollable
+     area, but iOS Safari counts it and lets the page pan sideways,
+     which clips the leftmost in-flow text (first seen on /cv, whose
+     footnote sits 12px from the edge). `clip` — unlike `hidden` —
+     creates no scroll container, so the sticky header and the Lenis
+     window scroll keep working; engines without clip support ignore
+     the declaration and keep the previous behaviour. */
+  overflow-x: clip;
 }
 
 /* Lenis (components/smooth-scroll.tsx) runs in window mode and drives the
@@ -93,6 +103,10 @@ body {
   flex-direction: column;
   min-height: 100vh;
   min-height: 100svh;
+  /* Same horizontal overflow guard as on html (see the note there):
+     both ends of the root chain carry it so no oversize fixed or
+     absolute element can give the page sideways pan room on iOS. */
+  overflow-x: clip;
 }
 
 main {

@@ -4540,20 +4540,6 @@ main:has(.nf-hero) > .page-enter {
     will-change: transform, opacity;
 }
 
-/* Home hero signal-trace canvas (components/hero-noise.tsx).
-   Fills the hero box only; .hero-stage (z-index 1) keeps all
-   hero content above it. Transparent — the hero paper shows
-   through; the component paints token-coloured rules and bars. */
-.hero-noise {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    pointer-events: none;
-    z-index: 0;
-}
-
 /* Route-change entrance (app/template.tsx) */
 @keyframes page-enter {
     from {
@@ -4661,8 +4647,7 @@ main:has(.nf-hero) > .page-enter {
 
 @media print {
     .pointer-glow,
-    .hero-glow,
-    .hero-noise {
+    .hero-glow {
         display: none !important;
     }
 }

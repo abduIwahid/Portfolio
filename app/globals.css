@@ -1426,6 +1426,14 @@ main:has(.nf-hero) > .page-enter {
      680px .page-heading>p cap left this box hugging the left, 85px
      off-axis at desktop widths. */
   margin: 0 auto 30px;
+  /* Press Start 2P's ink fills only the left 87.5% of each glyph's
+     advance (ink 0-875 of a 1000-unit advance), so a centred line's
+     visible ink lands 0.0625em left of the axis (-9.4px at 150px).
+     padding-left narrows the centred content box from the left, which
+     moves the centred line right by half the padding: 0.125em of
+     padding returns the ink exactly 0.0625em, gaps unchanged. In em,
+     so the compensation scales with the fluid font-size. */
+  padding-left: 0.125em;
 }
 
 .nf-pixel-code .nf-accent {

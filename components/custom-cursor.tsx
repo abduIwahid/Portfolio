@@ -5,16 +5,21 @@ import { useEffect, useRef } from 'react';
  * Custom physics cursor — desktop fine pointers only.
  *
  * Two full-size elements, never an upscaled raster:
- *  - a 10px ink dot that follows the pointer on a spring, and
- *  - a separate 64px white circle (mix-blend-mode: difference) that
- *    springs from scale 0.15 / opacity 0 up to scale 1 over
- *    interactive elements, so text and surfaces under it invert
- *    (near-black on the paper background, light on dark sections).
- *    Because the circle's base size is its full 64px, scaling to 1
+ *  - an ink dot (10px element, spring-scaled to 0.8 = ~8px rendered)
+ *    that follows the pointer on a spring, and
+ *  - a separate 64px white circle (mix-blend-mode: difference) whose
+ *    RENDERED size is state-driven and small at rest:
+ *      rest    ~16px disc (scale 0.25), always visible with the dot,
+ *      hover   ~52px (scale 0.8125) over interactive elements, so
+ *              text and surfaces under it invert (near-black on the
+ *              paper background, light on dark sections),
+ *      press   the full 64px (scale 1) while the mouse button is
+ *              held down anywhere; releasing settles back to the
+ *              hover or rest size.
+ *    Because the circle's base size is its full 64px, scaling up to 1
  *    stays vector-crisp — the old single 10px element scaled 6x
  *    rendered pixelated under the blend.
- * The dot fades out as the circle springs in. Pressing compresses
- * the active element to 0.85 of its size.
+ * The dot fades out as the circle grows toward its hover size.
  *
  * Motion is frame-rate independent: the springs integrate with
  * delta time normalised to 60fps units (dt clamped), so the feel
@@ -33,14 +38,19 @@ import { useEffect, useRef } from 'react';
 const INTERACTIVE = 'a, button, [role="button"], [data-cursor], summary, label';
 const TEXT_ENTRY = 'input, textarea, select, [contenteditable]';
 
-const PRESS_FACTOR = 0.85;
 // Per-60fps-unit spring constants.
 const STIFFNESS = 0.16;
 const DAMPING = 0.8;
 const SCALE_STIFFNESS = 0.2;
 const SCALE_DAMPING = 0.74;
-const CIRCLE_REST_SCALE = 0.15;
-const CIRCLE_HOVER_SCALE = 1;
+// Circle size states, as a scale of its 64px base element:
+// small at rest, big only on hover over something interactive,
+// biggest while the mouse button is held down.
+const CIRCLE_REST_SCALE = 0.25; // ~16px
+const CIRCLE_HOVER_SCALE = 0.8125; // ~52px
+const CIRCLE_PRESS_SCALE = 1; // 64px
+// The 10px dot element rests at 0.8 = ~8px rendered.
+const DOT_REST_SCALE = 0.8;
 
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
@@ -64,7 +74,7 @@ export function CustomCursor() {
     let vy = 0;
     let circleScale = CIRCLE_REST_SCALE;
     let vCircleScale = 0;
-    let dotScale = 1;
+    let dotScale = DOT_REST_SCALE;
     let vDotScale = 0;
     let gate = 0; // master visibility: inside the window, not over text entry
     let hovering = false;
@@ -119,16 +129,19 @@ export function CustomCursor() {
       vy *= Math.pow(DAMPING, steps);
       y += vy * steps;
 
-      // Circle expansion spring, with the press multiplier.
-      const circleTarget =
-        (hovering ? CIRCLE_HOVER_SCALE : CIRCLE_REST_SCALE) *
-        (pressing && hovering ? PRESS_FACTOR : 1);
+      // Circle size spring: press wins over hover, hover over rest.
+      const circleTarget = pressing
+        ? CIRCLE_PRESS_SCALE
+        : hovering
+          ? CIRCLE_HOVER_SCALE
+          : CIRCLE_REST_SCALE;
       vCircleScale += (circleTarget - circleScale) * SCALE_STIFFNESS * steps;
       vCircleScale *= Math.pow(SCALE_DAMPING, steps);
       circleScale += vCircleScale * steps;
 
-      // Dot press spring (the dot is the active element at rest).
-      const dotTarget = pressing && !hovering ? PRESS_FACTOR : 1;
+      // Dot size spring: it simply holds its small resting size; the
+      // fade below hands over to the circle as the circle grows.
+      const dotTarget = DOT_REST_SCALE;
       vDotScale += (dotTarget - dotScale) * SCALE_STIFFNESS * steps;
       vDotScale *= Math.pow(SCALE_DAMPING, steps);
       dotScale += vDotScale * steps;
@@ -137,8 +150,10 @@ export function CustomCursor() {
       const gateTarget = inside && !overText ? 1 : 0;
       gate += (gateTarget - gate) * (1 - Math.pow(0.75, steps));
 
-      // How far the circle has sprung open (0 at rest, 1 fully open):
-      // the dot hands over to the circle as it opens.
+      // How far the circle has grown past its resting size (0 at
+      // rest, 1 at hover size, clamped at press size): the dot hands
+      // over to the circle as it grows. The circle itself stays
+      // visible at every size — it is the small resting disc too.
       const open = Math.min(
         Math.max(
           (circleScale - CIRCLE_REST_SCALE) /
@@ -151,7 +166,7 @@ export function CustomCursor() {
       dot.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${dotScale.toFixed(3)})`;
       dot.style.opacity = (gate * (1 - open)).toFixed(3);
       circle.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${circleScale.toFixed(3)})`;
-      circle.style.opacity = (gate * open).toFixed(3);
+      circle.style.opacity = gate.toFixed(3);
       raf = requestAnimationFrame(tick);
     };
 

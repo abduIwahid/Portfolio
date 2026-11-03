@@ -16,8 +16,11 @@ import { useEffect, useRef } from 'react';
  *    change the head swings slightly PAST the new heading and
  *    settles back — a paper-plane banking feel, not a motor rotate;
  *  - when the pointer slows below the heading threshold, the
- *    rotation target returns to 0 and the arrow eases back to its
- *    resting up-left pose with the same spring sway.
+ *    rotation target FREEZES at the last travel heading: the head
+ *    keeps pointing the way the mouse was last moving, for the
+ *    whole page session. The resting up-left pose is only the
+ *    initial pose before the first movement — a page refresh is
+ *    what returns the arrow to it (owner rule, 2026-11-03).
  * Scale is state-driven through the existing scale spring:
  *   rest    1 = 21px tall,
  *   hover   ~1.48 = ~31px tall over interactive elements,
@@ -82,7 +85,7 @@ const PRESS_DIP = 0.8; // press = 0.8 of the current (rest/hover) scale
 // state cannot chatter near the boundary.
 const REST_HEADING = -2.33;
 const HEADING_ENGAGE_SPEED = 90; // CSS px/s of smoothed motion
-const HEADING_RELEASE_SPEED = 55; // below this, ease back to rest
+const HEADING_RELEASE_SPEED = 55; // below this, the target freezes
 const HEADING_SMOOTHING_TAU = 0.1; // seconds
 // Underdamped angular spring, integrated in seconds: stiffness
 // ~120/s^2 with damping ratio ~0.6 gives a visible but controlled
@@ -114,6 +117,11 @@ export function CustomCursor() {
     let vScale = 0;
     let rot = 0; // heading offset from the resting pose, radians
     let vRot = 0; // angular velocity, rad/s
+    // The rotation target the angular spring chases. While moving it
+    // tracks the travel heading; when the pointer stops it keeps its
+    // last value (see the owner rule in tick). Starts at 0 — the
+    // resting pose — which is where every fresh page load begins.
+    let lastRotTarget = 0;
     let svx = 0; // smoothed rendered velocity, px/s
     let svy = 0;
     let headingActive = false;
@@ -177,8 +185,7 @@ export function CustomCursor() {
       y += vy * steps;
 
       // Heading: follow the SMOOTHED rendered velocity while it is
-      // fast enough to have a meaningful direction; below the
-      // release threshold, ease back to the resting pose (target 0).
+      // fast enough to have a meaningful direction.
       const smoothAlpha = 1 - Math.exp(-dtSec / HEADING_SMOOTHING_TAU);
       svx += (vx * 60 - svx) * smoothAlpha; // spring units -> px/s
       svy += (vy * 60 - svy) * smoothAlpha;
@@ -188,9 +195,19 @@ export function CustomCursor() {
       } else if (speed > HEADING_ENGAGE_SPEED) {
         headingActive = true;
       }
-      const rotTarget = headingActive
-        ? wrapPi(Math.atan2(svy, svx) - REST_HEADING)
-        : 0;
+      // OWNER RULE (2026-11-03): when the mouse stops, the head
+      // must STAY pointing along the last direction of travel —
+      // it never swings back to the resting pose mid-session, no
+      // matter how long the pointer sits idle. Only a page refresh
+      // returns it to rest (a fresh mount starts lastRotTarget at
+      // 0). So: while moving, the target tracks the travel heading;
+      // when the heading disengages, the target freezes at its last
+      // value and the angular spring finishes settling into that
+      // heading, then holds it indefinitely.
+      if (headingActive) {
+        lastRotTarget = wrapPi(Math.atan2(svy, svx) - REST_HEADING);
+      }
+      const rotTarget = lastRotTarget;
       // Underdamped angular spring (semi-implicit Euler): the head
       // swings slightly past the target, then settles.
       vRot +=

@@ -4320,7 +4320,6 @@ main:has(.nf-hero) > .page-enter {
   color: var(--muted);
   line-height: 1.7;
   font-size: 14.5px;
-  max-width: 78ch;
 }
 
 /* CV prose runs justified (owner order, 2026-11-04): the summary, the

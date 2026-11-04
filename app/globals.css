@@ -4417,6 +4417,27 @@ main:has(.nf-hero) > .page-enter {
   color: var(--accent);
 }
 
+/* Experience points carry a diamond marker (owner order, 2026-11-04):
+   a small square rotated 45 degrees in the accent colour, hung in the
+   list's existing 17px gutter so the justified text never shifts. The
+   ul/li structure exists only in the Experience item on this page
+   (Education and Projects use paragraphs), so this scope reaches the
+   Experience bullets only. */
+.cv2-item li {
+  position: relative;
+}
+
+.cv2-item li::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+
 .cv2-stack {
   color: var(--accent);
   font-size: 12px;

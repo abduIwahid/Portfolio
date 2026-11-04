@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/cv' },
 };
 
-const CV_PROJECT_SLUGS = ['medisight-ai', 'customer-churn-prediction', 'predictly', 'nearsend', 'study-hub'];
+const CV_PROJECT_SLUGS = ['medisight-ai', 'study-hub', 'customer-churn-prediction', 'nearsend', 'predictly'];
 
 const SKILL_GROUPS: { title: string; items: string }[] = [
   { title: 'Languages', items: 'Python, Java, C++, JavaScript, TypeScript, HTML, CSS' },
@@ -34,7 +34,9 @@ const ACTIVITIES: { title: string; org: string; date: string; proof?: string }[]
 ];
 
 export default function CvPage() {
-  const cvProjects = projects.filter((p) => CV_PROJECT_SLUGS.includes(p.slug));
+  const cvProjects = CV_PROJECT_SLUGS.map((slug) => projects.find((p) => p.slug === slug)).filter(
+    (p): p is NonNullable<typeof p> => p !== undefined,
+  );
   return <>
     <section className="page-hero">
       <div className="container page-heading">

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowUpRight, Download, ExternalLink, Github } from 'lucide-react';
+import { ArrowUpRight, Download, ExternalLink, Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import { profile } from '@/content/profile';
 import { projects } from '@/content/projects';
 import { Reveal } from '@/components/reveal';
@@ -59,33 +59,23 @@ export default function CvPage() {
 
       <Reveal className="reveal-auto"><article className="cv-sheet cv2">
         <header className="cv2-head">
-          <h2 className="cv2-name">{profile.name}</h2>
-          <p className="cv2-role">AI / ML Developer, Explainable AI, MLOps</p>
-          <div className="cv2-contact-strip">
-            <div>
-              <span>Email</span>
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
-            </div>
-            <div>
-              <span>Location</span>
-              <em>{profile.location}</em>
-            </div>
-            <div>
-              <span>LinkedIn</span>
-              <a href={profile.linkedin} target="_blank" rel="noreferrer">linkedin.com/in/abdu1wahid</a>
-            </div>
-            <div>
-              <span>GitHub</span>
-              <a href={profile.github} target="_blank" rel="noreferrer">github.com/abduIwahid</a>
-            </div>
+          <div className="cv2-head-id">
+            <h2 className="cv2-name">{profile.name}</h2>
+            <p className="cv2-role">AI / ML Developer, Explainable AI, MLOps</p>
+          </div>
+          <div className="cv2-contact-grid">
+            <a className="cv2-contact-item" href={`mailto:${profile.email}`}><Mail size={15} /><span className="cv2-contact-value">{profile.email}</span></a>
+            <span className="cv2-contact-item"><MapPin size={15} /><span className="cv2-contact-value">{profile.location}</span></span>
+            <a className="cv2-contact-item" href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={15} /><span className="cv2-contact-value">linkedin.com/in/abdu1wahid</span></a>
+            <a className="cv2-contact-item" href={profile.github} target="_blank" rel="noreferrer"><Github size={15} /><span className="cv2-contact-value">github.com/abduIwahid</span></a>
           </div>
         </header>
 
         <p className="cv2-summary">
           BS Artificial Intelligence undergraduate (CGPA 3.46/4.00) and Machine Learning Intern at Ezitech
           Institute, where I trained and benchmarked XGBoost and LightGBM models on healthcare datasets
-          (best: LightGBM, 0.83 AUC-ROC across seven healthcare datasets), with MLflow experiment tracking and SHAP-based explanations
-          served through FastAPI. I build and deploy full-stack ML products end to end, including WhyRisk,
+          (best: LightGBM, 0.83 AUC‑ROC across seven healthcare datasets), with MLflow experiment tracking and SHAP‑based explanations
+          served through FastAPI. I build and deploy full‑stack ML products end to end, including WhyRisk,
           a live explainable healthcare risk platform, and Study Hub, a resource platform used by my entire
           BS AI class cohort. Focus areas: explainable AI (XAI), MLOps, and production ML workflows.
         </p>
@@ -101,10 +91,10 @@ export default function CvPage() {
                 </div>
                 <p className="cv2-org">Ezitech Institute (Eziline Software House) · Islamabad, Pakistan</p>
                 <ul>
-                  <li>Built WhyRisk (formerly MediSight AI) during this internship, an explainable healthcare risk-modelling workflow across seven de-identified dataset domains.</li>
-                  <li>Used LightGBM, scikit-learn, SHAP, MLflow, and FastAPI for model benchmarking, experiment tracking, and explanation workflows.</li>
-                  <li>Contributed to MLOps-oriented drift monitoring/retraining flows and a web application built with Next.js, TypeScript, and Supabase.</li>
-                  <li>Trained and benchmarked XGBoost, LightGBM, and scikit-learn classifiers; the best model (LightGBM) reached 0.83 AUC-ROC (best across seven healthcare datasets).</li>
+                  <li>Built WhyRisk (formerly MediSight AI) during this internship, an explainable healthcare risk‑modelling workflow across seven de‑identified dataset domains.</li>
+                  <li>Used LightGBM, scikit‑learn, SHAP, MLflow, and FastAPI for model benchmarking, experiment tracking, and explanation workflows.</li>
+                  <li>Contributed to MLOps‑oriented drift monitoring/retraining flows and a web application built with Next.js, TypeScript, and Supabase.</li>
+                  <li>Trained and benchmarked XGBoost, LightGBM, and scikit‑learn classifiers; the best model (LightGBM) reached 0.83 AUC‑ROC (best across seven healthcare datasets).</li>
                 </ul>
               </div>
             </section>

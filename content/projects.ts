@@ -23,7 +23,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: 'medisight-ai', name: 'WhyRisk', category: 'Machine Learning', kind: 'ML engineering · Internship',
-    summary: 'A live explainable healthcare risk platform: a LightGBM diabetes risk model trained on 70,692 health records (BRFSS), with patient-level SHAP explanations and role-based access for patients, doctors, and admins.',
+    summary: 'A live explainable healthcare risk platform: a LightGBM diabetes risk model trained on 70,692 health records (BRFSS), with patient‑level SHAP explanations and role‑based access for patients, doctors, and admins.',
     problem: 'Healthcare prediction work is not only about producing a score. Models need reproducible experiments, understandable feature contributions, and clear boundaries around what a prediction can and cannot say.',
     role: 'Designed and built as Machine Learning Intern (Remote) at Ezitech Institute (Eziline Software House); maintained and improved since.', status: 'Built during internship, Jul–Sep 2026. Live and actively maintained.', featured: true,
     stack: ['Python', 'LightGBM', 'scikit-learn', 'SHAP', 'MLflow', 'FastAPI', 'Next.js', 'TypeScript', 'Supabase', 'Docker'],
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     summary: 'A supervised-learning study comparing classification approaches for identifying customers who may leave a service.',
     problem: 'Retention teams need useful risk signals, but classifying churn requires more than selecting a model with a high headline accuracy. Precision, recall, F1, class balance, and the decision threshold all matter.',
     role: 'Team coursework project; model experimentation and analysis are represented in the public repository.', status: 'Customer Churn Prediction', featured: true,
-    stack: ['Python', 'Pandas', 'NumPy', 'scikit-learn', 'Matplotlib', 'Seaborn'],
+    stack: ['Python', 'Pandas', 'NumPy', 'scikit‑learn', 'Matplotlib', 'Seaborn'],
     highlights: ['Data cleaning and exploratory analysis', 'Compared Logistic Regression, Random Forest, and an MLP classifier', 'Explored clustering as a complementary unsupervised view of customer groups', 'Selected Logistic Regression for the reported baseline result'],
     approach: [
       { title: 'Understand the data', body: 'Inspect feature types, missingness, distributions, and the churn label before fitting models.' },

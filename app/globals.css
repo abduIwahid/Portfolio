@@ -4272,6 +4272,19 @@ main:has(.nf-hero) > .page-enter {
   box-shadow: 0 1px 2px color-mix(in srgb, var(--foreground) 6%, transparent), 0 24px 54px -18px color-mix(in srgb, var(--foreground) 22%, transparent), inset 0 1px 0 color-mix(in srgb, var(--background) 60%, transparent);
 }
 
+/* Header block: name + tagline on the left, the contact items in a 2x2
+   grid in the space beside them (owner order, 2026-11-04). The hairline
+   under the block separates the whole header from the summary. */
+.cv2-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 36px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
 .cv2-name {
   font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
   font-size: clamp(38px, 8vw, 60px);
@@ -4286,33 +4299,81 @@ main:has(.nf-hero) > .page-enter {
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.02em;
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
-.cv2-contact-strip {
+/* Contact items beside the name: icon + value, no word labels. Icons sit
+   in the accent; linked items answer hover with an underline that sweeps
+   in under the value (the old full-value colour change is dropped — the
+   orange icon plus the orange line is accent enough). Type, icon size
+   and the icon-to-value gap are fluid clamps capped at the desktop
+   values, so on narrow screens (or high zoom, which is the same thing)
+   everything scales down smoothly instead of crowding. The curve is
+   sized against the widest text metrics the items can render with, so
+   the 2x2 grid fits its box at every width with room to spare. */
+.cv2-contact-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
+  grid-template-columns: auto auto;
+  gap: 12px 32px;
+  flex: none;
 }
 
-.cv2-contact-strip span {
-  display: block;
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--muted);
-  margin-bottom: 5px;
-}
-
-.cv2-contact-strip a,
-.cv2-contact-strip em {
-  font-size: 12.5px;
-  font-style: normal;
+.cv2-contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(3px, 1.1vw, 10px);
+  font-size: clamp(7px, calc(3.25vw - 3.1px), 12.5px);
   font-weight: 600;
-  overflow-wrap: anywhere;
+  line-height: 1.6;
+  color: var(--foreground);
+  white-space: nowrap;
+}
+
+.cv2-contact-item svg {
+  flex: none;
+  width: clamp(9.5px, 3vw, 15px);
+  height: clamp(9.5px, 3vw, 15px);
+  color: var(--accent);
+}
+
+a.cv2-contact-item {
+  cursor: pointer;
+}
+
+a.cv2-contact-item .cv2-contact-value {
+  position: relative;
+}
+
+a.cv2-contact-item .cv2-contact-value::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  width: 100%;
+  height: 1.5px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform .3s var(--ease-house);
+}
+
+a.cv2-contact-item:hover .cv2-contact-value::after,
+a.cv2-contact-item:focus-visible .cv2-contact-value::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.cv2-contact-item .cv2-contact-value::after {
+    transition: none;
+  }
+}
+
+/* A breath of letter-spacing on the values at tablet size and up; below
+   that the fluid sizes are fighting for width and it stays off. */
+@media (min-width: 641px) {
+  .cv2-contact-value {
+    letter-spacing: 0.01em;
+  }
 }
 
 .cv2-summary {
@@ -4325,13 +4386,15 @@ main:has(.nf-hero) > .page-enter {
 /* CV prose runs justified (owner order, 2026-11-04): the summary, the
    experience bullets and the project/education paragraphs. Labels, org
    lines, stack lines and the skills column stay left-aligned, because
-   justifying short lines only opens gaps. Hyphenation keeps the
-   justified lines from opening rivers. */
+   justifying short lines only opens gaps. Words NEVER split across
+   lines (owner rule, 2026-11-04): hyphenation is off, so a word that
+   does not fit moves whole to the next line and justification
+   redistributes the inter-word space instead. */
 .cv2-summary,
 .cv2-item p:not(.cv2-org):not(.cv2-stack),
 .cv2-item li {
   text-align: justify;
-  hyphens: auto;
+  hyphens: none;
 }
 
 .cv2-grid {
@@ -4515,8 +4578,28 @@ main:has(.nf-hero) > .page-enter {
     grid-template-columns: 1fr;
   }
 
-  .cv2-contact-strip {
-    grid-template-columns: repeat(2, 1fr);
+  /* Contact grid drops below the name/tagline, full width, still 2x2,
+     in strict halves with flush edges and even gaps. */
+  .cv2-contact-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px 32px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Phones: STILL 2x2 (owner order) — the fluid type/icon clamps on the
+     base rules shrink the items until they fit; content-sized columns
+     pinned to the two edges keep both column starts exact and the grid
+     flush with the header block. Rows keep a full 44px tap height. */
+  .cv2-contact-grid {
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    gap: 12px clamp(6px, 2vw, 16px);
+  }
+
+  .cv2-contact-item {
+    min-height: 44px;
   }
 }
 
@@ -4725,35 +4808,6 @@ main:has(.nf-hero) > .page-enter {
     .hg-faded { font-size: 11.2cqw; letter-spacing: 0.01em; }
 }
 
-/* ===== Hero line 2: full serif italic (2026-11-04) ==============
-   The whole second line of both heroes now renders in Instrument
-   Serif italic, lowercase, carrying the same fade recipe as
-   .hg-faded — one uniform faded line under the solid Anton first
-   line. Sizes were measured against the Anton lines they sit
-   under: "question the result." in the serif measures ~13.02cqw
-   for the same ~93%-of-wrap presence the old line had at its
-   preview width, and the About line takes 11.02cqw against its
-   9.4cqw first line. The ≤640 fluid block below scales both by
-   the same factor it applies to the Anton lines, so the
-   proportion between the two lines is identical at every width. */
-.hg-serifline {
-    font-family: var(--font-serif), Georgia, 'Times New Roman', serif;
-    font-style: italic;
-    font-weight: 400;
-    text-transform: lowercase;
-    letter-spacing: 0;
-    background: linear-gradient(180deg, var(--foreground) 0%, transparent 94%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    opacity: 0.45;
-    font-size: clamp(46px, 10.9vw, 151px); /* fallback where cqw is unsupported */
-    font-size: 13.02cqw;
-}
-@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
-    .hg-serifline { color: var(--muted); }
-}
-
 /* ===== 2026-10-24 consistency + scroll-motion round ===== */
 .reveal-auto { height: auto; }
 .reveal-fill > a { height: 100%; }
@@ -4925,13 +4979,6 @@ main:has(.nf-hero) > .page-enter {
 .hero-headline-wrap.about-headline-wrap .hg-line {
     font-size: clamp(34px, 7.9vw, 110px); /* fallback where cqw is unsupported */
     font-size: 9.4cqw;
-}
-
-/* About serif line 2 (see .hg-serifline): "serious about the
-   system." measured at 11.02cqw against the 9.4cqw Anton line. */
-.hero-headline-wrap.about-headline-wrap .hg-serifline {
-    font-size: clamp(40px, 9.3vw, 129px); /* fallback where cqw is unsupported */
-    font-size: 11.02cqw;
 }
 
 /* Focus areas: principle-card family, four across on desktop */
@@ -5659,19 +5706,6 @@ html.custom-cursor-on [data-cursor="native"] * {
     font-size: 7.3cqw;
   }
 
-  /* Serif line 2 scales by the same factor as the Anton lines
-     above (8.55/11.2 at home, 7.3/9.4 at About), keeping the
-     two-line proportion from the desktop design. */
-  .hg-serifline {
-    font-size: clamp(24px, 9.5vw, 64px); /* fallback where cqw is unsupported */
-    font-size: 9.94cqw;
-  }
-
-  .hero-headline-wrap.about-headline-wrap .hg-serifline {
-    font-size: clamp(24px, 8.2vw, 58px); /* fallback where cqw is unsupported */
-    font-size: 8.56cqw;
-  }
-
   .page-heading h1 {
     font-size: clamp(30px, 9.2vw, 54px);
   }
@@ -5883,9 +5917,7 @@ html.custom-cursor-on [data-cursor="native"] * {
    the same 0.45 opacity — so the whole line reads as one
    faded unit and no orange shows in it. The class comes after
    .accent-serif, so its transparent colour wins over the
-   accent colour at equal specificity.
-   Superseded in the hero lines by .hg-serifline (the whole
-   second line is serif italic now); kept for the record. */
+   accent colour at equal specificity. */
 .accent-serif-faded {
   background: linear-gradient(180deg, var(--foreground) 0%, transparent 94%);
   -webkit-background-clip: text;

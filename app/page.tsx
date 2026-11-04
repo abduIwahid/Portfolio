@@ -24,7 +24,7 @@ export default function HomePage() {
     <section className="hero hero-echo"><HeroGlow /><div className="container hero-stage">
       <p className="eyebrow hero-eyebrow">AI/ML Developer</p>
       <div className="hero-headline-wrap">
-        <h1 className="hero-giant"><span className="hg-line hg-solid">Make the model.</span><span className="hg-line"><span className="hg-faded">Question the </span><span className="accent-serif accent-serif-faded">result.</span></span></h1>
+        <h1 className="hero-giant"><span className="hg-line hg-solid">Make the model.</span><span className="hg-line hg-serifline">Question the result.</span></h1>
         <span className="hero-portrait" data-cursor="native">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={heroCutout} alt="" aria-hidden="true" className="hero-cutout" />
@@ -46,6 +46,6 @@ export default function HomePage() {
 
     <section className="section"><div className="container"><Reveal className="reveal-auto"><div className="stats-strip"><div className="stat-item"><span className="stat-value">BS AI</span><span className="stat-label">COMSATS, Attock Campus</span></div><div className="stat-item"><span className="stat-value">ML + AI</span><span className="stat-label">Core technical interests</span></div><div className="stat-item"><span className="stat-value">8+</span><span className="stat-label">Projects documented here</span></div><div className="stat-item"><span className="stat-value">2026</span><span className="stat-label">ML internship experience</span></div></div></Reveal><p className="fine-print">Project count reflects the currently documented portfolio, not an independent measure of impact. Details and limits are provided on each project page.</p></div></section>
 
-    <section className="section"><div className="container"><Reveal className="reveal-auto"><div className="closing-cta"><div><p className="eyebrow">Open to conversations</p><h2>Have a <span className="accent-serif accent-serif-statement">problem</span> worth<br className="desktop-only" /> thinking through?</h2><p>For AI/ML roles, research opportunities, and thoughtful collaboration.</p></div><div className="closing-actions"><Link className="button button-primary" href="/contact">Hire me <ArrowUpRight size={17} /></Link><Link className="button button-secondary" href="/about"><BookOpen size={16} /> More about me</Link></div></div></Reveal></div></section>
+    <section className="section"><div className="container"><Reveal className="reveal-auto"><div className="closing-cta"><div><p className="eyebrow">Open to conversations</p><h2>Have a <span className="accent-serif accent-serif-statement">problem</span> worth<br className="desktop-only" /> thinking through?</h2><p>For AI/ML roles, research opportunities, and thoughtful collaboration.</p></div><div className="closing-actions"><Link className="button button-primary" href="/contact">Start a conversation <ArrowUpRight size={17} /></Link><Link className="button button-secondary" href="/about"><BookOpen size={16} /> More about me</Link></div></div></Reveal></div></section>
   </>;
 }

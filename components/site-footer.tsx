@@ -5,7 +5,7 @@ import { FooterWordmark } from './footer-wordmark';
 export function SiteFooter() {
   return <footer className="site-footer">
     <div className="container footer-top">
-      <div><p className="eyebrow">Have a useful problem?</p><h2>Let&apos;s make the next<br className="desktop-only" /> thing worth inspecting.</h2></div>
+      <div><p className="eyebrow">Have a useful problem?</p><h2>Let&apos;s make the next<br className="desktop-only" /> thing worth <span className="accent-serif accent-serif-statement">inspecting.</span></h2></div>
       <Link href="/contact" className="round-arrow" aria-label="Go to contact"><ArrowUpRight size={24} /></Link>
     </div>
     <div className="container footer-bottom">

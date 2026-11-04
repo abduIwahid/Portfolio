@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
-import { Anton, Archivo } from 'next/font/google';
+import { Anton, Archivo, Instrument_Serif } from 'next/font/google';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { IntroLoader } from '@/components/intro-loader';
@@ -25,7 +25,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: [{ media: '(prefers-color-scheme: light)', color: '#f8f8f8' }, { media: '(prefers-color-scheme: dark)', color: '#171717' }], colorScheme: 'light dark' };
 const displayFont = Anton({ weight: '400', subsets: ['latin'], variable: '--font-display', display: 'swap' });
 const bodyFont = Archivo({ weight: ['400', '500', '600', '700', '800'], subsets: ['latin'], variable: '--font-sans', display: 'swap' });
+const serifFont = Instrument_Serif({ weight: '400', style: 'italic', subsets: ['latin'], variable: '--font-serif', display: 'swap' });
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-theme="light" suppressHydrationWarning className={`${displayFont.variable} ${bodyFont.variable}`}><body><PointerGlow /><CustomCursor /><MagneticButtons /><SmoothScroll /><ScrollProgress /><a className="skip-link" href="#main">Skip to content</a><SiteHeader /><main id="main">{children}</main><SiteFooter /><BackToTop /><IntroLoader /></body></html>;
+  return <html lang="en" data-theme="light" suppressHydrationWarning className={`${displayFont.variable} ${bodyFont.variable} ${serifFont.variable}`}><body><PointerGlow /><CustomCursor /><MagneticButtons /><SmoothScroll /><ScrollProgress /><a className="skip-link" href="#main">Skip to content</a><SiteHeader /><main id="main">{children}</main><SiteFooter /><BackToTop /><IntroLoader /></body></html>;
 }

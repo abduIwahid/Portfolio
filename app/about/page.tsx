@@ -19,7 +19,7 @@ export default function AboutPage() {
     <section className="hero hero-echo"><HeroGlow /><div className="container hero-stage">
       <p className="eyebrow hero-eyebrow">About me</p>
       <div className="hero-headline-wrap about-headline-wrap">
-        <h1 className="hero-giant"><span className="hg-line hg-solid">Curious about the model.</span><span className="hg-line hg-faded">Serious about the system.</span></h1>
+        <h1 className="hero-giant"><span className="hg-line hg-solid">Curious about the model.</span><span className="hg-line"><span className="hg-faded">Serious about the </span><span className="accent-serif accent-serif-faded">system.</span></span></h1>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={heroCutout} alt="" aria-hidden="true" className="hero-cutout" />
         <span className="pfp-badge hero-badge">Available for Opportunities</span>

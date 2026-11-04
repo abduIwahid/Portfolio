@@ -5790,3 +5790,58 @@ html.custom-cursor-on [data-cursor="native"] * {
    place here — sticking is positional, not an animation, so the cards
    still stack on scroll; only the scale/dim driver is inert (it
    checks the same media query in principles-stack.tsx). */
+
+/* ===== Serif accent words (2026-11-04) ==========================
+   One word per heading is set in Instrument Serif italic,
+   lowercase, in the accent colour — the heading around it keeps
+   its own font, case, size and layout untouched. The word sits
+   inline on the shared baseline with no offsets; the em size is
+   an optical match for the surrounding caps / x-height. In the
+   two hero lines (home + about) the owner chose the faded
+   treatment for the serif word too: it carries the same
+   gradient fade as the Anton words beside it, so the line
+   reads as one uniform faded line (see .accent-serif-faded). */
+.accent-serif {
+  font-family: var(--font-serif), Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 400;
+  text-transform: lowercase;
+  letter-spacing: 0;
+  color: var(--accent);
+  font-size: 1.18em;
+}
+
+/* The intro name sits in body copy, so it takes the smaller
+   optical size rather than the display one — and it keeps its
+   written capitalisation instead of the lowercase treatment. */
+.accent-serif-name {
+  font-size: 1.15em;
+  text-transform: none;
+}
+
+/* Statement headings (Archivo sentence case — the home CTA and
+   the footer line) need only a hair above 1em: the 1.18em
+   display size that matches the Anton caps lines towers over
+   x-height text, while Instrument Serif's tall ascenders keep
+   the word present at near-body size. */
+.accent-serif-statement {
+  font-size: 1.05em;
+}
+
+/* Hero line 2 only (home "result.", about "system."): the serif
+   word shares the .hg-faded recipe — the same 180deg
+   foreground-to-transparent gradient clipped to the text, at
+   the same 0.45 opacity — so the whole line reads as one
+   faded unit and no orange shows in it. The class comes after
+   .accent-serif, so its transparent colour wins over the
+   accent colour at equal specificity. */
+.accent-serif-faded {
+  background: linear-gradient(180deg, var(--foreground) 0%, transparent 94%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.45;
+}
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .accent-serif-faded { color: var(--muted); }
+}

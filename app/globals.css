@@ -4323,6 +4323,18 @@ main:has(.nf-hero) > .page-enter {
   max-width: 78ch;
 }
 
+/* CV prose runs justified (owner order, 2026-11-04): the summary, the
+   experience bullets and the project/education paragraphs. Labels, org
+   lines, stack lines and the skills column stay left-aligned, because
+   justifying short lines only opens gaps. Hyphenation keeps the
+   justified lines from opening rivers. */
+.cv2-summary,
+.cv2-item p:not(.cv2-org):not(.cv2-stack),
+.cv2-item li {
+  text-align: justify;
+  hyphens: auto;
+}
+
 .cv2-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 300px;

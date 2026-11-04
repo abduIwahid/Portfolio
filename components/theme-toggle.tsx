@@ -6,10 +6,11 @@ export function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem('theme');
-    const next = saved === 'dark' ? 'dark' : 'light';
-    document.documentElement.dataset.theme = next;
-    setIsDark(next === 'dark');
+    // The pre-paint init script in app/layout.tsx has already resolved
+    // the theme (saved choice first, OS preference on a first visit);
+    // mirror whatever it decided instead of forcing a default here.
+    const current = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+    setIsDark(current === 'dark');
   }, []);
 
   function toggle() {

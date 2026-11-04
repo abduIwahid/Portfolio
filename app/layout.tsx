@@ -22,11 +22,11 @@ export const metadata: Metadata = {
   icons: { icon: '/icons/favicon.png', shortcut: '/icons/favicon.png', apple: '/icons/favicon.png' }, manifest: '/manifest.webmanifest',
   verification: { google: '124602Qsd3dsa2VJZU5U6LBW-0LsmzkFI3Tg0nFkvnQ' }
 };
-export const viewport: Viewport = { themeColor: [{ media: '(prefers-color-scheme: light)', color: '#f8f8f8' }, { media: '(prefers-color-scheme: dark)', color: '#171717' }], colorScheme: 'light dark' };
+export const viewport: Viewport = { themeColor: [{ media: '(prefers-color-scheme: light)', color: '#f7f7f5' }, { media: '(prefers-color-scheme: dark)', color: '#171717' }], colorScheme: 'light dark' };
 const displayFont = Anton({ weight: '400', subsets: ['latin'], variable: '--font-display', display: 'swap' });
 const bodyFont = Archivo({ weight: ['400', '500', '600', '700', '800'], subsets: ['latin'], variable: '--font-sans', display: 'swap' });
 const serifFont = Instrument_Serif({ weight: '400', style: 'italic', subsets: ['latin'], variable: '--font-serif', display: 'swap' });
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-theme="light" suppressHydrationWarning className={`${displayFont.variable} ${bodyFont.variable} ${serifFont.variable}`}><body><PointerGlow /><CustomCursor /><MagneticButtons /><SmoothScroll /><ScrollProgress /><a className="skip-link" href="#main">Skip to content</a><SiteHeader /><main id="main">{children}</main><SiteFooter /><BackToTop /><IntroLoader /></body></html>;
+  return <html lang="en" data-theme="light" suppressHydrationWarning className={`${displayFont.variable} ${bodyFont.variable} ${serifFont.variable}`}><head><script dangerouslySetInnerHTML={{ __html: "(function(){try{var t=window.localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();" }} /></head><body><PointerGlow /><CustomCursor /><MagneticButtons /><SmoothScroll /><ScrollProgress /><a className="skip-link" href="#main">Skip to content</a><SiteHeader /><main id="main">{children}</main><SiteFooter /><BackToTop /><IntroLoader /></body></html>;
 }

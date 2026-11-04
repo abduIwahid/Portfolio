@@ -5,15 +5,16 @@
 :root {
   color-scheme: light;
   --ink: #171717;
-  --paper: #ffffff;
-  --background: #f8f8f8;
-  --surface: #ffffff;
-  --surface-alt: #f2f2f2;
+  --paper: #FCFCFA;
+  --background: #F7F7F5;
+  --surface: #FCFCFA;
+  --surface-alt: #F2F2F2;
   --foreground: #171717;
   --muted: #626262;
-  --border: #e5e5e5;
-  --border-strong: #c8c8c8;
+  --border: #E5E5E5;
+  --border-strong: #C8C8C8;
   --accent: #f97316;
+  --accent-text: #C2410C;
   --accent-soft: #fff0e4;
   --accent-ink: #7c2d12;
   --success: #166534;
@@ -36,6 +37,7 @@
   --border: #363636;
   --border-strong: #565656;
   --accent: #fb923c;
+  --accent-text: #FB923C;
   --accent-soft: #3a2113;
   --accent-ink: #ffedd5;
   --success: #4ade80;
@@ -740,7 +742,7 @@ button {
   border-radius: 20px;
   background: var(--surface);
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.02em;
   transition: border-color .2s ease, color .2s ease;
@@ -909,7 +911,7 @@ button {
   border-radius: 999px;
   background: var(--foreground);
   color: var(--background);
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: .02em;
   white-space: nowrap;
@@ -935,7 +937,7 @@ button {
   height: 600px;
   max-height: 72vh;
   border: 0;
-  background: #fff;
+  background: var(--surface-alt);
 }
 
 .live-preview-poster {
@@ -968,7 +970,7 @@ button {
   justify-content: center;
   gap: 14px;
   padding: 16px;
-  background: linear-gradient(180deg, rgba(10, 10, 10, .08), rgba(10, 10, 10, .38));
+  background: rgba(10, 10, 10, .58);
 }
 
 .live-preview-play {
@@ -997,7 +999,6 @@ button {
 
 .live-preview-text small {
   font-size: 12.5px;
-  opacity: .85;
 }
 
 .live-preview-bar {
@@ -1222,7 +1223,7 @@ button {
 .project-overline {
   margin: 0 0 9px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -1262,7 +1263,7 @@ button {
   border: 1px solid var(--border);
   border-radius: 6px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.3;
 }
 
@@ -1649,7 +1650,7 @@ main:has(.nf-hero) > .page-enter {
 
 .results-count span {
   margin: 0 5px;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .empty-state {
@@ -1725,7 +1726,7 @@ main:has(.nf-hero) > .page-enter {
   border: 1px solid var(--border);
   border-radius: 4px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .case-actions {
@@ -1825,7 +1826,7 @@ main:has(.nf-hero) > .page-enter {
 .evidence-item span {
   display: block;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .evidence-item strong {
@@ -1993,7 +1994,7 @@ main:has(.nf-hero) > .page-enter {
   border-radius: 4px;
   background: var(--accent-soft);
   color: var(--accent-ink);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
 }
 
@@ -2076,12 +2077,12 @@ main:has(.nf-hero) > .page-enter {
    and arrow behaviour, in the accent colour, under the card / row text. */
 .credential-verify {
   margin-top: 12px;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .timeline-proof {
   margin-top: 8px;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 /* ── About entries: centred stacks (2026-11-02 fix round) ──────────
@@ -2782,7 +2783,7 @@ main:has(.nf-hero) > .page-enter {
   }
 
   .filter-chip {
-    font-size: 10px;
+    font-size: 11px;
     padding: 7px 9px;
   }
 
@@ -3032,7 +3033,7 @@ main:has(.nf-hero) > .page-enter {
 .fine-print {
   margin: 12px 0 0;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.6;
   text-align: center;
 }
@@ -3139,7 +3140,7 @@ main:has(.nf-hero) > .page-enter {
   display: block;
   margin-top: 3px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 400;
 }
 
@@ -3194,7 +3195,7 @@ main:has(.nf-hero) > .page-enter {
 .metric-result small {
   display: block;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .metric-result strong {
@@ -3210,7 +3211,7 @@ main:has(.nf-hero) > .page-enter {
 }
 
 .metric-result small {
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.5;
 }
 
@@ -3269,7 +3270,7 @@ main:has(.nf-hero) > .page-enter {
   display: block;
   margin-top: 4px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .github-languages {
@@ -3283,7 +3284,7 @@ main:has(.nf-hero) > .page-enter {
 .github-languages>span:first-child {
   margin-right: 4px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .github-meta-line {
@@ -3335,7 +3336,7 @@ main:has(.nf-hero) > .page-enter {
 }
 
 .github-repo-name:hover {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .github-repo-desc {
@@ -3356,7 +3357,7 @@ main:has(.nf-hero) > .page-enter {
   margin: auto 0 0;
   padding-top: 4px;
   color: var(--muted);
-  font-size: 10.5px;
+  font-size: 11px;
 }
 
 .github-community {
@@ -3379,7 +3380,7 @@ main:has(.nf-hero) > .page-enter {
 
 .github-community-head span {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .github-community-repos {
@@ -3855,7 +3856,7 @@ main:has(.nf-hero) > .page-enter {
   }
 
   .hero-actions .button {
-    font-size: 12px;
+    font-size: 13px;
     padding: 10px 14px;
   }
 
@@ -3872,7 +3873,7 @@ main:has(.nf-hero) > .page-enter {
   }
 
   .eyebrow {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: .13em;
   }
 
@@ -3902,7 +3903,7 @@ main:has(.nf-hero) > .page-enter {
   }
 
   .github-stat-grid span {
-    font-size: 9px;
+    font-size: 11px;
   }
 
   .principles-grid {
@@ -4101,7 +4102,7 @@ main:has(.nf-hero) > .page-enter {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .flow-ui {
@@ -4295,7 +4296,7 @@ main:has(.nf-hero) > .page-enter {
 }
 
 .cv2-role {
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -4414,7 +4415,7 @@ a.cv2-contact-item:focus-visible .cv2-contact-value::after {
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.02em;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-bottom: 16px;
 }
 
@@ -4457,7 +4458,7 @@ a.cv2-contact-item:focus-visible .cv2-contact-value::after {
 }
 
 .cv2-org {
-  color: var(--accent);
+  color: var(--accent-text);
   font-weight: 600;
   font-size: 13.5px;
   margin: 3px 0 6px;
@@ -4502,7 +4503,7 @@ a.cv2-contact-item:focus-visible .cv2-contact-value::after {
 }
 
 .cv2-stack {
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 12px;
   font-weight: 600;
   margin-top: 5px;
@@ -4558,7 +4559,7 @@ a.cv2-contact-item:focus-visible .cv2-contact-value::after {
   margin-top: 3px;
   font-size: 12px;
   font-weight: 650;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .cv2-verify:hover {
@@ -4614,7 +4615,7 @@ a.cv2-contact-item:focus-visible .cv2-contact-value::after {
   position: fixed;
   inset: 0;
   z-index: 999;
-  background: var(--background);
+  background: var(--surface);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5480,7 +5481,7 @@ html.custom-cursor-on [data-cursor="native"] * {
 .stack-card {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-  height: clamp(480px, 72vh, 620px);
+  height: clamp(440px, 62vh, 460px);
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -5633,7 +5634,7 @@ html.custom-cursor-on [data-cursor="native"] * {
      title, tags and actions always stay reachable. */
   .stack-card {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto min(436px, calc(100svh - var(--stack-header) - (100vw - 26px) * 0.5625 - 12px));
+    grid-template-rows: auto min(clamp(340px, calc(436px - (100vw - 320px) * 0.6), 436px), calc(100svh - var(--stack-header) - (100vw - 26px) * 0.5625 - 12px));
     height: auto;
   }
 
@@ -5939,7 +5940,7 @@ html.custom-cursor-on [data-cursor="native"] * {
   font-weight: 400;
   text-transform: lowercase;
   letter-spacing: 0;
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: 1.18em;
 }
 
@@ -5958,6 +5959,14 @@ html.custom-cursor-on [data-cursor="native"] * {
    the word present at near-body size. */
 .accent-serif-statement {
   font-size: 1.05em;
+}
+
+/* Footer exception to the text token: the footer band is ink-dark in
+   both themes, where the bright accent measures ~6.4:1 but the
+   light-theme text token would fall to ~3.5:1 — footer serif words
+   keep the bright accent. */
+.site-footer .accent-serif {
+  color: var(--accent);
 }
 
 /* Hero line 2 only (home "result.", about "system."): the serif

@@ -86,14 +86,14 @@ const socialLinks = [
 
 export default function LinksPage() {
   return <>
-    <section className="page-hero">
+    <section className="page-hero links-hero">
       <div className="container page-heading">
         <p className="eyebrow">Profiles &amp; links</p>
         <h1>Find me<br />across the web.</h1>
         <p>All my active profiles, writing channels, and direct contact in one place.</p>
       </div>
     </section>
-    <section className="section">
+    <section className="section links-section">
       <div className="container">
         <div className="links-grid">
           {socialLinks.map((link, index) => {

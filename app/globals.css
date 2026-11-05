@@ -10,8 +10,8 @@
   --surface: #FCFCFA;
   --surface-alt: #F2F2F2;
   --foreground: #171717;
-  --muted: #626262;
-  --border: #E5E5E5;
+  --muted: #595959;
+  --border: #D9D9D9;
   --border-strong: #C8C8C8;
   --accent: #f97316;
   --accent-text: #C2410C;
@@ -1583,7 +1583,7 @@ main:has(.nf-hero) > .page-enter {
   outline: 0;
   background: transparent;
   color: var(--foreground);
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .search-field input::placeholder {
@@ -1609,7 +1609,7 @@ main:has(.nf-hero) > .page-enter {
   border-radius: 6px;
   background: var(--surface);
   color: var(--foreground);
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .filter-row {
@@ -2328,7 +2328,7 @@ main:has(.nf-hero) > .page-enter {
   border-radius: 4px;
   background: var(--background);
   color: var(--foreground);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 400;
   outline: none;
   resize: vertical;
@@ -2424,8 +2424,8 @@ main:has(.nf-hero) > .page-enter {
   justify-content: space-between;
   align-items: end;
   gap: 30px;
-  padding-top: 65px;
-  padding-bottom: 55px;
+  padding-top: 48px;
+  padding-bottom: 40px;
 }
 
 .footer-top .eyebrow {
@@ -3145,7 +3145,7 @@ main:has(.nf-hero) > .page-enter {
 }
 
 .metric-input input {
-  width: 78px;
+  width: 96px;
   min-height: 34px;
   padding: 5px 7px;
   border: 1px solid var(--border-strong);
@@ -3153,7 +3153,7 @@ main:has(.nf-hero) > .page-enter {
   background: var(--background);
   color: var(--foreground);
   text-align: right;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .metric-reset {
@@ -3401,6 +3401,243 @@ main:has(.nf-hero) > .page-enter {
   border-color: var(--accent);
 }
 
+/* ── GitHub chart cards (2026-11-05): the snapshot's figures drawn as
+   charts, animated once when the section scrolls into view. Initial
+   states apply only under .gh-armed (set by JS after mount, never for
+   reduced motion), so no-JS and reduced-motion see final values. */
+.gh-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.gh-stat {
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background);
+}
+
+.gh-stat strong {
+  display: block;
+  font-size: 26px;
+  letter-spacing: -.05em;
+}
+
+.gh-stat span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.gh-charts {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.gh-card {
+  min-width: 0;
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background);
+}
+
+.gh-card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.gh-card-sub {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.gh-trend {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+.gh-trend-line {
+  transition: stroke-dashoffset 1.5s var(--ease-house) .45s;
+}
+
+.gh-trend-area {
+  transition: opacity .8s ease 1.5s;
+}
+
+.gh-dot {
+  transition: opacity .35s ease 1.6s;
+}
+
+.gh-axis {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.gh-donut-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.gh-donut {
+  width: 128px;
+  height: 128px;
+  flex-shrink: 0;
+  transform-origin: 50% 50%;
+  transition: transform 1.1s var(--ease-house) .55s, opacity 1.1s ease .55s;
+}
+
+.gh-legend {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.gh-legend>div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+}
+
+.gh-legend i {
+  width: 11px;
+  height: 11px;
+  border-radius: 3.5px;
+  flex-shrink: 0;
+}
+
+.gh-legend b {
+  margin-left: auto;
+}
+
+.gh-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 168px;
+  margin-top: 8px;
+}
+
+.gh-bar-col {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.gh-bar {
+  width: 100%;
+  border-radius: 3px 3px 2px 2px;
+  background: var(--foreground);
+  transform-origin: bottom;
+  transition: transform .75s var(--ease-house);
+}
+
+.gh-bar-hot {
+  background: #F97316;
+}
+
+.gh-bar-tip {
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--accent-text);
+  transition: opacity .4s ease 1.9s;
+}
+
+.gh-activity-row {
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+
+.gh-activity-row:first-child {
+  border-top: none;
+  padding-top: 6px;
+}
+
+.gh-activity-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.gh-chip {
+  padding: 2.5px 8px;
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  border-radius: 999px;
+  color: var(--accent-text);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.gh-activity-row p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.anim-item {
+  transition: opacity .7s var(--ease-house), transform .7s var(--ease-house);
+}
+
+.gh-armed .anim-item {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+@media (max-width: 900px) {
+  .gh-charts {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .gh-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gh-card {
+    padding: 16px;
+  }
+
+  .gh-donut-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .gh-legend {
+    width: 100%;
+  }
+
+  .gh-bars {
+    gap: 3px;
+    height: 150px;
+  }
+}
+
 @media (max-width: 640px) {
   .github-repo-grid {
     grid-template-columns: 1fr;
@@ -3498,6 +3735,19 @@ main:has(.nf-hero) > .page-enter {
 }
 
 /* ── Links page ──────────────────────────────────────────────────────── */
+/* The links page is a directory, not a story: its hero and list sit
+   tighter to the header and footer than the global section rhythm
+   (readability pass, 2026-11-05). Other pages keep the rhythm. */
+.links-hero {
+  padding-top: clamp(28px, 6vw, 44px);
+  padding-bottom: 20px;
+}
+
+.links-section {
+  padding-top: 20px;
+  padding-bottom: clamp(40px, 6vw, 56px);
+}
+
 .links-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

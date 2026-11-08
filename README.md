@@ -2,7 +2,7 @@
 
 This repository is the source code of my **personal portfolio website** — not a starter template or a sample project.
 
-![Portfolio preview](https://www.abdulwahid.me/opengraph-image)
+![Abdul Wahid — AI/ML Developer](./readme-card.png)
 
 **Live site:** [abdulwahid.me](https://www.abdulwahid.me)
 

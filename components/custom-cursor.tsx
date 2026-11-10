@@ -151,7 +151,7 @@ export function CustomCursor() {
       hovering =
         !overText && !overNative && Boolean(target?.closest?.(INTERACTIVE));
     };
-    const onDown = () => {
+    const onDown = (_event?: PointerEvent) => {
       pressing = true;
     };
     const onUp = () => {
@@ -232,23 +232,41 @@ export function CustomCursor() {
       // the rendered pointer point.
       arrow.style.transform = `translate3d(${(x - TIP_X).toFixed(2)}px, ${(y - TIP_Y).toFixed(2)}px, 0) rotate(${((rot * 180) / Math.PI).toFixed(2)}deg) scale(${scale.toFixed(3)})`;
       arrow.style.opacity = gate.toFixed(3);
+      // Perf (2026-11-10): once the springs have fully settled AND
+      // the gate is fully closed (pointer outside the window or over
+      // a native-cursor zone), stop the loop. In any other state it
+      // keeps running, so the visible arrow still tracks the pointer
+      // 1:1. Any pointer event restarts it via start().
+      const settled =
+        Math.abs(vx) < 0.001 && Math.abs(vy) < 0.001 &&
+        Math.abs(vRot) < 0.0001 && Math.abs(vScale) < 0.001;
+      if (settled && gate < 0.01 && !inside) {
+        running = false;
+        return;
+      }
       raf = requestAnimationFrame(tick);
     };
 
+    let running = false;
     const start = () => {
+      if (running) return;
+      running = true;
       lastTime = 0;
       raf = requestAnimationFrame(tick);
     };
     const onVisibility = () => {
       if (document.hidden) {
         cancelAnimationFrame(raf);
+        running = false;
       } else {
         start();
       }
     };
 
-    window.addEventListener('pointermove', onMove, { passive: true });
-    window.addEventListener('pointerdown', onDown, { passive: true });
+    const onMoveW = (event: PointerEvent) => { onMove(event); start(); };
+    const onDownW = (event: PointerEvent) => { onDown(event); start(); };
+    window.addEventListener('pointermove', onMoveW, { passive: true });
+    window.addEventListener('pointerdown', onDownW, { passive: true });
     window.addEventListener('pointerup', onUp, { passive: true });
     document.documentElement.addEventListener('mouseleave', onLeave);
     window.addEventListener('blur', onBlur);
@@ -256,8 +274,8 @@ export function CustomCursor() {
     start();
 
     return () => {
-      window.removeEventListener('pointermove', onMove);
-      window.removeEventListener('pointerdown', onDown);
+      window.removeEventListener('pointermove', onMoveW);
+      window.removeEventListener('pointerdown', onDownW);
       window.removeEventListener('pointerup', onUp);
       document.documentElement.removeEventListener('mouseleave', onLeave);
       window.removeEventListener('blur', onBlur);

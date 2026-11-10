@@ -39,13 +39,19 @@ export function BackToTop() {
         setVisible(next);
       }
     };
-    const loop = () => {
-      sync();
-      raf = requestAnimationFrame(loop);
-    };
+    // Perf (2026-11-10): this used to poll scrollY on a permanent
+    // rAF loop. A passive scroll listener reads the same live
+    // position the moment it changes — including during Lenis's
+    // animated scroll back to the top, which fires real scroll
+    // events — plus one sync on mount and on resize. Identical
+    // visibility behaviour, zero idle cost.
     sync();
-    raf = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(raf);
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    return () => {
+      window.removeEventListener('scroll', sync);
+      window.removeEventListener('resize', sync);
+    };
   }, []);
 
   const backToTop = () => {

@@ -6238,3 +6238,20 @@ html.custom-cursor-on [data-cursor="native"] * {
 @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
   .accent-serif-faded { color: var(--muted); }
 }
+
+
+/* ===== Performance pass (2026-11-10) =============================
+   Wadi reported the portfolio feeling laggy on his iPhone 8 Plus:
+   animations stalling mid-scroll. Fixes shipped in code (idle-stop
+   rAF loops in pointer-glow, custom-cursor, back-to-top) plus this:
+   on coarse-pointer (touch) devices the two pointer-glow layers are
+   removed entirely — the finger covers the glow while scrolling, so
+   the layer bought nothing, but its 1200px / 900px radial gradients
+   were being repainted by the compositor on every scroll frame.
+   Desktop (fine pointer) rendering is unchanged. */
+@media (pointer: coarse) {
+    .pointer-glow,
+    .hero-glow {
+        display: none;
+    }
+}

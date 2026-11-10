@@ -72,6 +72,7 @@ export function PointerGlow() {
     }
     const s = makeState(window.innerWidth / 2, window.innerHeight * 0.2, 0.5);
     let raf = 0;
+    let idleFrames = 0;
     const onMove = (event: PointerEvent) => {
       if (event.pointerType === 'touch') {
         s.mode = 'touch';
@@ -104,30 +105,57 @@ export function PointerGlow() {
       s.contact = false;
       s.inside = false;
     };
+    const wake = () => {
+      idleFrames = 0;
+      if (!raf && !document.hidden) raf = requestAnimationFrame(tick);
+    };
     const tick = () => {
+      raf = 0;
       const touchOff = s.mode === 'touch' && !s.contact;
       if (s.mode === 'touch') {
         s.top = s.contact ? 1 : 0;
       } else {
         s.top = s.inside && performance.now() - s.lastMove < 2600 ? 1 : 0.5;
       }
-      s.x += (s.tx - s.x) * 0.12;
-      s.y += (s.ty - s.y) * 0.12;
+      const dx = s.tx - s.x;
+      const dy = s.ty - s.y;
+      s.x += dx * 0.12;
+      s.y += dy * 0.12;
+      const prevOp = s.op;
       stepOpacity(s, touchOff, 0.06);
       el.style.transform = `translate3d(${s.x}px, ${s.y}px, 0) translate(-50%, -50%)`;
       el.style.opacity = s.op.toFixed(3);
-      raf = requestAnimationFrame(tick);
+      // Perf (2026-11-10): sleep once position and opacity have
+      // settled. The mouse branch eases opacity toward a constant
+      // 0.5 rest state, so without this the loop ran forever.
+      const settled =
+        Math.abs(dx) < 0.05 && Math.abs(dy) < 0.05 && Math.abs(s.op - prevOp) < 0.001;
+      idleFrames = settled ? idleFrames + 1 : 0;
+      if (idleFrames < 20 && !document.hidden) raf = requestAnimationFrame(tick);
     };
-    window.addEventListener('pointermove', onMove, { passive: true });
-    window.addEventListener('pointerdown', onDown, { passive: true });
-    window.addEventListener('pointerup', onUp, { passive: true });
-    window.addEventListener('pointercancel', onUp, { passive: true });
+    const onMoveW = (event: PointerEvent) => { onMove(event); wake(); };
+    const onDownW = (event: PointerEvent) => { onDown(event); wake(); };
+    const onUpW = (event: PointerEvent) => { onUp(event); wake(); };
+    const onVisibility = () => {
+      if (document.hidden) {
+        if (raf) cancelAnimationFrame(raf);
+        raf = 0;
+      } else {
+        wake();
+      }
+    };
+    window.addEventListener('pointermove', onMoveW, { passive: true });
+    window.addEventListener('pointerdown', onDownW, { passive: true });
+    window.addEventListener('pointerup', onUpW, { passive: true });
+    window.addEventListener('pointercancel', onUpW, { passive: true });
+    document.addEventListener('visibilitychange', onVisibility);
     raf = requestAnimationFrame(tick);
     return () => {
-      window.removeEventListener('pointermove', onMove);
-      window.removeEventListener('pointerdown', onDown);
-      window.removeEventListener('pointerup', onUp);
-      window.removeEventListener('pointercancel', onUp);
+      window.removeEventListener('pointermove', onMoveW);
+      window.removeEventListener('pointerdown', onDownW);
+      window.removeEventListener('pointerup', onUpW);
+      window.removeEventListener('pointercancel', onUpW);
+      document.removeEventListener('visibilitychange', onVisibility);
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -149,6 +177,7 @@ export function HeroGlow() {
     const rect0 = host.getBoundingClientRect();
     const s = makeState(rect0.width / 2, rect0.height * 0.3, 0);
     let raf = 0;
+    let idleFrames = 0;
     const toLocal = (event: PointerEvent) => {
       const rect = host.getBoundingClientRect();
       const lx = event.clientX - rect.left;
@@ -196,30 +225,56 @@ export function HeroGlow() {
       s.contact = false;
       s.inside = false;
     };
+    const wake = () => {
+      idleFrames = 0;
+      if (!raf && !document.hidden) raf = requestAnimationFrame(tick);
+    };
     const tick = () => {
+      raf = 0;
       const touchOff = s.mode === 'touch' && !s.contact;
       if (s.mode === 'touch') {
         s.top = s.contact && s.inside ? 1 : 0;
       } else {
         s.top = s.inside && performance.now() - s.lastMove < 2600 ? 1 : 0;
       }
-      s.x += (s.tx - s.x) * 0.14;
-      s.y += (s.ty - s.y) * 0.14;
+      const dx = s.tx - s.x;
+      const dy = s.ty - s.y;
+      s.x += dx * 0.14;
+      s.y += dy * 0.14;
+      const prevOp = s.op;
       stepOpacity(s, touchOff, 0.08);
       el.style.transform = `translate3d(${s.x}px, ${s.y}px, 0) translate(-50%, -50%)`;
       el.style.opacity = s.op.toFixed(3);
-      raf = requestAnimationFrame(tick);
+      // Perf (2026-11-10): same idle-sleep as PointerGlow — once the
+      // layer has faded out or caught up with the pointer, stop.
+      const settled =
+        Math.abs(dx) < 0.05 && Math.abs(dy) < 0.05 && Math.abs(s.op - prevOp) < 0.001;
+      idleFrames = settled ? idleFrames + 1 : 0;
+      if (idleFrames < 20 && !document.hidden) raf = requestAnimationFrame(tick);
     };
-    window.addEventListener('pointermove', onMove, { passive: true });
-    window.addEventListener('pointerdown', onDown, { passive: true });
-    window.addEventListener('pointerup', onUp, { passive: true });
-    window.addEventListener('pointercancel', onUp, { passive: true });
+    const onMoveW = (event: PointerEvent) => { onMove(event); wake(); };
+    const onDownW = (event: PointerEvent) => { onDown(event); wake(); };
+    const onUpW = (event: PointerEvent) => { onUp(event); wake(); };
+    const onVisibility = () => {
+      if (document.hidden) {
+        if (raf) cancelAnimationFrame(raf);
+        raf = 0;
+      } else {
+        wake();
+      }
+    };
+    window.addEventListener('pointermove', onMoveW, { passive: true });
+    window.addEventListener('pointerdown', onDownW, { passive: true });
+    window.addEventListener('pointerup', onUpW, { passive: true });
+    window.addEventListener('pointercancel', onUpW, { passive: true });
+    document.addEventListener('visibilitychange', onVisibility);
     raf = requestAnimationFrame(tick);
     return () => {
-      window.removeEventListener('pointermove', onMove);
-      window.removeEventListener('pointerdown', onDown);
-      window.removeEventListener('pointerup', onUp);
-      window.removeEventListener('pointercancel', onUp);
+      window.removeEventListener('pointermove', onMoveW);
+      window.removeEventListener('pointerdown', onDownW);
+      window.removeEventListener('pointerup', onUpW);
+      window.removeEventListener('pointercancel', onUpW);
+      document.removeEventListener('visibilitychange', onVisibility);
       cancelAnimationFrame(raf);
     };
   }, []);

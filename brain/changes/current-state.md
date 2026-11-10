@@ -51,3 +51,5 @@ Portfolio source implementation created on 2026-10-14. Session 03 completed on 2
 
 - Ink toggle renderer v2 (2026-11-10 evening): WebGL canvas replaced by a flat DOM overlay after the owner's recording showed tearing on his iPhone; same V1 look. Owner's phone re-check pending.
 - Working principles title (2026-11-10): Option 1 fonts live — Anton line + faded serif line, scoped to that heading only; other section headings still Archivo by the owner's pick.
+- Working principles title size fix (2026-11-10): Anton line 40px cap + .035em letter-spacing after owner feedback (too big / squeezed); serif line scaled in ratio.
+- REVERTED (2026-11-10, owner's order): ink-bleed toggle AND Anton principles title both removed same night they shipped; toggle is the plain instant flip again, principles heading is the original Archivo. Do not re-propose either.

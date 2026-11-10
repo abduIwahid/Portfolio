@@ -6251,3 +6251,50 @@ html.custom-cursor-on [data-cursor="native"] * {
   pointer-events: none;
   will-change: clip-path, opacity;
 }
+
+/* ===== Working principles title — Option 1 (approved by Wadi
+   2026-11-10) ===================================================
+   The home principles heading takes the hero's two-line pattern:
+   line 1 in Anton caps (solid foreground), line 2 in Instrument
+   Serif italic lowercase with the hero serif line's fade recipe
+   (.hg-serifline). Scoped to this one heading via .principles-title
+   — every other section heading keeps the Archivo treatment, per
+   the owner's pick. Sizes are capped so the block stays a section
+   title, not a second hero: at the 414px phone width line 1 renders
+   ≈46px against the hero's ≈80px. Both lines are nowrap and sized
+   with clamp() so they shrink fluidly instead of wrapping or
+   hyphenating (the old Archivo heading broke "impressive-looking."
+   across lines at phone width). Line 2's clamp is 1.163× line 1's
+   at every step — the hero's measured serif/Anton proportion. */
+.principles-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+.principles-title .pt-solid {
+    font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
+    text-transform: uppercase;
+    line-height: 1.04;
+    white-space: nowrap;
+    color: var(--foreground);
+    font-size: clamp(30px, 11.1vw, 44px);
+}
+.principles-title .pt-serif {
+    font-family: var(--font-serif), Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    text-transform: lowercase;
+    line-height: 1.12;
+    white-space: nowrap;
+    background: linear-gradient(180deg, var(--foreground) 0%, transparent 94%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0.45;
+    font-size: clamp(35px, 12.9vw, 51px);
+}
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+    .principles-title .pt-serif { color: var(--muted); }
+}

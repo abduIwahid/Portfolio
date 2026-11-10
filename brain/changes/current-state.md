@@ -50,3 +50,4 @@ Portfolio source implementation created on 2026-10-14. Session 03 completed on 2
 - Theme toggle runs a WebGL2 ink-bleed transition (V1 clean style, owner-approved after preview + GIF rounds); fallbacks to instant flip on reduced-motion / no WebGL2. Session: `brain/changes/sessions/2026-11-10-05-ink-bleed-theme-toggle.md`. Visual feel on the owner's phone is the remaining check.
 
 - Ink toggle renderer v2 (2026-11-10 evening): WebGL canvas replaced by a flat DOM overlay after the owner's recording showed tearing on his iPhone; same V1 look. Owner's phone re-check pending.
+- Working principles title (2026-11-10): Option 1 fonts live — Anton line + faded serif line, scoped to that heading only; other section headings still Archivo by the owner's pick.

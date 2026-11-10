@@ -45,3 +45,6 @@ Portfolio source implementation created on 2026-10-14. Session 03 completed on 2
 - The Predictly README mentions Gemini Vision alongside local Pillow. Portfolio copy describes local image analysis only.
 - CV PDF omits the phone number. Review all dates, credentials, and content before formal job applications.
 - GitHub PFP uses `<img>` instead of Next.js `<Image>` to avoid requiring `avatars.githubusercontent.com` in `next.config.ts` remotePatterns. Can be migrated later.
+
+## 2026-11-10 — Ink-bleed theme toggle
+- Theme toggle runs a WebGL2 ink-bleed transition (V1 clean style, owner-approved after preview + GIF rounds); fallbacks to instant flip on reduced-motion / no WebGL2. Session: `brain/changes/sessions/2026-11-10-05-ink-bleed-theme-toggle.md`. Visual feel on the owner's phone is the remaining check.

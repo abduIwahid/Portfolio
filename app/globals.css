@@ -6240,14 +6240,14 @@ html.custom-cursor-on [data-cursor="native"] * {
 }
 
 /* Ink-bleed theme transition overlay (components/theme-toggle.tsx):
-   a fixed WebGL2 canvas above every layer (intro loader included) for
-   the ~1.2s the ink spreads and dissolves; pointer-events off so the
-   page under it stays live, and it removes itself when done. */
-.ink-bleed-canvas {
+   a fixed solid div above every layer for the ~1.3s the ink spreads
+   and fades; its clip-path polygon is set from JS each frame (wobbly
+   ink edge baked in), pointer-events off so the page under it stays
+   live, and it removes itself when done. */
+.ink-bleed-overlay {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
   z-index: 2000;
   pointer-events: none;
+  will-change: clip-path, opacity;
 }

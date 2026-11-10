@@ -26,3 +26,18 @@
 - **Status:** Done (implementation + build gates + live push); live
   behaviour verified via served bundle; visual feel = owner's check.
 - **Related commit:** TBD
+
+## Fix — same evening (owner's screen recording)
+- **Problem:** Wadi's iPhone recording showed the WebGL build "breaking":
+  the theme colours flipped instantly under a blot that only ever
+  covered the toggle corner — the spread read as a torn mid-state, not
+  smooth. Cause: at full cover the flip repainted the whole page in the
+  same frame the fullscreen canvas redrew (heavy first frame on an
+  iPhone 8 Plus), and the dissolve phase then uncovered an already-
+  flipped page unevenly.
+- **Fix:** renderer replaced — no WebGL, no canvas. A fixed solid div
+  (old theme's --background) with a JS-animated clip-path polygon
+  (wobbly ink edge baked in, 72 points) spreads over 900ms; the flip
+  still happens under full cover; the reveal is a plain 350ms opacity
+  fade. Nothing repaints under the overlay while it spreads.
+- **Status:** fix pushed after build gates; phone re-check = owner's.

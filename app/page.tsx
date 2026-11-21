@@ -10,7 +10,7 @@ import { PrinciplesStack } from '@/components/principles-stack';
 import { TextMarquee } from '@/components/text-marquee';
 import { heroCutout } from './hero-image';
 
-const HOME_PROJECT_SLUGS = ['medisight-ai', 'customer-churn-prediction', 'study-hub', 'nearsend'];
+const HOME_PROJECT_SLUGS = ['medisight-ai', 'axions-planner', 'customer-churn-prediction', 'study-hub', 'nearsend'];
 const homeProjects = HOME_PROJECT_SLUGS.map((slug) => projects.find((p) => p.slug === slug)!).filter(Boolean);
 
 const PRINCIPLES = [

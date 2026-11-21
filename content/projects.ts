@@ -44,6 +44,27 @@ export const projects: Project[] = [
     repo: 'https://github.com/abduIwahid/WhyRisk', demo: 'https://whyrisk.vercel.app', accent: 'orange'
   },
   {
+    slug: 'axions-planner', name: 'AXIONS Planner', category: 'Applied AI', kind: 'Hackathon V2 · Agent system',
+    summary: 'An agent system built in one day at MTM Hackathon \'26 that reads a pack of scattered messages — emails, WhatsApp texts and notices in English and Roman Urdu — and produces a complete, validated plan for a 4-hour hackathon: venue, schedule, food, judging and budget. The language model only reads; every decision and figure is computed and checked in code.',
+    problem: 'Event details arrive scattered across messages that contradict and update each other. A useful plan has to reconcile them, respect every hard constraint, and stay valid when a plausible-sounding message is wrong.',
+    role: 'Team lead and presenter, Team AXIONS (with Abdul Moiz and Jawad Hassan), GDG On Campus CUI Attock.', status: 'Built at MTM Hackathon \'26 (V2), GDG On Campus CUI Wah — 18 Nov 2026.', featured: true,
+    stack: ['Python', 'Groq', 'JavaScript', 'Vercel'],
+    highlights: ['One command runs the whole system: the model extracts structured facts, and all planning arithmetic is deterministic code', 'Six-check validator — budget, venue fit, food, judges, schedule, coverage; a message that would break a passing check is rejected with the reason printed', 'Transactional updates: a new message is merged into a copy of the fact base first and rolled back if the plan would become invalid', 'The same engine ported to a full web app: plan dashboard, what-if simulator, agent chat and clickable decision evidence'],
+    approach: [
+      { title: 'The model reads', body: 'One extraction call turns raw message text into structured facts, each with its source message and date. A later message from the same sender supersedes the earlier one, and item names are matched flexibly so a correction replaces an entry instead of double-counting it.' },
+      { title: 'The code decides', body: 'Teams, judges needed, people to feed, the cheapest venue that fits, the food tier, a schedule that sums exactly to the event length, and the full budget are computed in plain code, so every figure is exact and auditable.' },
+      { title: 'Checks guard the plan', body: 'Six validation checks run after every build. An update that breaks a previously passing check — or imposes a quantity below a hard requirement — is rejected, the plan stays valid, and the reason is printed in the trace.' }
+    ],
+    evidence: [
+      { label: 'Sample pack result', value: 'Rs 547,400 of Rs 650,000', note: 'Plan produced from the brief\'s sample pack (177 people, Hall A); all six validation checks pass.' },
+      { label: 'Runtime', value: '≈5 seconds', note: 'Full run against the brief\'s 2-minute limit; updates use at most 2 model calls against a limit of 5.' },
+      { label: 'Tests', value: '23/23 offline checks', note: 'Regression suite runs against a stub model: sample pack, budget change, the same change twice, and the plausible-but-wrong message (rejected, plan unchanged).' },
+      { label: 'Model', value: 'gpt-oss-20b via Groq', note: 'One small model for every call, as the brief\'s small-model bonus required.' }
+    ],
+    limitations: ['On the unseen judging pack the venue check failed honestly (5 of 6): the step-free access requirement did not textually match the venue\'s ramp-access wording, so a cheaper non-compliant hall was selected and the validator flagged it.', 'The system plans one event shape — a single-day hackathon. It is a one-day hackathon build, not a general event-planning platform.'],
+    repo: 'https://github.com/abduIwahid/mtm-hackathon-26', demo: 'https://mtm-hackathon-26.vercel.app', accent: 'orange'
+  },
+  {
     slug: 'customer-churn-prediction', name: 'Customer Churn Prediction', category: 'Machine Learning', kind: 'Classification · Coursework',
     summary: 'A supervised-learning study comparing classification approaches for identifying customers who may leave a service.',
     problem: 'Retention teams need useful risk signals, but classifying churn requires more than selecting a model with a high headline accuracy. Precision, recall, F1, class balance, and the decision threshold all matter.',
@@ -112,7 +133,7 @@ export const projects: Project[] = [
     stack: ['Web development', 'AI-assisted workflows'],
     highlights: ['Built as part of the Mind to Machine 2026 event at COMSATS Wah', 'Healthcare-oriented user flow and service concept', 'Public repository and live demo available for review'],
     approach: [{ title: 'Prototype the workflow', body: 'The project was developed in a hackathon setting, prioritizing a demonstrable user journey and working prototype.' }],
-    evidence: [{ label: 'Context', value: 'MTM 2026', note: 'Mind to Machine AI Hackathon, May 2026.' }],
+    evidence: [{ label: 'Context', value: 'MTM V1', note: 'Mind to Machine AI Hackathon (V1), May 2026.' }],
     limitations: ['A hackathon prototype is not a clinically validated healthcare product.', 'Specific model, data, and safety claims should only be made after reviewing the implementation and event deliverables.'],
     repo: 'https://github.com/abduIwahid/Smart-Doctor-Connect', demo: 'https://smartdoctor-ai.vercel.app', accent: 'ink'
   },

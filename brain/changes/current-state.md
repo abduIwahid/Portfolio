@@ -57,3 +57,6 @@ Portfolio source implementation created on 2026-10-14. Session 03 completed on 2
 
 ## 2026-11-21 — Scroll effects round
 - 3D card zoom on project cards (reveal-driven settle + fine-pointer hover zoom) and line-by-line masked rise on both hero headlines shipped on the owner's approval of the #279 preview set. Transform-only, one-shot; /projects stacking cards deliberately untouched. Effect #10 (count-up demo) not shipped — the stats strip holds text values, not countable metrics. Session: `brain/changes/sessions/2026-11-21-01-scroll-effects-round.md`. Owner's phone feel-check pending.
+
+## 2026-11-21 — MTM Hackathon '26 added
+- AXIONS Planner is a featured project (after WhyRisk) with a full case-study page at /projects/axions-planner; About's Community timeline leads with the Team AXIONS entry (Nov 2026) and its Drive certificate proof link. The certificate also lives in the owner's Certificates repo (mtm-hackathon-26/). The /cv page still awaits the owner's updated CV.pdf — he is updating the PDF himself first; the CV section update follows on his handover. Session: `brain/changes/sessions/2026-11-21-02-mtm-project-and-about.md`.

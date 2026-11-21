@@ -18,9 +18,10 @@ export const profile = {
     { title: 'AI & Machine Learning Developer', issuer: 'Programming Hub', period: 'Feb – Apr 2026', verify: 'https://www.educative.io/verify-certificate/1SX3S0S4GG' }
   ],
   activities: [
+    { title: 'Team Lead & Presenter, Team AXIONS', organization: 'MTM Hackathon \'26 (V2) · GDG On Campus CUI Wah', period: 'November 2026', proof: 'https://drive.google.com/file/d/1yhjiMAYIJWojUvCZs7UZu_GNtH4UBVXy/view?usp=share_link' },
     { title: 'Participant', organization: 'DeepBuild Hackathon · SoftTech · COMSATS Attock', period: 'October 2026' },
     { title: 'AI/ML Team Member', organization: 'Google Developer Groups on Campus · COMSATS Attock', period: '2026 – 2027' },
-    { title: 'Participant', organization: 'Mind to Machine 2026 AI Hackathon · COMSATS Wah', period: 'May 2026', proof: 'https://drive.google.com/file/d/1UGs2P9JgDlXth--FgMtQXr_n10pAjnsu/view?usp=sharing' }
+    { title: 'Participant', organization: 'Mind to Machine 2026 AI Hackathon (V1) · COMSATS Wah', period: 'May 2026', proof: 'https://drive.google.com/file/d/1UGs2P9JgDlXth--FgMtQXr_n10pAjnsu/view?usp=sharing' }
   ],
   skills: [
     { group: 'Languages', items: ['Python', 'Java', 'JavaScript', 'TypeScript', 'SQL'] },

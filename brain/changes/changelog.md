@@ -57,3 +57,7 @@ Project entry, slugs and links updated across home, /projects and /cv (demo: pla
 ## 2026-11-21 — Live preview removed from project pages
 
 The embedded live-preview block was removed from every project case study at Wadi's order; component and its CSS deleted.
+
+## 2026-11-21 — Case hero actions aligned + Visit pill CSS restored
+
+All projects left, GitHub/live icon buttons right, "View source" text removed; visit-pill base CSS restored after the preview-removal round clipped it.

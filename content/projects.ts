@@ -44,7 +44,7 @@ export const projects: Project[] = [
     repo: 'https://github.com/abduIwahid/WhyRisk', demo: 'https://whyrisk.vercel.app', accent: 'orange'
   },
   {
-    slug: 'planbanao', name: 'PlanBanao', category: 'Applied AI', kind: 'Hackathon V2 · Agent system',
+    slug: 'planbanao', name: 'Plan Banao', category: 'Applied AI', kind: 'Hackathon V2 · Agent system',
     summary: 'An agent system built in one day at MTM Hackathon \'26 that reads a pack of scattered messages — emails, WhatsApp texts and notices in English and Roman Urdu — and produces a complete, validated plan for a 4-hour hackathon: venue, schedule, food, judging and budget. The language model only reads; every decision and figure is computed and checked in code.',
     problem: 'Event details arrive scattered across messages that contradict and update each other. A useful plan has to reconcile them, respect every hard constraint, and stay valid when a plausible-sounding message is wrong.',
     role: 'Team lead and presenter, Team AXIONS (with Abdul Moiz and Jawad Hassan), GDG On Campus CUI Attock.', status: 'Built at MTM Hackathon \'26 (V2), GDG On Campus CUI Wah — 18 Nov 2026.', featured: true,

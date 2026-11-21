@@ -65,3 +65,5 @@ Portfolio source implementation created on 2026-10-14. Session 03 completed on 2
 - 2026-11-21: AXIONS Planner is now **PlanKaro** (repo github.com/abduIwahid/plankaro, demo plankaro-planner.vercel.app; old domain kept as alias). Team AXIONS remains the team credit.
 
 - 2026-11-21: MTM V2 project renamed PlanKaro → PlanBanao (site planbanao.vercel.app, repo abduIwahid/planbanao); portfolio slugs/links updated.
+
+- 2026-11-21 (later): display name set to "Plan Banao" everywhere; slug/URLs stay planbanao.

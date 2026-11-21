@@ -6,3 +6,5 @@ Affected Area → Projects (home grid, /projects, /cv).
 Impact → All portfolio surfaces now point at the live PlanBanao site and repo.
 Evidence → grep of content/ and app/ shows planbanao in all four spots; live check after push.
 Status → Shipped.
+
+- Display name corrected to "Plan Banao" (two words) the same day; slug and URLs remain planbanao.

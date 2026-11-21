@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/cv' },
 };
 
-const CV_PROJECT_SLUGS = ['medisight-ai', 'study-hub', 'customer-churn-prediction', 'nearsend', 'predictly'];
+const CV_PROJECT_SLUGS = ['medisight-ai', 'axions-planner', 'customer-churn-prediction', 'study-hub'];
 
 const SKILL_GROUPS: { title: string; items: string }[] = [
   { title: 'Languages', items: 'Python, Java, C++, JavaScript, TypeScript, HTML, CSS' },
@@ -28,9 +28,10 @@ const CERTIFICATIONS: { title: string; org: string; date: string; verify?: strin
 ];
 
 const ACTIVITIES: { title: string; org: string; date: string; proof?: string }[] = [
+  { title: 'Team Lead & Presenter, Team AXIONS', org: 'MTM Hackathon \'26 (V2) · GDG On Campus CUI Wah', date: 'Nov 2026', proof: 'https://drive.google.com/file/d/1yhjiMAYIJWojUvCZs7UZu_GNtH4UBVXy/view?usp=share_link' },
   { title: 'Participant: DeepBuild Hackathon', org: 'SoftTech · COMSATS Attock', date: 'Oct 2026' },
   { title: 'AI/ML Team Member', org: 'GDG on Campus · COMSATS Attock', date: '2026 – 2027' },
-  { title: 'Hackathon Participant', org: 'Mind to Machine 2026 AI Hackathon · COMSATS Wah', date: 'May 2026', proof: 'https://drive.google.com/file/d/1UGs2P9JgDlXth--FgMtQXr_n10pAjnsu/view?usp=sharing' },
+  { title: 'Hackathon Participant', org: 'Mind to Machine 2026 AI Hackathon (V1) · COMSATS Wah', date: 'May 2026', proof: 'https://drive.google.com/file/d/1UGs2P9JgDlXth--FgMtQXr_n10pAjnsu/view?usp=sharing' },
 ];
 
 export default function CvPage() {

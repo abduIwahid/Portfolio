@@ -63,3 +63,5 @@ Portfolio source implementation created on 2026-10-14. Session 03 completed on 2
 - CV round completed (2026-11-21): the owner's updated CV.pdf is live (AXIONS in, Predictly out) and the /cv page mirrors it — project order WhyRisk → AXIONS → Churn → Study Hub, Activities led by the Team AXIONS (V2) entry with its Drive proof; May 2026 entry labelled (V1). Session: `brain/changes/sessions/2026-11-21-03-cv-pdf-and-page.md`.
 
 - 2026-11-21: AXIONS Planner is now **PlanKaro** (repo github.com/abduIwahid/plankaro, demo plankaro-planner.vercel.app; old domain kept as alias). Team AXIONS remains the team credit.
+
+- 2026-11-21: MTM V2 project renamed PlanKaro → PlanBanao (site planbanao.vercel.app, repo abduIwahid/planbanao); portfolio slugs/links updated.

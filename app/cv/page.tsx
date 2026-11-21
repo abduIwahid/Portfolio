@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/cv' },
 };
 
-const CV_PROJECT_SLUGS = ['medisight-ai', 'plankaro', 'customer-churn-prediction', 'study-hub'];
+const CV_PROJECT_SLUGS = ['medisight-ai', 'planbanao', 'customer-churn-prediction', 'study-hub'];
 
 const SKILL_GROUPS: { title: string; items: string }[] = [
   { title: 'Languages', items: 'Python, Java, C++, JavaScript, TypeScript, HTML, CSS' },

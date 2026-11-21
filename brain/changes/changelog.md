@@ -49,3 +49,7 @@ Project initialized. No code yet.
 ## 2026-11-21 — PlanKaro rename
 
 Change → Reason → Affected Area → Impact → Evidence → Status: AXIONS Planner renamed to PlanKaro (product name chosen by Wadi) → repo + demo links updated to plankaro / plankaro-planner.vercel.app → content/projects.ts, app/page.tsx, app/cv/page.tsx → project page moves to /projects/plankaro → build + live verification → shipped.
+
+## 2026-11-21 — PlanKaro renamed to PlanBanao
+
+Project entry, slugs and links updated across home, /projects and /cv (demo: planbanao.vercel.app, repo: abduIwahid/planbanao). Team AXIONS credit unchanged.

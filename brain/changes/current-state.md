@@ -61,3 +61,5 @@ Portfolio source implementation created on 2026-10-14. Session 03 completed on 2
 ## 2026-11-21 — MTM Hackathon '26 added
 - AXIONS Planner is a featured project (after WhyRisk) with a full case-study page at /projects/axions-planner; About's Community timeline leads with the Team AXIONS entry (Nov 2026) and its Drive certificate proof link. The certificate also lives in the owner's Certificates repo (mtm-hackathon-26/). The /cv page still awaits the owner's updated CV.pdf — he is updating the PDF himself first; the CV section update follows on his handover. Session: `brain/changes/sessions/2026-11-21-02-mtm-project-and-about.md`.
 - CV round completed (2026-11-21): the owner's updated CV.pdf is live (AXIONS in, Predictly out) and the /cv page mirrors it — project order WhyRisk → AXIONS → Churn → Study Hub, Activities led by the Team AXIONS (V2) entry with its Drive proof; May 2026 entry labelled (V1). Session: `brain/changes/sessions/2026-11-21-03-cv-pdf-and-page.md`.
+
+- 2026-11-21: AXIONS Planner is now **PlanKaro** (repo github.com/abduIwahid/plankaro, demo plankaro-planner.vercel.app; old domain kept as alias). Team AXIONS remains the team credit.

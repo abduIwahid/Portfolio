@@ -45,3 +45,7 @@ Project initialized. No code yet.
 
 ## 2026-11-21 — CV.pdf replaced; /cv page mirrored
 - **Change:** `public/CV.pdf` replaced with the owner's updated CV (AXIONS Planner in, Predictly out, MTM V2 Team Lead activity added); `app/cv/page.tsx` project list now mirrors the PDF (WhyRisk → AXIONS → Churn → Study Hub) and its Activities list gains the Team AXIONS (V2) entry with the Drive certificate proof, with the May 2026 entry labelled (V1) → **Reason:** owner updated the PDF himself from the supplied details and handed it over; the CV section update was sequenced to follow his PDF → **Affected Area:** `public/CV.pdf`, `app/cv/page.tsx` → **Impact:** the site's downloadable CV and the readable /cv page now match the owner's current PDF and the V1/V2 convention → **Evidence:** PDF inspected pre-deploy (2 pages, AXIONS present, Predictly absent); production build passes; live /CV.pdf byte-compared after deploy → **Status:** Shipped. Session: `brain/changes/sessions/2026-11-21-03-cv-pdf-and-page.md`.
+
+## 2026-11-21 — PlanKaro rename
+
+Change → Reason → Affected Area → Impact → Evidence → Status: AXIONS Planner renamed to PlanKaro (product name chosen by Wadi) → repo + demo links updated to plankaro / plankaro-planner.vercel.app → content/projects.ts, app/page.tsx, app/cv/page.tsx → project page moves to /projects/plankaro → build + live verification → shipped.

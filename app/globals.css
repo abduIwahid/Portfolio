@@ -897,6 +897,65 @@ button {
   }
 }
 
+/* ===== Scroll-effects round (2026-11-21) =======================
+   Approved from the 10-effect preview set (saved-references #279):
+   (1) 3D card zoom — project cards settle out of a slight 3D tilt
+   as their reveal fires, plus a gentle zoom on fine-pointer hover;
+   (2) line-by-line reveal — the two hero headline lines rise out
+   of masks, staggered. Transform-only and one-shot: no
+   scroll-linked drivers, nothing animating while idle. */
+.reveal .project-card {
+  transform: perspective(1100px) rotateX(9deg) translateY(16px) scale(.94);
+  transition: transform .85s var(--ease-house), border-color .3s var(--ease-house), box-shadow .35s var(--ease-house);
+}
+
+.reveal.is-visible .project-card {
+  transform: perspective(1100px) rotateX(0deg) translateY(0) scale(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .reveal.is-visible .project-card:hover {
+    transform: perspective(1100px) rotateX(0deg) translateY(-4px) scale(1.012);
+  }
+}
+
+.hg-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: .14em;
+  margin-bottom: -.14em;
+}
+
+.hg-mask .hg-line {
+  animation: hg-rise .9s var(--ease-house) both;
+}
+
+.hg-mask.hg-d2 .hg-line {
+  animation-delay: .16s;
+}
+
+@keyframes hg-rise {
+  from { transform: translateY(112%); }
+  to { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .project-card {
+    transform: none;
+    transition: none;
+  }
+
+  .hg-mask .hg-line {
+    animation: none;
+  }
+}
+
+@media print {
+  .hg-mask .hg-line {
+    animation: none;
+  }
+}
+
 .project-card-actions {
   display: inline-flex;
   align-items: center;

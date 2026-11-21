@@ -54,3 +54,6 @@ Portfolio source implementation created on 2026-10-14. Session 03 completed on 2
 - Working principles title size fix (2026-11-10): Anton line 40px cap + .035em letter-spacing after owner feedback (too big / squeezed); serif line scaled in ratio.
 - REVERTED (2026-11-10, owner's order): ink-bleed toggle AND Anton principles title both removed same night they shipped; toggle is the plain instant flip again, principles heading is the original Archivo. Do not re-propose either.
 - Performance pass (2026-11-10): rAF loops idle-stop; back-to-top is scroll-listener driven; glow layers display:none on coarse pointers. Lag fix shipped on owner's approval; his phone feel-check is the verdict.
+
+## 2026-11-21 — Scroll effects round
+- 3D card zoom on project cards (reveal-driven settle + fine-pointer hover zoom) and line-by-line masked rise on both hero headlines shipped on the owner's approval of the #279 preview set. Transform-only, one-shot; /projects stacking cards deliberately untouched. Effect #10 (count-up demo) not shipped — the stats strip holds text values, not countable metrics. Session: `brain/changes/sessions/2026-11-21-01-scroll-effects-round.md`. Owner's phone feel-check pending.

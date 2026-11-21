@@ -53,3 +53,7 @@ Change → Reason → Affected Area → Impact → Evidence → Status: AXIONS P
 ## 2026-11-21 — PlanKaro renamed to PlanBanao
 
 Project entry, slugs and links updated across home, /projects and /cv (demo: planbanao.vercel.app, repo: abduIwahid/planbanao). Team AXIONS credit unchanged.
+
+## 2026-11-21 — Live preview removed from project pages
+
+The embedded live-preview block was removed from every project case study at Wadi's order; component and its CSS deleted.

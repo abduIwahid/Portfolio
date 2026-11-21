@@ -67,3 +67,5 @@ Portfolio source implementation created on 2026-10-14. Session 03 completed on 2
 - 2026-11-21: MTM V2 project renamed PlanKaro → PlanBanao (site planbanao.vercel.app, repo abduIwahid/planbanao); portfolio slugs/links updated.
 
 - 2026-11-21 (later): display name set to "Plan Banao" everywhere; slug/URLs stay planbanao.
+
+- 2026-11-21: Live preview embed removed from all project case-study pages (component + CSS deleted).

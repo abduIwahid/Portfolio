@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { ArrowUpRight, Github, X } from 'lucide-react';
 import type { Project } from '@/content/projects';
 import { ProjectShot } from './project-shot';
-import { LivePreview } from './live-preview';
 
 /**
  * Scroll-driven project flow. A tall stage pins a sticky viewport; the
@@ -210,7 +209,6 @@ export function ProjectFlow({ projects }: { projects: Project[] }) {
             <p className="eyebrow">{selected.kind}</p>
             <h3 className="flow-modal-title">{selected.name}</h3>
             <p className="flow-modal-summary">{selected.summary}</p>
-            {selected.demo && <LivePreview demo={selected.demo} name={selected.name} />}
             <div className="tag-row">
               {selected.stack.map((tag) => (
                 <span className="tag" key={tag}>

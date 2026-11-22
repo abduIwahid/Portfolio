@@ -6657,7 +6657,7 @@ html.custom-cursor-on [data-cursor="native"] * {
    left-aligned eyebrow, headline and copy; sentence-case lines;
    the serif line as one solid muted tone (no gradient fade, no
    lowercase transform); the portrait standing at the RIGHT of the
-   headline with the availability badge on its top-left shoulder.
+   headline. (The availability badge was removed in session 17.)
    Shared by the Home and About heroes. The cursor-reactive hero
    background is a separate, later decision — not part of this. == */
 .hero-echo { text-align: left; }
@@ -6700,13 +6700,6 @@ html.custom-cursor-on [data-cursor="native"] * {
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .hero-portrait:hover { transform: translateY(-2px) scale(1.04); }
 }
-.hero-portrait .hero-badge {
-    left: 10px;
-    top: -20px;
-    bottom: auto;
-    transform: translateX(-58%);
-    line-height: 1.35;
-}
 .hero-copy-center {
     text-align: left;
     margin-left: 0;
@@ -6733,11 +6726,5 @@ html.custom-cursor-on [data-cursor="native"] * {
         bottom: 0;
     }
     .hero-headline-wrap.about-headline-wrap .hero-portrait { top: auto; }
-    .hero-portrait .hero-badge {
-        top: auto;
-        bottom: -12px;
-        left: -14px;
-        transform: none;
-    }
     .hero-copy-center { max-width: none; }
 }

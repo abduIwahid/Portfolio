@@ -23,7 +23,6 @@ export default function AboutPage() {
         <span className="hero-portrait" data-cursor="native">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={heroCutout} alt="" aria-hidden="true" className="hero-cutout" />
-          <span className="pfp-badge hero-badge">Available for Opportunities</span>
         </span>
       </div>
 

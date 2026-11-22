@@ -6022,24 +6022,18 @@ html.custom-cursor-on [data-cursor="native"] * {
    all three cards so the list stays even at every width; it is
    sized for the longest copy at 320px. */
 .principles-list {
-  display: grid;
-  gap: 20px;
-}
-
-.principle-stack-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: clamp(44px, 6vw, 64px);
   text-align: center;
-  min-height: 264px;
-  padding: clamp(30px, 4vw, 48px) clamp(22px, 5vw, 64px);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: linear-gradient(180deg, var(--surface), color-mix(in srgb, var(--foreground) 3.5%, var(--surface)));
-  box-shadow: 0 1px 2px color-mix(in srgb, var(--foreground) 6%, transparent), 0 18px 38px -12px color-mix(in srgb, var(--foreground) 20%, transparent), inset 0 1px 0 color-mix(in srgb, var(--background) 60%, transparent);
-  transform-origin: center top;
-  min-width: 0;
+}
+
+.principle-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 640px;
 }
 
 .principle-tick {
@@ -6050,19 +6044,19 @@ html.custom-cursor-on [data-cursor="native"] * {
   margin-bottom: 20px;
 }
 
-.principle-stack-card h3 {
+.principle-point h3 {
   margin: 0;
   font-size: clamp(20px, 1.9vw, 22px);
   letter-spacing: -.03em;
 }
 
-.principle-stack-card p {
+.principle-point p {
   margin: 12px 0 0;
-  max-width: 600px;
   color: var(--muted);
   font-size: clamp(15px, 1.3vw, 16px);
   line-height: 1.65;
 }
+
 
 
 /* Reduced motion: unlike the project stack, the sticky shells stay in
@@ -6787,26 +6781,30 @@ html.custom-cursor-on [data-cursor="native"] * {
     .exp-meta-grid { grid-template-columns: 1fr; gap: 18px; }
 }
 
-/* ===== Directional slide reveal (2026-11-22) =================
-   The Working principles cards enter from alternating sides
-   (components/slide-reveal.tsx): left, right, left — the
-   directional variant of the UI Layouts scroll-text family the
-   owner supplied. Reduced motion shows them plainly. ========== */
-.slide-reveal {
+/* ===== Scroll text animation (2026-11-22) ====================
+   The UI Layouts scroll-text mechanism (components/scroll-text
+   .tsx), as the owner directed for the Working principles
+   points: words start blurred, transparent and offset; on
+   entering the viewport they resolve one by one (~80ms
+   stagger). Direction classes choose the slide side. Reduced
+   motion shows the text plainly. ============================= */
+.scroll-text .st-word {
+    display: inline-block;
     opacity: 0;
-    filter: blur(5px);
-    transition: opacity 0.65s ease, filter 0.65s ease, transform 0.65s var(--ease-house);
+    filter: blur(10px);
+    transition: opacity 0.45s ease-out, filter 0.45s ease-out, transform 0.45s ease-out;
     will-change: opacity, filter, transform;
 }
-.slide-from-left { transform: translateX(-56px); }
-.slide-from-right { transform: translateX(56px); }
-.slide-reveal.is-visible {
+.st-dir-down .st-word { transform: translateY(20px); }
+.st-dir-left .st-word { transform: translateX(-72px); }
+.st-dir-right .st-word { transform: translateX(72px); }
+.scroll-text.is-visible .st-word {
     opacity: 1;
     filter: blur(0);
-    transform: translateX(0);
+    transform: translate(0, 0);
 }
 @media (prefers-reduced-motion: reduce) {
-    .slide-reveal {
+    .scroll-text .st-word {
         opacity: 1;
         filter: none;
         transform: none;

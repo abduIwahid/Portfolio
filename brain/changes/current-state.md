@@ -96,3 +96,4 @@ Portfolio source implementation created on 2026-10-14. Session 03 completed on 2
 - 2026-11-22 (later): Home Working principles = three bare text points, no cards; their text slides in from left / right / left on scroll. Session: `brain/changes/sessions/2026-11-22-23-principle-text-points-slide.md`.
 - 2026-11-22 (later): Home Working principles = the original stacking cards again (owner rejected the text-point experiments). Session: `brain/changes/sessions/2026-11-22-24-principles-stacking-restored.md`.
 - 2026-11-22 (later): The WhyRisk panel capture is the current template-system landing (demo URL = /welcome; the root URL's mShots capture was stale). Session: `brain/changes/sessions/2026-11-22-26-whyrisk-demo-welcome.md`.
+- 2026-11-22 (later): The site renders at a default 90% zoom on PC/laptop and 75% on mobile/tablet (CSS zoom on html in globals.css). Session: `brain/changes/sessions/2026-11-22-27-default-zoom.md`.

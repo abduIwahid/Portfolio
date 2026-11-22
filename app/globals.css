@@ -6818,3 +6818,9 @@ html.custom-cursor-on [data-cursor="native"] * {
        a two-column row at phone widths without overflowing. */
     .exp-meta-grid { grid-template-columns: 1fr; gap: 18px; }
 }
+
+/* Default scale (owner, 2026-11-22): the site renders as if the browser
+   were zoomed to 90% on PC/laptop and 75% on mobile/tablet. CSS zoom is
+   layout-level, so sticky/fixed elements keep working. */
+@media (min-width: 1025px) { html { zoom: 0.9; } }
+@media (max-width: 1024px) { html { zoom: 0.75; } }

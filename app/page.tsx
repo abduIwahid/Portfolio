@@ -5,7 +5,6 @@ import { articles } from '@/content/articles';
 import { profile } from '@/content/profile';
 import { ProjectGallery } from '@/components/project-gallery';
 import { Reveal } from '@/components/reveal';
-import { HeroGlow } from '@/components/pointer-glow';
 import { PrinciplesStack } from '@/components/principles-stack';
 import { TextMarquee } from '@/components/text-marquee';
 import { heroCutout } from './hero-image';
@@ -21,7 +20,7 @@ const PRINCIPLES = [
 
 export default function HomePage() {
   return <>
-    <section className="hero hero-echo"><HeroGlow /><div className="container hero-stage">
+    <section className="hero hero-echo"><div className="container hero-stage">
       <p className="eyebrow hero-eyebrow">AI/ML Developer</p>
       <div className="hero-headline-wrap">
         <h1 className="hero-giant"><span className="hg-mask"><span className="hg-line hg-solid">Make the model.</span></span><span className="hg-mask hg-d2"><span className="hg-line hg-serifline">Question the result.</span></span></h1>

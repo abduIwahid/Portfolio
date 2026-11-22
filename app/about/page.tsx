@@ -5,7 +5,6 @@ import { profile } from '@/content/profile';
 import { GitHubSnapshot } from '@/components/github-snapshot';
 import { StackBand } from '@/components/stack-band';
 import { Reveal } from '@/components/reveal';
-import { HeroGlow } from '@/components/pointer-glow';
 import { heroCutout } from '../hero-image';
 
 export const metadata: Metadata = {
@@ -16,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return <>
-    <section className="hero hero-echo"><HeroGlow /><div className="container hero-stage">
+    <section className="hero hero-echo"><div className="container hero-stage">
       <p className="eyebrow hero-eyebrow">About me</p>
       <div className="hero-headline-wrap about-headline-wrap">
         <h1 className="hero-giant"><span className="hg-mask"><span className="hg-line hg-solid">Curious about the model.</span></span><span className="hg-mask hg-d2"><span className="hg-line hg-serifline">Serious about the system.</span></span></h1>

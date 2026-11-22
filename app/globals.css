@@ -56,8 +56,8 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
   width: 100%;
-  /* Horizontal overflow guard: the fixed pointer-glow disc is 1200px
-     wide and permanently straddles both viewport edges. Blink and
+  /* Horizontal overflow guard: oversized fixed/absolute layers can
+     permanently straddle both viewport edges. Blink and
      desktop WebKit exclude fixed-element overflow from the scrollable
      area, but iOS Safari counts it and lets the page pan sideways,
      which clips the leftmost in-flow text (first seen on /cv, whose
@@ -5065,24 +5065,6 @@ a.cv2-contact-item:focus-visible .cv2-contact-value::after {
    the placement fixes from the full-site audit. All motion uses the
    house ease (--ease-house); nothing here uses backdrop-filter. */
 
-/* Fixed glow that trails the pointer behind all content. Negative
-   z-index keeps it below every element while staying above the
-   page background; the gradient itself carries the ~0.07 tint. */
-.pointer-glow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 1200px;
-    height: 1200px;
-    border-radius: 50%;
-    background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 7%, transparent), transparent 68%);
-    pointer-events: none;
-    z-index: -1;
-    opacity: .5;
-    will-change: transform, opacity;
-}
-
-/* Hero-scoped glow (stronger tint, follows the pointer over the hero) */
 .hero {
     position: relative;
 }
@@ -5090,20 +5072,6 @@ a.cv2-contact-item:focus-visible .cv2-contact-value::after {
     position: relative;
     z-index: 1;
 }
-.hero-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 900px;
-    height: 900px;
-    border-radius: 50%;
-    background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 12%, transparent), transparent 68%);
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0;
-    will-change: transform, opacity;
-}
-
 /* Route-change entrance (app/template.tsx) */
 @keyframes page-enter {
     from {
@@ -5188,11 +5156,6 @@ a.cv2-contact-item:focus-visible .cv2-contact-value::after {
         animation: none;
     }
 
-    .pointer-glow,
-    .hero-glow {
-        display: none;
-    }
-
     .project-card:hover,
     .principle-card:hover,
     .links-card:hover,
@@ -5206,13 +5169,6 @@ a.cv2-contact-item:focus-visible .cv2-contact-value::after {
     .writing-row:hover .writing-arrow,
     .footer-links a:hover {
         transform: none;
-    }
-}
-
-@media print {
-    .pointer-glow,
-    .hero-glow {
-        display: none !important;
     }
 }
 
@@ -6212,18 +6168,10 @@ html.custom-cursor-on [data-cursor="native"] * {
 /* ===== Performance pass (2026-11-10) =============================
    Wadi reported the portfolio feeling laggy on his iPhone 8 Plus:
    animations stalling mid-scroll. Fixes shipped in code (idle-stop
-   rAF loops in pointer-glow, custom-cursor, back-to-top) plus this:
-   on coarse-pointer (touch) devices the two pointer-glow layers are
-   removed entirely — the finger covers the glow while scrolling, so
-   the layer bought nothing, but its 1200px / 900px radial gradients
-   were being repainted by the compositor on every scroll frame.
-   Desktop (fine pointer) rendering is unchanged. */
-@media (pointer: coarse) {
-    .pointer-glow,
-    .hero-glow {
-        display: none;
-    }
-}
+   rAF loops in custom-cursor, back-to-top) plus, at the time, the
+   removal of the pointer-glow layers on coarse-pointer devices.
+   (Both glow layers were removed entirely in session 20,
+   2026-11-22, at the owner's order.) */
 
 /* ===== Home project gallery — expanding panels (2026-11-22) =====
    Owner-approved preview design: slim strips with a vertical name

@@ -41,7 +41,7 @@ import { useEffect, useRef } from 'react';
  * data-cursor="native" (the home hero portrait) behave the same
  * way: the custom cursor fades out and globals.css restores the
  * plain native arrow. Transform/opacity only, pointer-events:
- * none, no shared state with PointerGlow or the magnetic buttons.
+ * none, no shared state with the magnetic buttons.
  */
 
 const INTERACTIVE = 'a, button, [role="button"], [data-cursor], summary, label';

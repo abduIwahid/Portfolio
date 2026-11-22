@@ -4,7 +4,6 @@ import { Anton, Archivo, Instrument_Serif } from 'next/font/google';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { IntroLoader } from '@/components/intro-loader';
-import { PointerGlow } from '@/components/pointer-glow';
 import { CustomCursor } from '@/components/custom-cursor';
 import { MagneticButtons } from '@/components/magnetic-buttons';
 import { SmoothScroll } from '@/components/smooth-scroll';
@@ -28,5 +27,5 @@ const bodyFont = Archivo({ weight: ['400', '500', '600', '700', '800'], subsets:
 const serifFont = Instrument_Serif({ weight: '400', style: 'italic', subsets: ['latin'], variable: '--font-serif', display: 'swap' });
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-theme="light" suppressHydrationWarning className={`${displayFont.variable} ${bodyFont.variable} ${serifFont.variable}`}><head><script dangerouslySetInnerHTML={{ __html: "(function(){try{var t=window.localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();" }} /></head><body><PointerGlow /><CustomCursor /><MagneticButtons /><SmoothScroll /><ScrollProgress /><a className="skip-link" href="#main">Skip to content</a><SiteHeader /><main id="main">{children}</main><SiteFooter /><BackToTop /><IntroLoader /></body></html>;
+  return <html lang="en" data-theme="light" suppressHydrationWarning className={`${displayFont.variable} ${bodyFont.variable} ${serifFont.variable}`}><head><script dangerouslySetInnerHTML={{ __html: "(function(){try{var t=window.localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();" }} /></head><body><CustomCursor /><MagneticButtons /><SmoothScroll /><ScrollProgress /><a className="skip-link" href="#main">Skip to content</a><SiteHeader /><main id="main">{children}</main><SiteFooter /><BackToTop /><IntroLoader /></body></html>;
 }

@@ -73,3 +73,7 @@ The home project cards' header rules (.project-card-top, .project-card-name, .pr
 ## 2026-11-22 — Churnex removed from home
 
 Home Selected work now shows 4 projects (WhyRisk, Plan Banao, Study Hub, NearSend); Churnex (Customer Churn Prediction) removed from the home list at Wadi's order. Its case study and /projects entry remain.
+
+## 2026-11-22 — Home gallery + /projects horizontal scroll; Plan Banao first
+
+Home Selected work is now the expanding-panel gallery and /projects is the scroll-driven horizontal showcase (both built to Wadi's approved previews, same morning). Project order leads with Plan Banao, then WhyRisk, on both pages. The /projects search/filter explorer is replaced; its hero line about search was removed to match.

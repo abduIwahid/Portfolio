@@ -1,0 +1,8 @@
+# 2026-11-22 — /projects becomes the horizontal scroll showcase
+
+Change → ProjectExplorer (search/filter + stacking cards) is replaced on /projects by components/project-hscroll.tsx, built to the approved Preview 5: a pinned section (height = 9 x 100vh) where vertical scroll translates nine full-viewport panels sideways — giant parallax project word (Anton, house display font), live screenshot card (or a "Repository only — no live demo" card for the two projects without a demo), name, summary, tags, case-study link + GitHub button, panel counter, accent progress bar. Vanilla scroll listener + rAF (no new dependencies). Order: Plan Banao, WhyRisk, then the rest in data order. prefers-reduced-motion gets a static vertical stack instead. Hero copy: the "Search by domain, method, or tool." sentence was removed because search no longer exists on the page (flagged to Wadi in the delivery message).
+Reason → Wadi picked previews #4 + #5 and approved the placement (home = gallery, /projects = horizontal scroll) on 22 Nov, knowing the stacking cards would be replaced.
+Affected Area → /projects page only. project-explorer.tsx / project-stack.tsx remain in the repo, unused, in case he wants them back.
+Impact → /projects is now a scroll-driven showcase; the directory search/filter is gone (accepted trade-off, flagged).
+Evidence → Local production build passes; local render verified the pinned translation + parallax at mid-scroll (panel 2 → 3 transition, 02/09 counter, progress bar). Counter moved to bottom-left so the fixed back-to-top button cannot cover it. Images: same mshots verification note as the gallery session.
+Status → Shipped.

@@ -3,14 +3,14 @@ import { ArrowUpRight, BookOpen, Download, Github, Linkedin, Mail } from 'lucide
 import { projects } from '@/content/projects';
 import { articles } from '@/content/articles';
 import { profile } from '@/content/profile';
-import { ProjectShot } from '@/components/project-shot';
+import { ProjectGallery } from '@/components/project-gallery';
 import { Reveal } from '@/components/reveal';
 import { HeroGlow } from '@/components/pointer-glow';
 import { PrinciplesStack } from '@/components/principles-stack';
 import { TextMarquee } from '@/components/text-marquee';
 import { heroCutout } from './hero-image';
 
-const HOME_PROJECT_SLUGS = ['medisight-ai', 'planbanao', 'study-hub', 'nearsend'];
+const HOME_PROJECT_SLUGS = ['planbanao', 'medisight-ai', 'study-hub', 'nearsend'];
 const homeProjects = HOME_PROJECT_SLUGS.map((slug) => projects.find((p) => p.slug === slug)!).filter(Boolean);
 
 const PRINCIPLES = [
@@ -37,7 +37,7 @@ export default function HomePage() {
 
     <TextMarquee />
 
-    <section className="section"><div className="container"><Reveal className="reveal-auto"><div className="section-heading"><div><p className="eyebrow">Selected work</p><h2>Projects with a point of view.</h2></div><div><p>Not just a stack of technologies. Each case study explains the problem, the approach, the evidence, and what remains uncertain.</p><Link className="text-link" href="/projects">Explore all projects <ArrowUpRight size={16} /></Link></div></div></Reveal><div className="project-grid">{homeProjects.map((project, index) => <Reveal key={project.slug} delay={(index % 3) * 90}><article className={`project-card project-${project.accent}`}>{project.demo && <ProjectShot demo={project.demo} name={project.name} />}<div className="project-card-top"><h3 className="project-card-name">{project.name}</h3><div className="project-card-top-actions">{project.repo && <a href={project.repo} target="_blank" rel="noreferrer" className="project-github-btn" aria-label={`GitHub repo for ${project.name}`}><Github size={15} /></a>}<Link href={`/projects/${project.slug}`} className="project-arrow project-arrow-link" aria-label={`Read the case study of ${project.name}`}><ArrowUpRight size={19} /></Link></div></div><div className="project-card-body"><p className="project-summary">{project.summary}</p><div className="tag-row">{project.stack.slice(0, 4).map((tag) => <span className="tag" key={tag}>{tag}</span>)}{project.stack.length > 4 && <span className="tag more-tag">+{project.stack.length - 4}</span>}</div></div></article></Reveal>)}</div></div></section>
+    <section className="section"><div className="container"><Reveal className="reveal-auto"><div className="section-heading"><div><p className="eyebrow">Selected work</p><h2>Projects with a point of view.</h2></div><div><p>Not just a stack of technologies. Each case study explains the problem, the approach, the evidence, and what remains uncertain.</p><Link className="text-link" href="/projects">Explore all projects <ArrowUpRight size={16} /></Link></div></div></Reveal><ProjectGallery projects={homeProjects} /></div></section>
 
 
     <section className="section"><div className="container"><Reveal className="reveal-auto"><div className="section-heading"><div><p className="eyebrow">Working principles</p><h2>Useful beats impressive-looking.</h2></div><p>My goal is to make work that can be read, questioned, and improved by someone other than its author.</p></div></Reveal><PrinciplesStack principles={PRINCIPLES} /></div></section>

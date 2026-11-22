@@ -71,3 +71,8 @@ Portfolio source implementation created on 2026-10-14. Session 03 completed on 2
 - 2026-11-21: Live preview embed removed from all project case-study pages (component + CSS deleted).
 
 - 2026-11-21: Case-study hero actions aligned (back left, GitHub + live icons right); visit-pill CSS restored.
+
+## 2026-11-22 — Home gallery + /projects horizontal scroll
+- Home "Selected work" is now the expanding-panel gallery (components/project-gallery.tsx): Plan Banao first and active by default, then WhyRisk, Study Hub, NearSend. The card grid no longer renders on home; its CSS remains in globals.css, unused.
+- /projects is now the scroll-driven horizontal showcase (components/project-hscroll.tsx), nine panels in the same lead order (Plan Banao, WhyRisk, then the rest in data order); reduced-motion visitors get a static stack. ProjectExplorer + ProjectStack are no longer rendered anywhere (files kept for a possible return); the /projects search/filter is gone and the hero no longer mentions search.
+- Both designs were approved by the owner from in-chat GIF previews the same morning; local production build passes and local renders verified layout/interaction at 1280 + 414. Screenshot paint uses the same mshots URLs as before (verified 200 image/jpeg); the owner's phone check is the final visual verdict.

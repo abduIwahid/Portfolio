@@ -6224,3 +6224,424 @@ html.custom-cursor-on [data-cursor="native"] * {
         display: none;
     }
 }
+
+/* ===== Home project gallery — expanding panels (2026-11-22) =====
+   Owner-approved preview design: slim strips with a vertical name
+   label; the active panel expands to the live screenshot with its
+   summary, stack and links over a uniform scrim. */
+.pg-strip {
+  display: flex;
+  gap: 6px;
+  height: clamp(400px, 54vh, 480px);
+}
+
+.pg-panel {
+  position: relative;
+  width: 64px;
+  flex: none;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface-alt);
+  cursor: pointer;
+  transition: width .55s var(--ease-house);
+}
+
+.pg-panel.active {
+  width: calc(100% - 210px);
+}
+
+.pg-shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 20% top;
+}
+
+.pg-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(23, 23, 23, 0);
+  transition: background .4s ease;
+}
+
+.pg-panel.active .pg-scrim {
+  background: rgba(23, 23, 23, .34);
+}
+
+.pg-idx {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: #fff;
+  background: rgba(23, 23, 23, .55);
+  border-radius: 999px;
+  padding: 4px 8px;
+  z-index: 2;
+}
+
+.pg-vlabel {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  writing-mode: vertical-rl;
+  rotate: 180deg;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: #fff;
+  background: rgba(23, 23, 23, .55);
+  border-radius: 999px;
+  padding: 12px 7px;
+  white-space: nowrap;
+  z-index: 2;
+  transition: opacity .25s ease;
+}
+
+.pg-panel.active .pg-vlabel {
+  opacity: 0;
+}
+
+.pg-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px 22px;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .35s ease .22s, transform .45s var(--ease-house) .22s;
+  background: linear-gradient(transparent, rgba(23, 23, 23, .55));
+  z-index: 2;
+  pointer-events: none;
+}
+
+.pg-panel.active .pg-content {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.pg-content h3 {
+  margin: 0 0 7px;
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: #fff;
+}
+
+.pg-content p {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, .93);
+  max-width: 480px;
+}
+
+.pg-tags {
+  margin-top: 12px;
+}
+
+.pg-content .tag {
+  border-color: rgba(255, 255, 255, .45);
+  color: #fff;
+  background: rgba(255, 255, 255, .12);
+}
+
+.pg-pbtns {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity .3s ease .3s;
+  z-index: 3;
+}
+
+.pg-panel.active .pg-pbtns {
+  opacity: 1;
+}
+
+.pg-btn {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, .55);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: rgba(23, 23, 23, .35);
+  text-decoration: none;
+}
+
+@media (max-width: 759px) {
+  .pg-strip {
+    height: clamp(430px, 60vh, 520px);
+  }
+
+  .pg-panel {
+    width: 42px;
+  }
+
+  .pg-panel.active {
+    width: calc(100% - 144px);
+  }
+
+  .pg-vlabel {
+    font-size: 11px;
+    padding: 10px 5px;
+  }
+
+  .pg-idx {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+
+  .pg-content {
+    padding: 16px;
+  }
+
+  .pg-content h3 {
+    font-size: 22px;
+  }
+
+  .pg-content p {
+    font-size: 12.5px;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-panel {
+    transition: none;
+  }
+
+  .pg-content {
+    transition: none;
+  }
+}
+
+/* ===== /projects horizontal scroll showcase (2026-11-22) =====
+   Owner-approved preview design: the section pins and vertical
+   scroll drives the panels sideways, one project per viewport,
+   with a parallax word behind each panel and a progress bar.
+   Reduced-motion visitors get the static stack fallback. */
+.hs-section {
+  position: relative;
+}
+
+.hs-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.hs-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: color-mix(in srgb, var(--foreground) 10%, transparent);
+  z-index: 5;
+}
+
+.hs-progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+}
+
+.hs-track {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
+
+.hs-panel {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 84px 24px 44px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hs-panel:nth-child(odd) {
+  background: var(--surface);
+}
+
+.hs-panel:nth-child(even) {
+  background: var(--surface-alt);
+}
+
+.hs-word {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display), 'Arial Narrow', sans-serif;
+  font-size: clamp(72px, 14vw, 180px);
+  line-height: 1;
+  color: color-mix(in srgb, var(--foreground) 7%, transparent);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.hs-shot {
+  width: min(520px, 86vw);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 24px 44px -18px color-mix(in srgb, var(--foreground) 28%, transparent);
+  z-index: 1;
+  display: block;
+  text-decoration: none;
+}
+
+.hs-shot img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.hs-noshot {
+  aspect-ratio: 16 / 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--muted);
+  padding: 20px;
+}
+
+.hs-noshot span {
+  font-family: var(--font-display), 'Arial Narrow', sans-serif;
+  font-size: 30px;
+  line-height: 1.1;
+  color: var(--foreground);
+}
+
+.hs-noshot small {
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.hs-name {
+  margin: 0;
+  font-size: clamp(25px, 3.4vw, 32px);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  z-index: 1;
+}
+
+.hs-summary {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 540px;
+  z-index: 1;
+}
+
+.hs-tags {
+  justify-content: center;
+  z-index: 1;
+}
+
+.hs-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 1;
+}
+
+.hs-gh {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  background: var(--surface);
+}
+
+.hs-count {
+  position: absolute;
+  bottom: 20px;
+  left: 26px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: .1em;
+}
+
+.hs-static {
+  height: auto !important;
+}
+
+.hs-static .hs-sticky {
+  position: static;
+  height: auto;
+  overflow: visible;
+}
+
+.hs-static .hs-track {
+  flex-direction: column;
+  transform: none !important;
+}
+
+.hs-static .hs-panel {
+  height: auto;
+  padding: 56px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hs-static .hs-progress {
+  display: none;
+}
+
+@media (max-width: 759px) {
+  .hs-panel {
+    gap: 13px;
+    padding: 76px 18px 40px;
+  }
+
+  .hs-summary {
+    font-size: 13.5px;
+  }
+
+  .hs-word {
+    top: 8%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hs-word {
+    transform: translateX(-50%) !important;
+  }
+}

@@ -1,0 +1,8 @@
+# 2026-11-22 — Home Selected work becomes the expanding gallery
+
+Change → The home project grid (5→4 cards after the Churnex removal) is replaced by components/project-gallery.tsx: an expanding-panel gallery built to the approved Preview 4 — slim strips with index chip + vertical name label; the hovered / tapped / focused panel expands to the live screenshot (same shotUrl helper, w=1200) with a uniform scrim, summary, stack tags and GitHub / case-study buttons. New .pg-* CSS in globals.css, with a fluid mobile form (42px strips, active panel takes the remaining width, summary clamped to 5 lines) and reduced-motion handling. Order per Wadi's instruction: Plan Banao first (and active by default), WhyRisk second, then Study Hub, NearSend (HOME_PROJECT_SLUGS reordered).
+Reason → Wadi picked preview ideas #4 + #5 on 22 Nov and ordered them built as-is; the order change was his separate instruction the same morning.
+Affected Area → Home "Selected work" section only. The old .project-card CSS stays in globals.css (unused by home now; left untouched to avoid collateral damage).
+Impact → Home showcase matches the approved preview; info appears on interaction instead of at a glance (the trade-off Wadi accepted when picking #4).
+Evidence → Local production build passes; local render verified at 1280 + 414 (layout, order, hover expansion to panel 3). Screenshot images use the identical mshots mechanism as the previous cards; the sandbox browser cannot load s0.wp.com (proxy), so image paint is verified by fetching the exact rendered URLs (200 image/jpeg) — final paint check is the owner's phone, as usual.
+Status → Shipped.

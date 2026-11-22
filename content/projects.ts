@@ -41,7 +41,7 @@ export const projects: Project[] = [
       { label: 'Reproducibility', value: 'MLflow', note: 'Experiment tracking is part of the documented stack.' }
     ],
     limitations: ['Results depend on the dataset, target definition, split strategy, and class balance; a single score should not be generalized across clinical use cases.', 'The system is a technical project, not a certified medical device or a substitute for professional judgement.', 'Dataset-level details and evaluation protocols should be reviewed in the repository before using results for research conclusions.'],
-    repo: 'https://github.com/abduIwahid/WhyRisk', demo: 'https://whyrisk.vercel.app', accent: 'orange'
+    repo: 'https://github.com/abduIwahid/WhyRisk', demo: 'https://whyrisk.vercel.app/welcome', accent: 'orange'
   },
   {
     slug: 'planbanao', name: 'Plan Banao', category: 'Applied AI', kind: 'Hackathon V2 · Agent system',

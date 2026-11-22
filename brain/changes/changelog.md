@@ -114,3 +114,4 @@ First tap on a project now expands it on touch screens (was: synthetic mouseente
 
 The footer name animation now replays on every page load, refresh and route change (was: once per visit, because the footer never remounts). Owner's request; nothing else changed.
 - 2026-11-22 (15): Hero composition rebuilt to the approved preview layout on Home + About: left-aligned, sentence case, solid muted serif line, portrait right with the badge on its shoulder; cursor background decision parked. `feat(hero): apply preview composition to home and about heroes (session 15)`
+- 2026-11-22 (16): Cursor physics rebuilt SmoothFollower-style: position/heading/scale are pure lerps (0.20 / 0.12 / 0.22), springs removed — zero overshoot verified by CDP; arrow look and heading-freeze rule kept. `feat(cursor): smooth lerp follow, remove spring bounce (session 16)`

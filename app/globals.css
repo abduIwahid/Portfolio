@@ -6728,3 +6728,135 @@ html.custom-cursor-on [data-cursor="native"] * {
     .hero-headline-wrap.about-headline-wrap .hero-portrait { top: auto; }
     .hero-copy-center { max-width: none; }
 }
+
+/* ===== Experience ledger (2026-11-22) ===========================
+   The About Experience section rebuilt on the UI Layouts
+   portfolio-experience block's composition — a three-column
+   ledger row per role (identity + metrics / metadata + stack /
+   contributions) separated by border rules — adapted to the
+   house system: orange accent instead of the demo's violet,
+   Anton + Archivo instead of DM Sans, house tokens throughout,
+   and the site's own Reveal instead of the motion package. ==== */
+.exp-list { }
+.exp-item {
+    display: grid;
+    grid-template-columns: 1.05fr 1.25fr 1.7fr;
+    gap: clamp(28px, 4vw, 56px);
+    padding-block: clamp(40px, 5.5vw, 72px);
+    border-top: 1px solid var(--border);
+}
+.exp-company {
+    font-family: var(--font-display), 'Arial Narrow', sans-serif;
+    font-weight: 400;
+    font-size: clamp(30px, 3.2vw, 42px);
+    line-height: 1.02;
+    letter-spacing: 0;
+    color: var(--foreground);
+}
+.exp-tagline {
+    margin-top: 14px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+.exp-period {
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}
+.exp-metrics {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.exp-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    border-left: 2px solid color-mix(in srgb, var(--accent) 30%, var(--background));
+    padding-left: 14px;
+}
+.exp-metric-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.exp-metric-value {
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--foreground);
+    font-variant-numeric: tabular-nums;
+}
+.exp-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 20px;
+}
+.exp-field { display: flex; flex-direction: column; gap: 4px; }
+.exp-field-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.exp-field-value {
+    font-size: 14.5px;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--foreground);
+}
+.exp-platform {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    width: fit-content;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.exp-platform:hover { color: var(--accent); border-color: var(--accent); }
+.exp-stack { margin-top: 30px; }
+.exp-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+.exp-chip {
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+.exp-desc p {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--muted);
+    text-wrap: pretty;
+}
+.exp-desc p + p { margin-top: 18px; }
+.exp-desc .text-link { display: inline-flex; margin-top: 20px; }
+@media (max-width: 900px) {
+    .exp-item { grid-template-columns: 1fr; gap: 26px; }
+    .exp-metrics { flex-direction: row; gap: 28px; margin-top: 22px; }
+    .exp-stack { margin-top: 24px; }
+}
+@media (max-width: 560px) {
+    /* Single reading column: the long platform URL cannot share
+       a two-column row at phone widths without overflowing. */
+    .exp-meta-grid { grid-template-columns: 1fr; gap: 18px; }
+}

@@ -20,9 +20,11 @@ export default function AboutPage() {
       <p className="eyebrow hero-eyebrow">About me</p>
       <div className="hero-headline-wrap about-headline-wrap">
         <h1 className="hero-giant"><span className="hg-mask"><span className="hg-line hg-solid">Curious about the model.</span></span><span className="hg-mask hg-d2"><span className="hg-line hg-serifline">Serious about the system.</span></span></h1>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={heroCutout} alt="" aria-hidden="true" className="hero-cutout" />
-        <span className="pfp-badge hero-badge">Available for Opportunities</span>
+        <span className="hero-portrait" data-cursor="native">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={heroCutout} alt="" aria-hidden="true" className="hero-cutout" />
+          <span className="pfp-badge hero-badge">Available for Opportunities</span>
+        </span>
       </div>
 
       <p className="hero-copy hero-copy-center">{profile.summary}</p>

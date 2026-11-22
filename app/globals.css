@@ -6651,3 +6651,93 @@ html.custom-cursor-on [data-cursor="native"] * {
     transform: translateX(-50%) !important;
   }
 }
+
+/* ===== Hero composition: preview layout (2026-11-22) ============
+   Wadi approved the preview composition over the centred one:
+   left-aligned eyebrow, headline and copy; sentence-case lines;
+   the serif line as one solid muted tone (no gradient fade, no
+   lowercase transform); the portrait standing at the RIGHT of the
+   headline with the availability badge on its top-left shoulder.
+   Shared by the Home and About heroes. The cursor-reactive hero
+   background is a separate, later decision — not part of this. == */
+.hero-echo { text-align: left; }
+.hero-stage { align-items: flex-start; }
+.hero-echo .hero-eyebrow { justify-content: flex-start; }
+.hero-echo h1.hero-giant { text-transform: none; }
+.hero-headline-wrap { padding-bottom: clamp(30px, 4vw, 54px); }
+.hg-line {
+    font-size: clamp(38px, 7.4vw, 116px); /* fallback where cqw is unsupported */
+    font-size: 9.4cqw;
+}
+.hg-serifline {
+    text-transform: none;
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    color: color-mix(in srgb, var(--foreground) 54%, transparent);
+    opacity: 1;
+    font-size: clamp(34px, 6.8vw, 106px); /* fallback where cqw is unsupported */
+    font-size: 8.7cqw;
+}
+.hero-headline-wrap.about-headline-wrap .hg-serifline {
+    font-size: clamp(32px, 6.6vw, 104px); /* fallback where cqw is unsupported */
+    font-size: 8.6cqw;
+}
+.hero-portrait {
+    left: auto;
+    right: 0;
+    top: 4px;
+    bottom: auto;
+    transform: none;
+    height: clamp(300px, 36vw, 480px);
+}
+/* About's first line is much longer and runs into the portrait
+   zone: drop its portrait below the Anton line so only the serif
+   line passes behind the portrait, exactly as on Home. */
+.hero-headline-wrap.about-headline-wrap .hero-portrait {
+    top: clamp(96px, 10.5vw, 128px);
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .hero-portrait:hover { transform: translateY(-2px) scale(1.04); }
+}
+.hero-portrait .hero-badge {
+    left: 10px;
+    top: -20px;
+    bottom: auto;
+    transform: translateX(-58%);
+    line-height: 1.35;
+}
+.hero-copy-center {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 540px;
+}
+.hero-actions-center,
+.hero-socials-center { justify-content: flex-start; }
+@media (max-width: 1024px) {
+    .hero-portrait { height: 30vw; }
+    .hero-copy-center { max-width: 50%; }
+}
+@media (max-width: 560px) {
+    .hg-line { font-size: 8.6cqw; }
+    .hg-serifline { font-size: 7.9cqw; }
+    .hero-headline-wrap.about-headline-wrap .hg-serifline { font-size: 6.7cqw; }
+    .hero-headline-wrap { padding-bottom: 76px; }
+    /* About's lines are longer: give its portrait a clear band
+       below both lines instead of covering the first line's end. */
+    .hero-headline-wrap.about-headline-wrap { padding-bottom: 152px; }
+    .hero-portrait {
+        height: clamp(132px, 38vw, 168px);
+        top: auto;
+        bottom: 0;
+    }
+    .hero-headline-wrap.about-headline-wrap .hero-portrait { top: auto; }
+    .hero-portrait .hero-badge {
+        top: auto;
+        bottom: -12px;
+        left: -14px;
+        transform: none;
+    }
+    .hero-copy-center { max-width: none; }
+}

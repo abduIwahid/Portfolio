@@ -28,8 +28,8 @@ export default function HomePage() {
         <span className="hero-portrait" data-cursor="native">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={heroCutout} alt="" aria-hidden="true" className="hero-cutout" />
+          <span className="pfp-badge hero-badge">Available for Opportunities</span>
         </span>
-        <span className="pfp-badge hero-badge">Available for Opportunities</span>
       </div>
 
       <p className="hero-copy hero-copy-center">I&apos;m <span className="accent-serif accent-serif-name">Abdul Wahid</span>, an Artificial Intelligence undergraduate building practical machine-learning systems, explainable workflows, and software around data.</p><div className="hero-actions hero-actions-center"><Link className="button button-primary" href="/projects">Explore selected work <ArrowUpRight size={17} /></Link><a className="button button-secondary" href="/CV.pdf" download>Download CV <Download size={16} /></a></div><div className="hero-socials hero-socials-center"><a href={profile.github} target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a><a href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a><a href={`mailto:${profile.email}`}><Mail size={16} /> Email</a></div>

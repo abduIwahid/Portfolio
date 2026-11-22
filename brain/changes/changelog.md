@@ -122,3 +122,4 @@ The footer name animation now replays on every page load, refresh and route chan
 - 2026-11-22 (21): Working principles: scroll-text (word blur reveal) on the heading + intro; the stacking-cards system removed at the owner's order, cards now a static list. `feat(home): scroll-text principles, remove stacking (session 21)`
 - 2026-11-22 (22): Correction to (21): the directional animation sits on the three principle cards (left / right / left slide-in); heading text effect removed. `feat(home): principle cards slide left/right/left (session 22)`
 - 2026-11-22 (23): Principles are now bare text points (cards removed); each point's text slides in word-by-word from alternating sides per the supplied scroll-text code. `feat(home): principle text points slide left/right/left (session 23)`
+- 2026-11-22 (24): Working principles stacking restored at the owner's order (sessions 21-23 text experiments fully reverted). `revert(home): restore principles stacking (session 24)`

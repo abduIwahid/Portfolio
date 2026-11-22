@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowUpRight, Github } from 'lucide-react';
 import type { Project } from '@/content/projects';
@@ -7,20 +8,14 @@ import { shotUrl } from './project-shot';
 
 /**
  * Home "Selected work" — expanding panel gallery (owner-approved design,
- * 2026-11-22): collapsed panels are slim strips with a vertical name
- * label; the hovered / tapped / focused panel expands to show the live
+ * 2026-11-22): collapsed panels are slim strips; the hovered / tapped / focused panel expands to show the live
  * screenshot with its summary, stack and links.
  */
 export function ProjectGallery({ projects }: { projects: Project[] }) {
-  const [active, setActive] = useState<number | null>(0);
+  const [active, setActive] = useState(0);
+  const router = useRouter();
   return (
-    <div
-      className="pg-strip"
-      onMouseLeave={() => setActive(null)}
-      onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node)) setActive(null);
-      }}
-    >
+    <div className="pg-strip">
       {projects.map((project, i) => {
         const isActive = i === active;
         return (
@@ -28,7 +23,10 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
             key={project.slug}
             className={`pg-panel${isActive ? ' active' : ''}`}
             onMouseEnter={() => setActive(i)}
-            onClick={() => setActive(i)}
+            onClick={() => {
+              if (i === active) router.push(`/projects/${project.slug}`);
+              else setActive(i);
+            }}
             onFocus={() => setActive(i)}
             tabIndex={0}
             aria-label={`${project.name} — activate to expand`}
@@ -43,7 +41,6 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
             )}
             <div className="pg-scrim" />
             <span className="pg-idx">{String(i + 1).padStart(2, '0')}</span>
-            <span className="pg-vlabel" aria-hidden="true">{project.name}</span>
             <div className="pg-pbtns">
               {project.repo && (
                 <a

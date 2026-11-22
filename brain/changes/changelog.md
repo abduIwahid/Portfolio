@@ -97,3 +97,7 @@ Owner rejected both new designs after live use. Home grid and /projects explorer
 ## 2026-11-22 — Correction: restored to one commit back
 
 The full rollback (session 09) overshot the owner's instruction — he meant one commit back. Code restored byte-for-byte from 63d6a0d4: gallery + horizontal scroll live again, without session 08's idle-spread/legibility round.
+
+## 2026-11-22 — Gallery: sticky open project, labels removed
+
+One project is always open (Plan Banao by default); the pointer leaving no longer closes anything; clicking the open panel opens its case study; vertical strip labels removed; text band strengthened for legibility. Owner's spec + photo.

@@ -69,3 +69,7 @@ The case-study hero actions row ("All projects" + GitHub/Visit icon buttons) is 
 ## 2026-11-22 — Project card header CSS restored
 
 The home project cards' header rules (.project-card-top, .project-card-name, .project-card-top-actions, .project-github-btn) were missing from globals.css, stacking the title, GitHub glyph and arrow on separate lines; the rules are restored, mirroring the arrow button's styling.
+
+## 2026-11-22 — Churnex removed from home
+
+Home Selected work now shows 4 projects (WhyRisk, Plan Banao, Study Hub, NearSend); Churnex (Customer Churn Prediction) removed from the home list at Wadi's order. Its case study and /projects entry remain.

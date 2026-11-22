@@ -109,3 +109,7 @@ One project is always open (Plan Banao by default); the pointer leaving no longe
 ## 2026-11-22 — Gallery touch tap fix
 
 First tap on a project now expands it on touch screens (was: synthetic mouseenter made the tap count as a second click and jumped straight to the case study). Verified with touch emulation.
+
+## 2026-11-22 — Footer wordmark replays per page
+
+The footer name animation now replays on every page load, refresh and route change (was: once per visit, because the footer never remounts). Owner's request; nothing else changed.

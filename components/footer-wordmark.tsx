@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 /**
  * Giant faded wordmark — the footer's closing signature.
@@ -18,10 +19,30 @@ const NAME = 'ABDUL WAHID';
 export function FooterWordmark() {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
+  const [playKey, setPlayKey] = useState(0);
+  const pathname = usePathname();
+
+  // The footer lives in the shared layout, so without this the rise
+  // would only ever play on the first page of a visit. Bump playKey
+  // on every route change — and on a bfcache restore (mobile Safari
+  // refresh/back), which remounts nothing — so the animation replays
+  // on every page load, exactly as the owner asked (2026-11-22).
+  useEffect(() => {
+    setPlayKey((k) => k + 1);
+  }, [pathname]);
+
+  useEffect(() => {
+    const onShow = (e: PageTransitionEvent) => {
+      if (e.persisted) setPlayKey((k) => k + 1);
+    };
+    window.addEventListener('pageshow', onShow);
+    return () => window.removeEventListener('pageshow', onShow);
+  }, []);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    setInView(false);
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setInView(true);
       return;
@@ -37,7 +58,7 @@ export function FooterWordmark() {
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [playKey]);
 
   return (
     <div

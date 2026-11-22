@@ -84,3 +84,4 @@ Portfolio source implementation created on 2026-10-14. Session 03 completed on 2
 - 2026-11-22 (later): gallery interaction finalised on owner's spec — sticky active panel (never all-closed), Plan Banao open by default, click-open case study, vertical labels removed, stronger text band. Session: `brain/changes/sessions/2026-11-22-11-gallery-sticky-open.md`.
 - 2026-11-22 (later): "Explore all projects" moved from the Selected work heading to a centred pill button under the home gallery. Session: `brain/changes/sessions/2026-11-22-12-explore-link-bottom.md`.
 - 2026-11-22 (later): gallery touch behaviour fixed — first tap expands, second tap opens the case study (pointerdown-state tracking). Session: `brain/changes/sessions/2026-11-22-13-gallery-touch-tap-fix.md`.
+- 2026-11-22 (later): footer wordmark animation replays on every page/refresh (route-change + bfcache reset in footer-wordmark.tsx). Session: `brain/changes/sessions/2026-11-22-14-wordmark-replay.md`.

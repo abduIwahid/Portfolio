@@ -65,3 +65,7 @@ All projects left, GitHub/live icon buttons right, "View source" text removed; v
 ## 2026-11-22 — Case hero actions centred
 
 The case-study hero actions row ("All projects" + GitHub/Visit icon buttons) is now centred as one group on every project page, per Wadi's screenshot order; previously split left/right via space-between.
+
+## 2026-11-22 — Project card header CSS restored
+
+The home project cards' header rules (.project-card-top, .project-card-name, .project-card-top-actions, .project-github-btn) were missing from globals.css, stacking the title, GitHub glyph and arrow on separate lines; the rules are restored, mirroring the arrow button's styling.

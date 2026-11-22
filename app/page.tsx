@@ -5,7 +5,7 @@ import { articles } from '@/content/articles';
 import { profile } from '@/content/profile';
 import { ProjectGallery } from '@/components/project-gallery';
 import { Reveal } from '@/components/reveal';
-import { ScrollText } from '@/components/scroll-text';
+import { SlideReveal } from '@/components/slide-reveal';
 import { TextMarquee } from '@/components/text-marquee';
 import { heroCutout } from './hero-image';
 
@@ -38,7 +38,7 @@ export default function HomePage() {
     <section className="section"><div className="container"><Reveal className="reveal-auto"><div className="section-heading"><div><p className="eyebrow">Selected work</p><h2>Projects with a point of view.</h2></div><div><p>Not just a stack of technologies. Each case study explains the problem, the approach, the evidence, and what remains uncertain.</p></div></div></Reveal><ProjectGallery projects={homeProjects} /><div className="pg-more"><Link className="pg-more-link" href="/projects">Explore all projects <ArrowUpRight size={17} /></Link></div></div></section>
 
 
-    <section className="section"><div className="container"><div className="section-heading"><div><p className="eyebrow">Working principles</p><ScrollText as="h2" text="Useful beats impressive-looking." /></div><ScrollText as="p" text="My goal is to make work that can be read, questioned, and improved by someone other than its author." /></div><div className="principles-list">{PRINCIPLES.map((principle, index) => <Reveal key={principle.title} delay={index * 90}><article className="principle-stack-card"><span className="principle-tick" aria-hidden="true" /><h3>{principle.title}</h3><p>{principle.body}</p></article></Reveal>)}</div></div></section>
+    <section className="section"><div className="container"><Reveal className="reveal-auto"><div className="section-heading"><div><p className="eyebrow">Working principles</p><h2>Useful beats impressive-looking.</h2></div><p>My goal is to make work that can be read, questioned, and improved by someone other than its author.</p></div></Reveal><div className="principles-list">{PRINCIPLES.map((principle, index) => <SlideReveal key={principle.title} from={index % 2 === 0 ? 'left' : 'right'}><article className="principle-stack-card"><span className="principle-tick" aria-hidden="true" /><h3>{principle.title}</h3><p>{principle.body}</p></article></SlideReveal>)}</div></div></section>
 
     <section className="section"><div className="container"><Reveal className="reveal-auto"><div className="section-heading"><div><p className="eyebrow">Field notes</p><h2>Writing for better decisions.</h2></div><p>Short, research-informed notes on model evaluation, explainability, and responsible AI engineering.</p></div></Reveal><div className="writing-list">{articles.map((article, index) => <Reveal key={article.slug} className="reveal-auto" delay={(index % 3) * 60}><article className="writing-row"><div className="writing-meta">{article.category}<br />{article.readTime}</div><div className="writing-main"><h3 className="writing-title"><Link href={`/writing/${article.slug}`}>{article.title}</Link></h3><p className="writing-deck">{article.deck}</p></div><Link className="writing-arrow" href={`/writing/${article.slug}`} aria-label={`Read ${article.title}`}><ArrowUpRight size={18} /></Link></article></Reveal>)}</div><div style={{ marginTop: 22 }}><Link className="text-link" href="/writing">Browse all writing <ArrowUpRight size={16} /></Link></div></div></section>
 

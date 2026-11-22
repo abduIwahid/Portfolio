@@ -120,3 +120,4 @@ The footer name animation now replays on every page load, refresh and route chan
 - 2026-11-22 (19): Ledger treatment extended to About Education (full 3-column), Credentials and Community (slim 2-column) at the owner's order. `feat(about): ledger for education, credentials, community (session 19)`
 - 2026-11-22 (20): Pointer-follow orange glow (global + hero layers) removed entirely at the owner's order; component deleted. `chore(site): remove pointer-follow glow layers (session 20)`
 - 2026-11-22 (21): Working principles: scroll-text (word blur reveal) on the heading + intro; the stacking-cards system removed at the owner's order, cards now a static list. `feat(home): scroll-text principles, remove stacking (session 21)`
+- 2026-11-22 (22): Correction to (21): the directional animation sits on the three principle cards (left / right / left slide-in); heading text effect removed. `feat(home): principle cards slide left/right/left (session 22)`

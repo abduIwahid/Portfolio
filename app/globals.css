@@ -6787,26 +6787,26 @@ html.custom-cursor-on [data-cursor="native"] * {
     .exp-meta-grid { grid-template-columns: 1fr; gap: 18px; }
 }
 
-/* ===== Scroll text animation (2026-11-22) =======================
-   UI Layouts scroll-text, adapted (components/scroll-text.tsx):
-   words start blurred, transparent and 20px low; when the block
-   enters the viewport they resolve one by one (~90ms stagger).
-   Reduced motion shows the text plainly. ======================= */
-.scroll-text .st-word {
-    display: inline-block;
+/* ===== Directional slide reveal (2026-11-22) =================
+   The Working principles cards enter from alternating sides
+   (components/slide-reveal.tsx): left, right, left — the
+   directional variant of the UI Layouts scroll-text family the
+   owner supplied. Reduced motion shows them plainly. ========== */
+.slide-reveal {
     opacity: 0;
-    filter: blur(10px);
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s var(--ease-house);
+    filter: blur(5px);
+    transition: opacity 0.65s ease, filter 0.65s ease, transform 0.65s var(--ease-house);
     will-change: opacity, filter, transform;
 }
-.scroll-text.is-visible .st-word {
+.slide-from-left { transform: translateX(-56px); }
+.slide-from-right { transform: translateX(56px); }
+.slide-reveal.is-visible {
     opacity: 1;
     filter: blur(0);
-    transform: translateY(0);
+    transform: translateX(0);
 }
 @media (prefers-reduced-motion: reduce) {
-    .scroll-text .st-word {
+    .slide-reveal {
         opacity: 1;
         filter: none;
         transform: none;

@@ -101,3 +101,7 @@ The full rollback (session 09) overshot the owner's instruction — he meant one
 ## 2026-11-22 — Gallery: sticky open project, labels removed
 
 One project is always open (Plan Banao by default); the pointer leaving no longer closes anything; clicking the open panel opens its case study; vertical strip labels removed; text band strengthened for legibility. Owner's spec + photo.
+
+## 2026-11-22 — Explore link moved under the gallery
+
+"Explore all projects" is now a centred pill button below the home gallery instead of a small link in the section heading. Owner's annotated photo.

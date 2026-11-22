@@ -37,7 +37,7 @@ export default function HomePage() {
 
     <TextMarquee />
 
-    <section className="section"><div className="container"><Reveal className="reveal-auto"><div className="section-heading"><div><p className="eyebrow">Selected work</p><h2>Projects with a point of view.</h2></div><div><p>Not just a stack of technologies. Each case study explains the problem, the approach, the evidence, and what remains uncertain.</p><Link className="text-link" href="/projects">Explore all projects <ArrowUpRight size={16} /></Link></div></div></Reveal><ProjectGallery projects={homeProjects} /></div></section>
+    <section className="section"><div className="container"><Reveal className="reveal-auto"><div className="section-heading"><div><p className="eyebrow">Selected work</p><h2>Projects with a point of view.</h2></div><div><p>Not just a stack of technologies. Each case study explains the problem, the approach, the evidence, and what remains uncertain.</p></div></div></Reveal><ProjectGallery projects={homeProjects} /><div className="pg-more"><Link className="pg-more-link" href="/projects">Explore all projects <ArrowUpRight size={17} /></Link></div></div></section>
 
 
     <section className="section"><div className="container"><Reveal className="reveal-auto"><div className="section-heading"><div><p className="eyebrow">Working principles</p><h2>Useful beats impressive-looking.</h2></div><p>My goal is to make work that can be read, questioned, and improved by someone other than its author.</p></div></Reveal><PrinciplesStack principles={PRINCIPLES} /></div></section>

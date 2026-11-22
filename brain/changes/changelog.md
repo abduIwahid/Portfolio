@@ -61,3 +61,7 @@ The embedded live-preview block was removed from every project case study at Wad
 ## 2026-11-21 — Case hero actions aligned + Visit pill CSS restored
 
 All projects left, GitHub/live icon buttons right, "View source" text removed; visit-pill base CSS restored after the preview-removal round clipped it.
+
+## 2026-11-22 — Case hero actions centred
+
+The case-study hero actions row ("All projects" + GitHub/Visit icon buttons) is now centred as one group on every project page, per Wadi's screenshot order; previously split left/right via space-between.

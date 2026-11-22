@@ -1628,7 +1628,7 @@ main:has(.nf-hero) > .page-enter {
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 28px;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 

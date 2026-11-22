@@ -93,3 +93,7 @@ When the pointer leaves, the four panels now spread into equal columns filling t
 ## 2026-11-22 — Rollback: gallery + horizontal scroll reverted
 
 Owner rejected both new designs after live use. Home grid and /projects explorer (stacking cards) restored exactly as before the round; Plan Banao-first order kept. Gallery/hscroll components and CSS removed.
+
+## 2026-11-22 — Correction: restored to one commit back
+
+The full rollback (session 09) overshot the owner's instruction — he meant one commit back. Code restored byte-for-byte from 63d6a0d4: gallery + horizontal scroll live again, without session 08's idle-spread/legibility round.

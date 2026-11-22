@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ProjectHScroll } from '@/components/project-hscroll';
 import { projects } from '@/content/projects';
 export const metadata: Metadata = { title: 'Projects', description: 'Explore AI/ML projects, engineering work, and evidence-based technical case studies by Abdul Wahid.', alternates: { canonical: '/projects' } };
-const LEAD_SLUGS = ['planbanao', 'medisight-ai'];
+const LEAD_SLUGS = ['planbanao', 'medisight-ai', 'study-hub'];
 const orderedProjects = [
   ...LEAD_SLUGS.map((slug) => projects.find((project) => project.slug === slug)!),
   ...projects.filter((project) => !LEAD_SLUGS.includes(project.slug)),

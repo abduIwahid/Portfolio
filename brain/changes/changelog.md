@@ -81,3 +81,7 @@ Home Selected work is now the expanding-panel gallery and /projects is the scrol
 ## 2026-11-22 — Gallery hover behaviour fix
 
 Expansion slowed (.55s → .9s) and the gallery now follows the pointer strictly: cursor leaves the strip → active panel collapses and its details fade out; cursor returns → details fade back in. Owner's live feedback, same morning.
+
+## 2026-11-22 — /projects order: Study Hub third
+
+Showcase order is now Plan Banao → WhyRisk → Study Hub → the rest in data order, on the owner's instruction (Study Hub was last).

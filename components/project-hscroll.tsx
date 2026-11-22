@@ -74,7 +74,7 @@ export function ProjectHScroll({ projects }: { projects: Project[] }) {
                   rel="noreferrer"
                   aria-label={`Open the live site of ${project.name}`}
                 >
-                  <img src={shotUrl(project.demo, 1200)} alt={`Live screenshot of ${project.name}`} loading="lazy" />
+                  <img src={shotUrl(project.demo, 1240)} alt={`Live screenshot of ${project.name}`} loading="lazy" />
                 </a>
               ) : (
                 <div className="hs-shot hs-noshot">

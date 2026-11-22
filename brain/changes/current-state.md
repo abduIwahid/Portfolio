@@ -95,3 +95,4 @@ Portfolio source implementation created on 2026-10-14. Session 03 completed on 2
 - 2026-11-22 (later): Home Working principles cards slide in from alternating sides (left, right, left) on scroll; heading is plain again. Session: `brain/changes/sessions/2026-11-22-22-principle-cards-slide-directions.md`.
 - 2026-11-22 (later): Home Working principles = three bare text points, no cards; their text slides in from left / right / left on scroll. Session: `brain/changes/sessions/2026-11-22-23-principle-text-points-slide.md`.
 - 2026-11-22 (later): Home Working principles = the original stacking cards again (owner rejected the text-point experiments). Session: `brain/changes/sessions/2026-11-22-24-principles-stacking-restored.md`.
+- 2026-11-22 (later): Project screenshots re-capture on demand at the new widths (1240 / 820); the WhyRisk panel shows the current template-system landing. Session: `brain/changes/sessions/2026-11-22-25-mshots-capture-refresh.md`.

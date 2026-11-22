@@ -40,7 +40,7 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
             {project.demo && (
               <img
                 className="pg-shot"
-                src={shotUrl(project.demo, 1200)}
+                src={shotUrl(project.demo, 1240)}
                 alt={`Live screenshot of ${project.name}`}
                 loading="lazy"
               />

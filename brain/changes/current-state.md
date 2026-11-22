@@ -91,3 +91,4 @@ Portfolio source implementation created on 2026-10-14. Session 03 completed on 2
 - 2026-11-22 (later): About Experience is now a three-column ledger (identity + metrics / metadata + stack / contributions) adapted from the UI Layouts portfolio-experience block. Session: `brain/changes/sessions/2026-11-22-18-experience-ledger.md`.
 - 2026-11-22 (later): Education, Credentials and Community on About now use the same ledger system as Experience (slim two-column variant where no contribution text exists). Session: `brain/changes/sessions/2026-11-22-19-ledger-education-credentials-community.md`.
 - 2026-11-22 (later): The cursor-follow orange glow no longer exists anywhere on the site (component deleted in session 20).
+- 2026-11-22 (later): Home Working principles no longer stacks: static cards, with a word-by-word blur reveal on the section heading and intro. Session: `brain/changes/sessions/2026-11-22-21-scroll-text-principles.md`.

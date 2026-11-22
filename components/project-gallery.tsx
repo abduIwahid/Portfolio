@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowUpRight, Github } from 'lucide-react';
@@ -14,6 +14,11 @@ import { shotUrl } from './project-shot';
 export function ProjectGallery({ projects }: { projects: Project[] }) {
   const [active, setActive] = useState(0);
   const router = useRouter();
+  // Which panel was open when the current press began. Touch browsers
+  // fire a synthetic mouseenter before the click, so deciding from
+  // `active` inside onClick would mistake a first tap (meant to
+  // expand) for a second tap (meant to open the case study).
+  const pressedActive = useRef(0);
   return (
     <div className="pg-strip">
       {projects.map((project, i) => {
@@ -23,8 +28,9 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
             key={project.slug}
             className={`pg-panel${isActive ? ' active' : ''}`}
             onMouseEnter={() => setActive(i)}
+            onPointerDown={() => { pressedActive.current = active; }}
             onClick={() => {
-              if (i === active) router.push(`/projects/${project.slug}`);
+              if (i === pressedActive.current) router.push(`/projects/${project.slug}`);
               else setActive(i);
             }}
             onFocus={() => setActive(i)}

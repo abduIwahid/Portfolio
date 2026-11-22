@@ -105,3 +105,7 @@ One project is always open (Plan Banao by default); the pointer leaving no longe
 ## 2026-11-22 — Explore link moved under the gallery
 
 "Explore all projects" is now a centred pill button below the home gallery instead of a small link in the section heading. Owner's annotated photo.
+
+## 2026-11-22 — Gallery touch tap fix
+
+First tap on a project now expands it on touch screens (was: synthetic mouseenter made the tap count as a second click and jumped straight to the case study). Verified with touch emulation.

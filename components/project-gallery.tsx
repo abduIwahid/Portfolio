@@ -15,7 +15,7 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
   const [active, setActive] = useState<number | null>(0);
   return (
     <div
-      className="pg-strip"
+      className={`pg-strip${active === null ? ' idle' : ''}`}
       onMouseLeave={() => setActive(null)}
       onBlur={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget as Node)) setActive(null);

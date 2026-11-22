@@ -85,3 +85,7 @@ Expansion slowed (.55s → .9s) and the gallery now follows the pointer strictly
 ## 2026-11-22 — /projects order: Study Hub third
 
 Showcase order is now Plan Banao → WhyRisk → Study Hub → the rest in data order, on the owner's instruction (Study Hub was last).
+
+## 2026-11-22 — Gallery idle spread + legibility fix
+
+When the pointer leaves, the four panels now spread into equal columns filling the row (was: slim strips clustered left). Text over light screenshots fixed: stronger scrim + bottom band, summary clamped to 4 lines. From the owner's laptop photos.

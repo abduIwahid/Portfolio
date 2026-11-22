@@ -89,3 +89,7 @@ Showcase order is now Plan Banao → WhyRisk → Study Hub → the rest in data 
 ## 2026-11-22 — Gallery idle spread + legibility fix
 
 When the pointer leaves, the four panels now spread into equal columns filling the row (was: slim strips clustered left). Text over light screenshots fixed: stronger scrim + bottom band, summary clamped to 4 lines. From the owner's laptop photos.
+
+## 2026-11-22 — Rollback: gallery + horizontal scroll reverted
+
+Owner rejected both new designs after live use. Home grid and /projects explorer (stacking cards) restored exactly as before the round; Plan Banao-first order kept. Gallery/hscroll components and CSS removed.

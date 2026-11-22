@@ -6244,7 +6244,7 @@ html.custom-cursor-on [data-cursor="native"] * {
   overflow: hidden;
   background: var(--surface-alt);
   cursor: pointer;
-  transition: width .55s var(--ease-house);
+  transition: width .9s var(--ease-house);
 }
 
 .pg-panel.active {
@@ -6302,11 +6302,12 @@ html.custom-cursor-on [data-cursor="native"] * {
   padding: 12px 7px;
   white-space: nowrap;
   z-index: 2;
-  transition: opacity .25s ease;
+  transition: opacity .3s ease .35s;
 }
 
 .pg-panel.active .pg-vlabel {
   opacity: 0;
+  transition: opacity .2s ease;
 }
 
 .pg-content {
@@ -6318,7 +6319,7 @@ html.custom-cursor-on [data-cursor="native"] * {
   color: #fff;
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity .35s ease .22s, transform .45s var(--ease-house) .22s;
+  transition: opacity .3s ease, transform .4s var(--ease-house);
   background: linear-gradient(transparent, rgba(23, 23, 23, .55));
   z-index: 2;
   pointer-events: none;
@@ -6328,6 +6329,7 @@ html.custom-cursor-on [data-cursor="native"] * {
   opacity: 1;
   transform: none;
   pointer-events: auto;
+  transition: opacity .45s ease .35s, transform .55s var(--ease-house) .35s;
 }
 
 .pg-content h3 {
@@ -6362,12 +6364,13 @@ html.custom-cursor-on [data-cursor="native"] * {
   display: flex;
   gap: 8px;
   opacity: 0;
-  transition: opacity .3s ease .3s;
+  transition: opacity .25s ease;
   z-index: 3;
 }
 
 .pg-panel.active .pg-pbtns {
   opacity: 1;
+  transition: opacity .35s ease .45s;
 }
 
 .pg-btn {

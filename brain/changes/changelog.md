@@ -77,3 +77,7 @@ Home Selected work now shows 4 projects (WhyRisk, Plan Banao, Study Hub, NearSen
 ## 2026-11-22 — Home gallery + /projects horizontal scroll; Plan Banao first
 
 Home Selected work is now the expanding-panel gallery and /projects is the scroll-driven horizontal showcase (both built to Wadi's approved previews, same morning). Project order leads with Plan Banao, then WhyRisk, on both pages. The /projects search/filter explorer is replaced; its hero line about search was removed to match.
+
+## 2026-11-22 — Gallery hover behaviour fix
+
+Expansion slowed (.55s → .9s) and the gallery now follows the pointer strictly: cursor leaves the strip → active panel collapses and its details fade out; cursor returns → details fade back in. Owner's live feedback, same morning.

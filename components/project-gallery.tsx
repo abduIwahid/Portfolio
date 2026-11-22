@@ -12,9 +12,15 @@ import { shotUrl } from './project-shot';
  * screenshot with its summary, stack and links.
  */
 export function ProjectGallery({ projects }: { projects: Project[] }) {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState<number | null>(0);
   return (
-    <div className="pg-strip">
+    <div
+      className="pg-strip"
+      onMouseLeave={() => setActive(null)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node)) setActive(null);
+      }}
+    >
       {projects.map((project, i) => {
         const isActive = i === active;
         return (

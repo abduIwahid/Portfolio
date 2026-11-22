@@ -6850,8 +6850,15 @@ html.custom-cursor-on [data-cursor="native"] * {
 }
 .exp-desc p + p { margin-top: 18px; }
 .exp-desc .text-link { display: inline-flex; margin-top: 20px; }
+/* Slim ledger (session 19): Credentials and Community carry no
+   contribution paragraphs, so their rows run two columns —
+   identity + a three-across metadata grid — in the same rhythm. */
+.exp-item-slim { grid-template-columns: 1.05fr 2.95fr; }
+.exp-company-sm { font-size: clamp(26px, 2.6vw, 36px); }
+.exp-meta-grid-3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 900px) {
-    .exp-item { grid-template-columns: 1fr; gap: 26px; }
+    .exp-item, .exp-item-slim { grid-template-columns: 1fr; gap: 26px; }
+    .exp-meta-grid-3 { grid-template-columns: 1fr 1fr; }
     .exp-metrics { flex-direction: row; gap: 28px; margin-top: 22px; }
     .exp-stack { margin-top: 24px; }
 }
